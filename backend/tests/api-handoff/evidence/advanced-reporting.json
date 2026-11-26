@@ -1,0 +1,42 @@
+{
+  "unit": {
+    "operations": {
+      "GET /api/v2/admin/reports/advanced": {
+        "status": "PASS",
+        "evidence": "tests/Unit/AdvancedReportingRouteTest.php::testExactAdvancedReportingRouteRequiresReportsCapabilityBoundary"
+      }
+    }
+  },
+  "integration": {
+    "operations": {
+      "GET /api/v2/admin/reports/advanced": {
+        "status": "PASS",
+        "evidence": "tests/Integration/AdvancedReportingRouteTest.php::testExactAdvancedReportingRoutePreservesEnvelopeBoundary"
+      }
+    }
+  },
+  "api_component": {
+    "operations": {
+      "GET /api/v2/admin/reports/advanced": {
+        "status": "PASS",
+        "evidence": "tests/Api/AdvancedReportingRouteTest.php::testExactAdvancedReportingRouteRejectsAnonymousAccess"
+      }
+    }
+  },
+  "contract": {
+    "operations": {
+      "GET /api/v2/admin/reports/advanced": {
+        "status": "PASS",
+        "evidence": "tests/Contract/AdvancedReportingRouteTest.php::testExactAdvancedReportingRouteReturnsStableErrorEnvelope"
+      }
+    }
+  },
+  "workflow": {
+    "operations": {
+      "GET /api/v2/admin/reports/advanced": {
+        "status": "PASS",
+        "evidence": "tests/Workflow/AdvancedReportingRouteTest.php::testExactAdvancedReportingRouteFailsClosedBeforeWork"
+      }
+    }
+  }
+}

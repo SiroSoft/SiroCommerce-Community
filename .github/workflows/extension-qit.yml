@@ -1,0 +1,64 @@
+name: Extension QIT
+
+on:
+  pull_request:
+    paths:
+      - "backend/app/Extensions/**"
+      - ".github/workflows/extension-qit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: extension-qit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qit:
+    name: Extension manifests, pack and QIT-lite
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: pdo_sqlite, sqlite3, mbstring, intl, zip
+          tools: composer:v2
+
+      - name: Install backend dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Validate extension manifests
+        run: php siro extension:check
+
+      - name: Pack and run QIT-lite for every extension
+        shell: bash
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          out_dir="$RUNNER_TEMP/extension-qit"
+          mkdir -p "$out_dir"
+          found=0
+          for manifest in app/Extensions/*/*/manifest.json; do
+            found=1
+            dir="$(dirname "$manifest")"
+            id="$(php -r '$m=json_decode(file_get_contents($argv[1]), true); echo is_array($m) && isset($m["id"]) ? $m["id"] : "unknown";' "$manifest")"
+            slug="${id//\//-}"
+            package="$out_dir/$slug.zip"
+            echo "::group::Pack $dir"
+            php siro extension:pack "$dir" --out="$package"
+            echo "::endgroup::"
+            echo "::group::QIT $dir"
+            php siro extension:qit "$package"
+            echo "::endgroup::"
+          done
+          if [ "$found" -eq 0 ]; then
+            echo "No extension manifests found under backend/app/Extensions/*/*/manifest.json" >&2
+            exit 1
+          fi

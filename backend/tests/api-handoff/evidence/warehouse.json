@@ -1,0 +1,16 @@
+{
+    "POST /api/v2/inventory/{variant}/atp": {
+        "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/inventory/{variant}/atp]"},
+        "integration": {"status": "PASS", "evidence": "tests/Integration/InventoryRaceTest.php::testCrossSourceAllocationRollsBackEverySourceWhenTotalAtpIsInsufficient"},
+        "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/inventory/{variant}/atp]"},
+        "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/inventory/{variant}/atp]"},
+        "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/inventory/{variant}/atp]"}
+    },
+    "POST /api/admin/inventory/{variant}/transfer": {
+        "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/inventory/{variant}/transfer]"},
+        "integration": {"status": "PASS", "evidence": "tests/Integration/InventoryRaceTest.php::testSourcesHaveIndependentAvailabilityAndReservations"},
+        "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/inventory/{variant}/transfer]"},
+        "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/inventory/{variant}/transfer]"},
+        "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/inventory/{variant}/transfer]"}
+    }
+}

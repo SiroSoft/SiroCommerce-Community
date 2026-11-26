@@ -1,0 +1,67 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/store-locator",
+  "type": "module",
+  "name": "Store Locator",
+  "description": "Store/channel scoped list of stores and pickup points with an admin CRUD table and a storefront footer widget.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.1"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\StoreLocator\\Extension",
+  "capabilities": [
+    "store-locator:read",
+    "store-locator:manage"
+  ],
+  "permissions": [
+    "store-locator:manage"
+  ],
+  "migrations": [
+    "migrations/20261124000003_create_ext_store_locator.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Store locator",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "footer"
+    ]
+  },
+  "admin": {
+    "label": "Store locator",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "locations",
+        "title": "Store locations",
+        "type": "table",
+        "endpoint": "admin",
+        "permission": "store-locator:manage"
+      }
+    ]
+  },
+  "config": {
+    "default_label": "Stores",
+    "slot": "footer"
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-store-locator",
+    "features": [
+      "store-locator"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

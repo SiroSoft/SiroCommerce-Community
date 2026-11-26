@@ -1,0 +1,36 @@
+FROM composer:2.8 AS vendor
+
+WORKDIR /app
+COPY backend/composer.json backend/composer.lock ./backend/
+RUN composer install --working-dir=backend --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+# Multithreaded production runtime (replaces single-threaded php -S).
+# Same :8090 contract: frankenphp php-server falls back to index.php for
+# non-file requests, so nginx needs no change. OPcache timestamps are off
+# because each release boots fresh containers (see php-opcache.ini).
+FROM dunglas/frankenphp:1-php8.3
+
+RUN install-php-extensions pdo_mysql redis
+WORKDIR /app
+COPY backend ./backend
+COPY --from=vendor /app/backend/vendor ./backend/vendor
+COPY deploy/php-opcache.ini /usr/local/etc/php/conf.d/zz-siro-opcache.ini
+
+# Non-root runtime. The named volume mounted at /app/backend/storage inherits
+# this directory's ownership on first creation; an existing root-owned volume
+# needs a one-time chown (see docs/engineering/SECURITY_NOTES.md).
+RUN groupadd --gid 10001 app \
+    && useradd --uid 10001 --gid app --create-home --shell /usr/sbin/nologin app \
+    && mkdir -p backend/storage/database backend/storage/evidence \
+        backend/storage/framework backend/storage/logs \
+        backend/storage/rate_limit backend/storage/cache \
+    && chown -R app:app backend/storage
+
+# FrankenPHP/Caddy keep runtime state under XDG paths; the app user owns them.
+ENV HOME=/home/app \
+    XDG_CONFIG_HOME=/home/app/.config \
+    XDG_DATA_HOME=/home/app/.local/share
+USER app
+
+EXPOSE 8090
+CMD ["frankenphp", "php-server", "--listen", "0.0.0.0:8090", "--root", "/app/backend/public"]

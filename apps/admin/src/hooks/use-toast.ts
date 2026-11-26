@@ -1,0 +1,56 @@
+"use client";
+
+import { useState, useCallback, useEffect } from "react";
+
+export interface Toast {
+  id: string;
+  title: string;
+  description?: string;
+  variant?: "default" | "destructive" | "success" | "warning" | "info";
+}
+
+let toastListeners: Array<(toast: Toast) => void> = [];
+let toastCount = 0;
+
+export function toast({ title, description, variant = "default" }: Omit<Toast, "id">) {
+  const id = String(++toastCount);
+  const newToast: Toast = { id, title, description, variant };
+  toastListeners.forEach((listener) => listener(newToast));
+}
+
+export function useToast() {
+  const [toasts, setToasts] = useState<Toast[]>([]);
+
+  const addToast = useCallback((t: Toast) => {
+    setToasts((prev) => [...prev, t]);
+    const autoDismissVariants: Toast["variant"][] = ["default", "success", "warning", "info"];
+    if (autoDismissVariants.includes(t.variant ?? "default")) {
+      setTimeout(() => {
+        setToasts((prev) => prev.filter((x) => x.id !== t.id));
+      }, 5000);
+    }
+  }, []);
+
+  const dismiss = useCallback((id: string) => {
+    setToasts((prev) => prev.filter((t) => t.id !== id));
+  }, []);
+
+  useEffect(() => {
+    toastListeners.push(addToast);
+    function handleCustomEvent(e: Event) {
+      const detail = (e as CustomEvent).detail;
+      toast(detail);
+    }
+    if (typeof window !== "undefined") {
+      window.addEventListener("app:toast", handleCustomEvent);
+    }
+    return () => {
+      toastListeners = toastListeners.filter((listener) => listener !== addToast);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("app:toast", handleCustomEvent);
+      }
+    };
+  }, [addToast]);
+
+  return { toasts, dismiss };
+}

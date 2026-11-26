@@ -1,0 +1,68 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/social-share",
+  "type": "module",
+  "name": "Social Share",
+  "description": "Store/channel scoped product share bar for Facebook, X, WhatsApp, Telegram, email and copy-link.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.1"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\SocialShare\\Extension",
+  "capabilities": [
+    "social-share:read",
+    "social-share:manage"
+  ],
+  "permissions": [
+    "social-share:manage"
+  ],
+  "migrations": [
+    "migrations/20261124000001_create_ext_social_share.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Social share",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "pdp"
+    ]
+  },
+  "admin": {
+    "label": "Social share",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "settings",
+        "title": "Social share settings",
+        "type": "table",
+        "endpoint": "admin/settings",
+        "permission": "social-share:manage"
+      }
+    ]
+  },
+  "config": {
+    "default_label": "Share this product",
+    "default_enabled": false,
+    "slot": "pdp"
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-social-share",
+    "features": [
+      "social-share"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

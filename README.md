@@ -2,53 +2,68 @@
 
 MIT-licensed SiroCommerce source for the free/core edition.
 
-**Status: repository created, source migration in progress.** This repository is
-the intended public home for the Community edition. It is not yet a complete
-release; do not deploy from this repository until the migration commit lands.
+**Status: initial clean source export.** The tree is migrated from the private
+monorepo with Pro source removed. Run the full free-only test/build suite before
+calling this a release.
 
 ## Scope
-
-Planned contents:
 
 - `backend/` SiroPHP commerce API.
 - `apps/storefront/` Next.js storefront.
 - `apps/admin/` owner/admin console.
+- `apps/marketing/` static marketing site.
 - `packages/` shared API-client, auth, scope, config and UI packages.
-- Free first-party plugins (shipping rules, banners, Q&A, contact, social share,
-  size guide, store locator).
-- Free theme packages (Fashion, Pharmacy, F&B) and the 18 built-in presets.
+- Free first-party plugins: shipping fee rules, free-shipping banner, product
+  Q&A, contact widget, social share, size guide, store locator.
+- Free themes: Fashion, Pharmacy, F&B; 18 built-in vertical presets.
+- Ecosystem catalog, theme package pipeline, extension packaging/QIT, scope and
+  license verification foundation.
 - Free docs and operations runbooks.
 
 ## Not in this repository
 
-- Affiliate Pro.
-- Premium themes (`Atelier Noir`, `Apothecary Calm`).
+- Affiliate Pro source (private `SiroSoft/SiroCommerce-Pro`).
+- Premium themes `Atelier Noir` and `Apothecary Calm` source (private Pro repo).
 - Future Pro/Enterprise modules.
-- Private signing keys, license private keys, production `.env` files or
-  deployment credentials.
-- Customer license delivery/billing portal.
+- Private signing keys, license private keys, production `.env`, signed license
+  files, customer data or storage data.
+- Customer license purchase/delivery portal and marketplace billing.
 
-Pro source lives in the private `SiroSoft/SiroCommerce-Pro` repository. Pro
-metadata may appear in the public catalog feed, but paid source and signed
-artifacts do not.
+The public catalog feed may list Pro metadata and preview images, but paid source
+and signed artifacts live only in the private Pro repository.
+
+## Requirements
+
+- PHP 8.2+
+- Node.js 20+
+- Composer
+- MySQL 8 production / SQLite for local tests
+
+Backend dependencies are not committed:
+
+```bash
+cd backend
+composer install
+cp .env.example .env   # if present; otherwise configure DB_* manually
+php siro migrate
+php vendor/bin/phpunit --no-coverage
+```
+
+Frontend:
+
+```bash
+npm ci
+npm run typecheck
+npm test
+npm run build:admin
+```
 
 ## License
 
 MIT. See [`LICENSE`](LICENSE). Third-party dependencies keep their own licenses.
 
-## Migration rules
-
-The current private `SiroSoft/SiroCommerce` repository is the migration source.
-Do not flip it public: its history contains Pro source. The Community repository
-must be built from a clean export with:
-
-1. no Pro extension source or premium theme source;
-2. no `.env`, private keys, signed license documents or storage data;
-3. no secrets in git history;
-4. free-only tests adjusted and passing;
-5. a single clean initial commit or a vetted filtered history.
-
 ## Links
 
 - Product site: https://ecommerce.sirophp.com
 - Public catalog feed: https://ecommerce.sirophp.com/ecosystem/catalog.json
+- Pro source: private `SiroSoft/SiroCommerce-Pro`

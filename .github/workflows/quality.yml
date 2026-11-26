@@ -1,0 +1,314 @@
+name: Quality Gate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    # Docs/screenshot-only pushes do not need CI minutes.
+    paths-ignore:
+      - "docs/**"
+      - "**/*.md"
+      - "apps/storefront/e2e/__screenshots__/**"
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * 1"
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  CI: "true"
+  NEXT_TELEMETRY_DISABLED: "1"
+
+jobs:
+  backend:
+    name: Backend (PHP 8.2 + PHPUnit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: pdo_sqlite, sqlite3, mbstring, intl
+          coverage: pcov
+          tools: composer:v2
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.composer/cache
+            ~/.cache/composer
+          key: composer-${{ runner.os }}-php8.2-${{ hashFiles('backend/composer.lock') }}
+          restore-keys: |
+            composer-${{ runner.os }}-php8.2-
+
+      - name: Install dependencies
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Cache PHPStan result
+        uses: actions/cache@v4
+        with:
+          path: /tmp/phpstan
+          key: phpstan-${{ runner.os }}-php8.2-${{ hashFiles('backend/phpstan.neon', 'backend/phpstan-baseline.neon', 'backend/composer.lock') }}
+          restore-keys: |
+            phpstan-${{ runner.os }}-php8.2-
+
+      - name: PHPStan (level max, baseline)
+        timeout-minutes: 10
+        run: php -d memory_limit=2G vendor/bin/phpstan analyse --no-progress --error-format=github
+
+      - name: Composer audit (informational)
+        continue-on-error: true
+        run: composer audit --no-interaction
+
+      - name: Run PHPUnit (SQLite default)
+        env:
+          DB_CONNECTION: sqlite
+          TEST_DB_DRIVER: sqlite
+        run: php vendor/bin/phpunit --no-coverage
+
+      - name: PHPUnit coverage gate (PCOV)
+        env:
+          DB_CONNECTION: sqlite
+          TEST_DB_DRIVER: sqlite
+        run: |
+          set -o pipefail
+          php -d pcov.enabled=1 vendor/bin/phpunit --coverage-text | tee coverage.txt
+          node ../scripts/check-backend-coverage.mjs coverage.txt --min 80
+
+      - name: Upload backend coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-coverage
+          path: backend/coverage.txt
+          if-no-files-found: ignore
+          retention-days: 7
+
+  storefront:
+    name: Storefront (typecheck, lint, unit, build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install workspace dependencies
+        run: npm ci
+
+      - name: npm audit (informational, workspace)
+        continue-on-error: true
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Typecheck
+        working-directory: apps/storefront
+        run: npx tsc --noEmit
+
+      - name: Lint
+        working-directory: apps/storefront
+        run: npm run lint
+
+      - name: Unit tests with coverage gate
+        working-directory: apps/storefront
+        run: npm run test:ci
+
+      - name: Upload coverage summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-coverage
+          path: apps/storefront/coverage/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Build
+        if: github.event_name != 'push'
+        working-directory: apps/storefront
+        run: npm run build
+
+  admin:
+    name: Admin (typecheck, unit, build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install workspace dependencies
+        run: npm ci
+
+      - name: npm audit (informational, workspace)
+        continue-on-error: true
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Typecheck
+        working-directory: apps/admin
+        run: npx tsc --noEmit
+
+      - name: Unit tests with coverage gate
+        working-directory: apps/admin
+        run: npm run test:ci
+
+      - name: Upload coverage summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: admin-coverage
+          path: apps/admin/coverage/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Build
+        if: github.event_name != 'push'
+        working-directory: apps/admin
+        run: npm run build
+
+  e2e-a11y:
+    if: github.event_name != 'push'
+    name: Storefront E2E (axe)
+    needs: storefront
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install workspace dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Install Chromium
+        working-directory: apps/storefront
+        run: npx playwright install --with-deps chromium
+
+      - name: Run axe accessibility checks
+        working-directory: apps/storefront
+        run: npm run test:e2e:ci
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-e2e-artifacts
+          path: |
+            apps/storefront/test-results/
+            apps/storefront/playwright-report/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  e2e-visual-linux:
+    if: github.event_name != 'push'
+    name: Storefront visual regression (Linux)
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install workspace dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Install Chromium
+        working-directory: apps/storefront
+        run: npx playwright install --with-deps chromium
+
+      - name: Compare against committed Linux baselines
+        working-directory: apps/storefront
+        run: npx playwright test --config=playwright.quality.config.ts --grep "visual baseline"
+
+      - name: Upload Playwright artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-visual-linux-artifacts
+          path: apps/storefront/test-results/quality/
+          if-no-files-found: ignore
+          retention-days: 7
+
+  e2e-visual-update:
+    name: Storefront visual baseline update (manual)
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install workspace dependencies
+        run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Install Chromium
+        working-directory: apps/storefront
+        run: npx playwright install --with-deps chromium
+
+      - name: Regenerate Linux baselines
+        working-directory: apps/storefront
+        run: npx playwright test --config=playwright.quality.config.ts --grep "visual baseline" --update-snapshots
+
+      - name: Upload updated Linux baselines
+        uses: actions/upload-artifact@v4
+        with:
+          name: storefront-visual-linux
+          path: |
+            apps/storefront/e2e/__screenshots__/*-linux/**
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,282 @@
+{
+    "schema": "siro.ecosystem-catalog/1",
+    "generated_at": "2026-11-24T00:00:00Z",
+    "items": [
+        {
+            "id": "flat-rate",
+            "type": "plugin",
+            "name": "Flat Rate Shipping",
+            "description": "Flat-rate shipping with a free-shipping threshold.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial bundled release with flat-rate shipping and a free-shipping threshold.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "shipping"
+            ]
+        },
+        {
+            "id": "siro/affiliate",
+            "type": "plugin",
+            "name": "Affiliate",
+            "description": "Referral attribution, commission ledger and payouts.",
+            "vendor": "Siro",
+            "edition": "pro",
+            "status": "planned",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Planned Pro release; license and signed artifact pipeline pending.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "growth",
+                "commission"
+            ]
+        },
+        {
+            "id": "siro/apothecary-calm",
+            "type": "theme",
+            "name": "Apothecary Calm",
+            "description": "Premium pharmacy theme with a calm apothecary palette, pharmacist proof and health-need categories.",
+            "vendor": "Siro",
+            "edition": "pro",
+            "status": "planned",
+            "latest_version": "1.0.0",
+            "min_core": null,
+            "min_commerce": null,
+            "preview_url": "/media/theme-previews/apothecary-calm.jpg",
+            "changelog_url": null,
+            "changelog": "Distinct layout archetype and complete local assets (logo, hero, banners); signed artifact and license delivery pending.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "theme",
+                "pharmacy",
+                "pro"
+            ]
+        },
+        {
+            "id": "siro/atelier-noir",
+            "type": "theme",
+            "name": "Atelier Noir",
+            "description": "Premium fashion editorial theme with a monochrome lookbook, couture typography and season-led collections.",
+            "vendor": "Siro",
+            "edition": "pro",
+            "status": "planned",
+            "latest_version": "1.0.0",
+            "min_core": null,
+            "min_commerce": null,
+            "preview_url": "/media/theme-previews/atelier-noir.jpg",
+            "changelog_url": null,
+            "changelog": "Distinct layout archetype and complete local assets (logo, hero, banners); signed artifact and license delivery pending.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "theme",
+                "fashion",
+                "pro"
+            ]
+        },
+        {
+            "id": "siro/contact-widget",
+            "type": "plugin",
+            "name": "Contact Widget",
+            "description": "Storefront contact widget with a scoped admin inbox.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release with a storefront contact form and scoped admin inbox.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "support"
+            ]
+        },
+        {
+            "id": "siro/fashion",
+            "type": "theme",
+            "name": "Fashion",
+            "description": "Editorial fashion storefront starter.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": null,
+            "min_commerce": null,
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial fashion starter with an editorial storefront layout.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "theme",
+                "fashion"
+            ]
+        },
+        {
+            "id": "siro/fnb",
+            "type": "theme",
+            "name": "Food & Beverage",
+            "description": "Appetite-led food and beverage storefront starter.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": null,
+            "min_commerce": null,
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial food and beverage starter with an appetite-led layout.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "theme",
+                "fnb"
+            ]
+        },
+        {
+            "id": "siro/free-shipping-banner",
+            "type": "plugin",
+            "name": "Free Shipping Banner",
+            "description": "Announcement banner for free-shipping thresholds.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release with a configurable free-shipping announcement banner.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "merchandising"
+            ]
+        },
+        {
+            "id": "siro/pharmacy",
+            "type": "theme",
+            "name": "Pharmacy",
+            "description": "Trust-first pharmacy storefront starter.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": null,
+            "min_commerce": null,
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial pharmacy starter with a trust-first storefront layout.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "theme",
+                "pharmacy"
+            ]
+        },
+        {
+            "id": "siro/product-qa",
+            "type": "plugin",
+            "name": "Product Q&A",
+            "description": "Customer questions and moderated answers on product pages.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release with anonymous questions and moderated answers.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "pdp",
+                "support"
+            ]
+        },
+        {
+            "id": "siro/shipping-fee-rules",
+            "type": "plugin",
+            "name": "Shipping Fee Rules",
+            "description": "Configurable shipping fee rules by region and cart value.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release with region and cart-value shipping fee rules.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "shipping"
+            ]
+        },
+        {
+            "id": "siro/size-guide",
+            "type": "plugin",
+            "name": "Size Guide",
+            "description": "Product size charts and fit guidance.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release with per-product size charts and fit guidance.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "pdp",
+                "fashion"
+            ]
+        },
+        {
+            "id": "siro/social-share",
+            "type": "plugin",
+            "name": "Social Share",
+            "description": "Share product and content links to social networks.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release with product and content social sharing links.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "marketing"
+            ]
+        },
+        {
+            "id": "siro/store-locator",
+            "type": "plugin",
+            "name": "Store Locator",
+            "description": "Store directory with locations and opening hours.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.1",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release with a store directory and opening hours.",
+            "published_at": "2026-11-24",
+            "tags": [
+                "retail"
+            ]
+        }
+    ]
+}

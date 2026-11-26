@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100" role="img" aria-label="linen-tie-front-blouse alternate view">
+<defs>
+<linearGradient id="alt-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef1f2"/><stop offset="1" stop-color="#dde3e5"/></linearGradient>
+<radialGradient id="alt-vignette" cx="50%" cy="42%" r="72%"><stop offset=".62" stop-color="#2f393d" stop-opacity="0"/><stop offset="1" stop-color="#2f393d" stop-opacity=".16"/></radialGradient>
+<filter id="alt-shadow" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="23" flood-color="#2f393d" flood-opacity=".24"/></filter>
+</defs>
+<rect x="0" y="0" width="900" height="1100" fill="url(#alt-bg)"/>
+<rect x="54" y="54" width="792" height="992" rx="42" fill="none" stroke="#9aa7ab" stroke-width="2" opacity=".55"/>
+<ellipse cx="450" cy="902" rx="288" ry="35.2" fill="#2f393d" opacity=".1"/>
+<g filter="url(#alt-shadow)" transform="translate(450 550) rotate(-2.5) scale(1.12) translate(-450 -550)">
+<circle cx="450.0" cy="300.0" r="330" fill="#e6d3d0" opacity=".38"/><rect x="90" y="800" width="720" height="200" rx="36" fill="#e6d3d0" opacity=".45"/><ellipse cx="450.0" cy="850" rx="290" ry="42" fill="#b98a86" opacity=".14"/><g transform="rotate(-6 450 550)"><path d="M302.79999999999995 412.0 Q450.0 333.79999999999995 597.2 412.0 L565.0 757.0 L335.0 757.0 Z" fill="#b98a86"/><path d="M394.8 366.0 Q450.0 439.6 505.2 366.0" fill="none" stroke="#d9b3ae" stroke-width="8.280000000000001"/></g><rect x="90" y="960" width="720" height="2" fill="#b98a86" opacity=".18"/><circle cx="112" cy="1000" r="7" fill="#b98a86" opacity=".8"/><circle cx="138" cy="1000" r="7" fill="#e6d3d0" opacity=".8"/><circle cx="164" cy="1000" r="7" fill="#d9b3ae" opacity=".8"/>
+</g>
+<rect x="0" y="0" width="900" height="1100" fill="url(#alt-vignette)"/>
+<text x="450" y="1034" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="18" letter-spacing="6" fill="#566266" opacity=".72">DETAIL</text>
+</svg>

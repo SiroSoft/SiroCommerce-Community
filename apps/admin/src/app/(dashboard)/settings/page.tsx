@@ -1,0 +1,507 @@
+"use client";
+
+import { useTheme } from "next-themes";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { tSchema } from "@/lib/i18n";
+import { Loader2, Sun, Moon, Monitor, Info, AlertTriangle } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Separator } from "@/components/ui/separator";
+import { Switch } from "@/components/ui/switch";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PageHeader } from "@/components/page-header";
+import { RoleGate } from "@/components/capability-gate";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ErrorState } from "@/components/error-state";
+import { toast } from "@/hooks/use-toast";
+import { cn } from "@/lib/utils";
+import { useI18n } from "@/providers/i18n-provider";
+import { useSettings, useUpdateSettings } from "@/hooks/use-settings";
+import { useUpdateProfile, useChangePassword } from "@/hooks/use-profile";
+import { useAuth } from "@/hooks/use-auth";
+import { API_URL, APP_NAME } from "@/lib/constants";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { useState, useCallback, useEffect, useMemo } from "react";
+import { serverService } from "@/services/server.service";
+
+const profileSchema = z.object({
+  name: z.string().min(2, tSchema("validation.nameMin2")),
+  email: z.string().email(tSchema("validation.invalidEmail")),
+});
+
+const passwordSchema = z.object({
+  current_password: z.string().min(1, tSchema("validation.currentPasswordRequired")),
+  new_password: z.string().min(8, tSchema("validation.passwordMin8")),
+  new_password_confirmation: z.string(),
+}).refine((d) => d.new_password === d.new_password_confirmation, {
+  message: tSchema("validation.passwordMismatch"),
+  path: ["new_password_confirmation"],
+});
+
+const settingsSchema = z.object({
+  app_name: z.string().min(1, tSchema("validation.appNameRequired")),
+  app_description: z.string().optional(),
+  language: z.string().min(1),
+  timezone: z.string().min(1),
+  currency: z.string().min(1),
+  pagination_per_page: z.coerce.number().min(1).max(100),
+  maintenance_mode: z.boolean(),
+  email_notifications: z.boolean(),
+});
+
+const LANGUAGES = [
+  { value: "en", label: "English" },
+  { value: "vi", label: "Tiếng Việt" },
+  { value: "de", label: "Deutsch" },
+  { value: "zh", label: "中文" },
+  { value: "ja", label: "日本語" },
+];
+
+const TIMEZONES = [
+  "UTC",
+  "America/New_York",
+  "America/Chicago",
+  "America/Denver",
+  "America/Los_Angeles",
+  "Europe/London",
+  "Europe/Berlin",
+  "Europe/Paris",
+  "Asia/Tokyo",
+  "Asia/Shanghai",
+  "Asia/Ho_Chi_Minh",
+  "Asia/Singapore",
+  "Asia/Seoul",
+  "Asia/Dubai",
+  "Australia/Sydney",
+  "Pacific/Auckland",
+];
+
+const CURRENCIES = [
+  { value: "USD", label: "USD - US Dollar" },
+  { value: "EUR", label: "EUR - Euro" },
+  { value: "VND", label: "VND - Vietnamese Dong" },
+  { value: "JPY", label: "JPY - Japanese Yen" },
+  { value: "GBP", label: "GBP - British Pound" },
+  { value: "CNY", label: "CNY - Chinese Yuan" },
+  { value: "KRW", label: "KRW - Korean Won" },
+  { value: "SGD", label: "SGD - Singapore Dollar" },
+  { value: "AUD", label: "AUD - Australian Dollar" },
+  { value: "CAD", label: "CAD - Canadian Dollar" },
+  { value: "INR", label: "INR - Indian Rupee" },
+  { value: "BRL", label: "BRL - Brazilian Real" },
+];
+
+type SettingsFormData = z.infer<typeof settingsSchema>;
+
+export default function SettingsPage() {
+  return <RoleGate roles={["owner", "admin"]}><SettingsContent /></RoleGate>;
+}
+
+function SettingsContent() {
+  const { user } = useAuth();
+  const { t } = useI18n();
+  const { theme, setTheme } = useTheme();
+  const [themeMounted, setThemeMounted] = useState(false);
+
+  useEffect(() => {
+    setThemeMounted(true);
+  }, []);
+  const { data: settings, isLoading: settingsLoading, isError: settingsError, error: settingsLoadError, refetch: refetchSettings } = useSettings();
+  const updateSettings = useUpdateSettings();
+  const updateProfile = useUpdateProfile();
+  const changePassword = useChangePassword();
+
+
+  const profileForm = useForm({
+    resolver: zodResolver(profileSchema),
+    values: { name: user?.name ?? "", email: user?.email ?? "" },
+  });
+
+  const passwordForm = useForm({
+    resolver: zodResolver(passwordSchema),
+    defaultValues: { current_password: "", new_password: "", new_password_confirmation: "" },
+  });
+
+  // Memoized: an inline values object resets RHF state on every render,
+  // which can wipe user input and corrupt controlled selects mid-submit.
+  const handleSelectChange = (field: "language" | "timezone" | "currency") => (v: string) => {
+    // Radix Select can emit "" when a controlled value transitions in
+    // (async defaults). Required selects must never store an empty value,
+    // otherwise submits fail validation with no visible error.
+    if (v) settingsForm.setValue(field, v, { shouldValidate: true });
+  };
+  const settingsValues = useMemo<SettingsFormData>(() => ({
+    app_name: settings?.app_name ?? APP_NAME,
+    app_description: settings?.app_description ?? "",
+    language: settings?.language ?? "en",
+    timezone: settings?.timezone ?? "UTC",
+    currency: settings?.currency ?? "USD",
+    pagination_per_page: settings?.pagination_per_page ?? 15,
+    maintenance_mode: settings?.maintenance_mode ?? false,
+    email_notifications: settings?.email_notifications ?? true,
+  }), [settings]);
+  const settingsForm = useForm<SettingsFormData>({
+    resolver: zodResolver(settingsSchema),
+    values: settingsValues,
+  });
+
+  const [pendingMaintenanceValue, setPendingMaintenanceValue] = useState<boolean | null>(null);
+  const [showMaintenanceConfirm, setShowMaintenanceConfirm] = useState(false);
+
+  const handleSettingsSubmit = (data: SettingsFormData) => {
+    updateSettings.mutate(data, {
+      onSuccess: () => {
+        toast({ title: t("settings.saved"), description: t("settings.savedDescription"), variant: "success" });
+      },
+      onError: () => {
+        toast({ title: "Error", description: "Failed to save settings.", variant: "destructive" });
+      },
+    });
+  };
+
+  const handleMaintenanceToggle = useCallback((checked: boolean) => {
+    setPendingMaintenanceValue(checked);
+    if (checked) {
+      setShowMaintenanceConfirm(true);
+    } else {
+      settingsForm.setValue("maintenance_mode", false);
+    }
+  }, [settingsForm]);
+
+  const confirmMaintenance = useCallback(() => {
+    if (pendingMaintenanceValue !== null) {
+      settingsForm.setValue("maintenance_mode", pendingMaintenanceValue);
+    }
+    setShowMaintenanceConfirm(false);
+    setPendingMaintenanceValue(null);
+  }, [pendingMaintenanceValue, settingsForm]);
+
+  const handleProfileSubmit = (data: { name: string; email: string }) => {
+    updateProfile.mutate(data, {
+      onSuccess: () => {
+        toast({ title: t("settings.profileUpdated"), description: t("settings.profileUpdatedDescription"), variant: "success" });
+      },
+      onError: () => {
+        toast({ title: "Error", description: "Failed to update profile.", variant: "destructive" });
+      },
+    });
+  };
+
+  const handlePasswordSubmit = (data: { current_password: string; new_password: string; new_password_confirmation: string }) => {
+    changePassword.mutate(data, {
+      onSuccess: () => {
+        passwordForm.reset();
+        toast({ title: t("settings.passwordChanged"), description: t("settings.passwordChangedDescription"), variant: "success" });
+      },
+      onError: () => {
+        toast({ title: "Error", description: "Failed to change password.", variant: "destructive" });
+      },
+    });
+  };
+
+  const themeOptions = [
+    { value: "light", label: "Light", icon: Sun },
+    { value: "dark", label: "Dark", icon: Moon },
+    { value: "system", label: "System", icon: Monitor },
+  ];
+
+  function ServerInfoCard() {
+    const [info, setInfo] = useState<any>(null);
+    useEffect(() => {
+      serverService.getInfo().then(setInfo).catch(() => {});
+    }, []);
+    if (!info) return null;
+    return (
+      <div className="grid gap-4 sm:grid-cols-4">
+        <div className="space-y-1"><p className="text-xs text-muted-foreground">PHP Version</p><p className="text-sm font-mono">{info.php_version}</p></div>
+        <div className="space-y-1"><p className="text-xs text-muted-foreground">Server</p><p className="text-sm font-mono">{info.server}</p></div>
+        <div className="space-y-1"><p className="text-xs text-muted-foreground">Database driver</p><p className="text-sm font-mono">{info.db_driver}</p></div>
+        <div className="space-y-1"><p className="text-xs text-muted-foreground">Current time</p><p className="text-sm font-mono">{info.current_time}</p></div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-6">
+      <PageHeader title={t("settings.title")} description={t("settings.title")} />
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("common.profile")}</CardTitle>
+            <CardDescription>{t("common.settings")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={profileForm.handleSubmit(handleProfileSubmit)} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="s-name">{t("users.name")}</Label>
+                <Input id="s-name" {...profileForm.register("name")} disabled={updateProfile.isPending} />
+                {profileForm.formState.errors.name && (
+                  <p className="text-sm text-destructive">{profileForm.formState.errors.name.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="s-email">{t("auth.email")}</Label>
+                <Input id="s-email" type="email" {...profileForm.register("email")} disabled={updateProfile.isPending} />
+                {profileForm.formState.errors.email && (
+                  <p className="text-sm text-destructive">{profileForm.formState.errors.email.message}</p>
+                )}
+              </div>
+              <Button type="submit" disabled={updateProfile.isPending}>
+                {updateProfile.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {t("common.save")}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("settings.security")}</CardTitle>
+            <CardDescription>{t("common.settings")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="s-current">{t("auth.password")}</Label>
+                <Input id="s-current" type="password" {...passwordForm.register("current_password")} disabled={changePassword.isPending} />
+                {passwordForm.formState.errors.current_password && (
+                  <p className="text-sm text-destructive">{passwordForm.formState.errors.current_password.message}</p>
+                )}
+              </div>
+              <Separator />
+              <div className="space-y-2">
+                <Label htmlFor="s-new">{t("auth.password")}</Label>
+                <Input id="s-new" type="password" {...passwordForm.register("new_password")} disabled={changePassword.isPending} />
+                {passwordForm.formState.errors.new_password && (
+                  <p className="text-sm text-destructive">{passwordForm.formState.errors.new_password.message}</p>
+                )}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="s-confirm">{t("common.confirm")}</Label>
+                <Input id="s-confirm" type="password" {...passwordForm.register("new_password_confirmation")} disabled={changePassword.isPending} />
+                {passwordForm.formState.errors.new_password_confirmation && (
+                  <p className="text-sm text-destructive">{passwordForm.formState.errors.new_password_confirmation.message}</p>
+                )}
+              </div>
+              <Button type="submit" disabled={changePassword.isPending}>
+                {changePassword.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                {t("common.save")}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("common.settings")}</CardTitle>
+            <CardDescription>{t("settings.general")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="flex gap-2">
+              {themeOptions.map((opt) => {
+                const Icon = opt.icon;
+                const isActive = theme === opt.value;
+                return (
+                  <Button
+                    key={opt.value}
+                    variant={themeMounted && isActive ? "default" : "outline"}
+                    className="flex-1"
+                    onClick={() => setTheme(opt.value)}
+                  >
+                    <Icon className="mr-2 h-4 w-4" />
+                    {opt.label}
+                  </Button>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>{t("settings.title")}</CardTitle>
+            <CardDescription>{t("settings.general")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            {settingsLoading ? (
+              <div className="space-y-3" role="status">
+                <span className="sr-only">Loading settings</span>
+                {Array.from({ length: 6 }).map((_, i) => <Skeleton key={i} className="h-10 w-full" />)}
+              </div>
+            ) : settingsError ? (
+              <ErrorState
+                message={(settingsLoadError as Error)?.message}
+                onRetry={() => refetchSettings()}
+              />
+            ) : (
+              <form onSubmit={settingsForm.handleSubmit(handleSettingsSubmit)} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="app_name">{t("settings.appName")}</Label>
+                  <Input id="app_name" {...settingsForm.register("app_name")} disabled={updateSettings.isPending} />
+                  {settingsForm.formState.errors.app_name && (
+                    <p className="text-sm text-destructive">{settingsForm.formState.errors.app_name.message}</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="app_description">{t("products.description")}</Label>
+                  <Input id="app_description" {...settingsForm.register("app_description")} disabled={updateSettings.isPending} />
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                     <Label id="settings-language-label">{t("settings.language")}</Label>
+                    <Select
+                      value={settingsForm.watch("language")}
+                      onValueChange={handleSelectChange("language")}
+                      disabled={updateSettings.isPending}
+                    >
+                       <SelectTrigger aria-labelledby="settings-language-label">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {LANGUAGES.map((l) => (
+                          <SelectItem key={l.value} value={l.value}>{l.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                     <Label id="settings-timezone-label">{t("settings.timezone")}</Label>
+                    <Select
+                      value={settingsForm.watch("timezone")}
+                      onValueChange={handleSelectChange("timezone")}
+                      disabled={updateSettings.isPending}
+                    >
+                       <SelectTrigger aria-labelledby="settings-timezone-label">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {TIMEZONES.map((tz) => (
+                          <SelectItem key={tz} value={tz}>{tz}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                     <Label id="settings-currency-label">{t("settings.currency")}</Label>
+                      <Select
+                        value={settingsForm.watch("currency")}
+                        onValueChange={handleSelectChange("currency")}
+                        disabled={updateSettings.isPending}
+                      >
+                       <SelectTrigger aria-labelledby="settings-currency-label">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {CURRENCIES.map((c) => (
+                          <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="pagination_per_page">{t("settings.itemsPerPage")}</Label>
+                    <Input id="pagination_per_page" type="number" {...settingsForm.register("pagination_per_page")} disabled={updateSettings.isPending} />
+                    {settingsForm.formState.errors.pagination_per_page && (
+                      <p className="text-sm text-destructive">{settingsForm.formState.errors.pagination_per_page.message}</p>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2">
+                    <Switch
+                      id="maintenance_mode"
+                      checked={settingsForm.watch("maintenance_mode")}
+                      onCheckedChange={handleMaintenanceToggle}
+                      disabled={updateSettings.isPending}
+                    />
+                    <Label htmlFor="maintenance_mode" className="flex items-center gap-1">
+                      {t("settings.maintenanceMode")}
+                      <AlertTriangle className="h-3 w-3 text-amber-500" />
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Switch
+                      id="email_notifications"
+                      checked={settingsForm.watch("email_notifications")}
+                      onCheckedChange={(v) => settingsForm.setValue("email_notifications", v)}
+                      disabled={updateSettings.isPending}
+                    />
+                    <Label htmlFor="email_notifications">{t("settings.emailNotifications")}</Label>
+                  </div>
+                </div>
+                <Button type="submit" disabled={updateSettings.isPending}>
+                  {updateSettings.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {t("common.save")}
+                </Button>
+              </form>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle>System Info</CardTitle>
+            <CardDescription>Server information</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <ServerInfoCard />
+          </CardContent>
+        </Card>
+
+        <AlertDialog open={showMaintenanceConfirm} onOpenChange={setShowMaintenanceConfirm}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>{t("settings.maintenanceMode")}</AlertDialogTitle>
+              <AlertDialogDescription>
+                {t("common.confirm")}
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>{t("common.cancel")}</AlertDialogCancel>
+              <AlertDialogAction onClick={confirmMaintenance}>{t("common.confirm")}</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+
+        <Card className="lg:col-span-2">
+          <CardHeader>
+            <CardTitle>{t("settings.apiInfo")}</CardTitle>
+            <CardDescription>{t("settings.general")}</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground">{t("settings.apiInfo")}</p>
+                <p className="text-sm font-mono">{API_URL}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground">{t("settings.appName")}</p>
+                <p className="text-sm font-medium">{APP_NAME}</p>
+              </div>
+              <div className="space-y-1">
+                <p className="text-xs text-muted-foreground">{t("common.status")}</p>
+                <p className="text-sm font-medium">{process.env.NODE_ENV}</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,188 @@
+{
+  "schema": "siro.theme/1",
+  "id": "siro/fashion",
+  "key": "fashion",
+  "name": "Sample Fashion Editorial",
+  "version": "1.0.0",
+  "description": "Neutral editorial fashion starter: lookbook banners, new-season collections, size and returns FAQ.",
+  "extends": "general",
+  "vertical": "fashion",
+  "tokens": {
+    "colors": {
+      "ink": "#111111",
+      "muted": "#6B6B6B",
+      "paper": "#F7F6F3",
+      "surface": "#FFFFFF",
+      "accent": "#9B2C2C",
+      "accent_dark": "#742020",
+      "success": "#35664A",
+      "danger": "#A13F35"
+    },
+    "typography": {
+      "display": "editorial",
+      "body": "system",
+      "density": "comfortable",
+      "display_stack": "\"Bodoni 72\", \"Didot\", \"Times New Roman\", serif",
+      "body_stack": "\"Inter\", -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif",
+      "base_size": 16
+    },
+    "shape": {
+      "radius": "sharp",
+      "card": "flat"
+    }
+  },
+  "brand": {
+    "name": "Sample Atelier",
+    "wordmark": "sample/atelier",
+    "logo_url": "assets/logo.png",
+    "favicon_url": null
+  },
+  "navigation": {
+    "menu_key": "primary",
+    "items": [
+      { "label": "New in", "href": "/search?tag=new" },
+      { "label": "Clothing", "href": "/category/clothing" },
+      { "label": "Accessories", "href": "/category/accessories" },
+      { "label": "Collections", "href": "/collections" }
+    ]
+  },
+  "header": {
+    "announcement": true,
+    "layout": "centered",
+    "sticky": true
+  },
+  "footer": {
+    "layout": "mega",
+    "show_help": true,
+    "show_policies": true,
+    "columns": [
+      {
+        "title": "Shop",
+        "links": [
+          { "label": "New in", "href": "/search?tag=new" },
+          { "label": "Clothing", "href": "/category/clothing" },
+          { "label": "Accessories", "href": "/category/accessories" }
+        ]
+      },
+      {
+        "title": "Help",
+        "links": [
+          { "label": "Size guide", "href": "/size-guide" },
+          { "label": "Shipping", "href": "/shipping" },
+          { "label": "Returns", "href": "/returns" }
+        ]
+      },
+      {
+        "title": "About",
+        "links": [
+          { "label": "Our story", "href": "/about" },
+          { "label": "Contact", "href": "/contact" }
+        ]
+      }
+    ]
+  },
+  "homepage": {
+    "sections": [
+      {
+        "id": "fashion-hero",
+        "type": "campaign_hero",
+        "enabled": true,
+        "order": 10,
+        "props": {
+          "title": "The new season edit",
+          "eyebrow": "Lookbook",
+          "image": "assets/hero.jpg",
+          "image_alt": "Neutral editorial hero with a rust panel and the headline The new season edit.",
+          "cta": { "label": "Shop new in", "href": "/search?tag=new" }
+        }
+      },
+      {
+        "id": "fashion-banners",
+        "type": "banner_grid",
+        "enabled": true,
+        "order": 20,
+        "props": {
+          "banners": [
+            {
+              "title": "Tailored layers",
+              "subtitle": "Clean lines and quiet colour for everyday dressing.",
+              "href": "/collection/tailored-layers",
+              "image": "assets/banner-1.jpg",
+              "image_alt": "Minimal garment outline beside a rust colour block.",
+              "cta": { "label": "View edit", "href": "/collection/tailored-layers" }
+            },
+            {
+              "title": "Weekend denim",
+              "subtitle": "Relaxed fits for off-duty days.",
+              "href": "/collection/weekend-denim",
+              "image": "assets/banner-2.jpg",
+              "image_alt": "Denim panel with stitched lines and simple garment shapes.",
+              "cta": { "label": "Shop denim", "href": "/collection/weekend-denim" }
+            }
+          ]
+        }
+      },
+      {
+        "id": "fashion-collections",
+        "type": "collection_directory",
+        "enabled": true,
+        "order": 30,
+        "props": { "title": "Collections" }
+      },
+      {
+        "id": "fashion-new",
+        "type": "product_collection",
+        "enabled": true,
+        "order": 40,
+        "props": {
+          "source": "tag:new",
+          "title": "Just arrived",
+          "eyebrow": "New in",
+          "limit": 8,
+          "cta": { "label": "Shop new arrivals", "href": "/search?tag=new" }
+        }
+      },
+      {
+        "id": "fashion-promises",
+        "type": "usp_strip",
+        "enabled": true,
+        "order": 50,
+        "props": {
+          "items": [
+            { "icon": "ruler", "title": "Detailed size guide", "copy": "Measurements and fit notes on every product page." },
+            { "icon": "truck", "title": "Tracked delivery", "copy": "Orders are tracked from dispatch to doorstep." },
+            { "icon": "refresh", "title": "30-day returns", "copy": "Return eligible unworn items within 30 days." }
+          ]
+        }
+      },
+      {
+        "id": "fashion-faq",
+        "type": "faq",
+        "enabled": true,
+        "order": 60,
+        "props": {
+          "items": [
+            { "question": "How do I choose a size?", "answer": "Each product page includes a size guide with measurements and fit notes." },
+            { "question": "Can I exchange an item?", "answer": "Eligible unworn items can be exchanged within 30 days of delivery." },
+            { "question": "When is new stock added?", "answer": "New arrivals are added regularly. Check the new in collection for the latest drop." }
+          ]
+        }
+      }
+    ]
+  },
+  "presentation": {
+    "product_card_variant": "editorial",
+    "product_detail_variant": "page-gallery-left",
+    "product_list_variant": "list-editorial",
+    "purchase_variant": "compact"
+  },
+  "purchase": {
+    "quote_mode": "auto"
+  },
+  "policies": {
+    "shipping_url": "/shipping",
+    "returns_url": "/returns",
+    "support_url": "/contact"
+  },
+  "experiments": []
+}

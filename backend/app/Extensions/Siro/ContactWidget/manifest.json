@@ -1,0 +1,67 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/contact-widget",
+  "type": "module",
+  "name": "Contact Widget",
+  "description": "Store/channel scoped floating contact widget with Zalo, WhatsApp and email links.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.1"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\ContactWidget\\Extension",
+  "capabilities": [
+    "contact-widget:read",
+    "contact-widget:manage"
+  ],
+  "permissions": [
+    "contact-widget:manage"
+  ],
+  "migrations": [
+    "migrations/20261123000003_create_ext_contact_widget.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Contact widget",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "footer"
+    ]
+  },
+  "admin": {
+    "label": "Contact widget",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "settings",
+        "title": "Contact widget",
+        "type": "stats",
+        "endpoint": "admin/settings",
+        "permission": "contact-widget:manage"
+      }
+    ]
+  },
+  "config": {
+    "default_label": "Contact us",
+    "slot": "footer"
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-contact-widget",
+    "features": [
+      "contact-widget"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

@@ -1,0 +1,5 @@
+[
+  "apps/admin/src/app/(auth)/login/page.tsx",
+  "apps/admin/src/services/api.ts",
+  "apps/admin/src/__tests__/api-headers.test.ts"
+]

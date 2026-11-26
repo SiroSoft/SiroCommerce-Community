@@ -1,0 +1,29 @@
+{
+  "name": "sirocommerce-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:admin": "npm run dev --workspace apps/admin",
+    "build:admin": "npm run build --workspace apps/admin",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "node scripts/run-workspace-tests.mjs",
+    "test:load-smoke": "node --test scripts/load-smoke.test.mjs",
+    "i18n:check": "npm run i18n:check --workspace apps/storefront",
+    "ecosystem:catalog": "php scripts/ecosystem-catalog/build.php --out=apps/storefront/public/ecosystem/catalog.json",
+    "ecosystem:catalog:check": "php scripts/ecosystem-catalog/build.php --check-public=apps/storefront/public/ecosystem/catalog.json",
+    "ecosystem:catalog:selftest": "php scripts/ecosystem-catalog/selftest.php",
+    "verify": "node scripts/verify.mjs",
+    "verify:strict": "node scripts/verify.mjs --strict",
+    "verify:release": "node scripts/verify.mjs --strict",
+    "certify:launch": "node scripts/certify-launch.mjs",
+    "certify:providers": "composer certify:providers --working-dir backend",
+    "certify:payment": "composer certify:payment --working-dir backend",
+    "release:gate": "node scripts/b2c-release-gate.mjs",
+    "api:contract": "composer check:api-contract --working-dir backend",
+    "api:handoff": "composer check:api-handoff --working-dir backend"
+  },
+  "license": "MIT"
+}

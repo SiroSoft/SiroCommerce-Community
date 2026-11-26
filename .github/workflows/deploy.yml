@@ -1,0 +1,78 @@
+name: Deploy
+
+on:
+  # Manual only until deploy secrets exist: a push-triggered run reserved CI
+  # minutes every commit and then skipped the release step anyway.
+  workflow_dispatch:
+    inputs:
+      services:
+        description: "Space-separated services to rebuild (default: backend storefront admin)"
+        required: false
+        default: "backend storefront admin"
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  release:
+    needs: ci
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build source tarball (same excludes as local releases)
+        run: |
+          tar --exclude=node_modules --exclude='*/node_modules' \
+            --exclude=vendor --exclude='*/vendor' \
+            --exclude=.git --exclude='*/.git' \
+            --exclude=.next --exclude='*/.next' \
+            --exclude=.env --exclude='*/.env' \
+            --exclude=backend/storage --exclude='*/test-results' --exclude='*/coverage' \
+            -czf /tmp/sirocommerce-release.tar.gz .
+
+      - name: Check deploy credentials
+        id: guard
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          if [ -z "$DEPLOY_HOST" ] || [ -z "$DEPLOY_USER" ] || [ -z "$DEPLOY_SSH_KEY" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Deploy skipped::DEPLOY_HOST/DEPLOY_USER/DEPLOY_SSH_KEY are not configured; release step skipped."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Upload tarball to the server
+        if: steps.guard.outputs.configured == 'true'
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          source: "/tmp/sirocommerce-release.tar.gz"
+          target: "/tmp/"
+
+      - name: Run the release (extract, build, migrate, switch, verify)
+        if: steps.guard.outputs.configured == 'true'
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          port: ${{ secrets.DEPLOY_PORT || 22 }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          command_timeout: 35m
+          script: |
+            set -eu
+            RELEASE=$(date -u +%Y%m%d%H%M%S)
+            tar -xzf /tmp/sirocommerce-release.tar.gz -O ./deploy/release.sh > /tmp/run-release.sh
+            RELEASE="$RELEASE" SERVICES="${{ github.event.inputs.services || 'backend storefront admin' }}" sh /tmp/run-release.sh < /tmp/sirocommerce-release.tar.gz
+            rm -f /tmp/sirocommerce-release.tar.gz /tmp/run-release.sh

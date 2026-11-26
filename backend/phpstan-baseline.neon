@@ -1,0 +1,3697 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Instanceof between Siro\\Core\\Model and Siro\\Core\\Model will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: app/Console/Commands/ExtensionMigrateCommand.php
+
+		-
+			message: '#^Call to method body\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 3
+			path: app/Console/Commands/SearchIndexProductsCommand.php
+
+		-
+			message: '#^Call to method status\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 5
+			path: app/Console/Commands/SearchIndexProductsCommand.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Console/Commands/SearchIndexProductsCommand.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Console/Commands/SearchIndexProductsCommand.php
+
+		-
+			message: '#^Parameter \#1 \$string of function substr expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Console/Commands/SearchIndexProductsCommand.php
+
+		-
+			message: '#^Parameter \$response of method App\\Console\\Commands\\SearchIndexProductsCommand\:\:assertOk\(\) has invalid type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Console/Commands/SearchIndexProductsCommand.php
+
+		-
+			message: '#^Parameter \$response of method App\\Console\\Commands\\SearchIndexProductsCommand\:\:taskUid\(\) has invalid type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Console/Commands/SearchIndexProductsCommand.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/AdminCatalogController.php
+
+		-
+			message: '#^Binary operation "\." between ''Order '' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Binary operation "\." between ''order\.'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot access offset ''c'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot access offset ''created_at'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot access offset ''grand_total_minor'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot access offset ''id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot access offset ''number'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot access offset ''state'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot cast mixed to float\.$#'
+			identifier: cast.double
+			count: 1
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: app/Controllers/AdminDashboardController.php
+
+		-
+			message: '#^Parameter \#2 \$meta of method Siro\\Core\\Controller\:\:paginated\(\) expects array\{page\: int, per_page\: int, total\: int, last_page\: int\}, array\<string, int\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AdminFinancialController.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/AdminInventoryController.php
+
+		-
+			message: '#^Cannot call method fetchAll\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Controllers/AdminInventoryController.php
+
+		-
+			message: '#^Parameter \#2 \$meta of method Siro\\Core\\Controller\:\:paginated\(\) expects array\{page\: int, per_page\: int, total\: int, last_page\: int\}, array\<string, int\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AdminOperationsController.php
+
+		-
+			message: '#^Parameter \#5 \$correlationId of method App\\Modules\\Platform\\Application\\AdminOperationsService\:\:replayNotification\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AdminOperationsController.php
+
+		-
+			message: '#^Parameter \#5 \$correlationId of method App\\Modules\\Platform\\Application\\AdminOperationsService\:\:retryJob\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AdminOperationsController.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_filter expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AdminOrderController.php
+
+		-
+			message: '#^Parameter \#2 \$lines of method App\\Modules\\Order\\Application\\OrderAdminService\:\:refundLines\(\) expects array\<int, array\<string, mixed\>\>, list given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AdminOrderController.php
+
+		-
+			message: '#^Cannot cast mixed to float\.$#'
+			identifier: cast.double
+			count: 2
+			path: app/Controllers/AdminProductController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 3
+			path: app/Controllers/AdminUserController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Controllers/AdminUserController.php
+
+		-
+			message: '#^Method App\\Controllers\\AdminUserController\:\:skeleton\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/AdminUserController.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: app/Controllers/AdminWorkbenchController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Controllers/AdminWorkbenchController.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Controllers/AdminWorkbenchController.php
+
+		-
+			message: '#^Parameter \#3 \$permissions of method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:savePermissionSet\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AdminWorkbenchController.php
+
+		-
+			message: '#^Method App\\Controllers\\AnalyticsController\:\:storefrontScope\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/AnalyticsController.php
+
+		-
+			message: '#^Parameter \#2 \$properties of method App\\Modules\\Analytics\\Application\\AnalyticsService\:\:trackStorefront\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AnalyticsController.php
+
+		-
+			message: '#^Parameter \#5 \$storeId of method App\\Modules\\Analytics\\Application\\AnalyticsService\:\:trackStorefront\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AnalyticsController.php
+
+		-
+			message: '#^Parameter \#6 \$channelId of method App\\Modules\\Analytics\\Application\\AnalyticsService\:\:trackStorefront\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AnalyticsController.php
+
+		-
+			message: '#^Parameter \#7 \$locale of method App\\Modules\\Analytics\\Application\\AnalyticsService\:\:trackStorefront\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AnalyticsController.php
+
+		-
+			message: '#^Parameter \#8 \$currency of method App\\Modules\\Analytics\\Application\\AnalyticsService\:\:trackStorefront\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/AnalyticsController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/BookingController.php
+
+		-
+			message: '#^Parameter \#2 \$timestamp of function date expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Controllers/BookingController.php
+
+		-
+			message: '#^Offset ''gift_code'' on array\{subtotal_minor\: int, discount_minor\: int, gift_discount_minor\: int, gift_tenders\: array\<int, array\{code\: string, covered_minor\: int\}\>, shipping_minor\: int, tax_minor\: int, total_minor\: int, pickup\: array\<string, mixed\>\|null, \.\.\.\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CartController.php
+
+		-
+			message: '#^Offset ''gift_discount_minor'' on array\{subtotal_minor\: int, discount_minor\: int, gift_discount_minor\: int, gift_tenders\: array\<int, array\{code\: string, covered_minor\: int\}\>, shipping_minor\: int, tax_minor\: int, total_minor\: int, pickup\: array\<string, mixed\>\|null, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CartController.php
+
+		-
+			message: '#^Offset ''gift_tenders'' on array\{subtotal_minor\: int, discount_minor\: int, gift_discount_minor\: int, gift_tenders\: array\<int, array\{code\: string, covered_minor\: int\}\>, shipping_minor\: int, tax_minor\: int, total_minor\: int, pickup\: array\<string, mixed\>\|null, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CartController.php
+
+		-
+			message: '#^Offset ''member_deal'' on array\{subtotal_minor\: int, discount_minor\: int, gift_discount_minor\: int, gift_tenders\: array\<int, array\{code\: string, covered_minor\: int\}\>, shipping_minor\: int, tax_minor\: int, total_minor\: int, pickup\: array\<string, mixed\>\|null, \.\.\.\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CartController.php
+
+		-
+			message: '#^Offset ''member_deal…'' on array\{subtotal_minor\: int, discount_minor\: int, gift_discount_minor\: int, gift_tenders\: array\<int, array\{code\: string, covered_minor\: int\}\>, shipping_minor\: int, tax_minor\: int, total_minor\: int, pickup\: array\<string, mixed\>\|null, \.\.\.\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CartController.php
+
+		-
+			message: '#^Offset ''member_discount…'' on array\{subtotal_minor\: int, discount_minor\: int, gift_discount_minor\: int, gift_tenders\: array\<int, array\{code\: string, covered_minor\: int\}\>, shipping_minor\: int, tax_minor\: int, total_minor\: int, pickup\: array\<string, mixed\>\|null, \.\.\.\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CartController.php
+
+		-
+			message: '#^Offset ''member_tier'' on array\{subtotal_minor\: int, discount_minor\: int, gift_discount_minor\: int, gift_tenders\: array\<int, array\{code\: string, covered_minor\: int\}\>, shipping_minor\: int, tax_minor\: int, total_minor\: int, pickup\: array\<string, mixed\>\|null, \.\.\.\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CartController.php
+
+		-
+			message: '#^Static method App\\Support\\Arr\:\:nullableStr\(\) invoked with 3 parameters, 2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: app/Controllers/CheckoutController.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 4
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Binary operation "\." between ''custom\.promo_banner\.'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Cannot access offset ''default'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Cannot access offset ''fields'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Cannot access offset ''key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Method App\\Controllers\\ConfigurationController\:\:fieldType\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Method App\\Controllers\\ConfigurationController\:\:fieldType\(\) should return string but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Method App\\Controllers\\ConfigurationController\:\:validateField\(\) has parameter \$field with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Parameter \#1 \$field of method App\\Controllers\\ConfigurationController\:\:validateField\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Parameter \#1 \$type of method App\\Controllers\\ConfigurationController\:\:encodeValue\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Parameter \#2 \$array of function implode expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of function in_array expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Part \$label \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 10
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 3
+			path: app/Controllers/ConfigurationController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 4
+			path: app/Controllers/CouponController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: app/Controllers/CouponController.php
+
+		-
+			message: '#^Offset ''revenue_minor'' might not exist on array\{uses\: 0, discount_minor\: 0, revenue_minor\: 0\}\|array\{uses\: int\<1, max\>, discount_minor\: int, revenue_minor\?\: int, currency\?\: string\}\.$#'
+			identifier: offsetAccess.notFound
+			count: 2
+			path: app/Controllers/CouponController.php
+
+		-
+			message: '#^Offset 0 on non\-empty\-list\<string\> on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/CouponController.php
+
+		-
+			message: '#^Parameter \#1 \$decoded of method App\\Controllers\\CouponController\:\:validateRules\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Controllers/CouponController.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Method App\\Controllers\\CustomerController\:\:orderScope\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#1 \$customerId of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:notificationHistory\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#1 \$customerId of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:notificationsForOrder\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#1 \$customerId of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:orders\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#1 \$customerId of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:ownsOrder\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#1 \$customerId of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:returnForCustomer\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#1 \$customerId of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:returns\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#3 \$aliasIds of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:notificationsForOrder\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#3 \$aliasIds of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:ownsOrder\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#3 \$aliasIds of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:returnForCustomer\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#4 \$aliasIds of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:returns\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#5 \$aliasIds of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:notificationHistory\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Parameter \#5 \$aliasIds of method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:orders\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/CustomerFinancialController.php
+
+		-
+			message: '#^Method App\\Controllers\\CustomerFinancialController\:\:customer\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/CustomerFinancialController.php
+
+		-
+			message: '#^Method App\\Controllers\\CustomerFinancialController\:\:customerScope\(\) should return array\{array\<string, mixed\>\|null, list\<string\>\} but returns array\{array, list\<string\>\}\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Controllers/CustomerFinancialController.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/CustomerFinancialController.php
+
+		-
+			message: '#^Binary operation "\." between ''erp\-loyalty\-'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpProxyController.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpProxyController.php
+
+		-
+			message: '#^Parameter \#2 \$idempotencyKey of method App\\Services\\ErpLiteClient\:\:loyaltyEvaluate\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ErpProxyController.php
+
+		-
+			message: '#^Parameter \#3 \$idempotencyKey of method App\\Services\\ErpLiteClient\:\:subscriptionRenew\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ErpProxyController.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Binary operation "\." between ''erp\-loyalty\-'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Binary operation "\." between ''erp\-mkt\-'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Binary operation "\." between ''erp\-pos\-'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Binary operation "\." between ''erp\-sub\-'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Binary operation "\." between ''pos\-'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Method App\\Controllers\\ErpWebhookController\:\:idempotent\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Method App\\Controllers\\ErpWebhookController\:\:storeIdempotent\(\) has parameter \$response with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Parameter \#1 \$key of method App\\Controllers\\ErpWebhookController\:\:idempotent\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Parameter \#1 \$key of method App\\Controllers\\ErpWebhookController\:\:storeIdempotent\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Parameter \#1 \$string of function md5 expects string, string\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Parameter \#2 \$header of static method App\\Services\\ErpLiteClient\:\:verify\(\) expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ErpWebhookController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 5
+			path: app/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Parameter \#2 \$timestamp of function date expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Controllers/FlashSaleController.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/FulfillmentController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/GiftCreditController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 4
+			path: app/Controllers/GiftCreditController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 7
+			path: app/Controllers/GiftCreditController.php
+
+		-
+			message: '#^Method App\\Controllers\\GiftCreditController\:\:public\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/GiftCreditController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: app/Controllers/MediaLibraryController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: app/Controllers/MediaLibraryController.php
+
+		-
+			message: '#^Parameter \#3 \$default of static method App\\Support\\Arr\:\:str\(\) expects string, null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/MediaLibraryController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/MemberDealController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/MemberPriceController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/OpsAlertController.php
+
+		-
+			message: '#^Method App\\Modules\\Order\\Application\\OrderQueryService\:\:guestTokenIsValid\(\) invoked with 3 parameters, 2 required\.$#'
+			identifier: arguments.count
+			count: 3
+			path: app/Controllers/OrderController.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between non\-empty\-string and '''' will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Controllers/PaymentController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/PickupPointController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/ProductController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 3
+			path: app/Controllers/ProductController.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/ProductController.php
+
+		-
+			message: '#^Parameter \#3 \$context of method App\\Modules\\Checkout\\Application\\QuoteService\:\:quote\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/QuoteController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 7
+			path: app/Controllers/SearchSeoController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 7
+			path: app/Controllers/SearchSeoController.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/SearchSeoController.php
+
+		-
+			message: '#^Parameter \#2 \$array of function implode expects array\<string\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/SearchSeoController.php
+
+		-
+			message: '#^Parameter \#2 \$subject of function preg_match expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Controllers/SearchSeoController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/SeoController.php
+
+		-
+			message: '#^Cannot cast mixed to float\.$#'
+			identifier: cast.double
+			count: 1
+			path: app/Controllers/ServerController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/ServerController.php
+
+		-
+			message: '#^Cannot access offset ''key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Controllers/SettingsController.php
+
+		-
+			message: '#^Cannot access offset ''value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Controllers/SettingsController.php
+
+		-
+			message: '#^Cannot call method fetchAll\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Controllers/SettingsController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: app/Controllers/SettingsController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 7
+			path: app/Controllers/SkeletonCategoryController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 5
+			path: app/Controllers/SkeletonCategoryController.php
+
+		-
+			message: '#^Method App\\Controllers\\SkeletonCategoryController\:\:row\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/SkeletonCategoryController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 10
+			path: app/Controllers/SkeletonOrderController.php
+
+		-
+			message: '#^Method App\\Controllers\\SkeletonOrderController\:\:row\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/SkeletonOrderController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 8
+			path: app/Controllers/SkeletonPostController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Controllers/SkeletonPostController.php
+
+		-
+			message: '#^Method App\\Controllers\\SkeletonPostController\:\:row\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/SkeletonPostController.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between mixed and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Controllers/SkeletonPostController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 6
+			path: app/Controllers/SkeletonProductController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 9
+			path: app/Controllers/SkeletonProductController.php
+
+		-
+			message: '#^Method App\\Controllers\\SkeletonProductController\:\:row\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/SkeletonProductController.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between mixed and null will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Controllers/SkeletonProductController.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between non\-empty\-array\{price_minor\?\: int, compare_price_minor\?\: int\} and array\{\} will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Controllers/SkeletonProductController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 4
+			path: app/Controllers/SkeletonTagController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Controllers/SkeletonTagController.php
+
+		-
+			message: '#^Method App\\Controllers\\SkeletonTagController\:\:row\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/SkeletonTagController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: app/Controllers/SmartDiscoveryController.php
+
+		-
+			message: '#^Cannot cast mixed to float\.$#'
+			identifier: cast.double
+			count: 1
+			path: app/Controllers/SmartDiscoveryController.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 6
+			path: app/Controllers/SmartDiscoveryController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 12
+			path: app/Controllers/SmartDiscoveryController.php
+
+		-
+			message: '#^Method App\\Controllers\\SmartDiscoveryController\:\:withProducts\(\) has parameter \$products with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/SmartDiscoveryController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Controllers/StorefrontConfigController.php
+
+		-
+			message: '#^Method App\\Controllers\\StorefrontConfigController\:\:importInput\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Controllers/StorefrontConfigController.php
+
+		-
+			message: '#^Offset ''version'' on array\{id\: mixed, status\: mixed, version\: int, config\: array\<string, mixed\>\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Controllers/StorefrontConfigController.php
+
+		-
+			message: '#^Parameter \#1 \$config of method App\\Controllers\\StorefrontConfigController\:\:importInput\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/StorefrontConfigController.php
+
+		-
+			message: '#^Parameter \#2 \$input of method App\\Modules\\StorefrontConfig\\Application\\StorefrontConfigService\:\:update\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/StorefrontConfigController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/StorefrontController.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Controllers/StorefrontShippingController.php
+
+		-
+			message: '#^Parameter \#3 \$destination of method App\\Modules\\Shipping\\Application\\ShippingEstimateService\:\:estimate\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Controllers/StorefrontShippingController.php
+
+		-
+			message: '#^Call to function is_int\(\) with int will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Domain/Money.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateController.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateController.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Cannot cast mixed to float\.$#'
+			identifier: cast.double
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Method App\\Extensions\\Siro\\Affiliate\\AffiliateService\:\:rows\(\) has parameter \$params with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Method App\\Extensions\\Siro\\Affiliate\\AffiliateService\:\:rows\(\) should return list\<array\<string, mixed\>\> but returns list\<array\<mixed, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Parameter \#1 \$code of method App\\Extensions\\Siro\\Affiliate\\AffiliateService\:\:rateFor\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Parameter \#1 \$payload of method App\\Extensions\\Siro\\Affiliate\\AffiliateService\:\:accrueFromOrder\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Extensions/Siro/Affiliate/AffiliateService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Middleware/OptionalAuthMiddleware.php
+
+		-
+			message: '#^Class Siro\\Core\\Response constructor invoked with 3 parameters, 1\-2 required\.$#'
+			identifier: arguments.count
+			count: 1
+			path: app/Middleware/UrlRewriteMiddleware.php
+
+		-
+			message: '#^Parameter \#1 \$payload of class Siro\\Core\\Response constructor expects array\<string, mixed\>, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Middleware/UrlRewriteMiddleware.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: app/Models/Invoice.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Method App\\Modules\\Ai\\Application\\AiCopilotService\:\:approve\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Method App\\Modules\\Ai\\Application\\AiCopilotService\:\:enqueue\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Method App\\Modules\\Ai\\Application\\AiCopilotService\:\:list\(\) should return list\<array\<string, mixed\>\> but returns list\<array\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Method App\\Modules\\Ai\\Application\\AiCopilotService\:\:reject\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Method App\\Modules\\Ai\\Application\\AiCopilotService\:\:review\(\) should return array\<string, mixed\>\|null but returns array\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Method App\\Modules\\Ai\\Application\\AiCopilotService\:\:shape\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Parameter \#1 \$row of method App\\Modules\\Ai\\Application\\AiCopilotService\:\:shape\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Parameter \#1 \$row of method App\\Modules\\Ai\\Application\\AiCopilotService\:\:shape\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Ai/Application/AiCopilotService.php
+
+		-
+			message: '#^Method App\\Modules\\Ai\\Infrastructure\\LlmPrompt\:\:suggestionFromText\(\) should return array\{array\<string, mixed\>, string\} but returns array\{array\<mixed, mixed\>, non\-empty\-string\}\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Ai/Infrastructure/LlmPrompt.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: app/Modules/Ai/Infrastructure/OllamaGateway.php
+
+		-
+			message: '#^Cannot access offset ''content'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Ai/Infrastructure/OpenAiCompatibleGateway.php
+
+		-
+			message: '#^Cannot access offset ''message'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Ai/Infrastructure/OpenAiCompatibleGateway.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: app/Modules/Ai/Infrastructure/OpenAiCompatibleGateway.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: app/Modules/Ai/Infrastructure/PersistentAiCostLedger.php
+
+		-
+			message: '#^Method App\\Modules\\Analytics\\Application\\AnalyticsService\:\:trackStorefront\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Analytics/Application/AnalyticsService.php
+
+		-
+			message: '#^Method App\\Modules\\Auth\\Application\\AuthService\:\:updateProfile\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Auth/Application/AuthService.php
+
+		-
+			message: '#^Method App\\Modules\\Auth\\Application\\AuthService\:\:verifyEmail\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Auth/Application/AuthService.php
+
+		-
+			message: '#^Method App\\Modules\\Auth\\Contracts\\UserStore\:\:update\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Auth/Contracts/UserStore.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 3
+			path: app/Modules/B2B/Application/B2BEnterpriseService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/B2B/Application/B2BPurchaseOrderService.php
+
+		-
+			message: '#^Method App\\Modules\\B2B\\Application\\B2BPurchaseOrderService\:\:transition\(\) should return array\<string, mixed\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/B2B/Application/B2BPurchaseOrderService.php
+
+		-
+			message: '#^Binary operation "\." between ''Product requires '' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Siro\\Core\\DB\\ModelQueryBuilder and ''lockForUpdate'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Siro\\Core\\DB\\QueryBuilder and ''lockForUpdate'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 3
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Method App\\Modules\\Cart\\Application\\CartService\:\:ownsForCheckoutReplay\(\) should return bool but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Method App\\Modules\\Cart\\Application\\CartService\:\:pickupShortfalls\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Method App\\Modules\\Cart\\Application\\CartService\:\:removeLine\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Method App\\Modules\\Cart\\Application\\CartService\:\:setLineQuantity\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Parameter \#2 \$array of function implode expects array\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Parameter \#2 \$minTier of static method App\\Modules\\Promotion\\Application\\MemberPriceService\:\:tierCanSee\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Parameter \#2 \$timestamp of function date expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between non\-falsy\-string and '''' will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Modules/Cart/Application/CartService.php
+
+		-
+			message: '#^Method App\\Modules\\Cart\\Contracts\\CartCommandPort\:\:addLine\(\) has parameter \$extra with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Cart/Contracts/CartCommandPort.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Catalog/Application/CatalogAdminService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Modules/Catalog/Application/CatalogCompletenessService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Catalog/Application/CatalogCompletenessService.php
+
+		-
+			message: '#^Parameter \#2 \$fields of function fputcsv expects array\<int\|string, bool\|float\|int\|string\|null\>, array\<int, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Catalog/Application/CatalogTransferService.php
+
+		-
+			message: '#^Method App\\Modules\\Catalog\\Application\\ProductLifecycleService\:\:approve\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Catalog/Application/ProductLifecycleService.php
+
+		-
+			message: '#^Method App\\Modules\\Checkout\\Application\\CheckoutService\:\:place\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Checkout/Application/CheckoutService.php
+
+		-
+			message: '#^Binary operation "\." between ''Product requires '' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Siro\\Core\\DB\\ModelQueryBuilder and ''lockForUpdate'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Siro\\Core\\DB\\QueryBuilder and ''lockForUpdate'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 3
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Method App\\Modules\\Checkout\\Application\\PlaceOrderService\:\:place\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Method App\\Modules\\Checkout\\Application\\PlaceOrderService\:\:snapshotMatchesCart\(\) has parameter \$lines with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Method App\\Modules\\Checkout\\Application\\PlaceOrderService\:\:snapshotMatchesCart\(\) has parameter \$snapshot with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:int\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:int\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:nullableStr\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:requiredStr\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Parameter \#2 \$minTier of static method App\\Modules\\Promotion\\Application\\MemberPriceService\:\:tierCanSee\(\) expects string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Variable \$chosenProvider on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
+			count: 2
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Variable \$memberId might not be defined\.$#'
+			identifier: variable.undefined
+			count: 2
+			path: app/Modules/Checkout/Application/PlaceOrderService.php
+
+		-
+			message: '#^Method App\\Modules\\Checkout\\Application\\QuoteService\:\:quote\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Checkout/Application/QuoteService.php
+
+		-
+			message: '#^Method App\\Modules\\Checkout\\Contracts\\CheckoutHandler\:\:place\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Checkout/Contracts/CheckoutHandler.php
+
+		-
+			message: '#^Method App\\Modules\\Checkout\\Contracts\\InventoryPort\:\:reserve\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Checkout/Contracts/InventoryPort.php
+
+		-
+			message: '#^Method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:address\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:evidence\(\) has parameter \$destination with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:evidence\(\) has parameter \$origin with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:value\(\) has parameter \$aliases with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:zone\(\) has parameter \$destination with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:zone\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Parameter \#1 \$address of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:address\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Parameter \#1 \$from of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:isRegional\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Parameter \#1 \$origin of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:zone\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Parameter \#2 \$to of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:isRegional\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: app/Modules/Commerce/Domain/RegionalRules.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: app/Modules/Configuration/Domain/ConfigurationRegistry.php
+
+		-
+			message: '#^Cannot access offset ''key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Configuration/Domain/ConfigurationRegistry.php
+
+		-
+			message: '#^Method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:notificationHistory\(\) has parameter \$aliasIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:notificationsForOrder\(\) has parameter \$aliasIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:orderIdentities\(\) has parameter \$customer with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:orders\(\) has parameter \$aliasIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:ownsOrder\(\) has parameter \$aliasIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:returnForCustomer\(\) has parameter \$aliasIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Method App\\Modules\\Customer\\Application\\CustomerCommerceService\:\:returns\(\) has parameter \$aliasIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_unique expects an array of values castable to string, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Parameter \#3 \$aliasIds of method App\\Modules\\Fulfillment\\Contracts\\ReturnStore\:\:findForCustomer\(\) expects list\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Parameter \#4 \$aliasIds of method App\\Modules\\Fulfillment\\Contracts\\ReturnStore\:\:paginateForCustomer\(\) expects list\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Parameter \#5 \$aliasIds of method App\\Modules\\Order\\Application\\OrderQueryService\:\:paginateForCustomer\(\) expects list\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Customer/Application/CustomerCommerceService.php
+
+		-
+			message: '#^Cannot access offset ''weight'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Experimentation/Domain/ExperimentResolver.php
+
+		-
+			message: '#^Method App\\Modules\\Experimentation\\Domain\\ExperimentResolver\:\:assign\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Experimentation/Domain/ExperimentResolver.php
+
+		-
+			message: '#^Method App\\Modules\\Experimentation\\Domain\\ExperimentResolver\:\:sanitize\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Experimentation/Domain/ExperimentResolver.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between true and true will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Modules/Experimentation/Domain/ExperimentResolver.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionBoot.php
+
+		-
+			message: '#^Cannot call method fetchAll\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionBoot.php
+
+		-
+			message: '#^Method App\\Modules\\Extension\\Application\\ExtensionDiscovery\:\:classes\(\) should return list\<class\-string\<App\\Contracts\\ExtensionInterface\>\> but returns list\<non\-falsy\-string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionDiscovery.php
+
+		-
+			message: '#^Parameter \#1 \$class of static method App\\Modules\\Extension\\Application\\ExtensionDiscovery\:\:isExtension\(\) expects class\-string, string given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Extension/Application/ExtensionDiscovery.php
+
+		-
+			message: '#^Cannot call method fetchColumn\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionMigrationRunner.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<string\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionMigrationRunner.php
+
+		-
+			message: '#^Parameter \#1 \$objectOrClass of class ReflectionClass constructor expects class\-string\<T of object\>\|T of object, string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionMigrationRunner.php
+
+		-
+			message: '#^Call to an undefined method object\:\:group\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionRouteLoader.php
+
+		-
+			message: '#^Instanceof between Siro\\Core\\Model and Siro\\Core\\Model will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionRouteLoader.php
+
+		-
+			message: '#^Method App\\Modules\\Extension\\Application\\ExtensionRouteLoader\:\:mountOne\(\) has parameter \$fe with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionRouteLoader.php
+
+		-
+			message: '#^Parameter \#1 \$fe of static method App\\Modules\\Extension\\Application\\ExtensionRouteLoader\:\:middleware\(\) expects array\<int, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Extension/Application/ExtensionRouteLoader.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\{key\: string, title\: string, type\: string, endpoint\: string, permission\: string\} will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Call to function is_array\(\) with list\<array\{key\: string, title\: string, type\: string, endpoint\: string, permission\: string\}\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Call to function is_string\(\) with ''endpoint''\|''key''\|''permission''\|''title''\|''type'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Default value of the parameter \#8 \$admin \(array\{\}\) of method App\\Modules\\Extension\\Domain\\ExtensionManifest\:\:__construct\(\) is incompatible with type array\{label\: string, section\: string, panels\: list\<array\{key\: string, title\: string, type\: string, endpoint\: string, permission\: string\}\>\}\.$#'
+			identifier: parameter.defaultValue
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Method App\\Modules\\Extension\\Domain\\ExtensionManifest\:\:validateAdmin\(\) has parameter \$permissions with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Parameter \#8 \$admin of class App\\Modules\\Extension\\Domain\\ExtensionManifest constructor expects array\{label\: string, section\: string, panels\: list\<array\{key\: string, title\: string, type\: string, endpoint\: string, permission\: string\}\>\}, array\<string, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Property App\\Modules\\Extension\\Domain\\ExtensionManifest\:\:\$admin on left side of \?\? is not nullable nor uninitialized\.$#'
+			identifier: nullCoalesce.initializedProperty
+			count: 3
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Strict comparison using \!\=\= between array\{label\: string, section\: string, panels\: list\<array\{key\: string, title\: string, type\: string, endpoint\: string, permission\: string\}\>\} and array\{\} will always evaluate to true\.$#'
+			identifier: notIdentical.alwaysTrue
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between array\{label\: string, section\: string, panels\: list\<array\{key\: string, title\: string, type\: string, endpoint\: string, permission\: string\}\>\} and array\{\} will always evaluate to false\.$#'
+			identifier: identical.alwaysFalse
+			count: 1
+			path: app/Modules/Extension/Domain/ExtensionManifest.php
+
+		-
+			message: '#^Offset ''invoice_id'' on array\{invoice_id\: string, invoice_number\: string, order_id\: string, state\: string, currency\: string, minor_unit\: int, amount_minor\: int, credited_minor\: int, \.\.\.\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Modules/Finance/Application/AdminFinancialReconciliationService.php
+
+		-
+			message: '#^Method App\\Modules\\Finance\\Application\\CreditMemoManager\:\:allocateTaxes\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Finance/Application/CreditMemoManager.php
+
+		-
+			message: '#^Parameter \#1 \$taxes of method App\\Modules\\Finance\\Application\\CreditMemoManager\:\:allocateTaxes\(\) expects array\<int, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Finance/Application/CreditMemoManager.php
+
+		-
+			message: '#^Binary operation "\." between mixed and ''\.pdf'' results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Method App\\Modules\\Finance\\Application\\FinancialDocumentQueryService\:\:documentForCustomer\(\) should return array\<string, mixed\>\|null but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Method App\\Modules\\Finance\\Application\\FinancialDocumentQueryService\:\:invoice\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Method App\\Modules\\Finance\\Application\\FinancialDocumentQueryService\:\:memo\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Method App\\Modules\\Finance\\Application\\FinancialDocumentQueryService\:\:refund\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:int\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 10
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 15
+			path: app/Modules/Finance/Application/FinancialDocumentQueryService.php
+
+		-
+			message: '#^Parameter \#1 \$data of static method App\\Support\\ProviderEvidence\:\:redact\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Finance/Application/InvoiceManager.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Method App\\Modules\\Fulfillment\\Application\\PickupPointService\:\:create\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Method App\\Modules\\Fulfillment\\Application\\PickupPointService\:\:public\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Method App\\Modules\\Fulfillment\\Application\\PickupPointService\:\:readyBy\(\) has parameter \$point with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Method App\\Modules\\Fulfillment\\Application\\PickupPointService\:\:update\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:int\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:nullableStr\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 5
+			path: app/Modules/Fulfillment/Application/PickupPointService.php
+
+		-
+			message: '#^Method App\\Modules\\Fulfillment\\Contracts\\FulfillmentService\:\:collect\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Fulfillment/Contracts/FulfillmentService.php
+
+		-
+			message: '#^Method App\\Modules\\Fulfillment\\Contracts\\FulfillmentService\:\:markReady\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Fulfillment/Contracts/FulfillmentService.php
+
+		-
+			message: '#^Method App\\Modules\\Inventory\\Application\\InventoryManager\:\:reserve\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Inventory/Application/InventoryManager.php
+
+		-
+			message: '#^Method App\\Modules\\Inventory\\Application\\InventoryManager\:\:reserveBundle\(\) should return array\<int, array\<string, mixed\>\> but returns list\<array\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Inventory/Application/InventoryManager.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 3
+			path: app/Modules/Inventory/Application/StockAlertService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: app/Modules/Inventory/Application/StockAlertService.php
+
+		-
+			message: '#^Method App\\Modules\\Inventory\\Application\\StockAlertService\:\:pending\(\) should return list\<array\<string, mixed\>\> but returns list\<array\<mixed, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Inventory/Application/StockAlertService.php
+
+		-
+			message: '#^Method App\\Modules\\Inventory\\Application\\StockAlertService\:\:sendRow\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Inventory/Application/StockAlertService.php
+
+		-
+			message: '#^Method App\\Modules\\Order\\Application\\OrderAdminService\:\:refund\(\) has parameter \$allocation with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Order/Application/OrderAdminService.php
+
+		-
+			message: '#^Method App\\Modules\\Order\\Application\\OrderAdminService\:\:refundLines\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Order/Application/OrderAdminService.php
+
+		-
+			message: '#^Method App\\Modules\\Order\\Application\\OrderAdminService\:\:refundToCredit\(\) should return array\{order\: array\<string, mixed\>, credit\: array\<string, mixed\>\} but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Order/Application/OrderAdminService.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Payment/Infrastructure/ConfiguredPaymentProvider.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Modules/Payment/Infrastructure/ConfiguredPaymentProvider.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Payment/Infrastructure/PaymentProviderRegistry.php
+
+		-
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Payment/Infrastructure/SandboxPaymentProvider.php
+
+		-
+			message: '#^Cannot access offset ''attempts'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''available_at'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''created_at'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''kind'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''label'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''last_error'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''order_id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''state'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 9
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminOperationsService\:\:replayNotification\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminOperationsService\:\:retryJob\(\) should return array\<string, mixed\> but returns array\<mixed, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Application/AdminOperationsService.php
+
+		-
+			message: '#^Cannot access offset ''amount_minor'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot access offset ''count'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot access offset ''currency'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot access offset ''interval'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot access offset ''interval_count'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot access offset ''payments'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot access offset ''result'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot access offset ''state'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 9
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 17
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminSubscriptionService\:\:attemptRow\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminSubscriptionService\:\:retry\(\) should return array\<string, mixed\> but returns array\<mixed, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminSubscriptionService\:\:subscriptionRow\(\) has parameter \$row with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(mixed\)\: mixed\)\|null, Closure\(array\)\: array\<string, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Parameter \#1 \$row of method App\\Modules\\Platform\\Application\\AdminSubscriptionService\:\:subscriptionRow\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Parameter \#2 \$timestamp of function date expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Platform/Application/AdminSubscriptionService.php
+
+		-
+			message: '#^Cannot call method fetchAll\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:approval\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:createWorkflow\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:decideApproval\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:decode\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:requestApproval\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:savePermissionSet\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:saveView\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:view\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:views\(\) should return array\<int, array\<string, mixed\>\> but returns array\<array\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:workflow\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\AdminWorkbenchService\:\:workflows\(\) should return array\<int, array\<string, mixed\>\> but returns array\<array\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(mixed\)\: mixed\)\|null, ''strval'' given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Application/AdminWorkbenchService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 7
+			path: app/Modules/Platform/Application/ParityService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\ParityService\:\:audit\(\) should return array\<int, array\<string, mixed\>\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Application/ParityService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\ParityService\:\:auditRows\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/ParityService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Application\\ParityService\:\:redact\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Application/ParityService.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method App\\Modules\\Platform\\Application\\ParityService\:\:redact\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Application/ParityService.php
+
+		-
+			message: '#^Parameter \#1 \$value of static method App\\Modules\\Platform\\Application\\ParityService\:\:redact\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Application/ParityService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\CartCommandAdapter\:\:addLine\(\) has parameter \$extra with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CartCommandAdapter.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CreditMemoStoreAdapter.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\CreditMemoStoreAdapter\:\:create\(\) should return array\<string, mixed\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CreditMemoStoreAdapter.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\CreditMemoStoreAdapter\:\:taxRow\(\) has parameter \$tax with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CreditMemoStoreAdapter.php
+
+		-
+			message: '#^Parameter \#1 \$data of static method App\\Support\\ProviderEvidence\:\:redact\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CreditMemoStoreAdapter.php
+
+		-
+			message: '#^Cannot call method fill\(\) on array\<string, mixed\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CustomerEngagementService.php
+
+		-
+			message: '#^Cannot call method save\(\) on App\\Models\\LoyaltyLedger\|array\<string, mixed\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CustomerEngagementService.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\CustomerEngagementService\:\:reverseForRefund\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/CustomerEngagementService.php
+
+		-
+			message: '#^Call to method json\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Platform/Infrastructure/DhlHttpTransport.php
+
+		-
+			message: '#^Call to method ok\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Platform/Infrastructure/DhlHttpTransport.php
+
+		-
+			message: '#^Call to method status\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 3
+			path: app/Modules/Platform/Infrastructure/DhlHttpTransport.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\DhlHttpTransport\:\:request\(\) should return array\<string, mixed\> but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/DhlHttpTransport.php
+
+		-
+			message: '#^Parameter \#1 \$status of class App\\Modules\\Platform\\Infrastructure\\DhlProviderRejectedException constructor expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/DhlHttpTransport.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\InventoryCheckoutAdapter\:\:reserve\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/InventoryCheckoutAdapter.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Platform/Infrastructure/InvoiceStoreAdapter.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\InvoiceStoreAdapter\:\:taxRow\(\) has parameter \$tax with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/InvoiceStoreAdapter.php
+
+		-
+			message: '#^Parameter \#1 \$data of static method App\\Support\\ProviderEvidence\:\:redact\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/InvoiceStoreAdapter.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\NativeSearchAdapter\:\:native\(\) has parameter \$facets with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeSearchAdapter.php
+
+		-
+			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(mixed\)\: mixed\)\|null, Closure\(string\)\: string given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeSearchAdapter.php
+
+		-
+			message: '#^Parameter \#2 \$key of static method App\\Support\\Arr\:\:str\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeSearchAdapter.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeSearchAdapter.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeTaxProvider.php
+
+		-
+			message: '#^Parameter \#2 \$country of method App\\Modules\\Platform\\Infrastructure\\NativeTaxProvider\:\:bestRule\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeTaxProvider.php
+
+		-
+			message: '#^Parameter \#2 \$country of method App\\Modules\\Platform\\Infrastructure\\NativeTaxProvider\:\:evidence\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeTaxProvider.php
+
+		-
+			message: '#^Parameter \#3 \$region of method App\\Modules\\Platform\\Infrastructure\\NativeTaxProvider\:\:bestRule\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeTaxProvider.php
+
+		-
+			message: '#^Parameter \#3 \$region of method App\\Modules\\Platform\\Infrastructure\\NativeTaxProvider\:\:evidence\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeTaxProvider.php
+
+		-
+			message: '#^Parameter \#4 \$postalCode of method App\\Modules\\Platform\\Infrastructure\\NativeTaxProvider\:\:bestRule\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeTaxProvider.php
+
+		-
+			message: '#^Parameter \#4 \$postalCode of method App\\Modules\\Platform\\Infrastructure\\NativeTaxProvider\:\:evidence\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/NativeTaxProvider.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\PaymentStoreAdapter\:\:applyRefund\(\) should return string but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/PaymentStoreAdapter.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\ReportingReadAdapter\:\:search\(\) has parameter \$facets with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/ReportingReadAdapter.php
+
+		-
+			message: '#^Parameter \#2 \$bindings of method Siro\\Core\\DB\\QueryBuilder\:\:whereRaw\(\) expects array\<int\|string, int\|string\>, array\<int, string\|null\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Platform/Infrastructure/ReportingReadAdapter.php
+
+		-
+			message: '#^Cannot call method toArray\(\) on array\<string, mixed\>\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Modules/Platform/Infrastructure/ReturnStoreAdapter.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Platform/Infrastructure/ReturnStoreAdapter.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Platform/Infrastructure/ShippingShipmentStoreAdapter.php
+
+		-
+			message: '#^Method App\\Modules\\Platform\\Infrastructure\\UserStoreAdapter\:\:update\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Platform/Infrastructure/UserStoreAdapter.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<int, array\<string, mixed\>\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 2
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Call to function is_int\(\) with int will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Call to function is_numeric\(\) with \*NEVER\* will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Offset ''lines'' on array\{total_minor\: int, lines\: array\<int, array\<string, mixed\>\>, rules\: array\<int, array\<string, mixed\>\>, currency\?\: string, tax_inclusive\?\: bool, evidence_hash\?\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Offset ''rules'' on array\{total_minor\: int, lines\: array\<int, array\<string, mixed\>\>, rules\: array\<int, array\<string, mixed\>\>, currency\?\: string, tax_inclusive\?\: bool, evidence_hash\?\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Offset ''total_minor'' on array\{total_minor\: int, lines\: array\<int, array\<string, mixed\>\>, rules\: array\<int, array\<string, mixed\>\>, currency\?\: string, tax_inclusive\?\: bool, evidence_hash\?\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Result of && is always false\.$#'
+			identifier: booleanAnd.alwaysFalse
+			count: 1
+			path: app/Modules/Pricing/Application/PricingEngine.php
+
+		-
+			message: '#^Parameter \#3 \$lines of method App\\Modules\\Pricing\\Application\\PricingEngine\:\:quote\(\) expects array\<int, array\{variant_id\: string, sku\: string, name\: string, qty\: int, unit_price_minor\: int, tax_class\?\: string\}\>, array\<int, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Pricing/Application/PricingService.php
+
+		-
+			message: '#^Call to function method_exists\(\) with Siro\\Core\\DB\\ModelQueryBuilder and ''lockForUpdate'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Cannot call method save\(\) on array\<string, mixed\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Cannot call method setAttribute\(\) on array\<string, mixed\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 2
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\FlashSaleService\:\:addItem\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\FlashSaleService\:\:createSale\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\FlashSaleService\:\:recordSale\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array\<string, mixed\>\|null given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Parameter \#2 \$timestamp of function date expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Promotion/Application/FlashSaleService.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 3
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 8
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\GiftCreditService\:\:byCode\(\) should return array\<string, mixed\>\|null but returns array\<mixed, mixed\>\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\GiftCreditService\:\:byId\(\) should return array\<string, mixed\>\|null but returns array\<mixed, mixed\>\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\GiftCreditService\:\:byKey\(\) should return array\<string, mixed\>\|null but returns array\<mixed, mixed\>\|null\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\GiftCreditService\:\:creditForLedger\(\) has parameter \$entry with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\GiftCreditService\:\:list\(\) should return list\<array\<string, mixed\>\> but returns list\<array\<mixed, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<string\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Modules/Promotion/Application/GiftCreditService.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<int, array\<string, mixed\>\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 6
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\MemberDealService\:\:clean\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\MemberDealService\:\:create\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\MemberDealService\:\:list\(\) should return array\<string, mixed\> but returns list\<array\<string, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\MemberDealService\:\:update\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Parameter \#1 \$attributes of static method Siro\\Core\\Model\:\:create\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Parameter \#2 \$timestamp of function date expects int\|null, int\|false given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Promotion/Application/MemberDealService.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<int, array\<string, mixed\>\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Promotion/Application/MemberPriceService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Modules/Promotion/Application/MemberPriceService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\MemberPriceService\:\:productTiers\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/MemberPriceService.php
+
+		-
+			message: '#^Method App\\Modules\\Promotion\\Application\\MemberPriceService\:\:setPrice\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Promotion/Application/MemberPriceService.php
+
+		-
+			message: '#^Method App\\Modules\\Reporting\\Application\\ReportingService\:\:search\(\) has parameter \$facets with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Reporting/Application/ReportingService.php
+
+		-
+			message: '#^Method App\\Modules\\Reporting\\Contracts\\ReportingReader\:\:search\(\) has parameter \$facets with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Reporting/Contracts/ReportingReader.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Search/Application/CatalogIndexDocumentBuilder.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<mixed, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Call to method body\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Call to method status\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 2
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Instantiated class Siro\\Core\\HttpResponse not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Method App\\Modules\\Search\\Infrastructure\\MeiliCatalogIndexClient\:\:addDocuments\(\) has invalid return type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Method App\\Modules\\Search\\Infrastructure\\MeiliCatalogIndexClient\:\:createIndex\(\) has invalid return type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Method App\\Modules\\Search\\Infrastructure\\MeiliCatalogIndexClient\:\:deleteIndex\(\) has invalid return type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Method App\\Modules\\Search\\Infrastructure\\MeiliCatalogIndexClient\:\:request\(\) has invalid return type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Method App\\Modules\\Search\\Infrastructure\\MeiliCatalogIndexClient\:\:updateSettings\(\) has invalid return type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Parameter \#2 \$options of function curl_setopt_array expects array\{10036\: non\-empty\-string\|null, 19913\: bool, 10023\: array\<int, string\>, 155\: int, 156\: int, 10015\?\: array\|string\}, array\{10036\: string, 19913\: true, 10023\: array\{''Content\-Type\:…'', non\-falsy\-string\}, 155\: int, 156\: int\<min, 5000\>, 10015\?\: non\-empty\-string\} given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Parameter \$request of method App\\Modules\\Search\\Infrastructure\\MeiliCatalogIndexClient\:\:__construct\(\) has invalid type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Property App\\Modules\\Search\\Infrastructure\\MeiliCatalogIndexClient\:\:\$request has unknown class Siro\\Core\\HttpResponse as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogIndexClient.php
+
+		-
+			message: '#^Call to method body\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Call to method status\(\) on an unknown class Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 2
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Class Siro\\Core\\HttpResponse not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Instanceof between Siro\\Core\\HttpResponse and Siro\\Core\\HttpResponse will always evaluate to true\.$#'
+			identifier: instanceof.alwaysTrue
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Instantiated class Siro\\Core\\HttpResponse not found\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Method App\\Modules\\Search\\Infrastructure\\MeiliCatalogSearchProvider\:\:send\(\) has invalid return type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Parameter \#1 \$json of function json_decode expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Parameter \$request of method App\\Modules\\Search\\Infrastructure\\MeiliCatalogSearchProvider\:\:__construct\(\) has invalid type Siro\\Core\\HttpResponse\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Property App\\Modules\\Search\\Infrastructure\\MeiliCatalogSearchProvider\:\:\$request has unknown class Siro\\Core\\HttpResponse as its type\.$#'
+			identifier: class.notFound
+			count: 1
+			path: app/Modules/Search/Infrastructure/MeiliCatalogSearchProvider.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Call to function method_exists\(\) with ''Siro\\\\Core\\\\Logger'' and ''info'' will always evaluate to false\.$#'
+			identifier: function.impossibleType
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Method App\\Modules\\Shipping\\Application\\ShippingEstimateService\:\:destination\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Method App\\Modules\\Shipping\\Application\\ShippingEstimateService\:\:origin\(\) should return array\<string, string\> but returns array\.$#'
+			identifier: return.type
+			count: 2
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Method App\\Modules\\Shipping\\Application\\ShippingEstimateService\:\:rateEta\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<array\{code\: non\-empty\-string, label\: non\-empty\-string, amount_minor\: int, currency\: non\-falsy\-string, eta_days_min\: mixed, eta_days_max\: mixed\}\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:str\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Parameter \#2 \$country of method App\\Modules\\Shipping\\Application\\ShippingEstimateService\:\:audit\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Parameter \#2 \$destination of method App\\Modules\\Shipping\\Application\\ShippingEstimateService\:\:liveRates\(\) expects array\<string, string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Parameter \#2 \$destination of method App\\Modules\\Shipping\\Application\\ShippingEstimateService\:\:nativeMethods\(\) expects array\<string, string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingEstimateService.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<int, array\<string, mixed\>\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 4
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Call to function method_exists\(\) with App\\Modules\\Shipping\\Contracts\\ShippingShipmentStore and ''setState'' will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Parameter \#1 \$origin of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:evidence\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Parameter \#1 \$origin of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:zone\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Parameter \#1 \$origin of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:zone\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Parameter \#2 \$destination of static method App\\Modules\\Commerce\\Domain\\RegionalRules\:\:evidence\(\) expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Shipping/Application/ShippingService.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 5
+			path: app/Modules/Smart/Application/NativeSuggestProvider.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 9
+			path: app/Modules/Smart/Application/NativeSuggestProvider.php
+
+		-
+			message: '#^Method App\\Modules\\Smart\\Application\\NativeSuggestProvider\:\:card\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Smart/Application/NativeSuggestProvider.php
+
+		-
+			message: '#^Method App\\Modules\\Smart\\Application\\NativeSuggestProvider\:\:products\(\) should return list\<array\<string, mixed\>\> but returns list\<non\-empty\-array\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Smart/Application/NativeSuggestProvider.php
+
+		-
+			message: '#^Parameter \#2 \$product of method App\\Modules\\Smart\\Application\\NativeSuggestProvider\:\:card\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Smart/Application/NativeSuggestProvider.php
+
+		-
+			message: '#^Call to function is_array\(\) with array will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Modules/Smart/Application/OpsAlertService.php
+
+		-
+			message: '#^Cannot call method fetchAll\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Smart/Application/OpsAlertService.php
+
+		-
+			message: '#^Method App\\Modules\\Smart\\Application\\OpsAlertService\:\:list\(\) should return list\<array\<string, mixed\>\> but returns list\<array\<mixed, mixed\>\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Modules/Smart/Application/OpsAlertService.php
+
+		-
+			message: '#^Cannot call method fetchAll\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: app/Modules/Smart/Application/SmartAggregator.php
+
+		-
+			message: '#^Cannot call method fetchColumn\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Modules/Smart/Application/SmartAggregator.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 4
+			path: app/Modules/Smart/Application/SmartAggregator.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 4
+			path: app/Modules/Smart/Application/SmartAggregator.php
+
+		-
+			message: '#^Comparison operation "\<" between int\<1, max\> and 1 is always false\.$#'
+			identifier: smaller.alwaysFalse
+			count: 1
+			path: app/Modules/Smart/Application/SmartAggregator.php
+
+		-
+			message: '#^Parameter \#1 \$array \(non\-empty\-list\<''fulfillment\.failed''\|''payment\.failed''\|''refund\.created''\|''refund\.succeeded''\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Modules/Smart/Application/SmartAggregator.php
+
+		-
+			message: '#^Method App\\Modules\\Smart\\Application\\SmartLexiconScorer\:\:foldedTokens\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Modules/Smart/Application/SmartLexiconScorer.php
+
+		-
+			message: '#^Offset ''body'' on array\{rating\: int, body\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Smart/Application/SmartLexiconScorer.php
+
+		-
+			message: '#^Offset ''rating'' on array\{rating\: int, body\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Modules/Smart/Application/SmartLexiconScorer.php
+
+		-
+			message: '#^Parameter \#2 \$plain of method App\\Modules\\Smart\\Application\\SmartLexiconScorer\:\:isBreak\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Smart/Application/SmartLexiconScorer.php
+
+		-
+			message: '#^Parameter \#2 \$plain of method App\\Modules\\Smart\\Application\\SmartLexiconScorer\:\:isNegation\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Smart/Application/SmartLexiconScorer.php
+
+		-
+			message: '#^Parameter \#2 \$plain of method App\\Modules\\Smart\\Application\\SmartLexiconScorer\:\:wordPolarity\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Smart/Application/SmartLexiconScorer.php
+
+		-
+			message: '#^Parameter \#2 \$replace_pairs of function strtr expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Modules/Smart/Application/SmartLexiconScorer.php
+
+		-
+			message: '#^Cannot call method toArray\(\) on array\<string, mixed\>\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: app/Repositories/CartRepository.php
+
+		-
+			message: '#^Cannot call method update\(\) on array\<string, mixed\>\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Repositories/CartRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\CartRepository\:\:addLine\(\) has parameter \$extra with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Repositories/CartRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\CartRepository\:\:primaryImages\(\) has parameter \$productIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Repositories/CartRepository.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_unique expects an array of values castable to string, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/CartRepository.php
+
+		-
+			message: '#^Parameter \#1 \$row of static method App\\Support\\Arr\:\:nullableStr\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Repositories/CartRepository.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Repositories/InventoryRepository.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: app/Repositories/InventoryRepository.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: app/Repositories/OrderRepository.php
+
+		-
+			message: '#^Cannot call method toArray\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Repositories/OrderRepository.php
+
+		-
+			message: '#^Cannot call method where\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 3
+			path: app/Repositories/OrderRepository.php
+
+		-
+			message: '#^Cannot call method whereNull\(\) on mixed\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Repositories/OrderRepository.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Repositories/OrderRepository.php
+
+		-
+			message: '#^Call to function is_array\(\) with array\<string, mixed\> will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 9
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot access offset ''component_variant_id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot access offset ''currency'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot access offset ''id'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot access offset ''minimum_qty'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot access offset ''unit_price_minor'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot access offset ''value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 18
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 39
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\ProductRepository\:\:componentCatalog\(\) has parameter \$components with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\ProductRepository\:\:optionValuesBelongToProduct\(\) has parameter \$optionValueIds with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Offset ''value'' on array\{option_id\: string, value\: string\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Offset ''variants'' on non\-empty\-array\<string, mixed\> on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 2
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^PHPDoc tag @return with type array\<int, string\> is incompatible with native type bool\.$#'
+			identifier: return.phpDocType
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#1 \$array \(list\<array\{minimum\: int, price\: int, currency\: string\}\>\) of array_values is already a list, call has no effect\.$#'
+			identifier: arrayValues.list
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#1 \$options of method App\\Repositories\\ProductRepository\:\:storefrontOptionPricing\(\) expects array\<int, array\<string, mixed\>\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#1 \$options of method App\\Repositories\\ProductRepository\:\:storefrontOptions\(\) expects array\<int, array\<string, mixed\>\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#1 \$options of method App\\Repositories\\ProductRepository\:\:storefrontVariantOptions\(\) expects array\<int, array\<string, mixed\>\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#1 \$type of method App\\Repositories\\ProductRepository\:\:storefrontDelivery\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#1 \$variants of method App\\Repositories\\ProductRepository\:\:storefrontQuantityPricing\(\) expects array\<int, array\<string, mixed\>\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#2 \$array of function array_map expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Parameter \#2 \$variants of method App\\Repositories\\ProductRepository\:\:storefrontVariantOptions\(\) expects array\<int, array\<string, mixed\>\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Variable \$detailStockBySource on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.variable
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Variable \$images on left side of \?\? is never defined\.$#'
+			identifier: nullCoalesce.variable
+			count: 1
+			path: app/Repositories/ProductRepository.php
+
+		-
+			message: '#^Method App\\Repositories\\UserRepository\:\:update\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Repositories/UserRepository.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: app/Resources/OrderResource.php
+
+		-
+			message: '#^Method App\\Services\\ErpLiteClient\:\:loyaltyEvaluate\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ErpLiteClient.php
+
+		-
+			message: '#^Method App\\Services\\ErpLiteClient\:\:posPlace\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ErpLiteClient.php
+
+		-
+			message: '#^Method App\\Services\\ErpLiteClient\:\:post\(\) has parameter \$body with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ErpLiteClient.php
+
+		-
+			message: '#^Method App\\Services\\ErpLiteClient\:\:post\(\) should return array\<string, mixed\> but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Services/ErpLiteClient.php
+
+		-
+			message: '#^Method App\\Services\\ErpLiteClient\:\:subscriptionRenew\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/ErpLiteClient.php
+
+		-
+			message: '#^Binary operation "\+" between int and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Binary operation "\." between mixed and non\-empty\-string results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 2
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Binary operation "\." between string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 10
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 5
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Cannot use array destructuring on mixed\.$#'
+			identifier: offsetAccess.nonArray
+			count: 3
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Offset 6 on array\{string, string, list\<string\>, string, int, int\} on left side of \?\? does not exist\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^PHPDoc tag @param references unknown parameter\: \$counts$#'
+			identifier: parameter.notFound
+			count: 1
+			path: app/Support/B2cCatalogSeeder.php
+
+		-
+			message: '#^Parameter \#1 \$filename of function is_dir expects string, string\|null given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Support/CatalogAltImageAttacher.php
+
+		-
+			message: '#^Expression on left side of \?\? is not nullable\.$#'
+			identifier: nullCoalesce.expr
+			count: 1
+			path: app/Support/LocaleResolver.php
+
+		-
+			message: '#^Call to an undefined method App\\Modules\\Payment\\Contracts\\PaymentProvider\:\:reconcile\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Cannot access offset ''state'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 3
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Left side of && is always true\.$#'
+			identifier: booleanAnd.leftAlwaysTrue
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Method App\\Support\\PaymentLaunchCertification\:\:check\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Method App\\Support\\PaymentLaunchCertification\:\:environment\(\) should return array\<string, string\> but returns array\<string\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Method App\\Support\\PaymentLaunchCertification\:\:missingCredentials\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Method App\\Support\\PaymentLaunchCertification\:\:run\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Offset ''state'' on array\{state\: mixed, amount_minor\: mixed, currency\: mixed, provider_ref\: non\-falsy\-string\|null\} on left side of \?\? always exists and is not nullable\.$#'
+			identifier: nullCoalesce.offset
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Parameter \#2 \$array of function implode expects array\<string\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Parameter \#4 \$extra of static method App\\Support\\PaymentLaunchCertification\:\:check\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: app/Support/PaymentLaunchCertification.php
+
+		-
+			message: '#^Call to function in_array\(\) with arguments ''order_placed'', array\{''order_placed'', ''payment_captured'', ''shipment_shipped'', ''shipment_delivered''\} and true will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Method App\\Support\\ProviderSandboxCertification\:\:deliveryUpdate\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Method App\\Support\\ProviderSandboxCertification\:\:labelTracking\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Method App\\Support\\ProviderSandboxCertification\:\:orderNotification\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Method App\\Support\\ProviderSandboxCertification\:\:quote\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Method App\\Support\\ProviderSandboxCertification\:\:retryDeadLetter\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Method App\\Support\\ProviderSandboxCertification\:\:scenario\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Method App\\Support\\ProviderSandboxCertification\:\:taxEvidence\(\) should return array\<string, mixed\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between ''VND'' and ''VND'' will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 2
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Strict comparison using \=\=\= between 5 and 5 will always evaluate to true\.$#'
+			identifier: identical.alwaysTrue
+			count: 1
+			path: app/Support/ProviderSandboxCertification.php
+
+		-
+			message: '#^Cannot call method fetchAll\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: app/Support/Skeleton.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 1
+			path: app/Support/Skeleton.php
+
+		-
+			message: '#^Method App\\Support\\Skeleton\:\:isAdminConsole\(\) has parameter \$user with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Support/Skeleton.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: database/migrations/20260919000012_create_siro_queue_tables.php
+
+		-
+			message: '#^Cannot call method fetch\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: database/migrations/20260929000005_fix_storefront_revision_id_type.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: database/migrations/20260929000005_fix_storefront_revision_id_type.php
+
+		-
+			message: '#^Cannot call method fetchColumn\(\) on PDOStatement\|false\.$#'
+			identifier: method.nonObject
+			count: 2
+			path: database/migrations/20261004000001_products_primary_key.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: database/migrations/20261004000001_products_primary_key.php

@@ -1,0 +1,17 @@
+{
+  "certification_version": 1,
+  "status": "BLOCKED_EXTERNAL",
+  "generated_at": "2026-09-26T00:00:00Z",
+  "release": { "run_id": "replace-with-run-id", "commit": "replace-with-commit", "actor": "replace-with-actor" },
+  "freshness": { "max_age_seconds": 86400, "as_of": "2026-09-26T00:00:00Z" },
+  "redaction": { "applied": true, "policy": "ProviderEvidence::redact; references only; no credentials or payloads", "secrets_included": false },
+  "checklist": [
+    { "id": "production-proof", "status": "NOT_RUN", "requirement": "Offline artifact, database invariant, RPO/RTO and failure-drill evidence", "owner": "Release Operations", "reason": "Run for the release", "evidence": [] },
+    { "id": "provider-preflight", "status": "BLOCKED_EXTERNAL", "requirement": "Provider configuration and credential readiness without exposing values", "owner": "Provider Operations", "reason": "Provider credentials or endpoints unavailable", "evidence": [] },
+    { "id": "provider-live-smoke", "status": "BLOCKED_EXTERNAL", "requirement": "Authenticated provider health and webhook smoke evidence", "owner": "Provider Operations", "reason": "Live provider operations are intentionally blocked", "evidence": [] },
+    { "id": "backup-restore", "status": "NOT_RUN", "requirement": "Checksummed database/uploads restore and migration rollback rehearsal", "owner": "Database Operations", "reason": "Verified backup manifest not supplied", "evidence": [] },
+    { "id": "backup-infrastructure", "status": "BLOCKED_EXTERNAL", "requirement": "External encryption, immutability, retention and live restore proof", "owner": "Infrastructure Operations", "reason": "Infrastructure evidence is external to this repository", "evidence": [] },
+    { "id": "reconciliation", "status": "NOT_RUN", "requirement": "Post-restore reconciliation for orders, payments, inventory, shipments and outbox", "owner": "Release Operations", "reason": "Production restore was not executed", "evidence": [] },
+    { "id": "config-static", "status": "PASS", "requirement": "Static production-proof policy and script checks", "owner": "Release Operations", "evidence": ["backend/scripts/check-production-proof.php"] }
+  ]
+}

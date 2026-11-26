@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="SIRO Commerce">
+  <rect width="64" height="64" rx="16" fill="#1e2420"/>
+  <path d="M18 18h28v7H26v5h13c6 0 9 3 9 8s-3 8-9 8H18v-7h20v-4H24c-4 0-6-3-6-7v-3c0-4 2-7 6-7Z" fill="#fffefa"/>
+  <circle cx="46" cy="46" r="4" fill="#e49a7f"/>
+</svg>

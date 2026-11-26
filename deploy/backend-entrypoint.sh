@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+if [ "${RUN_MIGRATIONS:-1}" = "1" ]; then
+  php backend/siro migrate
+fi
+
+exec "$@"

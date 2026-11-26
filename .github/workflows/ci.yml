@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  # Push coverage lives in quality.yml; this workflow is the PR gate and the
+  # reusable CI called by deploy.yml (avoids duplicate push runs).
+  pull_request:
+    branches: [main]
+  workflow_call:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+          extensions: pdo_sqlite, sqlite3, mbstring, intl
+      - run: composer install --no-progress --prefer-dist
+      - run: php -l routes/api.php
+      - run: composer test
+      - run: php scripts/generate-openapi.php && php scripts/generate-sdk.php && git diff --exit-code -- docs/openapi.json public/openapi.json generated/sirocommerce.ts ../apps/admin/docs/openapi.json
+
+  storefront:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck --workspace apps/storefront
+      - run: npm test --workspace apps/storefront
+      - run: npm run build --workspace apps/storefront
+      - run: npm run i18n:check --workspace apps/storefront
+
+  admin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npx tsc --noEmit -p apps/admin
+      - run: npm test --workspace apps/admin
+      - run: npm run build --workspace apps/admin

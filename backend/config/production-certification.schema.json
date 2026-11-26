@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sirosoft.example/schemas/production-certification.schema.json",
+  "title": "SiroCommerce production certification manifest",
+  "type": "object",
+  "required": ["certification_version", "status", "generated_at", "release", "freshness", "redaction", "checklist"],
+  "properties": {
+    "certification_version": { "const": 1 },
+    "status": { "enum": ["PASS", "FAIL", "BLOCKED_EXTERNAL", "NOT_RUN"] },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "release": {
+      "type": "object",
+      "required": ["run_id", "commit", "actor"],
+      "properties": {
+        "run_id": { "type": "string", "minLength": 1 },
+        "commit": { "type": "string", "minLength": 1 },
+        "actor": { "type": "string", "minLength": 1 }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "required": ["max_age_seconds", "as_of"],
+      "properties": {
+        "max_age_seconds": { "type": "integer", "minimum": 1 },
+        "as_of": { "type": "string", "format": "date-time" }
+      }
+    },
+    "redaction": {
+      "type": "object",
+      "required": ["applied", "policy", "secrets_included"],
+      "properties": {
+        "applied": { "const": true },
+        "policy": { "type": "string", "minLength": 1 },
+        "secrets_included": { "const": false }
+      }
+    },
+    "checklist": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "status", "requirement", "evidence", "owner"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "status": { "enum": ["PASS", "FAIL", "BLOCKED_EXTERNAL", "NOT_RUN"] },
+          "requirement": { "type": "string", "minLength": 1 },
+          "owner": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string" },
+          "evidence": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    }
+  }
+}

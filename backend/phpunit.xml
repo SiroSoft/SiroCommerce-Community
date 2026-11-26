@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php" colors="true" executionOrder="depends,defects">
+  <php>
+    <ini name="memory_limit" value="512M" />
+    <ini name="max_execution_time" value="0" />
+  </php>
+  <testsuites>
+    <testsuite name="unit">
+      <directory>tests/Unit</directory>
+      <!-- concurrency/security suites own these files; excluding here keeps
+           every test running exactly once without duplicate-suite warnings. -->
+      <exclude>tests/Unit/MySqlConcurrencyProofSchemaTest.php</exclude>
+      <exclude>tests/Unit/PaymentOperationRaceTest.php</exclude>
+      <exclude>tests/Unit/SecurityResidualsTest.php</exclude>
+      <directory>tests/Security</directory>
+      <directory>tests/Database</directory>
+    </testsuite>
+    <testsuite name="feature">
+      <directory>tests/Feature</directory>
+      <exclude>tests/Feature/AuthTest.php</exclude>
+    </testsuite>
+    <testsuite name="integration">
+      <directory>tests/Integration</directory>
+      <exclude>tests/Integration/InventoryRaceTest.php</exclude>
+      <exclude>tests/Integration/MySqlConcurrencyProofTest.php</exclude>
+      <exclude>tests/Integration/CustomerSecurityTest.php</exclude>
+    </testsuite>
+    <testsuite name="api"><directory>tests/Api</directory></testsuite>
+    <testsuite name="contract"><directory>tests/Contract</directory></testsuite>
+    <testsuite name="workflow"><directory>tests/Workflow</directory></testsuite>
+    <testsuite name="concurrency">
+      <file>tests/Integration/InventoryRaceTest.php</file>
+      <file>tests/Integration/MySqlConcurrencyProofTest.php</file>
+      <file>tests/Unit/MySqlConcurrencyProofSchemaTest.php</file>
+      <file>tests/Unit/PaymentOperationRaceTest.php</file>
+    </testsuite>
+    <testsuite name="security">
+      <file>tests/Feature/AuthTest.php</file>
+      <file>tests/Integration/CustomerSecurityTest.php</file>
+      <file>tests/Unit/SecurityResidualsTest.php</file>
+    </testsuite>
+  </testsuites>
+  <source>
+    <include>
+      <directory suffix=".php">app</directory>
+    </include>
+  </source>
+</phpunit>

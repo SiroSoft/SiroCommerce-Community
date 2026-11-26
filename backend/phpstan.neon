@@ -1,0 +1,22 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: max
+    paths:
+        - app/
+        - database/
+        - routes/
+        - public/
+    excludePaths:
+        - vendor/
+        - storage/
+        - tests/
+        - app/Modules/Platform/Application/MarketplaceService.php
+    # Baseline entries generated on another platform may not match; do not fail
+    # the gate when a previously ignored error is fixed or disappears.
+    reportUnmatchedIgnoredErrors: false
+    scanFiles:
+        - vendor/sirosoft/core/Http.php
+    universalObjectCratesClasses:
+        - Siro\Core\Model

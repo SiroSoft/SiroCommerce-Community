@@ -1,0 +1,283 @@
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { tSchema } from "@/lib/i18n";
+import { Loader2, CheckCircle2, AlertCircle, Mail } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Separator } from "@/components/ui/separator";
+import { ImageUpload } from "@/components/ui/image-upload";
+import { PageHeader } from "@/components/page-header";
+import { useAuth } from "@/hooks/use-auth";
+import { useI18n } from "@/providers/i18n-provider";
+import { useUpdateProfile, useChangePassword } from "@/hooks/use-profile";
+import { toast } from "@/hooks/use-toast";
+import { authService } from "@/services/auth.service";
+import { formatDate } from "@/lib/utils";
+import { useState, useEffect, useMemo, useRef } from "react";
+
+const profileSchema = z.object({
+  name: z.string().min(2, tSchema("validation.nameMin2")),
+  email: z.string().email(tSchema("validation.invalidEmail")),
+  avatar: z.string().optional(),
+});
+
+const passwordSchema = z
+  .object({
+    current_password: z.string().min(1, tSchema("validation.currentPasswordRequired")),
+    new_password: z.string().min(8, tSchema("validation.passwordMin8")),
+    new_password_confirmation: z.string(),
+  })
+  .refine((d) => d.new_password === d.new_password_confirmation, {
+    message: tSchema("validation.passwordMismatch"),
+    path: ["new_password_confirmation"],
+  });
+
+type ProfileFormData = z.infer<typeof profileSchema>;
+type PasswordFormData = z.infer<typeof passwordSchema>;
+
+export default function ProfilePage() {
+  const { user } = useAuth();
+  const { t } = useI18n();
+  const updateProfileMutation = useUpdateProfile();
+  const changePasswordMutation = useChangePassword();
+  const [avatar, setAvatar] = useState(user?.avatar ?? "");
+
+  // Memoized: an inline values object resets RHF state on every render,
+  // which can wipe user input when the session query refetches in the
+  // background between fill and submit.
+  const profileValues = useMemo<ProfileFormData>(
+    () => ({ name: user?.name ?? "", email: user?.email ?? "", avatar: user?.avatar ?? "" }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [user?.id, user?.name, user?.email, user?.avatar],
+  );
+  const profileForm = useForm<ProfileFormData>({
+    resolver: zodResolver(profileSchema),
+    defaultValues: profileValues,
+  });
+  const initializedUserId = useRef<number | string | undefined>(undefined);
+
+  const passwordForm = useForm<PasswordFormData>({
+    resolver: zodResolver(passwordSchema),
+    defaultValues: { current_password: "", new_password: "", new_password_confirmation: "" },
+  });
+
+  const handleProfileSubmit = (data: ProfileFormData) => {
+    updateProfileMutation.mutate(data, {
+      onSuccess: () => {
+        toast({ title: "Profile updated", description: "Your profile has been updated.", variant: "success" });
+      },
+      onError: () => {
+        toast({ title: "Error", description: "Failed to update profile.", variant: "destructive" });
+      },
+    });
+  };
+
+  const handlePasswordSubmit = (data: PasswordFormData) => {
+    changePasswordMutation.mutate(data, {
+      onSuccess: () => {
+        passwordForm.reset();
+        toast({ title: "Password changed", description: "Your password has been changed.", variant: "success" });
+      },
+      onError: () => {
+        toast({ title: "Error", description: "Failed to change password.", variant: "destructive" });
+      },
+    });
+  };
+
+  // Sync avatar when user data loads from session query
+  useEffect(() => {
+    if (user?.avatar) setAvatar(user.avatar);
+  }, [user?.avatar]);
+
+  useEffect(() => {
+    if (user?.id === undefined || initializedUserId.current === user.id) return;
+    initializedUserId.current = user.id;
+    profileForm.reset(profileValues);
+    // Initialization is keyed by user identity, so later session refetches
+    // cannot overwrite edits already entered into the form.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
+
+  const [isResending, setIsResending] = useState(false);
+
+  const handleResendVerification = async () => {
+    setIsResending(true);
+    try {
+      await authService.resendVerificationEmail();
+      toast({ title: t("profile.verificationSent"), variant: "success" });
+    } catch {
+      toast({ title: t("errors.networkError"), variant: "destructive" });
+    } finally {
+      setIsResending(false);
+    }
+  };
+
+  const initials = user?.name
+    ?.split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2) ?? "U";
+
+  return (
+    <div className="space-y-6">
+      <PageHeader title={t("common.profile")} description={t("common.settings")} />
+
+      <div className="grid gap-6 lg:grid-cols-3">
+        <Card className="lg:col-span-1">
+          <CardHeader>
+            <CardTitle>{t("common.profile")}</CardTitle>
+          </CardHeader>
+          <CardContent className="flex flex-col items-center text-center">
+            <Avatar className="h-24 w-24 mb-4">
+              <AvatarImage src={avatar || undefined} />
+              <AvatarFallback className="text-2xl">{initials}</AvatarFallback>
+            </Avatar>
+            <h3 className="text-lg font-semibold">{user?.name || user?.email || t("common.profile")}</h3>
+            <p className="text-sm text-muted-foreground">{user?.email}</p>
+            <p className="text-xs text-muted-foreground mt-1 capitalize">{user?.role}</p>
+            <div className="mt-3 flex items-center gap-2">
+              {user?.email_verified_at ? (
+                <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-800">
+                  <CheckCircle2 className="h-3 w-3 mr-1" />
+                  {t("profile.emailVerified")}
+                </Badge>
+              ) : (
+                <>
+                  <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/20 dark:text-amber-400 dark:border-amber-800">
+                    <AlertCircle className="h-3 w-3 mr-1" />
+                    {t("profile.emailNotVerified")}
+                  </Badge>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    disabled={isResending}
+                    onClick={handleResendVerification}
+                    className="text-xs h-7 px-2"
+                  >
+                    {isResending ? (
+                      <Loader2 className="h-3 w-3 animate-spin mr-1" />
+                    ) : (
+                      <Mail className="h-3 w-3 mr-1" />
+                    )}
+                    {t("profile.resendVerification")}
+                  </Button>
+                </>
+              )}
+            </div>
+            {user?.created_at && (
+              <p className="text-xs text-muted-foreground mt-4">
+                {t("users.createdAt")}: {formatDate(user.created_at)}
+              </p>
+            )}
+          </CardContent>
+        </Card>
+
+        <div className="lg:col-span-2 space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("common.profile")}</CardTitle>
+              <CardDescription>{t("common.settings")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form
+                onSubmit={profileForm.handleSubmit(handleProfileSubmit)}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Label>Avatar</Label>
+                  <ImageUpload
+                    value={avatar}
+                    onChange={(url) => {
+                      setAvatar(url);
+                      profileForm.setValue("avatar", url);
+                    }}
+                    disabled={updateProfileMutation.isPending}
+                  />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="name">{t("users.name")}</Label>
+                  <Input id="name" {...profileForm.register("name")} disabled={updateProfileMutation.isPending} />
+                  {profileForm.formState.errors.name && (
+                    <p className="text-sm text-destructive">{profileForm.formState.errors.name.message}</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">{t("auth.email")}</Label>
+                  <Input id="email" type="email" {...profileForm.register("email")} disabled={updateProfileMutation.isPending} />
+                  {profileForm.formState.errors.email && (
+                    <p className="text-sm text-destructive">{profileForm.formState.errors.email.message}</p>
+                  )}
+                </div>
+                <div className="flex gap-2">
+                  <Button type="submit" disabled={updateProfileMutation.isPending}>
+                    {updateProfileMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {t("common.save")}
+                  </Button>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => {
+                      profileForm.reset();
+                      setAvatar(user?.avatar ?? "");
+                    }}
+                    disabled={updateProfileMutation.isPending}
+                  >
+                    {t("common.cancel")}
+                  </Button>
+                </div>
+              </form>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>{t("settings.security")}</CardTitle>
+              <CardDescription>{t("common.settings")}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form
+                onSubmit={passwordForm.handleSubmit(handlePasswordSubmit)}
+                className="space-y-4"
+              >
+                <div className="space-y-2">
+                  <Label htmlFor="current_password">{t("auth.password")}</Label>
+                  <Input id="current_password" type="password" {...passwordForm.register("current_password")} disabled={changePasswordMutation.isPending} />
+                  {passwordForm.formState.errors.current_password && (
+                    <p className="text-sm text-destructive">{passwordForm.formState.errors.current_password.message}</p>
+                  )}
+                </div>
+                <Separator />
+                <div className="space-y-2">
+                  <Label htmlFor="new_password">{t("auth.password")}</Label>
+                  <Input id="new_password" type="password" {...passwordForm.register("new_password")} disabled={changePasswordMutation.isPending} />
+                  {passwordForm.formState.errors.new_password && (
+                    <p className="text-sm text-destructive">{passwordForm.formState.errors.new_password.message}</p>
+                  )}
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="new_password_confirmation">{t("common.confirm")}</Label>
+                  <Input id="new_password_confirmation" type="password" {...passwordForm.register("new_password_confirmation")} disabled={changePasswordMutation.isPending} />
+                  {passwordForm.formState.errors.new_password_confirmation && (
+                    <p className="text-sm text-destructive">{passwordForm.formState.errors.new_password_confirmation.message}</p>
+                  )}
+                </div>
+                <Button type="submit" disabled={changePasswordMutation.isPending}>
+                  {changePasswordMutation.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {t("common.save")}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    </div>
+  );
+}

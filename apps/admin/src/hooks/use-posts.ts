@@ -1,0 +1,82 @@
+"use client";
+
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { postsService } from "@/services/posts.service";
+import type { components } from "@/types/api";
+import { toast } from "@/hooks/use-toast";
+import { isRetryableQueryError, reconcileMutationError, retryDelay } from "@/services/api-errors";
+import { idempotencyKey } from "@/services/merchant.service";
+import { scopedQueryKey } from "@/services/query-keys";
+
+export function usePosts(params?: Record<string, unknown>) {
+  const query = useQuery({
+    queryKey: scopedQueryKey("posts", params),
+    queryFn: () => postsService.list(params),
+    retry: isRetryableQueryError,
+    retryDelay,
+  });
+
+  return {
+    posts: Array.isArray(query.data?.data) ? query.data.data : [],
+    meta: query.data?.meta,
+    isLoading: query.isLoading,
+    isError: query.isError,
+    error: query.error,
+    refetch: query.refetch,
+  };
+}
+
+export function usePost(id: number) {
+  return useQuery({
+    queryKey: scopedQueryKey("posts", id),
+    queryFn: () => postsService.get(id),
+    enabled: !!id,
+    retry: isRetryableQueryError,
+    retryDelay,
+  });
+}
+
+export function useCreatePost() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: components["schemas"]["CreatePostRequest"]) => postsService.create(data, idempotencyKey()),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      toast({ title: "Post created", description: "Post has been created successfully." });
+    },
+    onError: (error) => {
+      reconcileMutationError(queryClient, "posts", error);
+      toast({ title: "Error", description: "Failed to create post.", variant: "destructive" });
+    },
+  });
+}
+
+export function useUpdatePost(id: number) {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data: components["schemas"]["UpdatePostRequest"]) => postsService.update(id, data, idempotencyKey()),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      toast({ title: "Post updated", description: "Post has been updated successfully." });
+    },
+    onError: (error) => {
+      reconcileMutationError(queryClient, "posts", error);
+      toast({ title: "Error", description: "Failed to update post.", variant: "destructive" });
+    },
+  });
+}
+
+export function useDeletePost() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: number) => postsService.delete(id, idempotencyKey()),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      toast({ title: "Post deleted", description: "Post has been deleted successfully." });
+    },
+    onError: (error) => {
+      reconcileMutationError(queryClient, "posts", error);
+      toast({ title: "Error", description: "Failed to delete post.", variant: "destructive" });
+    },
+  });
+}

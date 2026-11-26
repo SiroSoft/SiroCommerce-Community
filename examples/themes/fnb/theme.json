@@ -1,0 +1,199 @@
+{
+  "schema": "siro.theme/1",
+  "id": "siro/fnb",
+  "key": "fnb",
+  "name": "Sample Food & Beverage",
+  "version": "1.0.0",
+  "description": "Appetite-led food and beverage starter: menu shortcuts, subscription banners, freshness proof and delivery FAQ.",
+  "extends": "general",
+  "vertical": "fnb",
+  "tokens": {
+    "colors": {
+      "ink": "#2B1D14",
+      "muted": "#6F5A48",
+      "paper": "#FFF8EE",
+      "surface": "#FFFCF6",
+      "accent": "#C4551F",
+      "accent_dark": "#9C3F14",
+      "success": "#3E7D3A",
+      "danger": "#B23B2E"
+    },
+    "typography": {
+      "display": "friendly",
+      "body": "system",
+      "density": "comfortable",
+      "display_stack": "\"Nunito\", \"Segoe UI\", Roboto, Arial, sans-serif",
+      "body_stack": "\"Inter\", -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif",
+      "base_size": 16
+    },
+    "shape": {
+      "radius": "round",
+      "card": "elevated"
+    }
+  },
+  "brand": {
+    "name": "Sample Kitchen",
+    "wordmark": "sample/kitchen",
+    "logo_url": "assets/logo.png",
+    "favicon_url": null
+  },
+  "navigation": {
+    "menu_key": "primary",
+    "items": [
+      { "label": "Coffee", "href": "/category/coffee" },
+      { "label": "Pantry", "href": "/category/pantry" },
+      { "label": "Gifts", "href": "/category/gifts" },
+      { "label": "Subscriptions", "href": "/collections/coffee-subscription" }
+    ]
+  },
+  "header": {
+    "announcement": true,
+    "layout": "standard",
+    "sticky": false
+  },
+  "footer": {
+    "layout": "minimal",
+    "show_help": true,
+    "show_policies": true,
+    "columns": [
+      {
+        "title": "Menu",
+        "links": [
+          { "label": "Coffee", "href": "/category/coffee" },
+          { "label": "Pantry", "href": "/category/pantry" },
+          { "label": "Gifts", "href": "/category/gifts" }
+        ]
+      },
+      {
+        "title": "Orders",
+        "links": [
+          { "label": "Delivery", "href": "/shipping" },
+          { "label": "Pickup", "href": "/pickup" },
+          { "label": "Contact", "href": "/contact" }
+        ]
+      }
+    ]
+  },
+  "homepage": {
+    "sections": [
+      {
+        "id": "fnb-hero",
+        "type": "campaign_hero",
+        "enabled": true,
+        "order": 10,
+        "props": {
+          "title": "Made for slow mornings",
+          "eyebrow": "Fresh roast",
+          "image": "assets/hero.jpg",
+          "image_alt": "Warm coffee cup illustration with a large orange circle.",
+          "cta": { "label": "Shop coffee", "href": "/category/coffee" }
+        }
+      },
+      {
+        "id": "fnb-banners",
+        "type": "banner_grid",
+        "enabled": true,
+        "order": 20,
+        "props": {
+          "banners": [
+            {
+              "title": "Coffee subscription",
+              "subtitle": "Freshly roasted beans delivered on your schedule.",
+              "href": "/collections/coffee-subscription",
+              "image": "assets/banner-1.jpg",
+              "image_alt": "Two coffee beans on a warm cream background.",
+              "cta": { "label": "Start subscription", "href": "/collections/coffee-subscription" }
+            },
+            {
+              "title": "Pantry staples",
+              "subtitle": "Small-batch essentials for everyday cooking.",
+              "href": "/category/pantry",
+              "image": "assets/banner-2.jpg",
+              "image_alt": "Simple pantry jar outlines with green accents.",
+              "cta": { "label": "Stock the pantry", "href": "/category/pantry" }
+            }
+          ]
+        }
+      },
+      {
+        "id": "fnb-categories",
+        "type": "category_links",
+        "enabled": true,
+        "order": 30,
+        "props": { "title": "Browse the menu" }
+      },
+      {
+        "id": "fnb-featured",
+        "type": "product_collection",
+        "enabled": true,
+        "order": 40,
+        "props": {
+          "source": "featured",
+          "title": "This week on the menu",
+          "eyebrow": "Featured",
+          "limit": 4,
+          "cta": { "label": "See featured", "href": "/search?featured=1" }
+        }
+      },
+      {
+        "id": "fnb-promises",
+        "type": "usp_strip",
+        "enabled": true,
+        "order": 50,
+        "props": {
+          "items": [
+            { "icon": "leaf", "title": "Freshly prepared", "copy": "Small batches prepared close to dispatch." },
+            { "icon": "truck", "title": "Chilled delivery", "copy": "Temperature-aware packaging where required." },
+            { "icon": "store", "title": "Pickup available", "copy": "Collect in store at a time that suits you." }
+          ]
+        }
+      },
+      {
+        "id": "fnb-story",
+        "type": "editorial_story",
+        "enabled": true,
+        "order": 60,
+        "props": {
+          "title": "From our kitchen",
+          "eyebrow": "Stories"
+        }
+      },
+      {
+        "id": "fnb-faq",
+        "type": "faq",
+        "enabled": true,
+        "order": 70,
+        "props": {
+          "items": [
+            { "question": "How is fresh food delivered?", "answer": "Chilled items ship in insulated packaging with tracking. Delivery windows are shown at checkout." },
+            { "question": "Can I pause a subscription?", "answer": "Yes. Pause, skip or cancel from your account before the next billing date." },
+            { "question": "Do you offer pickup?", "answer": "Select pickup at checkout to collect from the store during opening hours." },
+            { "question": "What is your returns policy?", "answer": "For food safety, perishable items cannot be returned unless faulty or incorrect." }
+          ]
+        }
+      },
+      {
+        "id": "fnb-proof",
+        "type": "service_proof",
+        "enabled": true,
+        "order": 80,
+        "props": {}
+      }
+    ]
+  },
+  "presentation": {
+    "product_card_variant": "editorial",
+    "product_detail_variant": "focused",
+    "product_list_variant": "list-grid-wide",
+    "purchase_variant": "compact"
+  },
+  "purchase": {
+    "quote_mode": "auto"
+  },
+  "policies": {
+    "shipping_url": "/shipping",
+    "returns_url": "/returns",
+    "support_url": "/contact"
+  },
+  "experiments": []
+}

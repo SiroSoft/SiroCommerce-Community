@@ -1,0 +1,48 @@
+{
+  "schema": "sirocommerce.api-handoff.domain.v1",
+  "domain": "api-1-wave1-routes",
+  "operations": {
+    "GET /api/v2/b2b/quotes/{id}": {
+      "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/v2/b2b/quotes/{id}]"},
+      "integration": {"status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/v2/b2b/quotes/{id}]"},
+      "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/v2/b2b/quotes/{id}]"},
+      "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/v2/b2b/quotes/{id}]"},
+      "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/v2/b2b/quotes/{id}]"}
+    },
+    "POST /api/v2/b2b/quotes/{id}/convert": {
+      "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/quotes/{id}/convert]"},
+      "integration": {"status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/quotes/{id}/convert]"},
+      "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/quotes/{id}/convert]"},
+      "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/quotes/{id}/convert]"},
+      "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/quotes/{id}/convert]"}
+    },
+    "POST /api/v2/b2b/quotes/{id}/{action}": {
+      "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/quotes/{id}/{action}]"},
+      "integration": {"status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/quotes/{id}/{action}]"},
+      "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/quotes/{id}/{action}]"},
+      "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/quotes/{id}/{action}]"},
+      "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/quotes/{id}/{action}]"}
+    },
+    "POST /api/v2/admin/catalog/imports": {
+      "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/admin/catalog/imports]"},
+      "integration": {"status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/admin/catalog/imports]"},
+      "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/admin/catalog/imports]"},
+      "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/admin/catalog/imports]"},
+      "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/admin/catalog/imports]"}
+    },
+    "POST /api/admin/pages/{id}/publish": {
+      "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/pages/{id}/publish]"},
+      "integration": {"status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/pages/{id}/publish]"},
+      "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/pages/{id}/publish]"},
+      "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/pages/{id}/publish]"},
+      "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/pages/{id}/publish]"}
+    },
+    "POST /api/admin/pages/{id}/restore/{revision}": {
+      "unit": {"status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/pages/{id}/restore/{revision}]"},
+      "integration": {"status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/pages/{id}/restore/{revision}]"},
+      "api_component": {"status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/pages/{id}/restore/{revision}]"},
+      "contract": {"status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/pages/{id}/restore/{revision}]"},
+      "workflow": {"status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/pages/{id}/restore/{revision}]"}
+    }
+  }
+}

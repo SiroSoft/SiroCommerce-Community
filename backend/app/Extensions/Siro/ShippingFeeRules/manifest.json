@@ -1,0 +1,73 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/shipping-fee-rules",
+  "type": "module",
+  "name": "Shipping Fee Rules",
+  "description": "Store/channel scoped shipping fee and COD rules with deterministic fee lookup.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.1"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\ShippingFeeRules\\Extension",
+  "capabilities": [
+    "shipping-fee:read",
+    "shipping-fee:manage"
+  ],
+  "permissions": [
+    "shipping-fee:manage"
+  ],
+  "migrations": [
+    "migrations/20261122000001_create_ext_shipping_fee_rules.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Shipping fees",
+      "section": "Commerce"
+    },
+    "storefront": []
+  },
+  "admin": {
+    "label": "Shipping fees",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "overview",
+        "title": "Overview",
+        "type": "stats",
+        "endpoint": "admin/overview",
+        "permission": "shipping-fee:manage"
+      },
+      {
+        "key": "rules",
+        "title": "Shipping fee rules",
+        "type": "table",
+        "endpoint": "admin/overview",
+        "permission": "shipping-fee:manage"
+      }
+    ]
+  },
+  "config": {
+    "default_method": "standard",
+    "default_fee_minor": 0,
+    "default_free_over_minor": 0
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-shipping-fee-rules",
+    "features": [
+      "shipping-fee"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

@@ -1,0 +1,11 @@
+{
+    "routes": 448,
+    "layer_records": 2240,
+    "counts": {
+        "PASS": 910,
+        "BLOCKED": 1240,
+        "BLOCKED_EXTERNAL": 90,
+        "SKIP": 0
+    },
+    "readiness": "NOT_READY_BLOCKED"
+}

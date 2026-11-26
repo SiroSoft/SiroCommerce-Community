@@ -1,0 +1,38 @@
+# Dependencies
+backend/vendor/
+frontend/node_modules/
+frontend/dist/
+node_modules/
+apps/*/node_modules/
+packages/*/node_modules/
+
+# Env (never commit real secrets)
+backend/.env
+frontend/.env.local
+
+# Runtime / test artifacts
+backend/storage/*.sqlite
+backend/storage/*.db
+backend/storage/tests/
+backend/storage/logs/
+backend/coverage/
+backend/.phpunit.result.cache
+frontend/test-results/
+frontend/playwright-report/
+apps/*/.next/
+apps/*/coverage/
+apps/*/test-results/
+backend/storage/
+backend/exports/
+perf/artifacts/
+test-results/
+*.tsbuildinfo
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+/storage/
+
+apps/*/out/

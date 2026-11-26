@@ -1,0 +1,174 @@
+{
+  "schema": "siro.theme/1",
+  "id": "siro/pharmacy",
+  "key": "pharmacy",
+  "name": "Sample Pharmacy Trust",
+  "version": "1.0.0",
+  "description": "Trust-first pharmacy starter: pharmacist proof, health-need categories, refill guidance and clear FAQ.",
+  "extends": "general",
+  "vertical": "pharmacy",
+  "tokens": {
+    "colors": {
+      "ink": "#14232B",
+      "muted": "#4E6570",
+      "paper": "#F2F7F8",
+      "surface": "#FFFFFF",
+      "accent": "#0F7C8A",
+      "accent_dark": "#0A5A65",
+      "success": "#2E7D4F",
+      "danger": "#B23B3B"
+    },
+    "typography": {
+      "display": "clean",
+      "body": "system",
+      "density": "comfortable",
+      "display_stack": "\"Source Sans 3\", \"Segoe UI\", Roboto, Arial, sans-serif",
+      "body_stack": "\"Inter\", -apple-system, \"Segoe UI\", Roboto, Arial, sans-serif",
+      "base_size": 16
+    },
+    "shape": {
+      "radius": "soft",
+      "card": "bordered"
+    }
+  },
+  "brand": {
+    "name": "Sample Pharmacy",
+    "wordmark": "sample/pharmacy",
+    "logo_url": "assets/logo.png",
+    "favicon_url": null
+  },
+  "navigation": {
+    "menu_key": "primary",
+    "items": [
+      { "label": "Medicines", "href": "/category/medicines" },
+      { "label": "Health", "href": "/category/health" },
+      { "label": "Advice", "href": "/pharmacist-advice" },
+      { "label": "Refills", "href": "/refills" }
+    ]
+  },
+  "header": {
+    "announcement": true,
+    "layout": "minimal",
+    "sticky": true
+  },
+  "footer": {
+    "layout": "standard",
+    "show_help": true,
+    "show_policies": true,
+    "columns": [
+      {
+        "title": "Health services",
+        "links": [
+          { "label": "Pharmacist advice", "href": "/pharmacist-advice" },
+          { "label": "Refill reminders", "href": "/refills" },
+          { "label": "Health guides", "href": "/health-guides" }
+        ]
+      },
+      {
+        "title": "Orders",
+        "links": [
+          { "label": "Delivery information", "href": "/shipping" },
+          { "label": "Returns", "href": "/returns" },
+          { "label": "Contact", "href": "/contact" }
+        ]
+      }
+    ]
+  },
+  "homepage": {
+    "sections": [
+      {
+        "id": "pharmacy-hero",
+        "type": "campaign_hero",
+        "enabled": true,
+        "order": 10,
+        "props": {
+          "title": "Everyday health, clearly explained",
+          "eyebrow": "Pharmacy essentials",
+          "image": "assets/hero.jpg",
+          "image_alt": "Teal pharmacy motif with a plus sign and a heartbeat line.",
+          "cta": { "label": "Shop essentials", "href": "/category/health" }
+        }
+      },
+      {
+        "id": "pharmacy-trust",
+        "type": "usp_strip",
+        "enabled": true,
+        "order": 20,
+        "props": {
+          "items": [
+            { "icon": "shield", "title": "Licensed pharmacists", "copy": "Questions answered by registered pharmacy staff." },
+            { "icon": "check", "title": "Genuine products", "copy": "Sourced through authorised supply channels." },
+            { "icon": "truck", "title": "Discreet delivery", "copy": "Plain packaging and tracked delivery on every order." },
+            { "icon": "calendar", "title": "Refill reminders", "copy": "Optional reminders for repeat prescriptions." }
+          ]
+        }
+      },
+      {
+        "id": "pharmacy-categories",
+        "type": "category_links",
+        "enabled": true,
+        "order": 30,
+        "props": { "title": "Shop by health need" }
+      },
+      {
+        "id": "pharmacy-essentials",
+        "type": "product_collection",
+        "enabled": true,
+        "order": 40,
+        "props": {
+          "source": "best_selling",
+          "title": "Everyday essentials",
+          "eyebrow": "Always useful",
+          "limit": 8,
+          "cta": { "label": "See all essentials", "href": "/search?sort=best_selling" }
+        }
+      },
+      {
+        "id": "pharmacy-advice",
+        "type": "editorial_story",
+        "enabled": true,
+        "order": 50,
+        "props": {
+          "title": "Health notes from our pharmacists",
+          "eyebrow": "Advice"
+        }
+      },
+      {
+        "id": "pharmacy-faq",
+        "type": "faq",
+        "enabled": true,
+        "order": 60,
+        "props": {
+          "items": [
+            { "question": "Can I ask a pharmacist a question?", "answer": "Yes. Use the pharmacist advice page and a registered pharmacist will respond during service hours." },
+            { "question": "Are prescription items available online?", "answer": "Prescription items are shown only where local rules allow. Availability is confirmed before dispatch." },
+            { "question": "How are sensitive items packaged?", "answer": "Orders ship in plain packaging with no product names on the outside." },
+            { "question": "What if I need a refill?", "answer": "Enable refill reminders from your account and we will notify you before you run out." }
+          ]
+        }
+      },
+      {
+        "id": "pharmacy-proof",
+        "type": "service_proof",
+        "enabled": true,
+        "order": 70,
+        "props": {}
+      }
+    ]
+  },
+  "presentation": {
+    "product_card_variant": "minimal",
+    "product_detail_variant": "focused",
+    "product_list_variant": "list-grid-wide",
+    "purchase_variant": "standard"
+  },
+  "purchase": {
+    "quote_mode": "auto"
+  },
+  "policies": {
+    "shipping_url": "/shipping",
+    "returns_url": "/returns",
+    "support_url": "/contact"
+  },
+  "experiments": []
+}

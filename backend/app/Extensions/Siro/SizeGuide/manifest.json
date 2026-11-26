@@ -1,0 +1,68 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/size-guide",
+  "type": "module",
+  "name": "Size Guide",
+  "description": "Category size charts with an accessible storefront PDP button and modal.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.1"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\SizeGuide\\Extension",
+  "capabilities": [
+    "size-guide:read",
+    "size-guide:manage"
+  ],
+  "permissions": [
+    "size-guide:manage"
+  ],
+  "migrations": [
+    "migrations/20261124000002_create_ext_size_guide.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Size guide",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "pdp"
+    ]
+  },
+  "admin": {
+    "label": "Size guide",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "charts",
+        "title": "Category size charts",
+        "type": "table",
+        "endpoint": "admin/charts",
+        "permission": "size-guide:manage"
+      }
+    ]
+  },
+  "config": {
+    "max_columns": 8,
+    "max_rows": 50,
+    "max_note_length": 300
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-size-guide",
+    "features": [
+      "size-guide"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

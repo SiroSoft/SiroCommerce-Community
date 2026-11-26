@@ -1,0 +1,20 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+require __DIR__ . '/vendor/autoload.php';
+
+Siro\Core\Console::registerCommand(
+    'commerce:seed-demo',
+    App\Console\Commands\CommerceSeedDemoCommand::class,
+    'Seed repeatable B2C, B2B, catalog and operations demo data'
+);
+Siro\Core\Console::registerCommand(
+    'commerce:seed-b2c',
+    App\Console\Commands\CommerceSeedB2cCommand::class,
+    'Seed the Vietnamese B2C catalog for the default web store'
+);
+
+$console = new Siro\Core\Console(__DIR__);
+exit($console->run($argv));

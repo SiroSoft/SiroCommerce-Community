@@ -1,0 +1,68 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/product-qa",
+  "type": "module",
+  "name": "Product Q&A",
+  "description": "Storefront product questions with anonymous submission and scoped admin moderation.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.1"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\ProductQa\\Extension",
+  "capabilities": [
+    "product-qa:read",
+    "product-qa:submit",
+    "product-qa:manage"
+  ],
+  "permissions": [
+    "product-qa:manage"
+  ],
+  "migrations": [
+    "migrations/20261123000002_create_ext_product_qa.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Product Q&A",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "pdp"
+    ]
+  },
+  "admin": {
+    "label": "Product Q&A",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "questions",
+        "title": "Product questions",
+        "type": "table",
+        "endpoint": "admin",
+        "permission": "product-qa:manage"
+      }
+    ]
+  },
+  "config": {
+    "max_question_length": 1000,
+    "max_answer_length": 2000
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-product-qa",
+    "features": [
+      "product-qa"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

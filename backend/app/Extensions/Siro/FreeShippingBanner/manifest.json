@@ -1,0 +1,69 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/free-shipping-banner",
+  "type": "module",
+  "name": "Free Shipping Banner",
+  "description": "Store/channel scoped free-shipping threshold banner for the cart.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.1"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\FreeShippingBanner\\Extension",
+  "capabilities": [
+    "free-shipping:read",
+    "free-shipping:manage"
+  ],
+  "permissions": [
+    "free-shipping:manage"
+  ],
+  "migrations": [
+    "migrations/20261123000001_create_ext_free_shipping_banner.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Free shipping banner",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "cart"
+    ]
+  },
+  "admin": {
+    "label": "Free shipping banner",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "settings",
+        "title": "Banner settings",
+        "type": "table",
+        "endpoint": "admin/settings",
+        "permission": "free-shipping:manage"
+      }
+    ]
+  },
+  "config": {
+    "default_threshold_minor": 0,
+    "default_message": "Free shipping on qualifying orders",
+    "default_active": false,
+    "default_currency": "VND"
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-free-shipping-banner",
+    "features": [
+      "free-shipping"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

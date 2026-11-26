@@ -1,0 +1,29 @@
+{
+  "schema": "sirocommerce.search.evidence.v1",
+  "domain": "search-indexing",
+  "owned_operation_count": 3,
+  "layers": ["unit", "integration", "api_component", "contract", "workflow"],
+  "operations": {
+    "GET /api/v2/admin/search": {
+      "unit": {"status":"PASS","evidence":"tests/Unit/SearchRouteEvidenceTest.php::testSearchRoutesDeclareSafeBoundaries"},
+      "integration": {"status":"PASS","evidence":"tests/Integration/SearchRouteEvidenceTest.php::testSearchAdapterAndReportingReaderShareTheProviderBoundary"},
+      "api_component": {"status":"PASS","evidence":"tests/Api/SearchRouteEvidenceTest.php::testSearchOperationsHaveExactAdminCapabilityMiddleware"},
+      "contract": {"status":"PASS","evidence":"tests/Contract/SearchRouteEvidenceTest.php::testSearchRoutesArePresentInGeneratedOpenApiAndSdk"},
+      "workflow": {"status":"PASS","evidence":"tests/Workflow/SearchRouteEvidenceTest.php::testSearchOperationalWorkflowKeepsReadinessBeforeReindex"}
+    },
+    "GET /api/v2/admin/search/status": {
+      "unit": {"status":"PASS","evidence":"tests/Unit/SearchRouteEvidenceTest.php::testSearchRoutesDeclareSafeBoundaries"},
+      "integration": {"status":"PASS","evidence":"tests/Integration/SearchRouteEvidenceTest.php::testSearchAdapterAndReportingReaderShareTheProviderBoundary"},
+      "api_component": {"status":"PASS","evidence":"tests/Api/SearchRouteEvidenceTest.php::testSearchOperationsHaveExactAdminCapabilityMiddleware"},
+      "contract": {"status":"PASS","evidence":"tests/Contract/SearchRouteEvidenceTest.php::testSearchRoutesArePresentInGeneratedOpenApiAndSdk"},
+      "workflow": {"status":"PASS","evidence":"tests/Workflow/SearchRouteEvidenceTest.php::testSearchOperationalWorkflowKeepsReadinessBeforeReindex"}
+    },
+    "POST /api/v2/admin/search/reindex": {
+      "unit": {"status":"PASS","evidence":"tests/Unit/SearchRouteEvidenceTest.php::testSearchRoutesDeclareSafeBoundaries"},
+      "integration": {"status":"PASS","evidence":"tests/Integration/SearchRouteEvidenceTest.php::testSearchAdapterAndReportingReaderShareTheProviderBoundary"},
+      "api_component": {"status":"PASS","evidence":"tests/Api/SearchRouteEvidenceTest.php::testSearchOperationsHaveExactAdminCapabilityMiddleware"},
+      "contract": {"status":"PASS","evidence":"tests/Contract/SearchRouteEvidenceTest.php::testSearchRoutesArePresentInGeneratedOpenApiAndSdk"},
+      "workflow": {"status":"PASS","evidence":"tests/Workflow/SearchRouteEvidenceTest.php::testSearchOperationalWorkflowKeepsReadinessBeforeReindex"}
+    }
+  }
+}

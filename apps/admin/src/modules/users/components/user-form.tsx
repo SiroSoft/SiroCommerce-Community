@@ -1,0 +1,158 @@
+"use client";
+
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ImageUpload } from "@/components/ui/image-upload";
+import {
+  createUserSchema,
+  updateUserSchema,
+  type CreateUserFormData,
+  type UpdateUserFormData,
+} from "@/modules/users/schemas/user.schema";
+import { useI18n } from "@/providers/i18n-provider";
+import type { components } from "@/types/api";
+
+type User = components["schemas"]["User"];
+
+interface UserFormProps {
+  user?: User;
+  onSubmit: (data: CreateUserFormData | UpdateUserFormData) => void;
+  isPending: boolean;
+  onCancel?: () => void;
+  onDirtyChange?: (dirty: boolean) => void;
+}
+
+export function UserForm({ user, onSubmit, isPending, onCancel, onDirtyChange }: UserFormProps) {
+  const { t } = useI18n();
+  const isEdit = !!user;
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isDirty },
+  } = useForm<CreateUserFormData | UpdateUserFormData>({
+    resolver: zodResolver(isEdit ? updateUserSchema : createUserSchema),
+    defaultValues: {
+      name: user?.name ?? "",
+      email: user?.email ?? "",
+      ...(isEdit ? {} : { password: "", password_confirmation: "" }),
+      role: user?.role ?? "viewer",
+      status: user?.status ?? "active",
+      avatar: user?.avatar ?? "",
+      phone: user?.phone ?? "",
+    } as CreateUserFormData | UpdateUserFormData,
+  });
+
+  useEffect(() => {
+    onDirtyChange?.(isDirty);
+    if (!isDirty) return;
+    const warn = (event: BeforeUnloadEvent) => { event.preventDefault(); event.returnValue = ""; };
+    window.addEventListener("beforeunload", warn);
+    return () => window.removeEventListener("beforeunload", warn);
+  }, [isDirty, onDirtyChange]);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-h-[70vh] overflow-y-auto pr-2">
+      <div className="space-y-2">
+        <Label>Avatar</Label>
+        <ImageUpload value={watch("avatar") ?? ""} onChange={(v) => setValue("avatar", v)} disabled={isPending} />
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="name">{t("users.name")} <span className="text-destructive">*</span></Label>
+        <Input id="name" {...register("name")} placeholder={t("forms.userName")} disabled={isPending} />
+        {errors.name && <p className="text-sm text-destructive">{errors.name.message}</p>}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="email">{t("auth.email")} <span className="text-destructive">*</span></Label>
+        <Input id="email" type="email" {...register("email")} placeholder={t("forms.userEmail")} disabled={isPending} />
+        {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="phone">Phone</Label>
+        <Input id="phone" type="tel" {...register("phone")} placeholder={t("forms.userPhone")} disabled={isPending} />
+      </div>
+
+      {!isEdit && (
+        <>
+          <div className="space-y-2">
+            <Label htmlFor="password">{t("auth.password")} <span className="text-destructive">*</span></Label>
+            <Input id="password" type="password" {...register("password")} placeholder="••••••••" disabled={isPending} />
+            {"password" in errors && <p className="text-sm text-destructive">{String((errors as { password?: { message?: string } }).password?.message)}</p>}
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="password_confirmation">{t("common.confirm")} <span className="text-destructive">*</span></Label>
+            <Input id="password_confirmation" type="password" {...register("password_confirmation")} placeholder="••••••••" disabled={isPending} />
+            {"password_confirmation" in errors && <p className="text-sm text-destructive">{String((errors as { password_confirmation?: { message?: string } }).password_confirmation?.message)}</p>}
+          </div>
+        </>
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label>{t("users.role")}</Label>
+          <Select
+            value={watch("role")}
+            onValueChange={(v) => setValue("role", v)}
+            disabled={isPending}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+               <SelectItem value="owner">Owner</SelectItem>
+               <SelectItem value="admin">Admin</SelectItem>
+               <SelectItem value="marketer">Marketer</SelectItem>
+               <SelectItem value="warehouse">Warehouse</SelectItem>
+               <SelectItem value="support">Support</SelectItem>
+               <SelectItem value="finance">Finance</SelectItem>
+               <SelectItem value="viewer">Viewer</SelectItem>
+            </SelectContent>
+          </Select>
+          {errors.role && <p className="text-sm text-destructive">{errors.role.message}</p>}
+        </div>
+
+        <div className="space-y-2">
+          <Label>{t("common.status")}</Label>
+          <Select
+            value={watch("status")}
+            onValueChange={(v) => setValue("status", v)}
+            disabled={isPending}
+          >
+            <SelectTrigger>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="active">Active</SelectItem>
+              <SelectItem value="inactive">Inactive</SelectItem>
+              <SelectItem value="suspended">Suspended</SelectItem>
+            </SelectContent>
+          </Select>
+          {errors.status && <p className="text-sm text-destructive">{errors.status.message}</p>}
+        </div>
+      </div>
+
+      <div className="flex justify-end gap-2 pt-2">
+        {onCancel && (
+          <Button type="button" variant="outline" onClick={onCancel} disabled={isPending}>
+            {t("common.cancel")}
+          </Button>
+        )}
+        <Button type="submit" disabled={isPending}>
+          {isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isEdit ? t("common.save") : t("common.create")}
+        </Button>
+      </div>
+    </form>
+  );
+}

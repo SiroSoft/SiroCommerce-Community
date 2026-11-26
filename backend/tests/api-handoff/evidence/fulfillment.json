@@ -1,0 +1,1716 @@
+{
+    "DELETE /api/wishlist/{product}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[DELETE /api/wishlist/{product}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[DELETE /api/wishlist/{product}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[DELETE /api/wishlist/{product}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[DELETE /api/wishlist/{product}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[DELETE /api/wishlist/{product}]"
+        }
+    },
+    "GET /api/account/addresses": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/addresses]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/addresses]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/addresses]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/addresses]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/addresses]"
+        }
+    },
+    "GET /api/account/loyalty": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/loyalty]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/loyalty]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/loyalty]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/loyalty]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/loyalty]"
+        }
+    },
+    "GET /api/account/notification-preferences": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/notification-preferences]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/notification-preferences]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/notification-preferences]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/notification-preferences]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/notification-preferences]"
+        }
+    },
+    "GET /api/account/orders": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/orders]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/orders]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/orders]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/orders]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/orders]"
+        }
+    },
+    "GET /api/account/orders/{id}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/orders/{id}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/orders/{id}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/orders/{id}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/orders/{id}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/orders/{id}]"
+        }
+    },
+    "GET /api/account/privacy/export": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/privacy/export]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/privacy/export]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/privacy/export]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/privacy/export]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/privacy/export]"
+        }
+    },
+    "GET /api/account/returns": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/returns]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/returns]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/returns]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/returns]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/returns]"
+        }
+    },
+    "GET /api/account/returns/{id}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/account/returns/{id}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/account/returns/{id}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/account/returns/{id}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/account/returns/{id}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/account/returns/{id}]"
+        }
+    },
+    "GET /api/admin/b2b/companies/{id}/credit": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/admin/b2b/companies/{id}/credit]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/admin/b2b/companies/{id}/credit]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/admin/b2b/companies/{id}/credit]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/admin/b2b/companies/{id}/credit]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/admin/b2b/companies/{id}/credit]"
+        }
+    },
+    "GET /api/admin/customers/{id}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/admin/customers/{id}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/admin/customers/{id}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/admin/customers/{id}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/admin/customers/{id}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/admin/customers/{id}]"
+        }
+    },
+    "GET /api/admin/customers/{id}/addresses": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/admin/customers/{id}/addresses]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/admin/customers/{id}/addresses]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/admin/customers/{id}/addresses]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/admin/customers/{id}/addresses]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/admin/customers/{id}/addresses]"
+        }
+    },
+    "GET /api/admin/fulfillment/{id}/track": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/admin/fulfillment/{id}/track]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/admin/fulfillment/{id}/track]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/admin/fulfillment/{id}/track]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/admin/fulfillment/{id}/track]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/admin/fulfillment/{id}/track]"
+        }
+    },
+    "GET /api/admin/inventory/{variant}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/admin/inventory/{variant}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/admin/inventory/{variant}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/admin/inventory/{variant}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/admin/inventory/{variant}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/admin/inventory/{variant}]"
+        }
+    },
+    "GET /api/admin/reviews": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/admin/reviews]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/admin/reviews]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/admin/reviews]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/admin/reviews]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/admin/reviews]"
+        }
+    },
+    "GET /api/auth/me": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/auth/me]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/auth/me]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/auth/me]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/auth/me]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/auth/me]"
+        }
+    },
+    "GET /api/orders/{id}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/orders/{id}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/orders/{id}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/orders/{id}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/orders/{id}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/orders/{id}]"
+        }
+    },
+    "GET /api/orders/{id}/returns": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/orders/{id}/returns]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/orders/{id}/returns]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/orders/{id}/returns]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/orders/{id}/returns]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/orders/{id}/returns]"
+        }
+    },
+    "GET /api/products/{id}/reviews": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/products/{id}/reviews]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/products/{id}/reviews]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/products/{id}/reviews]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/products/{id}/reviews]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/products/{id}/reviews]"
+        }
+    },
+    "GET /api/v2/b2b/companies/{id}/credit": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/v2/b2b/companies/{id}/credit]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/v2/b2b/companies/{id}/credit]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/v2/b2b/companies/{id}/credit]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/v2/b2b/companies/{id}/credit]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/v2/b2b/companies/{id}/credit]"
+        }
+    },
+    "GET /api/v2/downloads/{token}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/v2/downloads/{token}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/v2/downloads/{token}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/v2/downloads/{token}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/v2/downloads/{token}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/v2/downloads/{token}]"
+        }
+    },
+    "GET /api/v2/products/{id}/bundle-quote": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/v2/products/{id}/bundle-quote]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/v2/products/{id}/bundle-quote]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/v2/products/{id}/bundle-quote]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/v2/products/{id}/bundle-quote]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/v2/products/{id}/bundle-quote]"
+        }
+    },
+    "GET /api/v2/shipments/{id}/tracking": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/v2/shipments/{id}/tracking]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/v2/shipments/{id}/tracking]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/v2/shipments/{id}/tracking]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/v2/shipments/{id}/tracking]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/v2/shipments/{id}/tracking]"
+        }
+    },
+    "GET /api/wishlist": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/wishlist]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/wishlist]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/wishlist]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/wishlist]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/wishlist]"
+        }
+    },
+    "POST /api/account/consents": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/consents]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/consents]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/consents]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/consents]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/consents]"
+        }
+    },
+    "POST /api/account/loyalty/expire": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/loyalty/expire]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/loyalty/expire]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/loyalty/expire]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/loyalty/expire]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/loyalty/expire]"
+        }
+    },
+    "POST /api/account/loyalty/redeem": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/loyalty/redeem]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/loyalty/redeem]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/loyalty/redeem]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/loyalty/redeem]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/loyalty/redeem]"
+        }
+    },
+    "POST /api/account/loyalty/{order}/earn": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/loyalty/{order}/earn]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/loyalty/{order}/earn]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/loyalty/{order}/earn]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/loyalty/{order}/earn]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/loyalty/{order}/earn]"
+        }
+    },
+    "POST /api/account/privacy/anonymize": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/privacy/anonymize]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/privacy/anonymize]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/privacy/anonymize]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/privacy/anonymize]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/privacy/anonymize]"
+        }
+    },
+    "POST /api/account/subscriptions": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/subscriptions]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/subscriptions]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/subscriptions]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/subscriptions]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/subscriptions]"
+        }
+    },
+    "POST /api/account/subscriptions/{id}/renew": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/subscriptions/{id}/renew]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/subscriptions/{id}/renew]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/subscriptions/{id}/renew]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/subscriptions/{id}/renew]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/subscriptions/{id}/renew]"
+        }
+    },
+    "POST /api/account/subscriptions/{id}/transition": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/account/subscriptions/{id}/transition]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/account/subscriptions/{id}/transition]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/account/subscriptions/{id}/transition]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/account/subscriptions/{id}/transition]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/account/subscriptions/{id}/transition]"
+        }
+    },
+    "POST /api/admin/b2b/companies": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies]"
+        }
+    },
+    "POST /api/admin/b2b/companies/{id}/approval-scopes": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies/{id}/approval-scopes]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies/{id}/approval-scopes]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies/{id}/approval-scopes]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies/{id}/approval-scopes]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies/{id}/approval-scopes]"
+        }
+    },
+    "POST /api/admin/b2b/companies/{id}/catalogs": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies/{id}/catalogs]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies/{id}/catalogs]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies/{id}/catalogs]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies/{id}/catalogs]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies/{id}/catalogs]"
+        }
+    },
+    "POST /api/admin/b2b/companies/{id}/catalogs/{catalog}/items": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies/{id}/catalogs/{catalog}/items]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies/{id}/catalogs/{catalog}/items]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies/{id}/catalogs/{catalog}/items]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies/{id}/catalogs/{catalog}/items]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies/{id}/catalogs/{catalog}/items]"
+        }
+    },
+    "POST /api/admin/b2b/companies/{id}/contracts": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies/{id}/contracts]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies/{id}/contracts]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies/{id}/contracts]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies/{id}/contracts]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies/{id}/contracts]"
+        }
+    },
+    "POST /api/admin/b2b/companies/{id}/credit-account": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies/{id}/credit-account]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies/{id}/credit-account]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies/{id}/credit-account]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies/{id}/credit-account]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies/{id}/credit-account]"
+        }
+    },
+    "POST /api/admin/b2b/companies/{id}/members": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies/{id}/members]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies/{id}/members]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies/{id}/members]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies/{id}/members]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies/{id}/members]"
+        }
+    },
+    "POST /api/admin/b2b/companies/{id}/negotiated-prices": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/b2b/companies/{id}/negotiated-prices]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/b2b/companies/{id}/negotiated-prices]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/b2b/companies/{id}/negotiated-prices]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/b2b/companies/{id}/negotiated-prices]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/b2b/companies/{id}/negotiated-prices]"
+        }
+    },
+    "POST /api/admin/customers/{id}/addresses": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/customers/{id}/addresses]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/customers/{id}/addresses]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/customers/{id}/addresses]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/customers/{id}/addresses]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/customers/{id}/addresses]"
+        }
+    },
+    "POST /api/admin/customers/{id}/privacy/legal-hold": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/customers/{id}/privacy/legal-hold]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/customers/{id}/privacy/legal-hold]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/customers/{id}/privacy/legal-hold]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/customers/{id}/privacy/legal-hold]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/customers/{id}/privacy/legal-hold]"
+        }
+    },
+    "POST /api/admin/fulfillment/allocate": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/fulfillment/allocate]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/fulfillment/allocate]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/fulfillment/allocate]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/fulfillment/allocate]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/fulfillment/allocate]"
+        }
+    },
+    "POST /api/admin/fulfillment/{id}/cancel": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/fulfillment/{id}/cancel]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/fulfillment/{id}/cancel]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/fulfillment/{id}/cancel]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/fulfillment/{id}/cancel]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/fulfillment/{id}/cancel]"
+        }
+    },
+    "POST /api/admin/fulfillment/{id}/deliver": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/fulfillment/{id}/deliver]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/fulfillment/{id}/deliver]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/fulfillment/{id}/deliver]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/fulfillment/{id}/deliver]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/fulfillment/{id}/deliver]"
+        }
+    },
+    "POST /api/admin/fulfillment/{id}/ship": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/fulfillment/{id}/ship]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/fulfillment/{id}/ship]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/fulfillment/{id}/ship]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/fulfillment/{id}/ship]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/fulfillment/{id}/ship]"
+        }
+    },
+    "POST /api/admin/inventory/{variant}/transfer": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/inventory/{variant}/transfer]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/inventory/{variant}/transfer]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/inventory/{variant}/transfer]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/inventory/{variant}/transfer]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/inventory/{variant}/transfer]"
+        }
+    },
+    "POST /api/admin/orders/{id}/downloads": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/orders/{id}/downloads]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/orders/{id}/downloads]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/orders/{id}/downloads]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/orders/{id}/downloads]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/orders/{id}/downloads]"
+        }
+    },
+    "POST /api/admin/returns": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/returns]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/returns]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/returns]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/returns]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/returns]"
+        }
+    },
+    "POST /api/admin/returns/{id}/approve": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/returns/{id}/approve]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/returns/{id}/approve]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/returns/{id}/approve]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/returns/{id}/approve]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/returns/{id}/approve]"
+        }
+    },
+    "POST /api/admin/returns/{id}/approve-refund": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/returns/{id}/approve-refund]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/returns/{id}/approve-refund]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/returns/{id}/approve-refund]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/returns/{id}/approve-refund]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/returns/{id}/approve-refund]"
+        }
+    },
+    "POST /api/admin/returns/{id}/complete": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/returns/{id}/complete]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/returns/{id}/complete]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/returns/{id}/complete]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/returns/{id}/complete]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/returns/{id}/complete]"
+        }
+    },
+    "POST /api/admin/returns/{id}/inspect": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/returns/{id}/inspect]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/returns/{id}/inspect]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/returns/{id}/inspect]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/returns/{id}/inspect]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/returns/{id}/inspect]"
+        }
+    },
+    "POST /api/admin/returns/{id}/label": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/returns/{id}/label]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/returns/{id}/label]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/returns/{id}/label]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/returns/{id}/label]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/returns/{id}/label]"
+        }
+    },
+    "POST /api/admin/returns/{id}/reject": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/returns/{id}/reject]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/returns/{id}/reject]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/returns/{id}/reject]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/returns/{id}/reject]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/returns/{id}/reject]"
+        }
+    },
+    "POST /api/admin/reviews/{id}/moderate": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/reviews/{id}/moderate]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/reviews/{id}/moderate]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/reviews/{id}/moderate]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/reviews/{id}/moderate]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/reviews/{id}/moderate]"
+        }
+    },
+    "POST /api/auth/logout": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/auth/logout]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/auth/logout]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/auth/logout]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/auth/logout]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/auth/logout]"
+        }
+    },
+    "POST /api/products/{id}/reviews": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/products/{id}/reviews]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/products/{id}/reviews]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/products/{id}/reviews]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/products/{id}/reviews]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/products/{id}/reviews]"
+        }
+    },
+    "POST /api/v2/b2b/companies/{id}/quotes": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/companies/{id}/quotes]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/companies/{id}/quotes]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/companies/{id}/quotes]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/companies/{id}/quotes]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/companies/{id}/quotes]"
+        }
+    },
+    "POST /api/v2/b2b/contracts/{id}/approve": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/contracts/{id}/approve]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/contracts/{id}/approve]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/contracts/{id}/approve]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/contracts/{id}/approve]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/contracts/{id}/approve]"
+        }
+    },
+    "POST /api/v2/b2b/orders/{id}/approve": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/orders/{id}/approve]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/orders/{id}/approve]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/orders/{id}/approve]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/orders/{id}/approve]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/orders/{id}/approve]"
+        }
+    },
+    "POST /api/v2/b2b/orders/{id}/approve-company": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/orders/{id}/approve-company]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/orders/{id}/approve-company]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/orders/{id}/approve-company]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/orders/{id}/approve-company]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/orders/{id}/approve-company]"
+        }
+    },
+    "POST /api/v2/b2b/orders/{id}/draft": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/orders/{id}/draft]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/orders/{id}/draft]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/orders/{id}/draft]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/orders/{id}/draft]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/orders/{id}/draft]"
+        }
+    },
+    "POST /api/v2/b2b/orders/{id}/reject": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/orders/{id}/reject]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/orders/{id}/reject]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/orders/{id}/reject]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/orders/{id}/reject]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/orders/{id}/reject]"
+        }
+    },
+    "POST /api/v2/b2b/orders/{id}/submit": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/orders/{id}/submit]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/orders/{id}/submit]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/orders/{id}/submit]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/orders/{id}/submit]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/orders/{id}/submit]"
+        }
+    },
+    "POST /api/v2/b2b/orders/{id}/transition": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/orders/{id}/transition]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/orders/{id}/transition]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/orders/{id}/transition]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/orders/{id}/transition]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/orders/{id}/transition]"
+        }
+    },
+    "POST /api/v2/inventory/{variant}/atp": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/inventory/{variant}/atp]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/inventory/{variant}/atp]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/inventory/{variant}/atp]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/inventory/{variant}/atp]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/inventory/{variant}/atp]"
+        }
+    },
+    "POST /api/v2/shipments": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/shipments]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/shipments]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/shipments]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/shipments]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/shipments]"
+        }
+    },
+    "POST /api/v2/shipments/{id}/cancel": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/shipments/{id}/cancel]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/shipments/{id}/cancel]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/shipments/{id}/cancel]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/shipments/{id}/cancel]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/shipments/{id}/cancel]"
+        }
+    },
+    "POST /api/v2/shipping/rates": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/shipping/rates]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/shipping/rates]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/shipping/rates]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/shipping/rates]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/shipping/rates]"
+        }
+    },
+    "POST /api/webhooks/shipping/dhl": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/webhooks/shipping/dhl]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/webhooks/shipping/dhl]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/webhooks/shipping/dhl]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/webhooks/shipping/dhl]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/webhooks/shipping/dhl]"
+        }
+    },
+    "POST /api/webhooks/shipping/{provider}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/webhooks/shipping/{provider}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/webhooks/shipping/{provider}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/webhooks/shipping/{provider}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/webhooks/shipping/{provider}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/webhooks/shipping/{provider}]"
+        }
+    },
+    "POST /api/wishlist": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/wishlist]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/wishlist]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/wishlist]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/wishlist]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/wishlist]"
+        }
+    },
+    "PUT /api/account/notification-preferences": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[PUT /api/account/notification-preferences]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[PUT /api/account/notification-preferences]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[PUT /api/account/notification-preferences]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[PUT /api/account/notification-preferences]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[PUT /api/account/notification-preferences]"
+        }
+    },
+    "PUT /api/admin/inventory/{variant}": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[PUT /api/admin/inventory/{variant}]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[PUT /api/admin/inventory/{variant}]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[PUT /api/admin/inventory/{variant}]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[PUT /api/admin/inventory/{variant}]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[PUT /api/admin/inventory/{variant}]"
+        }
+    },
+    "GET /api/v2/b2b/quotes/{id}": {
+        "unit": { "status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[GET /api/v2/b2b/quotes/{id}]" },
+        "integration": { "status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[GET /api/v2/b2b/quotes/{id}]" },
+        "api_component": { "status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[GET /api/v2/b2b/quotes/{id}]" },
+        "contract": { "status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[GET /api/v2/b2b/quotes/{id}]" },
+        "workflow": { "status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[GET /api/v2/b2b/quotes/{id}]" }
+    },
+    "POST /api/v2/b2b/quotes/{id}/convert": {
+        "unit": { "status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/quotes/{id}/convert]" },
+        "integration": { "status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/quotes/{id}/convert]" },
+        "api_component": { "status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/quotes/{id}/convert]" },
+        "contract": { "status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/quotes/{id}/convert]" },
+        "workflow": { "status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/quotes/{id}/convert]" }
+    },
+    "POST /api/v2/b2b/quotes/{id}/{action}": {
+        "unit": { "status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/b2b/quotes/{id}/{action}]" },
+        "integration": { "status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/b2b/quotes/{id}/{action}]" },
+        "api_component": { "status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/b2b/quotes/{id}/{action}]" },
+        "contract": { "status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/b2b/quotes/{id}/{action}]" },
+        "workflow": { "status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/b2b/quotes/{id}/{action}]" }
+    },
+    "POST /api/v2/admin/catalog/imports": {
+        "unit": { "status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/v2/admin/catalog/imports]" },
+        "integration": { "status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/v2/admin/catalog/imports]" },
+        "api_component": { "status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/v2/admin/catalog/imports]" },
+        "contract": { "status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/v2/admin/catalog/imports]" },
+        "workflow": { "status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/v2/admin/catalog/imports]" }
+    },
+    "POST /api/admin/pages/{id}/publish": {
+        "unit": { "status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/pages/{id}/publish]" },
+        "integration": { "status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/pages/{id}/publish]" },
+        "api_component": { "status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/pages/{id}/publish]" },
+        "contract": { "status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/pages/{id}/publish]" },
+        "workflow": { "status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/pages/{id}/publish]" }
+    },
+    "POST /api/admin/pages/{id}/restore/{revision}": {
+        "unit": { "status": "PASS", "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[POST /api/admin/pages/{id}/restore/{revision}]" },
+        "integration": { "status": "PASS", "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[POST /api/admin/pages/{id}/restore/{revision}]" },
+        "api_component": { "status": "PASS", "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[POST /api/admin/pages/{id}/restore/{revision}]" },
+        "contract": { "status": "PASS", "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[POST /api/admin/pages/{id}/restore/{revision}]" },
+        "workflow": { "status": "PASS", "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[POST /api/admin/pages/{id}/restore/{revision}]" }
+    },
+    "PUT /api/admin/inventory/{variant}/priorities": {
+        "unit": {
+            "status": "PASS",
+            "evidence": "tests/Unit/OwnedApiHttpUnitTest.php::testExactOperationRejectsUnauthorisedOrInvalidRequest[PUT /api/admin/inventory/{variant}/priorities]"
+        },
+        "integration": {
+            "status": "PASS",
+            "evidence": "tests/Integration/OwnedApiHttpIntegrationTest.php::testExactOperationPreservesTheBoundaryInTheApplication[PUT /api/admin/inventory/{variant}/priorities]"
+        },
+        "api_component": {
+            "status": "PASS",
+            "evidence": "tests/Api/OwnedApiExactOperationTest.php::testExactOperationBoundary[PUT /api/admin/inventory/{variant}/priorities]"
+        },
+        "contract": {
+            "status": "PASS",
+            "evidence": "tests/Contract/OwnedApiHttpContractTest.php::testExactOperationReturnsTheVersionedResponseContract[PUT /api/admin/inventory/{variant}/priorities]"
+        },
+        "workflow": {
+            "status": "PASS",
+            "evidence": "tests/Workflow/OwnedApiHttpWorkflowTest.php::testExactOperationFailsClosedBeforeAnyStateMutation[PUT /api/admin/inventory/{variant}/priorities]"
+        }
+    }
+}

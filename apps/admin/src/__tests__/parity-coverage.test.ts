@@ -1,0 +1,48 @@
+import { describe, expect, it, vi } from "vitest";
+const apiMock = vi.hoisted(() => ({ get: vi.fn(), post: vi.fn(), put: vi.fn(), patch: vi.fn(), delete: vi.fn() }));
+vi.mock("@/services/api", () => ({ default: apiMock }));
+import { parityService } from "@/services/parity.service";
+
+describe("parity diagnostics — absolute 100% contract coverage", () => {
+  it("covers jobs, audit, seo, analytics, smart parity routes with correct methods and paths", async () => {
+    apiMock.get.mockResolvedValue({ data: { data: {} } });
+    apiMock.post.mockResolvedValue({ data: { data: {} } });
+    apiMock.put.mockResolvedValue({ data: { data: {} } });
+    await parityService.enqueueJob({ type: "reindex", payload: {} });
+    expect(apiMock.post).toHaveBeenCalledWith("/api/v2/admin/jobs", expect.anything(), expect.objectContaining({ idempotencyKey: expect.any(String) }));
+    await parityService.job("j1");
+    expect(apiMock.get).toHaveBeenCalledWith("/api/v2/admin/jobs/j1");
+    await parityService.jobAction("j1", "retry");
+    expect(apiMock.post).toHaveBeenCalledWith("/api/v2/admin/jobs/j1/retry", expect.anything(), expect.objectContaining({ idempotencyKey: expect.any(String) }));
+    await parityService.auditLogs();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/v2/admin/audit-logs", expect.anything());
+    await parityService.auditExport();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/v2/admin/audit-logs/export", expect.anything());
+    await parityService.notificationEvents();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/v2/admin/notification-events", expect.anything());
+    await parityService.seoHealth();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/seo/health");
+    await parityService.seoGet("product", "p1");
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/seo/product/p1");
+    await parityService.seoPut("product", "p1", { title: "t" });
+    expect(apiMock.put).toHaveBeenCalledWith("/api/admin/seo/product/p1", { title: "t" }, expect.objectContaining({ idempotencyKey: expect.any(String) }));
+    await parityService.redirectsCreate({ source: "/a", target: "/b" });
+    expect(apiMock.post).toHaveBeenCalledWith("/api/admin/redirects", { source: "/a", target: "/b" }, expect.objectContaining({ idempotencyKey: expect.any(String) }));
+    await parityService.analyticsFunnel();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/analytics/funnel", expect.anything());
+    await parityService.analyticsEvents();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/analytics/events", expect.anything());
+    await parityService.analyticsExport();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/analytics/export", expect.anything());
+    await parityService.smartInventory();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/smart/inventory", expect.anything());
+    await parityService.smartConversion();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/smart/conversion", expect.anything());
+    await parityService.smartSetupGuide();
+    expect(apiMock.get).toHaveBeenCalledWith("/api/admin/smart/setup-guide");
+    await parityService.erpLoyaltyEvaluate({ customer_id: "c1", order_id: "o1", order_total_minor: 1000 });
+    expect(apiMock.post).toHaveBeenCalledWith("/api/v2/admin/erp/loyalty-evaluate", expect.anything(), expect.objectContaining({ idempotencyKey: expect.any(String) }));
+    await parityService.erpSubscriptionRenew("s1", { period: "2026-10" });
+    expect(apiMock.post).toHaveBeenCalledWith("/api/v2/admin/erp/subscriptions/s1/renew", { period: "2026-10" }, expect.objectContaining({ idempotencyKey: expect.any(String) }));
+  });
+});

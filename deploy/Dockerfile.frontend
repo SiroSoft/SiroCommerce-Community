@@ -1,0 +1,37 @@
+FROM node:20-alpine AS build
+
+ARG APP_NAME
+ARG API_URL
+ARG STOREFRONT_URL
+# Turbopack needs native SWC bindings that are not reliably present on
+# minimal build images. Webpack falls back to the WASM build instead of
+# failing, so constrained targets build with it. Empty keeps Turbopack.
+ARG NEXT_BUILD_EXTRA=""
+ENV NEXT_PUBLIC_API_URL=$API_URL
+ENV NEXT_PUBLIC_STOREFRONT_API_BASE_URL=$API_URL
+ENV NEXT_PUBLIC_STOREFRONT_URL=$STOREFRONT_URL
+ENV NEXT_PUBLIC_STOREFRONT_PURCHASE_SOURCE=api
+ENV NEXT_PUBLIC_STOREFRONT_STORE_ID=default
+ENV NEXT_PUBLIC_STOREFRONT_CHANNEL_ID=web
+ENV NEXT_PUBLIC_STOREFRONT_LOCALE=en
+ENV NEXT_PUBLIC_STOREFRONT_CURRENCY=USD
+
+WORKDIR /app
+COPY package.json package-lock.json ./
+COPY apps ./apps
+COPY packages ./packages
+COPY scripts ./scripts
+RUN npm ci
+RUN npm run build --workspace apps/${APP_NAME} ${NEXT_BUILD_EXTRA}
+
+FROM node:20-alpine
+ARG APP_NAME
+WORKDIR /app
+ENV NODE_ENV=production \
+    HOME=/home/node
+# Non-root runtime: copy with node ownership so .next/cache and npm state are
+# writable without running the server as root.
+COPY --from=build --chown=node:node /app ./
+USER node
+EXPOSE 3000
+CMD ["sh", "-c", "npm run start --workspace apps/$APP_NAME -- --hostname 0.0.0.0 --port 3000"]

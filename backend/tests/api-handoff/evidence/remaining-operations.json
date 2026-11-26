@@ -1,0 +1,25 @@
+{
+  "operations": {
+    "POST /api/admin/orders/{id}/cancel": {
+      "unit": {"status":"PASS","reference":"tests/Unit/RemainingOperationsTest.php::testPaymentReconciliationNeverInvokesAProvider"},
+      "integration": {"status":"PASS","reference":"tests/Integration/RemainingOperationsTest.php::testGuestRecoveryRotatesTheExistingAccessRow"},
+      "api_component": {"status":"PASS","reference":"tests/Api/RemainingOperationsTest.php::testSensitiveOperationsHaveExactRouteBoundaries"},
+      "contract": {"status":"PASS","reference":"tests/Contract/RemainingOperationsTest.php::testGeneratedContractDeclaresSchemasAndIdempotency"},
+      "workflow": {"status":"PASS","reference":"tests/Workflow/RemainingOperationsTest.php::testLocalSafetyMarkersArePresent"}
+    },
+    "POST /api/orders/recover": {
+      "unit": {"status":"PASS","reference":"tests/Unit/RemainingOperationsTest.php::testPaymentReconciliationNeverInvokesAProvider"},
+      "integration": {"status":"PASS","reference":"tests/Integration/RemainingOperationsTest.php::testGuestRecoveryRotatesTheExistingAccessRow"},
+      "api_component": {"status":"PASS","reference":"tests/Api/RemainingOperationsTest.php::testSensitiveOperationsHaveExactRouteBoundaries"},
+      "contract": {"status":"PASS","reference":"tests/Contract/RemainingOperationsTest.php::testGeneratedContractDeclaresSchemasAndIdempotency"},
+      "workflow": {"status":"PASS","reference":"tests/Workflow/RemainingOperationsTest.php::testLocalSafetyMarkersArePresent"}
+    },
+    "POST /api/admin/payments/reconcile": {
+      "unit": {"status":"PASS","reference":"tests/Unit/RemainingOperationsTest.php::testPaymentReconciliationNeverInvokesAProvider"},
+      "integration": {"status":"PASS","reference":"tests/Integration/RemainingOperationsTest.php::testGuestRecoveryRotatesTheExistingAccessRow"},
+      "api_component": {"status":"PASS","reference":"tests/Api/RemainingOperationsTest.php::testSensitiveOperationsHaveExactRouteBoundaries"},
+      "contract": {"status":"PASS","reference":"tests/Contract/RemainingOperationsTest.php::testGeneratedContractDeclaresSchemasAndIdempotency"},
+      "workflow": {"status":"PASS","reference":"tests/Workflow/RemainingOperationsTest.php::testLocalSafetyMarkersArePresent"}
+    }
+  }
+}

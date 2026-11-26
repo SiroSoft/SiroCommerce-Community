@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" width="900" height="1100" role="img" aria-label="gift-wrapping-service alternate view">
+<defs>
+<linearGradient id="alt-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef0ea"/><stop offset="1" stop-color="#dfe4da"/></linearGradient>
+<radialGradient id="alt-vignette" cx="50%" cy="42%" r="72%"><stop offset=".62" stop-color="#313a2b" stop-opacity="0"/><stop offset="1" stop-color="#313a2b" stop-opacity=".16"/></radialGradient>
+<filter id="alt-shadow" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="23" flood-color="#313a2b" flood-opacity=".24"/></filter>
+</defs>
+<rect x="0" y="0" width="900" height="1100" fill="url(#alt-bg)"/>
+<rect x="54" y="54" width="792" height="992" rx="42" fill="none" stroke="#9ba795" stroke-width="2" opacity=".55"/>
+<ellipse cx="450" cy="902" rx="288" ry="35.2" fill="#313a2b" opacity=".1"/>
+<g filter="url(#alt-shadow)" transform="translate(450 550) rotate(-2.5) scale(1.12) translate(-450 -550)">
+<circle cx="450.0" cy="300.0" r="330" fill="#ead2da" opacity=".38"/><rect x="90" y="800" width="720" height="200" rx="36" fill="#ead2da" opacity=".45"/><ellipse cx="450.0" cy="850" rx="290" ry="42" fill="#b4647f" opacity=".14"/><g transform="rotate(-6 450 550)"><rect x="302.79999999999995" y="494.8" width="294.40000000000003" height="248.4" rx="23.92" fill="#b4647f"/><rect x="302.79999999999995" y="494.8" width="294.40000000000003" height="73.60000000000001" rx="23.92" fill="#ead2da"/><rect x="427.92" y="412.0" width="44.160000000000004" height="331.2" fill="#d69aac" opacity=".9"/><path d="M385.6 412.0 Q312.0 333.79999999999995 413.2 384.4 M514.4 412.0 Q588.0 333.79999999999995 486.8 384.4" fill="none" stroke="#d69aac" stroke-width="18.400000000000002"/></g><rect x="90" y="960" width="720" height="2" fill="#b4647f" opacity=".18"/><circle cx="112" cy="1000" r="7" fill="#b4647f" opacity=".8"/><circle cx="138" cy="1000" r="7" fill="#ead2da" opacity=".8"/><circle cx="164" cy="1000" r="7" fill="#d69aac" opacity=".8"/>
+</g>
+<rect x="0" y="0" width="900" height="1100" fill="url(#alt-vignette)"/>
+<text x="450" y="1034" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="18" letter-spacing="6" fill="#55604c" opacity=".72">DETAIL</text>
+</svg>

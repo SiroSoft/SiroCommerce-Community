@@ -1,0 +1,306 @@
+{
+    "schema": "sirocommerce.platform.api-evidence.v2",
+    "operations": {
+        "GET /api/version": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/PlatformReadinessTest.php::testApiContractPublishesStableVersionAndErrorSemantics"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Workflow/PlatformWorkflowTest.php::testPlatformWorkflowKeepsRawWebhookAndOperationalRecoveryBoundaries"}
+        },
+        "GET /health/live": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProductionBoundaryTest.php::testCorrelationIdPreservesSafeCallerValue"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Workflow/PlatformWorkflowTest.php::testPlatformWorkflowKeepsRawWebhookAndOperationalRecoveryBoundaries"}
+        },
+        "GET /health/ready": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProviderReadinessTest.php::testProductionReadinessFailsWithoutSecrets"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Workflow/PlatformWorkflowTest.php::testPlatformWorkflowKeepsRawWebhookAndOperationalRecoveryBoundaries"}
+        },
+        "GET /api/v2/health/queue": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProviderReadinessTest.php::testProductionReadinessFailsWithoutSecrets"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Integration/PlatformOperationsTest.php::testVerifiedWebhookIsQueuedOnceAndRetriesAreBounded"}
+        },
+        "GET /api/v2/health/payments": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProviderReadinessTest.php::testProductionReadinessFailsWithoutSecrets"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/PaymentProviderRegistryTest.php::testProviderAliasesResolveToCanonicalIds"}
+        },
+        "GET /api/v2/health/inventory": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProviderReadinessTest.php::testProductionReadinessFailsWithoutSecrets"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Integration/InventoryRaceTest.php::testConcurrentInventoryOperationsRemainConsistent"}
+        },
+        "GET /api/v2/health/outbox": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProviderReadinessTest.php::testProductionReadinessFailsWithoutSecrets"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Integration/PlatformOperationsTest.php::testVerifiedWebhookIsQueuedOnceAndRetriesAreBounded"}
+        },
+        "GET /api/v2/admin/search": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProductionBoundaryTest.php::testCapabilityMiddlewareEnforcesTheServiceBoundary"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Workflow/ApiWorkflowContractTest.php::testCheckoutWorkflowContractKeepsTheRequiredReplayKeyAcrossTheSequence"}
+        },
+        "POST /api/webhooks/{provider}": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/PaymentProviderRegistryTest.php::testCanonicalProviderNames"},
+            "integration": {"status": "PASS", "evidence": "tests/Integration/WebhookIdempotencyTest.php::testCodHasNoWebhookSurface"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Integration/PlatformOperationsTest.php::testVerifiedWebhookIsQueuedOnceAndRetriesAreBounded"}
+        },
+        "POST /api/webhooks/shipping/dhl": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ShippingProviderTest.php::testShippingProviderNormalizesStatuses"},
+            "integration": {"status": "PASS", "evidence": "tests/Integration/PlatformOperationsTest.php::testVerifiedWebhookIsQueuedOnceAndRetriesAreBounded"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Integration/WebhookIdempotencyTest.php::testCodHasNoWebhookSurface"}
+        },
+        "POST /api/webhooks/shipping/{provider}": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ShippingProviderTest.php::testShippingProviderNormalizesStatuses"},
+            "integration": {"status": "PASS", "evidence": "tests/Integration/PlatformOperationsTest.php::testVerifiedWebhookIsQueuedOnceAndRetriesAreBounded"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Workflow/PlatformWorkflowTest.php::testPlatformWorkflowKeepsRawWebhookAndOperationalRecoveryBoundaries"}
+        },
+        "GET /api/admin/ops/observability": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProductionBoundaryTest.php::testCorrelationIdIsBoundedAndReturned"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testTraceDiagnoseRecoverCycle"}
+        },
+        "GET /api/admin/ops/readiness": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProviderReadinessTest.php::testProductionReadinessFailsWithoutSecrets"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testExpiredHoldRecovery"}
+        },
+        "GET /api/admin/ops/metrics": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProductionBoundaryTest.php::testCorrelationIdIsBoundedAndReturned"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Workflow/PlatformWorkflowTest.php::testPlatformWorkflowKeepsRawWebhookAndOperationalRecoveryBoundaries"}
+        },
+        "GET /api/admin/ops/hooks": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testPlatformRoutesHaveSemanticHttpResponsesAndCorrelation"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Workflow/PlatformWorkflowTest.php::testPlatformWorkflowKeepsRawWebhookAndOperationalRecoveryBoundaries"}
+        },
+        "GET /api/admin/coupons": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProductionBoundaryTest.php::testCapabilityMiddlewareEnforcesTheServiceBoundary"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testCouponsAndDemoGuard"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testCouponsAndDemoGuard"}
+        },
+        "POST /api/admin/coupons": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProductionBoundaryTest.php::testCapabilityMiddlewareEnforcesTheServiceBoundary"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testCouponsAndDemoGuard"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testCouponsAndDemoGuard"}
+        },
+        "POST /api/admin/coupons/{id}/disable": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ProductionBoundaryTest.php::testCapabilityMiddlewareEnforcesTheServiceBoundary"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testCouponsAndDemoGuard"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testCouponsAndDemoGuard"}
+        },
+        "GET /api/admin/dev/doctor": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testTraceDiagnoseRecoverCycle"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testTraceDiagnoseRecoverCycle"}
+        },
+        "GET /api/admin/dev/trace/{id}": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testTraceDiagnoseRecoverCycle"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testTraceDiagnoseRecoverCycle"}
+        },
+        "POST /api/admin/dev/recover": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testExpiredHoldRecovery"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/DevTest.php::testExpiredHoldRecovery"}
+        },
+        "GET /api/admin/reviews": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ReviewVerificationTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testRbacGates"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/ReviewVerificationTest.php"}
+        },
+        "POST /api/admin/reviews/{id}/moderate": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/ReviewVerificationTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testRbacGates"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/ReviewVerificationTest.php"}
+        },
+        "GET /api/admin/smart/action-center": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"}
+        },
+        "GET /api/admin/smart/conversion": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"}
+        },
+        "GET /api/admin/smart/inventory": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"}
+        },
+        "GET /api/admin/smart/search": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"}
+        },
+        "GET /api/admin/smart/setup-guide": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"}
+        },
+        "POST /api/admin/smart/execute": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"}
+        },
+        "POST /api/admin/smart/rescue/{id}": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testDevApplicationUsesOperationsPort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/SmartTest.php::testSmartSurfaces"}
+        },
+        "GET /api/admin/stores": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testRbacGates"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"}
+        },
+        "GET /api/admin/stores/{store}/channels": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testRbacGates"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"}
+        },
+        "POST /api/admin/stores": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testRbacGates"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"}
+        },
+        "POST /api/admin/channels": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AdminTest.php::testRbacGates"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/B2BApprovalServiceTest.php"}
+        },
+        "GET /api/auth/me": {
+            "unit": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"}
+        },
+        "POST /api/auth/logout": {
+            "unit": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"}
+        },
+        "POST /api/account/subscriptions": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/SubscriptionServiceTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Integration/CustomerSecurityTest.php"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/SubscriptionServiceTest.php"}
+        },
+        "POST /api/account/subscriptions/{id}/renew": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/SubscriptionServiceTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Integration/CustomerSecurityTest.php"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/SubscriptionServiceTest.php"}
+        },
+        "POST /api/account/subscriptions/{id}/transition": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/SubscriptionServiceTest.php"},
+            "integration": {"status": "PASS", "evidence": "tests/Integration/CustomerSecurityTest.php"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedProtectedOperationsFailClosed"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Unit/SubscriptionServiceTest.php"}
+        },
+        "POST /api/auth/login": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testAuthUsesUserStorePort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedPublicOperationsRejectInvalidRequests"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"}
+        },
+        "POST /api/auth/refresh": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testAuthUsesUserStorePort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedPublicOperationsRejectInvalidRequests"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"}
+        },
+        "POST /api/auth/register": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testAuthUsesUserStorePort"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedPublicOperationsRejectInvalidRequests"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/AuthTest.php::testAuthRoundTrip"}
+        },
+        "POST /api/promotions/preview": {
+            "unit": {"status": "PASS", "evidence": "tests/Unit/NativeModuleContractTest.php::testPromotionUsesReaderAndUsagePorts"},
+            "integration": {"status": "PASS", "evidence": "tests/Feature/GrowthTest.php::testPromotionsAndAnalytics"},
+            "api_component": {"status": "PASS", "evidence": "tests/Api/PlatformApiComponentTest.php::testUnassignedPublicOperationsRejectInvalidRequests"},
+            "contract": {"status": "PASS", "evidence": "tests/Contract/ApiOpenApiSdkContractTest.php::testGeneratedOpenApiAndPublicCopyAreIdenticalAndSdkContainsEveryOperation"},
+            "workflow": {"status": "PASS", "evidence": "tests/Feature/GrowthTest.php::testPromotionsAndAnalytics"}
+        }
+    }
+}

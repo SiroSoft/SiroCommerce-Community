@@ -2,6 +2,18 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-26] v0.2.1 signed Affiliate Pro artifact published
+
+### Changed
+- Published `siro/affiliate` 1.0.0 with a signed Pro artifact, SHA-256 and
+  detached Ed25519 signature. Premium themes remain planned.
+- Commerce version 0.2.1.
+
+### Verification
+- Signed artifact verified with `--require-signature`.
+- Catalog 15 items; build/public drift and selftest pass.
+- Backend full suite and admin suite pass; Pro feed/license gates unchanged.
+
 ## [2026-11-26] v0.2.0 Pro theme, artifact, license portal and catalog gates
 
 ### Added

@@ -84,7 +84,7 @@ final class EcosystemCatalogTest extends TestCase
         self::assertSame('pro', $affiliate['edition']);
         self::assertTrue($affiliate['license_required']);
         self::assertSame('siro-affiliate', $affiliate['license_sku']);
-        self::assertSame('planned', $affiliate['status']);
+        self::assertSame('published', $affiliate['status']);
         self::assertSame('1.0.0', $affiliate['latest_version']);
         self::assertIsString($affiliate['changelog']);
         self::assertNotSame('', $affiliate['changelog']);
@@ -537,7 +537,7 @@ final class EcosystemCatalogTest extends TestCase
         self::assertSame([], $tables);
     }
 
-    public function testCatalogProItemsRemainPlannedWithoutArtifactOrSignature(): void
+    public function testProItemsRequireArtifactAndSignatureOnlyWhenPublished(): void
     {
         $raw = $this->baseCatalog();
         foreach ($raw['items'] as $item) {
@@ -546,21 +546,34 @@ final class EcosystemCatalogTest extends TestCase
         }
 
         $mergedItems = (new EcosystemCatalogService($this->base()))->catalog()['items'];
-        foreach (['siro/affiliate', 'siro/atelier-noir', 'siro/apothecary-calm'] as $id) {
+        foreach ([
+            'siro/affiliate' => 'published',
+            'siro/atelier-noir' => 'planned',
+            'siro/apothecary-calm' => 'planned',
+        ] as $id => $status) {
             $catalogItem = $this->item($raw['items'], $id);
             self::assertNotNull($catalogItem);
             self::assertSame('pro', $catalogItem['edition']);
-            self::assertSame('planned', $catalogItem['status']);
-            self::assertNull($catalogItem['artifact_url']);
-            self::assertNull($catalogItem['sha256']);
-            self::assertNull($catalogItem['signature']);
-            self::assertNull($catalogItem['signature_url']);
+            self::assertSame($status, $catalogItem['status']);
 
             $merged = $this->item($mergedItems, $id);
             self::assertNotNull($merged);
-            self::assertSame('planned', $merged['status']);
-            self::assertNull($merged['artifact_url']);
-            self::assertNull($merged['sha256']);
+            self::assertSame($status, $merged['status']);
+
+            if ($status === 'published') {
+                self::assertNotNull($catalogItem['artifact_url']);
+                self::assertNotNull($catalogItem['sha256']);
+                self::assertNotNull($catalogItem['signature']);
+                self::assertNotNull($merged['artifact_url']);
+                self::assertNotNull($merged['sha256']);
+            } else {
+                self::assertNull($catalogItem['artifact_url']);
+                self::assertNull($catalogItem['sha256']);
+                self::assertNull($catalogItem['signature']);
+                self::assertNull($catalogItem['signature_url']);
+                self::assertNull($merged['artifact_url']);
+                self::assertNull($merged['sha256']);
+            }
         }
     }
 

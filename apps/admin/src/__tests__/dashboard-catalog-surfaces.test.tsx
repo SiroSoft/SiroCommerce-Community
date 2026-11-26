@@ -193,22 +193,22 @@ describe("media library page", () => {
   });
 });
 
-const affiliateExtension: ExtensionItem = {
-  id: "siro/affiliate",
+const storeLocatorExtension: ExtensionItem = {
+  id: "siro/store-locator",
   version: "1.0.0",
   manifest_version: "1",
   state: "enabled",
   last_error: null,
-  capabilities: ["affiliate"],
-  permissions: ["affiliate.manage"],
+  capabilities: ["store-locator:read", "store-locator:manage"],
+  permissions: ["store-locator:manage"],
   migrations: ["001"],
-  routes: ["/api/ext/siro/affiliate"],
+  routes: ["/api/ext/siro/store-locator"],
   requires: {},
-  admin_ui: { label: "Affiliate", section: "marketing", href: "/extensions/siro/affiliate", panels: [] },
+  admin_ui: { label: "Store locator", section: "commerce", href: "/extensions/siro/store-locator", panels: [] },
 };
 
 const failedExtension: ExtensionItem = {
-  ...affiliateExtension,
+  ...storeLocatorExtension,
   id: "siro/broken",
   state: "failed",
   last_error: "manifest invalid",
@@ -220,29 +220,21 @@ const failedExtension: ExtensionItem = {
 describe("extensions pages", () => {
   beforeEach(() => {
     apiMock.get.mockImplementation((path: string) => {
-      if (path === "/api/admin/extensions") return body([affiliateExtension, failedExtension]);
-      if (path === "/api/ext/siro/affiliate/referrals") return body([{ id: "r-1", code: "AFF1", customer_id: "c-1", rate: 0.05, state: "active", created_at: "2026-01-01" }]);
-      if (path === "/api/ext/siro/affiliate/ledger") return body([
-        { id: "l-1", order_id: "o-1", code: "AFF1", amount_minor: 5000, currency: "VND", state: "pending", created_at: "2026-01-01" },
-        { id: "l-2", order_id: "o-2", code: "AFF1", amount_minor: 7000, currency: "VND", state: "approved", created_at: "2026-01-02" },
-      ]);
+      if (path === "/api/admin/extensions") return body([storeLocatorExtension, failedExtension]);
       return body({});
     });
     apiMock.post.mockImplementation((path: string) => {
       if (path === "/api/admin/extensions/health") return body({ ok: true });
-      if (path === "/api/ext/siro/affiliate/ledger/payout") return body({ ok: true });
       return body({ ok: true });
     });
   });
 
-  it("renders extension states, affiliate ledger and runs lifecycle actions", async () => {
+  it("renders extension states and runs lifecycle actions", async () => {
     renderWithProviders(<ExtensionsPage />);
-    expect(await screen.findByText("siro/affiliate")).toBeVisible();
+    expect(await screen.findByText("siro/store-locator")).toBeVisible();
     expect(screen.getByText("manifest invalid")).toBeVisible();
-    expect(screen.getByText("AFF1")).toBeVisible();
-    expect(screen.getByText(/5000 VND/)).toBeVisible();
     fireEvent.click(screen.getAllByRole("button", { name: "Health" })[0]);
-    await waitFor(() => expect(apiMock.post).toHaveBeenCalledWith("/api/admin/extensions/health", { id: "siro/affiliate" }));
+    await waitFor(() => expect(apiMock.post).toHaveBeenCalledWith("/api/admin/extensions/health", { id: "siro/store-locator" }));
     expect(await screen.findByText(/"ok":true/)).toBeVisible();
     const disableButtons = screen.getAllByRole("button", { name: "Disable" });
     fireEvent.click(disableButtons[0]);
@@ -250,35 +242,14 @@ describe("extensions pages", () => {
     fireEvent.click(within(dialog).getByRole("button", { name: "Confirm" }));
     await waitFor(() => expect(apiMock.post).toHaveBeenCalledWith(
       "/api/admin/extensions/disable",
-      { id: "siro/affiliate" },
-      expect.objectContaining({ idempotencyKey: expect.any(String) }),
-    ));
-  });
-
-  it("approves and marks affiliate payouts after confirmation", async () => {
-    renderWithProviders(<ExtensionsPage />);
-    await screen.findByText("AFF1");
-    fireEvent.click(screen.getByRole("button", { name: "Approve" }));
-    const approveDialog = await screen.findByRole("dialog", { name: "Update payout" });
-    fireEvent.click(within(approveDialog).getByRole("button", { name: "Confirm" }));
-    await waitFor(() => expect(apiMock.post).toHaveBeenCalledWith(
-      "/api/ext/siro/affiliate/ledger/payout",
-      { ledger_id: "l-1", to: "approved" },
-      expect.objectContaining({ idempotencyKey: expect.any(String) }),
-    ));
-    fireEvent.click(screen.getByRole("button", { name: "Mark paid" }));
-    const paidDialog = await screen.findByRole("dialog", { name: "Update payout" });
-    fireEvent.click(within(paidDialog).getByRole("button", { name: "Confirm" }));
-    await waitFor(() => expect(apiMock.post).toHaveBeenCalledWith(
-      "/api/ext/siro/affiliate/ledger/payout",
-      { ledger_id: "l-2", to: "paid" },
+      { id: "siro/store-locator" },
       expect.objectContaining({ idempotencyKey: expect.any(String) }),
     ));
   });
 
   it("uninstalls with data removal after a destructive confirmation", async () => {
     renderWithProviders(<ExtensionsPage />);
-    await screen.findByText("siro/affiliate");
+    await screen.findByText("siro/store-locator");
     fireEvent.click(screen.getAllByRole("checkbox", { name: /remove data/i })[0]);
     fireEvent.click(screen.getAllByRole("button", { name: "Uninstall" })[0]);
     const dialog = await screen.findByRole("dialog", { name: "Uninstall extension" });
@@ -286,7 +257,7 @@ describe("extensions pages", () => {
     fireEvent.click(within(dialog).getByRole("button", { name: "Confirm" }));
     await waitFor(() => expect(apiMock.post).toHaveBeenCalledWith(
       "/api/admin/extensions/uninstall",
-      { id: "siro/affiliate", remove_data: true },
+      { id: "siro/store-locator", remove_data: true },
       expect.objectContaining({ idempotencyKey: expect.any(String) }),
     ));
   });

@@ -1,0 +1,29 @@
+# SiroCommerce Community ownership.
+# Replace the user handles with org teams once teams exist:
+# @SiroSoft/platform, @SiroSoft/storefront, @SiroSoft/admin,
+# @SiroSoft/ecosystem, @SiroSoft/qa, @SiroSoft/security, @SiroSoft/infra.
+# GitHub only accepts teams that have access to this repository.
+
+*                                   @thiennhant95 @nhanttvv
+
+/backend/app/Modules/               @nhanttvv
+/backend/app/Controllers/           @nhanttvv
+/backend/app/Contracts/             @nhanttvv
+/backend/routes/                    @nhanttvv
+/backend/database/migrations/       @nhanttvv
+/backend/app/Extensions/            @thiennhant95
+/examples/themes/                   @thiennhant95
+/scripts/ecosystem-catalog/         @thiennhant95
+/backend/resources/ecosystem/       @thiennhant95
+
+/apps/storefront/                   @nhanttvv
+/apps/admin/                        @thiennhant95
+/packages/                          @thiennhant95
+
+/deploy/                            @nhanttvv
+/.github/workflows/                 @nhanttvv
+/docs/engineering/                  @nhanttvv
+/docs/product/                      @thiennhant95
+
+/backend/tests/                     @nhanttvv
+/docs/qa/                           @nhanttvv

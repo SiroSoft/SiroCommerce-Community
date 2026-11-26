@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ConfirmDialog } from "@/components/confirm-dialog";
 import { toAdminApiError } from "@/services/api-errors";
-import { extensionsService, type AffiliateLedgerRow, type AffiliateReferrer, type CatalogItem, type ExtensionItem, type ExtensionLicenseSource, type ExtensionLicenseStatus, type ExtensionPackageReport, type ExtensionQualityReport, type ProFeed } from "@/services/extensions.service";
+import { extensionsService, type CatalogItem, type ExtensionItem, type ExtensionLicenseSource, type ExtensionLicenseStatus, type ExtensionPackageReport, type ExtensionQualityReport, type ProFeed } from "@/services/extensions.service";
 
 function messageOf(error: unknown): string {
   return error instanceof Error ? error.message : "The request was not accepted.";
@@ -412,8 +412,6 @@ export default function ExtensionsPage() {
 function ExtensionsContent() {
   const [tab, setTab] = useState<ExtensionTab>("installed");
   const [items, setItems] = useState<ExtensionItem[]>([]);
-  const [referrers, setReferrers] = useState<AffiliateReferrer[]>([]);
-  const [ledger, setLedger] = useState<AffiliateLedgerRow[]>([]);
   const [state, setState] = useState<"loading" | "ready" | "error">("loading");
   const [error, setError] = useState<unknown>();
   const [busy, setBusy] = useState("");
@@ -431,13 +429,6 @@ function ExtensionsContent() {
     setState("loading"); setError(undefined);
     void extensionsService.list().then((value) => {
       setItems(value);
-      const affiliate = value.find((item) => item.id === "siro/affiliate" && item.state === "enabled");
-      if (affiliate) {
-        void extensionsService.affiliateReferrers().then(setReferrers).catch(() => setReferrers([]));
-        void extensionsService.affiliateLedger().then(setLedger).catch(() => setLedger([]));
-      } else {
-        setReferrers([]); setLedger([]);
-      }
       setState("ready");
     }).catch((cause) => { setError(cause); setState("error"); });
   };
@@ -496,8 +487,6 @@ function ExtensionsContent() {
     } catch (cause) { setError(cause); } finally { setBusy(""); }
   };
 
-  const affiliateEnabled = items.some((item) => item.id === "siro/affiliate" && item.state === "enabled");
-
   const verifyPackage = async () => {
     if (!packageFile || busy) return;
     setBusy("package:verify"); setError(undefined); setNotice(""); setPackageReport(null);
@@ -526,25 +515,6 @@ function ExtensionsContent() {
       setNotice(`Package ${result.id ?? ""} ${result.version ?? ""} installed. Enable it below when ready.`);
       setPackageFile(null); setPackageReport(null); setQitReport(null); setForcePackage(false);
       load();
-    } catch (cause) { setError(cause); } finally { setBusy(""); }
-  };
-
-  const payout = async (ledgerId: string, to: "approved" | "paid" | "rejected") => {
-    if (busy) return;
-    setConfirmation({
-      title: "Update payout",
-      description: `Move payout ${ledgerId} to ${to}? This changes the commission ledger state.`,
-      run: () => void executePayout(ledgerId, to),
-    });
-  };
-
-  const executePayout = async (ledgerId: string, to: "approved" | "paid" | "rejected") => {
-    setBusy(`payout:${ledgerId}`); setError(undefined); setNotice("");
-    try {
-      await extensionsService.affiliatePayout(ledgerId, to);
-      setNotice(`Payout ${ledgerId} → ${to}.`);
-      const rows = await extensionsService.affiliateLedger();
-      setLedger(rows);
     } catch (cause) { setError(cause); } finally { setBusy(""); }
   };
 
@@ -599,10 +569,6 @@ function ExtensionsContent() {
               </div>
             </CardContent></Card>)}
             </div>}
-          {affiliateEnabled && <div className="grid gap-4 lg:grid-cols-2">
-            <Card><CardHeader><CardTitle>Affiliate referrers ({referrers.length})</CardTitle></CardHeader><CardContent>{referrers.length ? <div className="space-y-1">{referrers.map((r) => <div key={r.id} className="flex items-center justify-between rounded-md border p-2 text-sm"><span className="font-medium">{r.code}</span><span className="text-muted-foreground">{r.rate != null ? `${Math.round(r.rate * 100)}%` : "5%"} · {r.state}</span></div>)}</div> : <p className="text-sm text-muted-foreground">No referrers yet.</p>}</CardContent></Card>
-            <Card><CardHeader><CardTitle>Commission ledger ({ledger.length})</CardTitle></CardHeader><CardContent>{ledger.length ? <div className="space-y-1">{ledger.map((row) => <div key={row.id} className="flex flex-wrap items-center justify-between gap-2 rounded-md border p-2 text-sm"><span>{row.order_id} · {row.code}</span><span className="font-medium">{row.amount_minor} {row.currency} · {row.state}</span><span className="flex gap-1">{row.state === "pending" && <><Button size="sm" variant="outline" disabled={!!busy} onClick={() => void payout(row.id, "approved")}>Approve</Button><Button size="sm" variant="outline" disabled={!!busy} onClick={() => void payout(row.id, "rejected")}>Reject</Button></>}{row.state === "approved" && <Button size="sm" variant="outline" disabled={!!busy} onClick={() => void payout(row.id, "paid")}>Mark paid</Button>}</span></div>)}</div> : <p className="text-sm text-muted-foreground">No commissions yet.</p>}</CardContent></Card>
-          </div>}
         </>}
     </div>
     <ConfirmDialog

@@ -377,20 +377,6 @@ describe("extensionsService contract", () => {
     expect(apiMock.post).toHaveBeenCalledWith("/api/admin/extensions/upgrade", { id: "vendor/one" }, { idempotencyKey: expect.any(String) });
   });
 
-  it("reads affiliate referrers and ledger and submits payout transitions", async () => {
-    apiMock.get.mockResolvedValue({ data: [] });
-    await extensionsService.affiliateReferrers();
-    expect(apiMock.get).toHaveBeenCalledWith("/api/ext/siro/affiliate/referrals");
-    await extensionsService.affiliateLedger();
-    expect(apiMock.get).toHaveBeenCalledWith("/api/ext/siro/affiliate/ledger");
-    apiMock.post.mockResolvedValueOnce({ data: { data: { ok: true } } });
-    await extensionsService.affiliatePayout("l-1", "paid");
-    expect(apiMock.post).toHaveBeenCalledWith(
-      "/api/ext/siro/affiliate/ledger/payout",
-      { ledger_id: "l-1", to: "paid" },
-      { idempotencyKey: expect.any(String) },
-    );
-  });
 });
 
 describe("b2bService contract", () => {

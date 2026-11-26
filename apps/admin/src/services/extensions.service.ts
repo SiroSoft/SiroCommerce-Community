@@ -15,9 +15,6 @@ export type ExtensionItem = {
   admin_ui: { label: string; section: string; href: string; panels: ExtensionPanel[] } | null;
 };
 
-export type AffiliateReferrer = { id: string; code: string; customer_id: string | null; rate: number | null; state: string; created_at: string };
-export type AffiliateLedgerRow = { id: string; order_id: string; code: string; amount_minor: number; currency: string; state: string; created_at: string };
-
 export type ExtensionPanel = { key: string; title: string; type: "stats" | "table"; endpoint: string; permission: string };
 export type ExtensionView = { id: string; label: string; section: string; href: string; panels: ExtensionPanel[] };
 
@@ -242,14 +239,5 @@ export const extensionsService = {
     const json = await response.json().catch(() => ({})) as { data?: { id?: string; version?: string; path?: string }; message?: string };
     if (!response.ok) throw new Error(json.message ?? "Package installation failed");
     return json.data ?? {};
-  },
-  async affiliateReferrers() {
-    return unwrap(await api.get<Envelope<AffiliateReferrer[]> | AffiliateReferrer[]>("/api/ext/siro/affiliate/referrals"));
-  },
-  async affiliateLedger() {
-    return unwrap(await api.get<Envelope<AffiliateLedgerRow[]> | AffiliateLedgerRow[]>("/api/ext/siro/affiliate/ledger"));
-  },
-  async affiliatePayout(ledgerId: string, to: "approved" | "paid" | "rejected") {
-    return unwrap(await api.post<Envelope<unknown> | unknown>("/api/ext/siro/affiliate/ledger/payout", { ledger_id: ledgerId, to }, { idempotencyKey: idempotencyKey() }));
   },
 };

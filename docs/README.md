@@ -44,7 +44,8 @@ engineering/ops docs win; file a docs correction.
 |---|---|---|
 | [`product/SIRO_ECOMMERCE_PRODUCT_CRITERIA.md`](product/SIRO_ECOMMERCE_PRODUCT_CRITERIA.md) | Product constitution, pillars, and acceptance criteria. | CURRENT |
 | [`product/PLATFORM_ROADMAP.md`](product/PLATFORM_ROADMAP.md) | Living shipped/planned platform capability roadmap. | CURRENT |
-| [`product/PRO_EDITION_PLAN.md`](product/PRO_EDITION_PLAN.md) | Pro/Enterprise packaging plan; flags exist, licensing does not. | CURRENT |
+| [`product/LAUNCH_READINESS_SPEC.md`](product/LAUNCH_READINESS_SPEC.md) | Free-tier launch checklist, readiness endpoint and demo seed. | CURRENT |
+| [`product/PRO_EDITION_PLAN.md`](product/PRO_EDITION_PLAN.md) | Private Pro/Enterprise packaging plan; public Community stub only. | PRIVATE |
 | [`product/ECOSYSTEM_TEAM_PLAN_4DEVS.md`](product/ECOSYSTEM_TEAM_PLAN_4DEVS.md) | 4-developer plan, backlog and DoD for Siro-native plugins/themes. | ACTIVE |
 | [`product/ECOSYSTEM_CATALOG_MANAGEMENT_PLAN.md`](product/ECOSYSTEM_CATALOG_MANAGEMENT_PLAN.md) | Free/Pro plugin and theme catalog, admin surfaces, release/update model. | ACTIVE |
 | [`product/COMMERCE_COMPATIBILITY_MATRIX.md`](product/COMMERCE_COMPATIBILITY_MATRIX.md) | Living parity matrix and audit log versus commerce baselines. | CURRENT |
@@ -174,7 +175,7 @@ engineering/ops docs win; file a docs correction.
 |---|---|---|
 | [`operations/CI_CD_RUNBOOK.md`](operations/CI_CD_RUNBOOK.md) | Supported CI/CD deploy, secrets, first run, rollback. | CURRENT |
 | [`operations/EXTENSION_UPDATES.md`](operations/EXTENSION_UPDATES.md) | Extension/theme SemVer, install/upgrade/rollback runbook and checklists. | CURRENT |
-| [`operations/EXTENSION_LICENSE_ISSUANCE.md`](operations/EXTENSION_LICENSE_ISSUANCE.md) | Offline license issuance, key custody, rotation and revocation. | CURRENT |
+| [`operations/EXTENSION_LICENSE_ISSUANCE.md`](operations/EXTENSION_LICENSE_ISSUANCE.md) | Private Pro issuance/key custody; public verification stub only. | PRIVATE |
 | [`operations/PRODUCTION_OPERATIONS.md`](operations/PRODUCTION_OPERATIONS.md) | Queue, preflight, live smoke, reporting/search ops. | CURRENT |
 | [`operations/PRODUCTION_PROOF_RUNBOOK.md`](operations/PRODUCTION_PROOF_RUNBOOK.md) | Non-destructive proof, backup/restore preflight, evidence. | CURRENT |
 | [`operations/PRODUCTION_EVIDENCE_POLICY.md`](operations/PRODUCTION_EVIDENCE_POLICY.md) | Evidence retention, redaction, and freshness policy. | CURRENT |

@@ -104,7 +104,12 @@ Tóm tắt:
 - Affiliate, premium themes, Pro modules.
 - Source/docs/artifacts ở internal + Pro mirror.
 - License-gated; signed artifact; no private key in repo.
-- Pricing/license docs mặc định **private**.
+- Pricing/license docs là **private**.
+- `v0.1.0` từng public 2 tài liệu này. Từ `v0.1.1`, Community chỉ còn stub public:
+  `docs/product/PRO_EDITION_PLAN.md` và
+  `docs/operations/EXTENSION_LICENSE_ISSUANCE.md`; nội dung thật nằm trong
+  internal/Pro repo.
+- Không đưa giá, license issuance, key custody hoặc Pro runbook vào Community.
 
 ### Theme/plugin
 - Mọi package có manifest/theme schema, version, README, tests.
@@ -140,3 +145,84 @@ Tóm tắt:
 - Security/license: Platform team.
 - Catalog/theme/plugin: Ecosystem team.
 - CI/release tooling: Quality & Release team.
+
+## 10. Reading list cho team mới
+
+Đã đối chiếu với GitHub thật. Không link file không tồn tại.
+
+### Bắt buộc — ngày đầu (10 file)
+1. `README.md`
+2. `CONTRIBUTING.md`
+3. `SECURITY.md`
+4. `docs/README.md`
+5. `docs/engineering/TEAM_ONBOARDING.md`
+6. `docs/engineering/RELEASE_MODEL.md`
+7. `docs/engineering/10_CODING_STANDARDS.md`
+8. `docs/engineering/30_TEST_STRATEGY.md`
+9. `docs/engineering/SELF_HOSTED_CI.md`
+10. `AGENTS.md`
+
+Product context thêm:
+- `docs/product/SIRO_ECOMMERCE_PRODUCT_CRITERIA.md`
+- `docs/product/PLATFORM_ROADMAP.md`
+- `docs/product/LAUNCH_READINESS_SPEC.md`
+
+### Platform
+- `docs/foundation/BE_OVERVIEW.md`
+- `docs/foundation/03_API_SPEC.md`
+- `docs/contracts/COMMERCE_SCOPE.md`
+- `docs/contracts/API_SDK_SECURITY_PERFORMANCE.md`
+- `docs/contracts/CONFIGURATION_SPEC.md`
+- `docs/engineering/SECURITY_NOTES.md`
+- `docs/engineering/DEPLOY_SAFETY.md`
+- `docs/engineering/RUNBOOK.md`
+- `docs/engineering/INCIDENT_RUNBOOK.md`
+
+### Experience
+- `docs/admin/ADMIN_UI_IA_SPEC.md`
+- `docs/admin/ADMIN_UI_DESIGN_SYSTEM.md`
+- `docs/admin/ADMIN_UI_SCREEN_SPECS.md`
+- `docs/admin/ADMIN_UI_WORKFLOWS.md`
+- `docs/frontend/FE_IMPLEMENTATION_PLAN.md`
+- `docs/frontend/FE_SCOPE_SWITCHING.md`
+- `docs/frontend/FE_SECURITY_PRIVACY.md`
+- `docs/frontend/FE_TEST_COVERAGE.md`
+- `docs/frontend/FE_THEME_EXTENSION.md`
+- `docs/frontend/FE_THEME_LAYOUT_SPEC.md`
+- `docs/frontend/FE_ACCESSIBILITY_ACCEPTANCE.md`
+- `docs/frontend/FE_PERFORMANCE_BUDGETS.md`
+
+### Ecosystem
+- `docs/contracts/EXTENSION_ECOSYSTEM_SPEC.md`
+- `docs/contracts/EXTENSION_PACKAGING_SPEC.md`
+- `docs/contracts/EXTENSION_UI_SPEC.md`
+- `docs/contracts/THEME_PACKAGE_SPEC.md` — status **P1**, không phải CURRENT
+- `docs/engineering/EXTENSION_BUILD_GUIDE.md`
+- `docs/engineering/EXTENSION_SCOPING.md`
+- `docs/engineering/ECOSYSTEM_OPERATIONS.md`
+- `docs/product/ECOSYSTEM_CATALOG_MANAGEMENT_PLAN.md` — status **ACTIVE**
+
+### Quality & Release
+- `docs/qa/TEST_RULES.md`
+- `docs/qa/TEST_COVERAGE_MATRIX.md`
+- `docs/qa/27_ACCEPTANCE_MATRIX.md`
+- `docs/qa/28_FAILURE_INJECTION_PLAN.md`
+- `docs/qa/UAT.md`
+- `docs/engineering/CI_QUALITY.md`
+- `docs/engineering/DEPLOY_SAFETY.md`
+- `docs/engineering/RUNBOOK.md`
+- `docs/engineering/INCIDENT_RUNBOOK.md`
+- `docs/engineering/RELEASE_MODEL.md`
+- `docs/engineering/SELF_HOSTED_CI.md`
+
+### Pro (chỉ team có quyền private)
+- `SiroCommerce-Pro/README.md`
+- `SiroCommerce-Pro/admin/affiliate/README.md` — file chỉ tồn tại ở Pro repo,
+  không có trong Community.
+- `SiroCommerce-Pro/docs/PRO_EDITION_PLAN.md`
+- `SiroCommerce-Pro/docs/EXTENSION_LICENSE_ISSUANCE.md`
+
+Lưu ý: **không có** `docs/admin/affiliate/README.md` trong cả 3 repo. Không đưa
+đường dẫn này vào list; TODO: viết tài liệu admin Affiliate riêng trong Pro repo
+khi UI được wire lại.
+

@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-26] v0.1.1 Community docs and private Pro documentation
+
+### Changed
+- Pro pricing/license documentation is private from v0.1.1. Community keeps only
+  public stubs for `PRO_EDITION_PLAN.md` and `EXTENSION_LICENSE_ISSUANCE.md`.
+- Added `SECURITY.md`, `CONTRIBUTING.md`, team onboarding reading list, release
+  model and self-hosted CI guidance.
+- Added `LAUNCH_READINESS_SPEC.md` to the documentation index.
+- Corrected reading-list statuses: `THEME_PACKAGE_SPEC` is **P1**;
+  `ECOSYSTEM_CATALOG_MANAGEMENT_PLAN` is **ACTIVE**.
+- Removed the nonexistent `docs/admin/affiliate/README.md` link; Pro Affiliate
+  admin is documented in the private Pro repository (`admin/affiliate/README.md`).
+
+### Fixed
+- CI workflow no longer has the duplicate `if` key in `e2e-visual-linux`.
+
 ## [2026-11-24] Free plugin batch, ecosystem catalog management
 
 ### Added
@@ -22,11 +38,10 @@ All notable changes to this project are documented here. Dates are UTC.
 - Affiliate commercial flip: enable requires a valid Pro/Enterprise license
   listing `siro/affiliate`. Private Pro feed returns Pro metadata only to
   entitled deployments.
-- Premium theme packages `siro/atelier-noir` and `siro/apothecary-calm`
-  (source in the private Pro repository; public catalog metadata and previews
-  remain) with complete local assets, unique preview images and a pharmacy
-  banner-grid section. Still Pro/planned until signed artifacts and license
-  delivery exist.
+- Premium theme packages `siro/atelier-noir` and `siro/apothecary-calm` with
+  complete local assets (logo, hero, banners), unique preview images and a
+  pharmacy banner-grid section. Still Pro/planned until signed artifacts and
+  license delivery exist.
 - Theme diversity pass: 18 presets now use five layout archetypes (editorial,
   luxury, clinical, technical, lifestyle) with distinct section recipes; the
   preview gallery labels each archetype. Premium themes no longer clone the

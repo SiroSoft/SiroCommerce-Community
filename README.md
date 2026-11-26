@@ -2,9 +2,9 @@
 
 MIT-licensed SiroCommerce source for the free/core edition.
 
-**Status: initial clean source export.** The tree is migrated from the private
-monorepo with Pro source removed. Run the full free-only test/build suite before
-calling this a release.
+**Status: v0.1.0 Community source release.** Generated from the private internal
+monorepo with Pro source removed. Free-only backend, storefront and admin tests
+pass; see `SECURITY.md` and `CONTRIBUTING.md` before reporting or contributing.
 
 ## Scope
 

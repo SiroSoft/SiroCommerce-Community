@@ -6,5 +6,5 @@ namespace App;
 
 final class CommerceVersion
 {
-    public const VERSION = '0.1.1';
+    public const VERSION = '0.2.0';
 }

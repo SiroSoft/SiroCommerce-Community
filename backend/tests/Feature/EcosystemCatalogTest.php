@@ -55,12 +55,13 @@ final class EcosystemCatalogTest extends TestCase
 
         self::assertSame(EcosystemCatalogService::SCHEMA, $catalog['schema']);
         self::assertNotSame('', $catalog['generated_at']);
-        self::assertCount(14, $catalog['items']);
+        self::assertCount(15, $catalog['items']);
 
         $ids = array_column($catalog['items'], 'id');
         foreach ([
             'flat-rate',
             'siro/affiliate',
+            'siro/license-portal',
             'siro/contact-widget',
             'siro/free-shipping-banner',
             'siro/product-qa',
@@ -146,7 +147,7 @@ final class EcosystemCatalogTest extends TestCase
             'status' => 'published',
             'latest_version' => '1.0.0',
             'min_core' => '^1.0',
-            'min_commerce' => '^0.1',
+            'min_commerce' => '^0.2',
             'license_required' => false,
             'license_sku' => null,
             'preview_url' => null,
@@ -200,7 +201,7 @@ final class EcosystemCatalogTest extends TestCase
     {
         $service = new EcosystemCatalogService($this->base());
 
-        self::assertCount(9, $service->catalog('plugin')['items']);
+        self::assertCount(10, $service->catalog('plugin')['items']);
         self::assertCount(5, $service->catalog('theme')['items']);
 
         $pro = $service->catalog('all', 'pro');
@@ -210,7 +211,7 @@ final class EcosystemCatalogTest extends TestCase
             self::assertContains($id, $proIds);
         }
 
-        self::assertCount(11, $service->catalog('all', 'free')['items']);
+        self::assertCount(12, $service->catalog('all', 'free')['items']);
 
         $search = $service->catalog('all', 'all', '  AFFILIATE  ');
         self::assertCount(1, $search['items']);
@@ -359,7 +360,7 @@ final class EcosystemCatalogTest extends TestCase
         $catalog = $this->call('GET', '/api/admin/ecosystem/catalog', [], $admin);
         self::assertSame(200, $catalog['status']);
         self::assertSame(EcosystemCatalogService::SCHEMA, $catalog['json']['data']['schema']);
-        self::assertCount(14, $catalog['json']['data']['items']);
+        self::assertCount(15, $catalog['json']['data']['items']);
         self::assertStringNotContainsString('resources', (string) json_encode($catalog['json']));
 
         $theme = $this->call('GET', '/api/admin/ecosystem/catalog?type=theme', [], $admin);
@@ -420,7 +421,7 @@ final class EcosystemCatalogTest extends TestCase
             'status' => 'published',
             'latest_version' => '1.0.0',
             'min_core' => '^1.0',
-            'min_commerce' => '^0.1',
+            'min_commerce' => '^0.2',
             'license_required' => false,
             'license_sku' => null,
             'preview_url' => null,
@@ -536,6 +537,157 @@ final class EcosystemCatalogTest extends TestCase
         self::assertSame([], $tables);
     }
 
+    public function testCatalogProItemsRemainPlannedWithoutArtifactOrSignature(): void
+    {
+        $raw = $this->baseCatalog();
+        foreach ($raw['items'] as $item) {
+            self::assertArrayHasKey('signature', $item);
+            self::assertArrayHasKey('signature_url', $item);
+        }
+
+        $mergedItems = (new EcosystemCatalogService($this->base()))->catalog()['items'];
+        foreach (['siro/affiliate', 'siro/atelier-noir', 'siro/apothecary-calm'] as $id) {
+            $catalogItem = $this->item($raw['items'], $id);
+            self::assertNotNull($catalogItem);
+            self::assertSame('pro', $catalogItem['edition']);
+            self::assertSame('planned', $catalogItem['status']);
+            self::assertNull($catalogItem['artifact_url']);
+            self::assertNull($catalogItem['sha256']);
+            self::assertNull($catalogItem['signature']);
+            self::assertNull($catalogItem['signature_url']);
+
+            $merged = $this->item($mergedItems, $id);
+            self::assertNotNull($merged);
+            self::assertSame('planned', $merged['status']);
+            self::assertNull($merged['artifact_url']);
+            self::assertNull($merged['sha256']);
+        }
+    }
+
+    public function testBuildScriptRequiresSignatureForPublishedProAndStripsItFromPublicFeed(): void
+    {
+        $repoRoot = dirname($this->base());
+        $builder = $repoRoot . '/scripts/ecosystem-catalog/build.php';
+
+        $payload = $this->baseCatalog();
+        foreach ($payload['items'] as &$item) {
+            if (($item['id'] ?? null) === 'siro/affiliate') {
+                $item['status'] = 'published';
+                $item['artifact_url'] = 'https://cdn.example.com/artifacts/siro-affiliate-1.0.0.siro.zip';
+                $item['sha256'] = str_repeat('a', 64);
+                $item['signature'] = null;
+            }
+        }
+        unset($item);
+
+        $missingPath = $this->tempCatalog($payload);
+        $missing = $this->runPhp([PHP_BINARY, $builder, '--in=' . $missingPath, '--check']);
+        self::assertSame(4, $missing['code']);
+        self::assertStringContainsString('signature', $missing['stderr']);
+
+        foreach ($payload['items'] as &$item) {
+            if (($item['id'] ?? null) === 'siro/affiliate') {
+                $item['signature'] = str_repeat('S', 64);
+                $item['signature_url'] = 'https://cdn.example.com/artifacts/siro-affiliate-1.0.0.sig';
+            }
+        }
+        unset($item);
+
+        $validPath = $this->tempCatalog($payload);
+        $valid = $this->runPhp([PHP_BINARY, $builder, '--in=' . $validPath, '--check']);
+        self::assertSame(0, $valid['code'], $valid['stderr']);
+
+        $feedOne = $this->tempFile();
+        $feedTwo = $this->tempFile();
+        self::assertSame(0, $this->runPhp([PHP_BINARY, $builder, '--in=' . $validPath, '--out=' . $feedOne])['code']);
+        self::assertSame(0, $this->runPhp([PHP_BINARY, $builder, '--in=' . $validPath, '--out=' . $feedTwo])['code']);
+
+        $bytesOne = (string) file_get_contents($feedOne);
+        self::assertSame($bytesOne, (string) file_get_contents($feedTwo));
+
+        $decoded = json_decode($bytesOne, true, 512, JSON_THROW_ON_ERROR);
+        self::assertIsArray($decoded);
+        foreach ($decoded['items'] as $publicItem) {
+            self::assertArrayNotHasKey('artifact_url', $publicItem);
+            self::assertArrayNotHasKey('sha256', $publicItem);
+            self::assertArrayNotHasKey('signature', $publicItem);
+            self::assertArrayNotHasKey('signature_url', $publicItem);
+        }
+    }
+
+    public function testPublishProCommandPublishesVerifiedArtifactAndRefusesIncompleteInput(): void
+    {
+        $repoRoot = dirname($this->base());
+        $publisher = $repoRoot . '/scripts/ecosystem-catalog/publish-pro.php';
+        $builder = $repoRoot . '/scripts/ecosystem-catalog/build.php';
+
+        $artifact = $this->tempFile();
+        file_put_contents($artifact, 'artifact-bytes');
+        $sha = hash('sha256', 'artifact-bytes');
+        $signature = str_repeat('S', 64);
+        $url = 'https://cdn.example.com/artifacts/siro-affiliate-1.0.0.siro.zip';
+
+        $catalog = $this->baseCatalog();
+        $path = $this->tempCatalog($catalog);
+
+        $publish = $this->runPhp([
+            PHP_BINARY,
+            $publisher,
+            '--catalog=' . $path,
+            '--id=siro/affiliate',
+            '--version=1.0.0',
+            '--artifact=' . $artifact,
+            '--artifact-url=' . $url,
+            '--sha256=' . $sha,
+            '--signature=' . $signature,
+        ]);
+        self::assertSame(0, $publish['code'], $publish['stderr']);
+
+        $raw = file_get_contents($path);
+        self::assertIsString($raw);
+        $data = json_decode($raw, true, 512, JSON_THROW_ON_ERROR);
+        self::assertIsArray($data);
+        $item = $this->item($data['items'], 'siro/affiliate');
+        self::assertNotNull($item);
+        self::assertSame('published', $item['status']);
+        self::assertSame($url, $item['artifact_url']);
+        self::assertSame($sha, $item['sha256']);
+        self::assertSame($signature, $item['signature']);
+
+        self::assertSame(0, $this->runPhp([PHP_BINARY, $builder, '--in=' . $path, '--check'])['code']);
+
+        $second = $this->tempCatalog($catalog);
+        $before = (string) file_get_contents($second);
+        $missing = $this->runPhp([
+            PHP_BINARY,
+            $publisher,
+            '--catalog=' . $second,
+            '--id=siro/affiliate',
+            '--version=1.0.0',
+            '--artifact=' . $artifact,
+            '--artifact-url=' . $url,
+            '--sha256=' . $sha,
+        ]);
+        self::assertNotSame(0, $missing['code']);
+        self::assertSame($before, (string) file_get_contents($second));
+
+        $third = $this->tempCatalog($catalog);
+        $beforeMismatch = (string) file_get_contents($third);
+        $mismatch = $this->runPhp([
+            PHP_BINARY,
+            $publisher,
+            '--catalog=' . $third,
+            '--id=siro/affiliate',
+            '--version=1.0.0',
+            '--artifact=' . $artifact,
+            '--artifact-url=' . $url,
+            '--sha256=' . str_repeat('b', 64),
+            '--signature=' . $signature,
+        ]);
+        self::assertSame(4, $mismatch['code']);
+        self::assertSame($beforeMismatch, (string) file_get_contents($third));
+    }
+
     private function base(): string
     {
         return dirname(__DIR__, 2);
@@ -578,6 +730,44 @@ final class EcosystemCatalogTest extends TestCase
         $this->tempFiles[] = $path;
 
         return $path;
+    }
+
+    private function tempFile(): string
+    {
+        $path = tempnam(sys_get_temp_dir(), 'siro-catalog-script-');
+        self::assertIsString($path);
+        $this->tempFiles[] = $path;
+
+        return $path;
+    }
+
+    /**
+     * @param list<string> $command
+     * @return array{code: int, stdout: string, stderr: string}
+     */
+    private function runPhp(array $command): array
+    {
+        $descriptors = [
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+            2 => ['pipe', 'w'],
+        ];
+
+        $process = proc_open($command, $descriptors, $pipes, dirname($this->base()));
+        self::assertIsResource($process);
+
+        fclose($pipes[0]);
+        $stdout = stream_get_contents($pipes[1]);
+        $stderr = stream_get_contents($pipes[2]);
+        fclose($pipes[1]);
+        fclose($pipes[2]);
+        $code = proc_close($process);
+
+        return [
+            'code' => $code,
+            'stdout' => $stdout === false ? '' : $stdout,
+            'stderr' => $stderr === false ? '' : $stderr,
+        ];
     }
 
     /**

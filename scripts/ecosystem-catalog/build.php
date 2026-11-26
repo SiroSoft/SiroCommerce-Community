@@ -352,6 +352,40 @@ function optionalSha256(mixed $value, string $where, array &$errors): ?string
 }
 
 /**
+ * A detached artifact signature is a compact, single-line token (base64,
+ * base64url or hex). The overlay never carries private key material; a
+ * signature is public by design. Spaces and control characters are rejected so
+ * the value cannot smuggle a multi-line document or PEM block.
+ */
+function optionalSignature(mixed $value, string $where, array &$errors): ?string
+{
+    if ($value === null) {
+        return null;
+    }
+
+    if (!is_string($value) || trim($value) === '') {
+        $errors[] = sprintf('%s.signature must be null or a non-empty string.', $where);
+
+        return null;
+    }
+
+    if (preg_match('/[\x00-\x1F\x7F\s]/', $value) === 1) {
+        $errors[] = sprintf('%s.signature must not contain whitespace or control characters.', $where);
+
+        return null;
+    }
+
+    $length = strlen($value);
+    if ($length > 8192) {
+        $errors[] = sprintf('%s.signature must be 8192 characters or fewer (got %d).', $where, $length);
+
+        return null;
+    }
+
+    return $value;
+}
+
+/**
  * @param array<mixed> $item
  * @param array<int, int> $seen
  * @return array<string, mixed>
@@ -381,6 +415,8 @@ function normalizeItem(array $item, int $index, array &$errors, array &$seen): a
             'changelog' => null,
             'artifact_url' => null,
             'sha256' => null,
+            'signature' => null,
+            'signature_url' => null,
             'published_at' => null,
             'tags' => [],
         ];
@@ -454,6 +490,8 @@ function normalizeItem(array $item, int $index, array &$errors, array &$seen): a
     $changelog = optionalChangelog($item['changelog'] ?? null, $where, $errors);
     $artifactUrl = optionalUrl($item['artifact_url'] ?? null, 'artifact_url', $where, $errors);
     $sha256 = optionalSha256($item['sha256'] ?? null, $where, $errors);
+    $signature = optionalSignature($item['signature'] ?? null, $where, $errors);
+    $signatureUrl = optionalUrl($item['signature_url'] ?? null, 'signature_url', $where, $errors);
 
     if ($editionValid && $statusValid) {
         if ($edition === 'pro' && $status === 'published') {
@@ -464,10 +502,18 @@ function normalizeItem(array $item, int $index, array &$errors, array &$seen): a
             if ($sha256 === null) {
                 $errors[] = sprintf('%s.sha256 is required before a Pro item can be published.', $where);
             }
+
+            if ($signature === null) {
+                $errors[] = sprintf('%s.signature is required before a Pro item can be published.', $where);
+            }
         }
 
         if ($artifactUrl !== null && $sha256 === null) {
             $errors[] = sprintf('%s.sha256 is required when artifact_url is set.', $where);
+        }
+
+        if ($signature !== null && $artifactUrl === null) {
+            $errors[] = sprintf('%s.artifact_url is required when signature is set.', $where);
         }
     }
 
@@ -507,6 +553,8 @@ function normalizeItem(array $item, int $index, array &$errors, array &$seen): a
         'changelog' => $changelog,
         'artifact_url' => $artifactUrl,
         'sha256' => $sha256,
+        'signature' => $signature,
+        'signature_url' => $signatureUrl,
         'published_at' => is_string($publishedAt) ? $publishedAt : null,
         'tags' => $tags,
     ];
@@ -610,8 +658,9 @@ function encodeFeed(array $feed, string $source): string
 /**
  * Public-safe projection of the validated feed. The overlay never carries
  * installed state, but this also drops license data, artifact URLs/checksums,
- * secrets and filesystem paths so the storefront can serve it as a static
- * asset. Fields are emitted in a fixed order for byte-identical output.
+ * detached signatures/signature URLs, secrets and filesystem paths so the
+ * storefront can serve it as a static asset. Fields are emitted in a fixed order
+ * for byte-identical output.
  *
  * @param array<string, mixed> $feed
  * @return array{schema: string, generated_at: string, items: list<array<string, mixed>>}
@@ -756,4 +805,11 @@ function main(array $argv): void
     exit(EXIT_OK);
 }
 
-main($argv);
+// Run only when executed directly. publish-pro.php requires this file to reuse
+// the validators without triggering the build CLI.
+if (PHP_SAPI === 'cli'
+    && isset($_SERVER['SCRIPT_FILENAME'])
+    && realpath((string) $_SERVER['SCRIPT_FILENAME']) === realpath(__FILE__)
+) {
+    main($argv ?? []);
+}

@@ -32,6 +32,7 @@ use Siro\Core\Console;
  *   changelog: string|null,
  *   artifact_url: string|null,
  *   sha256: string|null,
+ *   signature: string|null,
  *   published_at: string|null,
  *   tags: list<string>
  * }
@@ -55,12 +56,15 @@ use Siro\Core\Console;
  *   license_status: string,
  *   artifact_url: string|null,
  *   sha256: string|null,
+ *   signature: string|null,
  *   preview_url: string|null,
  *   changelog_url: string|null,
  *   changelog: string|null,
  *   installable: bool,
  *   can_update: bool,
  *   action_reason: string|null,
+ *   entitlement: string|null,
+ *   artifact: array<string, mixed>|null,
  *   tags: list<string>
  * }
  * @phpstan-type LicenseStatus array{
@@ -90,6 +94,8 @@ final class EcosystemCatalogService
 
     private ?string $catalogPath;
 
+    private ?ProArtifactService $proArtifacts = null;
+
     /** @var LicenseStatus|null */
     private ?array $license = null;
 
@@ -99,6 +105,16 @@ final class EcosystemCatalogService
             ? rtrim($basePath, DIRECTORY_SEPARATOR)
             : $this->defaultBasePath();
         $this->catalogPath = $catalogPath;
+    }
+
+    /**
+     * Optional seam for tests and future generated wiring.
+     */
+    public function withProArtifactService(ProArtifactService $service): self
+    {
+        $this->proArtifacts = $service;
+
+        return $this;
     }
 
     /**
@@ -153,10 +169,15 @@ final class EcosystemCatalogService
         }
 
         $loaded = $this->load();
-        $items = array_values(array_filter(
-            $this->merge($loaded['items'], 'all'),
-            static fn (array $item): bool => $item['edition'] === 'pro'
-        ));
+        $artifacts = $this->proArtifacts
+            ??= new ProArtifactService($this->basePath, $this->catalogPath);
+        $items = [];
+        foreach ($this->merge($loaded['items'], 'all') as $item) {
+            if ($item['edition'] !== 'pro') {
+                continue;
+            }
+            $items[] = $this->withProArtifact($item, $status, $artifacts);
+        }
 
         return [
             'schema' => $loaded['schema'],
@@ -449,12 +470,15 @@ final class EcosystemCatalogService
             'license_status' => $this->licenseStatusFor($item),
             'artifact_url' => $item['artifact_url'],
             'sha256' => $item['sha256'],
+            'signature' => $item['signature'],
             'preview_url' => $item['preview_url'],
             'changelog_url' => $item['changelog_url'],
             'changelog' => $item['changelog'],
             'installable' => $actions['installable'],
             'can_update' => $actions['can_update'],
             'action_reason' => $actions['action_reason'],
+            'entitlement' => null,
+            'artifact' => null,
             'tags' => $item['tags'],
         ];
     }
@@ -502,12 +526,15 @@ final class EcosystemCatalogService
             'license_status' => 'not_required',
             'artifact_url' => null,
             'sha256' => null,
+            'signature' => null,
             'preview_url' => null,
             'changelog_url' => null,
             'changelog' => null,
             'installable' => $actions['installable'],
             'can_update' => $actions['can_update'],
             'action_reason' => $actions['action_reason'],
+            'entitlement' => null,
+            'artifact' => null,
             'tags' => [],
         ];
     }
@@ -654,6 +681,92 @@ final class EcosystemCatalogService
             || ($item['license_sku'] !== null && in_array($item['license_sku'], $license['extensions'], true));
 
         return $listed ? 'valid' : 'missing';
+    }
+
+    /**
+     * Attach artifact metadata/download token only for entitled Pro items. The
+     * artifact path, signing key and raw license document never leave the
+     * server; the token is short-lived and bound to id+version+sha256.
+     *
+     * @param MergedItem $item
+     * @param LicenseStatus $status
+     * @return MergedItem
+     */
+    private function withProArtifact(array $item, array $status, ProArtifactService $artifacts): array
+    {
+        if (!$this->proItemEntitled($status, $item)) {
+            $item['entitlement'] = 'missing';
+            $item['artifact'] = null;
+            $item['installable'] = false;
+            $item['can_update'] = false;
+            $item['action_reason'] = 'Pro license does not entitle this item';
+
+            return $item;
+        }
+
+        $item['entitlement'] = $status['reason'] === 'grace' ? 'grace' : 'valid';
+        $artifact = $artifacts->metadata($item);
+        if ($artifact['available'] === true && $artifact['sha256'] !== null && $artifact['version'] !== '') {
+            $artifact['download_token'] = $artifacts->issueToken(
+                $item['id'],
+                $artifact['version'],
+                $artifact['sha256'],
+            );
+            $artifact['download_expires_in'] = ProArtifactService::TOKEN_TTL;
+        }
+        $item['artifact'] = $artifact;
+        $this->applyProActionFlags($item, $artifact);
+
+        return $item;
+    }
+
+    /**
+     * @param MergedItem $item
+     * @param array<string, mixed> $artifact
+     */
+    private function applyProActionFlags(array &$item, array $artifact): void
+    {
+        $available = ($artifact['available'] ?? false) === true;
+        $published = $item['status'] === 'published';
+        $compatible = $item['compatible'] === true;
+        $installedNow = in_array($item['installed_state'], self::INSTALLED_STATES, true);
+        $notInstalled = $item['installed_state'] === 'available';
+
+        $item['installable'] = $available && $published && $compatible && $notInstalled;
+        $item['can_update'] = $available && $published && $compatible && $installedNow && $item['update_available'];
+        if ($item['installable'] || $item['can_update']) {
+            $item['action_reason'] = null;
+            return;
+        }
+
+        $reason = $artifact['reason'] ?? null;
+        $item['action_reason'] = match (true) {
+            !$published => 'Pro artifact is not published',
+            !$compatible => 'Incompatible with the current core or commerce version',
+            !$available && is_string($reason) && $reason !== '' => $reason,
+            !$available => 'Signed Pro artifact is not available',
+            $installedNow => 'No newer Pro artifact is available',
+            default => 'This Pro item cannot be installed',
+        };
+    }
+
+    /**
+     * @param LicenseStatus $status
+     * @param MergedItem $item
+     */
+    private function proItemEntitled(array $status, array $item): bool
+    {
+        if (!in_array($status['edition'], ['pro', 'enterprise'], true)) {
+            return false;
+        }
+        if ($status['ok'] !== true || !in_array($status['reason'], ['valid', 'grace'], true)) {
+            return false;
+        }
+        if (in_array('*', $status['extensions'], true) || in_array($item['id'], $status['extensions'], true)) {
+            return true;
+        }
+
+        return $item['license_sku'] !== null && in_array($item['license_sku'], $status['extensions'], true);
     }
 
     /**
@@ -806,6 +919,7 @@ final class EcosystemCatalogService
         if ($sha256 !== null && preg_match('/^[a-f0-9]{64}$/i', $sha256) !== 1) {
             throw $this->invalid($index, 'sha256 is invalid');
         }
+        $signature = $this->signatureValue($data, $index);
 
         $publishedAt = $this->optionalString($data, 'published_at', $index);
         $tags = $this->tags($data, $index);
@@ -828,6 +942,7 @@ final class EcosystemCatalogService
             'changelog' => $changelog,
             'artifact_url' => $artifactUrl,
             'sha256' => $sha256,
+            'signature' => $signature,
             'published_at' => $publishedAt,
             'tags' => $tags,
         ];
@@ -860,6 +975,38 @@ final class EcosystemCatalogService
         }
         if (trim($value) === '') {
             return null;
+        }
+
+        return $value;
+    }
+
+    /**
+     * Optional signature descriptor added by the release pipeline. It never
+     * contains key material; a boolean is accepted as a convenience flag.
+     *
+     * @param array<string, mixed> $data
+     */
+    private function signatureValue(array $data, int $index): ?string
+    {
+        if (!array_key_exists('signature', $data) || $data['signature'] === null) {
+            return null;
+        }
+        $value = $data['signature'];
+        if (is_bool($value)) {
+            return $value ? 'required' : null;
+        }
+        if (!is_string($value)) {
+            throw $this->invalid($index, 'signature must be a string');
+        }
+        $value = trim($value);
+        if ($value === '') {
+            return null;
+        }
+        if (mb_strlen($value) > 128) {
+            throw $this->invalid($index, 'signature must be 128 characters or fewer');
+        }
+        if (preg_match('/[\x00-\x1f\x7f]/', $value) === 1 || str_contains($value, 'PRIVATE KEY')) {
+            throw $this->invalid($index, 'signature is invalid');
         }
 
         return $value;

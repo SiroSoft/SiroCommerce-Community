@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ConfirmDialog } from "@/components/confirm-dialog";
 import { toAdminApiError } from "@/services/api-errors";
-import { extensionsService, type CatalogItem, type ExtensionItem, type ExtensionLicenseSource, type ExtensionLicenseStatus, type ExtensionPackageReport, type ExtensionQualityReport, type ProFeed } from "@/services/extensions.service";
+import { extensionsService, type CatalogItem, type ExtensionItem, type ExtensionLicenseSource, type ExtensionLicenseStatus, type ExtensionPackageReport, type ExtensionQualityReport, type ProFeed, type ProFeedItem } from "@/services/extensions.service";
 
 function messageOf(error: unknown): string {
   return error instanceof Error ? error.message : "The request was not accepted.";
@@ -74,6 +74,33 @@ function licenseLabel(status: string | null): string {
   return LICENSE_LABEL[status] ?? status;
 }
 
+function licenseAllowsItem(item: Pick<CatalogItem, "license_required" | "license_status">): boolean {
+  if (!item.license_required) return true;
+  return item.license_status === "valid" || item.license_status === "grace";
+}
+
+function ProFeedRow({ item, busy, onInstall, onUpdate }: { item: ProFeedItem; busy: boolean; onInstall: (id: string, version?: string) => void; onUpdate: (id: string, version?: string) => void }) {
+  const artifact = item.artifact;
+  const canInstall = item.installable === true;
+  const canUpdate = item.can_update === true;
+  const reason = item.action_reason ?? (artifact?.available === false ? artifact.reason ?? "Signed Pro artifact is not available" : null);
+  return <div className="space-y-2 rounded-md border p-3 text-sm">
+    <div className="flex flex-wrap items-start justify-between gap-2">
+      <div>
+        <p className="font-medium">{item.name ?? item.id}</p>
+        <p className="text-xs text-muted-foreground">{item.id} · v{item.latest_version ?? "—"} · {item.entitlement === "grace" ? "licence in grace" : item.entitlement === "valid" ? "entitled" : "not entitled"}</p>
+      </div>
+      <Badge variant={artifact?.available ? "success" : "outline"}>{artifact?.available ? "Artifact ready" : "No artifact"}</Badge>
+    </div>
+    {artifact?.available ? <p className="text-xs text-muted-foreground">{artifact.filename} · {artifact.signed ? "signed" : "unsigned"} · {artifact.size != null ? `${artifact.size} bytes` : "size unknown"}</p> : null}
+    {reason && <p role="alert" className="rounded-md border border-amber-500/30 bg-amber-500/5 p-2 text-xs text-amber-900 dark:text-amber-200">{reason}</p>}
+    {(canInstall || canUpdate) && <div className="flex flex-wrap gap-2">
+      {canInstall && <Button size="sm" disabled={busy} onClick={() => onInstall(item.id, item.latest_version)}>Install Pro artifact</Button>}
+      {canUpdate && <Button size="sm" variant="outline" disabled={busy} onClick={() => onUpdate(item.id, item.latest_version)}>Update Pro artifact</Button>}
+    </div>}
+  </div>;
+}
+
 function CatalogBadges({ item }: { item: CatalogItem }) {
   return (
     <div className="flex flex-wrap items-center gap-1">
@@ -98,8 +125,8 @@ function actionReasonFor(item: CatalogItem, canInstall: boolean, canUpdate: bool
 function CatalogCard({ item, busy, onInstall, onUpdate }: { item: CatalogItem; busy: boolean; onInstall: (id: string) => void; onUpdate: (id: string) => void }) {
   const preview = safeCatalogHref(item.preview_url);
   const changelogLink = safeCatalogHref(item.changelog_url);
-  const canInstall = item.installable && item.edition !== "pro";
-  const canUpdate = item.can_update && item.edition !== "pro";
+  const canInstall = item.installable && licenseAllowsItem(item);
+  const canUpdate = item.can_update && licenseAllowsItem(item);
   const reason = actionReasonFor(item, canInstall, canUpdate);
   return <Card><CardContent className="space-y-2 p-4">
     <div className="flex flex-wrap items-start justify-between gap-2">
@@ -199,7 +226,7 @@ function CatalogTab({ refreshKey, onMutated, onError }: { refreshKey: number; on
 }
 
 function UpdateCard({ item, busy, onUpdate }: { item: CatalogItem; busy: boolean; onUpdate: (id: string) => void }) {
-  const canUpdate = item.can_update && item.edition !== "pro";
+  const canUpdate = item.can_update && licenseAllowsItem(item);
   const reason = actionReasonFor(item, false, canUpdate);
   return <Card><CardContent className="space-y-2 p-4">
     <div className="flex flex-wrap items-start justify-between gap-2">
@@ -268,6 +295,7 @@ function LicensesTab({ license, refreshKey, onMutated, onError }: { license: Ext
   const [removeOpen, setRemoveOpen] = useState(false);
   const [feed, setFeed] = useState<ProFeed | null>(null);
   const [feedState, setFeedState] = useState<"loading" | "ready" | "forbidden" | "error">("loading");
+  const [proBusy, setProBusy] = useState("");
 
   useEffect(() => {
     let active = true;
@@ -342,6 +370,20 @@ function LicensesTab({ license, refreshKey, onMutated, onError }: { license: Ext
 
   const feedCount = feed?.count ?? feed?.items?.length ?? 0;
 
+  const runProAction = async (action: "install" | "update", id: string, version?: string) => {
+    if (proBusy) return;
+    setProBusy(`${action}:${id}`); onError(undefined);
+    try {
+      if (action === "install") {
+        await extensionsService.proInstall(id, version);
+        onMutated(`${id} installed from the Pro feed. Enable it when ready.`);
+      } else {
+        await extensionsService.proUpdate(id, version);
+        onMutated(`${id} updated from the Pro feed.`);
+      }
+    } catch (cause) { onError(cause); } finally { setProBusy(""); }
+  };
+
   return <div className="space-y-4">
     <Card><CardHeader><CardTitle>License</CardTitle></CardHeader><CardContent className="space-y-2 text-sm">
       {license ? <>
@@ -374,12 +416,16 @@ function LicensesTab({ license, refreshKey, onMutated, onError }: { license: Ext
       </div>
       <p className="text-xs text-muted-foreground">The raw license document is only used for import and is not displayed after it is accepted.</p>
     </CardContent></Card>
-    <Card><CardHeader><CardTitle>Pro feed</CardTitle></CardHeader><CardContent className="space-y-1 text-sm">
+    <Card><CardHeader><CardTitle>Pro feed</CardTitle></CardHeader><CardContent className="space-y-2 text-sm">
       {feedState === "loading" ? <p role="status">Loading Pro feed...</p>
-        : feedState === "forbidden" ? <p role="alert" className="text-muted-foreground">Pro feed requires a valid license.</p>
+        : feedState === "forbidden" ? <><p role="alert" className="text-muted-foreground">Pro feed requires a valid license.</p><p className="text-xs text-muted-foreground">Pro artifacts and install/update actions are blocked until the licence is valid or in grace.</p></>
         : feedState === "error" ? <p role="alert" className="text-destructive">The Pro feed could not be loaded.</p>
-        : <p>Pro feed: {feedCount} item{feedCount === 1 ? "" : "s"}{feed?.generated_at ? ` · generated ${feed.generated_at}` : ""}</p>}
-      {feedState === "ready" && feed?.schema && <p className="text-xs text-muted-foreground">Schema: {feed.schema}</p>}
+        : <>
+          <p>Pro feed: {feedCount} item{feedCount === 1 ? "" : "s"}{feed?.generated_at ? ` · generated ${feed.generated_at}` : ""}</p>
+          {feed?.schema && <p className="text-xs text-muted-foreground">Schema: {feed.schema}</p>}
+          {(feed?.items ?? []).length === 0 ? <p className="text-muted-foreground">No Pro items are listed in the feed.</p>
+            : <div className="space-y-2">{(feed?.items ?? []).map((item) => <ProFeedRow key={item.id} item={item} busy={!!proBusy} onInstall={(id, version) => void runProAction("install", id, version)} onUpdate={(id, version) => void runProAction("update", id, version)} />)}</div>}
+        </>}
     </CardContent></Card>
     <Card><CardHeader><CardTitle>SKU status</CardTitle></CardHeader><CardContent>
       {state === "loading" ? <p role="status">Loading license SKUs...</p>

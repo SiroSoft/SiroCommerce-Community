@@ -16,7 +16,7 @@ Do not describe planned capability as shipped.
 
 | Capability | Status today | Notes |
 |---|---|---|
-| Checked-in catalog overlay | CURRENT (P0/P2) | Source path is `backend/resources/ecosystem/catalog.json`; 14 items (9 plugins, 5 themes; 3 Pro/planned). The build tool exits `3` with a clear message when absent. |
+| Checked-in catalog overlay | CURRENT (P0/P2) | Source path is `backend/resources/ecosystem/catalog.json`; 14 items (9 plugins, 5 themes; 3 Pro/planned). All Pro items stay `planned` with `artifact_url`, `sha256`, `signature` and `signature_url` null. The build tool exits `3` with a clear message when absent. |
 | Catalog feed build/validate tool | CURRENT | `scripts/ecosystem-catalog/build.php`; offline, deterministic, no network. |
 | Catalog read model / admin tabs | CURRENT (P0/P1) | `GET /api/admin/ecosystem/catalog` and `/updates`; Extensions tabs Installed/Catalog/Updates/Licenses; `/storefront/themes` catalog. Bundled free install/update actions exist; read-only metadata otherwise. |
 | Static public feed | CURRENT (P1) | Public-safe feed generated at `apps/storefront/public/ecosystem/catalog.json` and served at `/ecosystem/catalog.json`. Regenerate with `npm run ecosystem:catalog`, drift-check with `npm run ecosystem:catalog:check`. No remote feed server or artifact download endpoint exists. |
@@ -97,6 +97,27 @@ candidate overlay). The default is always
 php scripts/ecosystem-catalog/build.php --in=/tmp/candidate-catalog.json --check
 ```
 
+Publish one Pro item safely with the offline helper after the artifact and its
+detached signature exist:
+
+```bash
+php scripts/ecosystem-catalog/publish-pro.php \
+  --id=siro/affiliate \
+  --version=1.0.0 \
+  --artifact=dist/siro-affiliate-1.0.0.siro.zip \
+  --artifact-url=https://cdn.example.com/siro-affiliate-1.0.0.siro.zip \
+  --sha256=<64 hex characters> \
+  --signature=<detached signature token> \
+  --signature-url=https://cdn.example.com/siro-affiliate-1.0.0.sig
+```
+
+`publish-pro.php` is offline and CLI-only. It refuses unknown or non-Pro items
+and any missing required field, verifies the SHA-256 of a local `--artifact`
+before using it, never stores a filesystem path, validates the whole overlay with
+`build.php`, and then replaces the overlay through a same-directory temporary
+file. Use `--catalog=path` only for a reviewed staging copy and `--dry-run` to
+validate without replacing. It does not change `published_at`.
+
 The public feed is the only feed this tool produces: `--out` writes the
 public-safe projection described in section 2.6. The committed file is the
 reviewed artifact; do not hand-edit it, and do not keep a second untracked copy.
@@ -114,7 +135,11 @@ It covers `php -l`, a valid fixture, deterministic output, sorted items, trailin
 newline, `changelog` forwarding and validation (control characters, the 1000
 character cap, wrong type), `--check-public` pass/drift/missing, duplicate ids,
 invalid type/edition/status, unsafe URLs, invalid `sha256`, the Pro
-`license_required` rule, secret-like fields, a missing source and a usage error.
+`license_required` rule, planned Pro without artifact/sha256/signature, published
+Pro missing any of those three fields, secret-like fields, a missing source and a
+usage error. It also covers `publish-pro.php`: a verified local artifact,
+determinism, unknown/non-Pro items, a missing signature, a checksum mismatch and
+`--dry-run` leaving the overlay unchanged.
 
 ### 2.3 Determinism contract
 
@@ -147,14 +172,18 @@ The build fails closed when any of these is violated:
 - `name` and numeric SemVer `latest_version` are present;
 - `license_required` is a boolean; Pro items must set `true` and Free items must
   set `false`;
-- `preview_url`, `changelog_url` and `artifact_url` are `null`, `https://` URLs or
-  root-relative paths; `javascript:`, `data:`, `http:`, protocol-relative (`//`)
-  and credential-bearing URLs are rejected;
+- `preview_url`, `changelog_url`, `artifact_url` and `signature_url` are `null`,
+  `https://` URLs or root-relative paths; `javascript:`, `data:`, `http:`,
+  protocol-relative (`//`) and credential-bearing URLs are rejected;
 - `sha256` is `null` or exactly 64 hexadecimal characters;
+- `signature` is `null` or a single non-empty token with no whitespace or
+  control characters (detached signature/reference, never key material);
 - `changelog` is `null` or plain text of at most 1000 characters with no control
   characters other than newlines;
-- a published Pro item has both `artifact_url` and `sha256`;
-- any item with `artifact_url` has a `sha256`;
+- a published Pro item has `artifact_url`, `sha256` and `signature`; a planned Pro
+  item may leave all three `null`;
+- any item with `artifact_url` has a `sha256`, and any item with `signature` has
+  an `artifact_url`;
 - private key PEM blocks and secret-like fields (`private_key`, `secret`,
   `password`, `api_key`, `authorization`, and similar) are rejected.
 
@@ -183,8 +212,8 @@ P1 ships a static public feed instead of a feed server:
   `description`, `vendor`, `edition`, `status`, `latest_version`, `min_core`,
   `min_commerce`, `preview_url`, `changelog_url`, `changelog`, `published_at`
   and `tags`. License data (`license_required`, `license_sku`, license status),
-  installed/update runtime state, artifact URLs and `sha256`, secrets and
-  filesystem paths are **not** in the public feed.
+  installed/update runtime state, artifact URLs, `sha256`, `signature`,
+  `signature_url`, secrets and filesystem paths are **not** in the public feed.
 - **`changelog`**: optional plain text, at most 1000 characters, newlines
   allowed; other control characters are rejected. It is forwarded verbatim, and
   `null` when the overlay omits it, so the tool works before and after the P1-A
@@ -206,7 +235,8 @@ P1 ships a static public feed instead of a feed server:
   nosniff`; the feed is public, read-only metadata and must never contain
   credentials, license documents, private keys, customer data or filesystem
   paths. No feed signing is implemented; the builder only validates metadata and
-  emits deterministic JSON.
+  emits deterministic JSON. The Pro `signature` field is a detached artifact
+  signature used to gate publication, not a signature over the feed.
 
 ## 3. Free release flow
 
@@ -312,9 +342,32 @@ For a Pro item:
   once it exists; do not publish a paid artifact URL in the public catalog before
   licensing is enforced;
 - `sha256` is the lowercase checksum of the exact artifact bytes;
+- `signature` is the detached artifact signature token required before a Pro item
+  can be `published`; `signature_url` is optional and points at the detached
+  signature file when one is published. A planned Pro item may leave all three
+  (`artifact_url`, `sha256`, `signature`) null;
 - `status` remains `planned` until the P2 gates pass; then `published`;
-- the signature lives in the package (`signature.json`). The catalog stores only
-  the artifact URL and checksum, never signature bytes or key material.
+- the package also carries its signature in `signature.json`. The catalog stores
+  the detached signature token and optional URL, never private keys or key
+  material.
+
+Publish the reviewed entry with the guarded helper instead of hand-editing the
+overlay:
+
+```bash
+php scripts/ecosystem-catalog/publish-pro.php \
+  --id=siro/affiliate \
+  --version=1.0.0 \
+  --artifact=dist/siro-affiliate-1.0.0.siro.zip \
+  --artifact-url=https://cdn.example.com/siro-affiliate-1.0.0.siro.zip \
+  --sha256=<64 hex characters> \
+  --signature=<detached signature token> \
+  --signature-url=https://cdn.example.com/siro-affiliate-1.0.0.sig
+```
+
+It refuses missing fields, unknown/non-Pro items and a local artifact whose
+SHA-256 does not match, then validates the whole overlay with `build.php` before
+an atomic replace. Use `--dry-run` to validate without writing.
 
 Then run:
 
@@ -499,8 +552,12 @@ expiry is the current control; marketplace-grade revocation remains P2/P3.
 ## 9. Artifact checksum and signature
 
 - `sha256` is exactly 64 hex characters; the build tool lowercases it.
-- The catalog stores `artifact_url` and `sha256` only. It never stores private
-  keys, license documents or signature secrets.
+- The catalog stores `artifact_url`, `sha256`, the detached `signature` token and
+  an optional `signature_url`. It never stores private keys, license documents or
+  signing secrets. A published Pro item requires all of `artifact_url`, `sha256`
+  and `signature`; a public feed strips them.
+- `publish-pro.php` verifies a local artifact's SHA-256 and refuses missing
+  fields before it replaces the overlay.
 - Package signature: `signature.json` inside the `.zip`, verified with
   `extension:verify --require-signature` and public keys from
   `EXTENSION_SIGNING_PUBLIC_KEYS`. Ed25519 is the package-signature contract in
@@ -573,7 +630,8 @@ procedures, or a core deploy rollback. Use the main
 - [ ] Artifact `sha256` computed from the exact publishable bytes and recorded.
 - [ ] Free: QIT passed (signature optional unless signed).
 - [ ] Pro: signed, `extension:verify --require-signature` passed, QIT passed,
-      `license_required=true`, `license_sku` set, entitlement path ready.
+      `license_required=true`, `license_sku` set, entitlement path ready, and
+      `publish-pro.php` has set `artifact_url`, `sha256` and `signature`.
 - [ ] URLs are HTTPS/root-relative; no `javascript:`/`data:`/credentials.
 - [ ] No secrets, private keys, license documents or filesystem paths in the
       catalog/feed.

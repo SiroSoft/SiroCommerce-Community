@@ -105,6 +105,8 @@ function catalogItem(string $id, array $overrides = []): array
         'changelog_url' => null,
         'artifact_url' => null,
         'sha256' => null,
+        'signature' => null,
+        'signature_url' => null,
         'published_at' => '2026-11-24',
         'tags' => ['fixture'],
     ], $overrides);
@@ -144,6 +146,7 @@ try {
                 'license_sku' => 'siro-affiliate',
                 'artifact_url' => 'https://cdn.example.com/artifacts/siro-affiliate-1.0.0.siro.zip',
                 'sha256' => str_repeat('A', 64),
+                'signature' => str_repeat('S', 64),
             ]),
         ],
     ];
@@ -183,7 +186,16 @@ try {
         'missing changelog should be forwarded as null'
     );
 
-    $publicForbidden = ['license_required', 'license_sku', 'artifact_url', 'sha256', 'installed_state', 'license_status'];
+    $publicForbidden = [
+        'license_required',
+        'license_sku',
+        'artifact_url',
+        'sha256',
+        'signature',
+        'signature_url',
+        'installed_state',
+        'license_status',
+    ];
     foreach ($decoded['items'] as $publicItem) {
         foreach ($publicForbidden as $forbidden) {
             assertThat(
@@ -244,6 +256,59 @@ try {
     assertThat(str_contains($invalidCheck['stderr'], 'license_required'), 'Pro license rule was not reported');
     echo "PASS build.php rejects invalid fixtures with exit 4\n";
 
+    $plannedProPath = $tempRoot . DIRECTORY_SEPARATOR . 'planned-pro-catalog.json';
+    writeJson($plannedProPath, [
+        'schema' => 'siro.ecosystem-catalog/1',
+        'generated_at' => '2026-11-24T00:00:00Z',
+        'items' => [
+            catalogItem('siro/planned-pro', [
+                'edition' => 'pro',
+                'status' => 'planned',
+                'license_required' => true,
+                'license_sku' => 'siro-planned-pro',
+                'artifact_url' => null,
+                'sha256' => null,
+                'signature' => null,
+            ]),
+        ],
+    ]);
+    $plannedProCheck = runCommand([PHP_BINARY, $builder, '--in=' . $plannedProPath, '--check'], $repoRoot);
+    assertThat($plannedProCheck['code'] === 0, 'planned Pro without artifact/sha/signature should be valid: ' . $plannedProCheck['stderr']);
+    echo "PASS build.php accepts a planned Pro item without artifact, sha256 or signature\n";
+
+    $publishedProFields = [
+        'artifact_url' => 'https://cdn.example.com/artifacts/siro-pro-1.0.0.siro.zip',
+        'sha256' => str_repeat('a', 64),
+        'signature' => str_repeat('S', 64),
+    ];
+    foreach (['artifact_url', 'sha256', 'signature'] as $missingField) {
+        $missingPath = $tempRoot . DIRECTORY_SEPARATOR . 'published-pro-missing-' . $missingField . '.json';
+        $overrides = [
+            'edition' => 'pro',
+            'status' => 'published',
+            'license_required' => true,
+            'license_sku' => 'siro-pro',
+        ] + $publishedProFields;
+        $overrides[$missingField] = null;
+
+        writeJson($missingPath, [
+            'schema' => 'siro.ecosystem-catalog/1',
+            'generated_at' => '2026-11-24T00:00:00Z',
+            'items' => [catalogItem('siro/published-pro', $overrides)],
+        ]);
+
+        $missingCheck = runCommand([PHP_BINARY, $builder, '--in=' . $missingPath, '--check'], $repoRoot);
+        assertThat(
+            $missingCheck['code'] === 4,
+            sprintf('published Pro missing %s should exit 4, got %d', $missingField, $missingCheck['code'])
+        );
+        assertThat(
+            str_contains($missingCheck['stderr'], $missingField),
+            sprintf('published Pro missing %s was not reported', $missingField)
+        );
+    }
+    echo "PASS build.php rejects published Pro without artifact_url, sha256 or signature with exit 4\n";
+
     $changelogPath = $tempRoot . DIRECTORY_SEPARATOR . 'changelog-catalog.json';
     writeJson($changelogPath, [
         'schema' => 'siro.ecosystem-catalog/1',
@@ -291,6 +356,185 @@ try {
     $usageCheck = runCommand([PHP_BINARY, $builder, '--bogus'], $repoRoot);
     assertThat($usageCheck['code'] === 2, 'unknown option should exit 2, got ' . $usageCheck['code']);
     echo "PASS build.php reports usage errors with exit 2\n";
+
+    $publisher = __DIR__ . DIRECTORY_SEPARATOR . 'publish-pro.php';
+    $publishLint = runCommand([PHP_BINARY, '-l', $publisher], $repoRoot);
+    assertThat($publishLint['code'] === 0, 'php -l publish-pro.php failed: ' . $publishLint['stderr'] . $publishLint['stdout']);
+    echo "PASS php -l publish-pro.php\n";
+
+    $publishFixture = [
+        'schema' => 'siro.ecosystem-catalog/1',
+        'generated_at' => '2026-11-24T00:00:00Z',
+        'items' => [
+            catalogItem('siro/affiliate', [
+                'name' => 'Affiliate',
+                'edition' => 'pro',
+                'status' => 'planned',
+                'license_required' => true,
+                'license_sku' => 'siro-affiliate',
+            ]),
+            catalogItem('siro/free-fixture', ['status' => 'published']),
+        ],
+    ];
+    $publishFixturePath = static function (string $name) use ($tempRoot, $publishFixture): string {
+        $path = $tempRoot . DIRECTORY_SEPARATOR . $name;
+        writeJson($path, $publishFixture);
+
+        return $path;
+    };
+
+    $artifactBytes = 'selftest-artifact-payload';
+    $artifactPath = $tempRoot . DIRECTORY_SEPARATOR . 'siro-affiliate-1.0.0.siro.zip';
+    file_put_contents($artifactPath, $artifactBytes, LOCK_EX);
+    $artifactSha = hash('sha256', $artifactBytes);
+    $artifactSignature = str_repeat('S', 64);
+    $artifactUrl = 'https://cdn.example.com/artifacts/siro-affiliate-1.0.0.siro.zip';
+
+    $publishPath = $publishFixturePath('publish-catalog.json');
+    $publishSuccess = runCommand([
+        PHP_BINARY,
+        $publisher,
+        '--catalog=' . $publishPath,
+        '--id=siro/affiliate',
+        '--version=1.0.0',
+        '--artifact=' . $artifactPath,
+        '--artifact-url=' . $artifactUrl,
+        '--sha256=' . $artifactSha,
+        '--signature=' . $artifactSignature,
+    ], $repoRoot);
+    assertThat($publishSuccess['code'] === 0, 'publish-pro success failed: ' . $publishSuccess['stderr']);
+    assertThat(str_contains($publishSuccess['stdout'], 'published siro/affiliate 1.0.0'), 'publish-pro success output is unclear');
+
+    $publishedData = json_decode((string) file_get_contents($publishPath), true, 512, JSON_THROW_ON_ERROR);
+    $publishedItem = null;
+    foreach ($publishedData['items'] as $candidate) {
+        if (($candidate['id'] ?? null) === 'siro/affiliate') {
+            $publishedItem = $candidate;
+        }
+    }
+    assertThat($publishedItem !== null, 'publish-pro did not keep the catalog item');
+    assertThat($publishedItem['status'] === 'published', 'publish-pro did not set status=published');
+    assertThat($publishedItem['latest_version'] === '1.0.0', 'publish-pro did not set latest_version');
+    assertThat($publishedItem['artifact_url'] === $artifactUrl, 'publish-pro did not set artifact_url');
+    assertThat($publishedItem['sha256'] === $artifactSha, 'publish-pro did not set sha256');
+    assertThat($publishedItem['signature'] === $artifactSignature, 'publish-pro did not set signature');
+    assertThat($publishedItem['signature_url'] === null, 'publish-pro should clear an absent signature_url');
+
+    $publishedBuild = runCommand([PHP_BINARY, $builder, '--in=' . $publishPath, '--check'], $repoRoot);
+    assertThat($publishedBuild['code'] === 0, 'published catalog failed build validation: ' . $publishedBuild['stderr']);
+    echo "PASS publish-pro.php publishes a Pro item with a verified local artifact\n";
+
+    $detOne = $publishFixturePath('publish-deterministic-one.json');
+    $detTwo = $publishFixturePath('publish-deterministic-two.json');
+    $publishArguments = [
+        PHP_BINARY,
+        $publisher,
+        '--id=siro/affiliate',
+        '--version=1.0.0',
+        '--artifact=' . $artifactPath,
+        '--artifact-url=' . $artifactUrl,
+        '--sha256=' . $artifactSha,
+        '--signature=' . $artifactSignature,
+    ];
+    $detRunOne = runCommand(array_merge($publishArguments, ['--catalog=' . $detOne]), $repoRoot);
+    $detRunTwo = runCommand(array_merge($publishArguments, ['--catalog=' . $detTwo]), $repoRoot);
+    assertThat($detRunOne['code'] === 0, 'deterministic publish one failed: ' . $detRunOne['stderr']);
+    assertThat($detRunTwo['code'] === 0, 'deterministic publish two failed: ' . $detRunTwo['stderr']);
+    assertThat(
+        (string) file_get_contents($detOne) === (string) file_get_contents($detTwo),
+        'two publishes from the same input are not byte-identical'
+    );
+    echo "PASS publish-pro.php is deterministic\n";
+
+    $beforeMissingSignature = $publishFixturePath('publish-missing-signature.json');
+    $missingSignatureBytes = (string) file_get_contents($beforeMissingSignature);
+    $missingSignature = runCommand([
+        PHP_BINARY,
+        $publisher,
+        '--catalog=' . $beforeMissingSignature,
+        '--id=siro/affiliate',
+        '--version=1.0.0',
+        '--artifact=' . $artifactPath,
+        '--artifact-url=' . $artifactUrl,
+        '--sha256=' . $artifactSha,
+    ], $repoRoot);
+    assertThat($missingSignature['code'] === 2, 'publish-pro without signature should exit 2, got ' . $missingSignature['code']);
+    assertThat(
+        (string) file_get_contents($beforeMissingSignature) === $missingSignatureBytes,
+        'publish-pro changed the catalog when signature was missing'
+    );
+
+    $mismatchPath = $publishFixturePath('publish-checksum-mismatch.json');
+    $mismatchBytes = (string) file_get_contents($mismatchPath);
+    $mismatch = runCommand([
+        PHP_BINARY,
+        $publisher,
+        '--catalog=' . $mismatchPath,
+        '--id=siro/affiliate',
+        '--version=1.0.0',
+        '--artifact=' . $artifactPath,
+        '--artifact-url=' . $artifactUrl,
+        '--sha256=' . str_repeat('b', 64),
+        '--signature=' . $artifactSignature,
+    ], $repoRoot);
+    assertThat($mismatch['code'] === 4, 'publish-pro checksum mismatch should exit 4, got ' . $mismatch['code']);
+    assertThat(str_contains($mismatch['stderr'], 'mismatch'), 'publish-pro checksum mismatch message is unclear');
+    assertThat(
+        (string) file_get_contents($mismatchPath) === $mismatchBytes,
+        'publish-pro changed the catalog after a checksum mismatch'
+    );
+
+    $unknownPath = $publishFixturePath('publish-unknown-id.json');
+    $unknown = runCommand([
+        PHP_BINARY,
+        $publisher,
+        '--catalog=' . $unknownPath,
+        '--id=siro/not-real',
+        '--version=1.0.0',
+        '--artifact=' . $artifactPath,
+        '--artifact-url=' . $artifactUrl,
+        '--sha256=' . $artifactSha,
+        '--signature=' . $artifactSignature,
+    ], $repoRoot);
+    assertThat($unknown['code'] === 4, 'publish-pro unknown id should exit 4, got ' . $unknown['code']);
+
+    $freePath = $publishFixturePath('publish-free-item.json');
+    $free = runCommand([
+        PHP_BINARY,
+        $publisher,
+        '--catalog=' . $freePath,
+        '--id=siro/free-fixture',
+        '--version=1.0.0',
+        '--artifact=' . $artifactPath,
+        '--artifact-url=' . $artifactUrl,
+        '--sha256=' . $artifactSha,
+        '--signature=' . $artifactSignature,
+    ], $repoRoot);
+    assertThat($free['code'] === 4, 'publish-pro free item should exit 4, got ' . $free['code']);
+
+    $dryRunPath = $publishFixturePath('publish-dry-run.json');
+    $dryRunBytes = (string) file_get_contents($dryRunPath);
+    $dryRun = runCommand(array_merge($publishArguments, ['--catalog=' . $dryRunPath, '--dry-run']), $repoRoot);
+    assertThat($dryRun['code'] === 0, 'publish-pro dry-run should exit 0, got ' . $dryRun['code']);
+    assertThat(str_contains($dryRun['stdout'], 'DRY RUN'), 'publish-pro dry-run output is unclear');
+    assertThat(
+        (string) file_get_contents($dryRunPath) === $dryRunBytes,
+        'publish-pro dry-run changed the catalog'
+    );
+
+    $urlPath = $publishFixturePath('publish-url-artifact.json');
+    $urlPublish = runCommand([
+        PHP_BINARY,
+        $publisher,
+        '--catalog=' . $urlPath,
+        '--id=siro/affiliate',
+        '--version=1.0.0',
+        '--artifact=' . $artifactUrl,
+        '--sha256=' . $artifactSha,
+        '--signature=' . $artifactSignature,
+    ], $repoRoot);
+    assertThat($urlPublish['code'] === 0, 'publish-pro URL artifact failed: ' . $urlPublish['stderr']);
+    echo "PASS publish-pro.php refuses missing signature, checksum mismatch and non-Pro items\n";
 
     echo "All ecosystem catalog self-tests passed.\n";
     exit(0);

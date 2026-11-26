@@ -12,11 +12,11 @@ final class ComposerDiscoveredExtension implements ExtensionInterface
 {
     public static function id(): string { return 'acme/composer'; }
     public static function compatibleCore(): string { return '^1.0'; }
-    public static function compatibleCommerce(): string { return '^0.1'; }
+    public static function compatibleCommerce(): string { return '^0.2'; }
     /** @return array<string, mixed> */
     public function manifest(): array
     {
-        return ['id' => self::id(), 'version' => '1.0.0', 'requires' => ['core' => '^1.0', 'commerce' => '^0.1'], 'capabilities' => [], 'permissions' => [], 'migrations' => [], 'routes' => []];
+        return ['id' => self::id(), 'version' => '1.0.0', 'requires' => ['core' => '^1.0', 'commerce' => '^0.2'], 'capabilities' => [], 'permissions' => [], 'migrations' => [], 'routes' => []];
     }
     /** @return array<string, int|string> */
     public function config(): array { return []; }

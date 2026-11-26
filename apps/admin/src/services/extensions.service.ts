@@ -54,14 +54,39 @@ export type ExtensionLicenseStatus = {
   stored: boolean;
 };
 
+export type ProArtifact = {
+  id?: string;
+  version?: string;
+  available?: boolean;
+  filename?: string | null;
+  sha256?: string | null;
+  size?: number | null;
+  signed?: boolean;
+  reason?: string | null;
+  download_token?: string;
+  download_expires_in?: number;
+};
+
 export type ProFeedItem = {
   id: string;
   type?: CatalogItemType;
   name?: string;
+  description?: string;
   edition?: CatalogItemEdition;
   latest_version?: string;
+  installed_version?: string | null;
+  installed_state?: string;
+  update_available?: boolean;
+  compatible?: boolean;
   license_sku?: string | null;
   license_status?: CatalogLicenseStatus;
+  entitlement?: "valid" | "grace" | "missing";
+  signature?: string | null;
+  artifact?: ProArtifact | null;
+  installable?: boolean;
+  can_update?: boolean;
+  action_reason?: string | null;
+  tags?: string[];
 };
 
 export type ProFeed = {
@@ -95,6 +120,7 @@ export type CatalogItem = {
   license_status: CatalogLicenseStatus;
   artifact_url: string | null;
   sha256: string | null;
+  signature?: string | null;
   preview_url: string | null;
   changelog_url: string | null;
   changelog: string | null;
@@ -173,6 +199,20 @@ export const extensionsService = {
   },
   async proFeed() {
     return unwrap(await api.get<Envelope<ProFeed> | ProFeed>("/api/admin/ecosystem/pro-feed"));
+  },
+  async proInstall(id: string, version?: string) {
+    return unwrap(await api.post<Envelope<unknown> | unknown>(
+      "/api/admin/ecosystem/pro/install",
+      version ? { id, version } : { id },
+      { idempotencyKey: idempotencyKey() },
+    ));
+  },
+  async proUpdate(id: string, version?: string) {
+    return unwrap(await api.post<Envelope<unknown> | unknown>(
+      "/api/admin/ecosystem/pro/update",
+      version ? { id, version } : { id },
+      { idempotencyKey: idempotencyKey() },
+    ));
   },
   async catalog(params: CatalogQuery = {}) {
     const query: Record<string, string> = {

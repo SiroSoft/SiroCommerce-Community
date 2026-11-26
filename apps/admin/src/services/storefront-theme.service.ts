@@ -114,13 +114,31 @@ export type EcosystemCatalogItem = {
 };
 export const PRO_THEME_LOCK_REASON = "Pro theme requires license and signed artifact";
 export type ThemeCatalogAvailability = { openable: boolean; reason: string | null };
+type ThemeAvailabilityInput = Pick<EcosystemCatalogItem, "edition" | "status"> &
+  Partial<Pick<EcosystemCatalogItem, "license_required" | "license_status" | "license_sku">>;
 
-/** A catalog theme is only importable into the builder when it is a published free package. */
-export function themeCatalogAvailability(
-  item: Pick<EcosystemCatalogItem, "edition" | "status">,
-): ThemeCatalogAvailability {
+const ENTITLED_LICENSE_STATUSES = new Set<EcosystemCatalogItem["license_status"]>(["valid", "grace"]);
+
+function proThemeLockReason(item: ThemeAvailabilityInput): string {
+  if (item.status === "planned") return PRO_THEME_LOCK_REASON;
+  if (item.license_required === true) {
+    return item.license_sku
+      ? `Pro license required. Activate a valid ${item.license_sku} license to import or publish this theme.`
+      : "Pro license required. Activate a valid Pro license to import or publish this theme.";
+  }
+  return PRO_THEME_LOCK_REASON;
+}
+
+/**
+ * A catalog theme is only importable into the builder when it is a published
+ * free package, or a published Pro package with a valid/in-grace license.
+ * Planned or unlicensed Pro packages stay locked and explain why.
+ */
+export function themeCatalogAvailability(item: ThemeAvailabilityInput): ThemeCatalogAvailability {
   if (item.edition === "free" && item.status === "published") return { openable: true, reason: null };
-  if (item.edition === "pro" || item.status === "planned") return { openable: false, reason: PRO_THEME_LOCK_REASON };
+  const licenseEntitled = item.license_status !== undefined && ENTITLED_LICENSE_STATUSES.has(item.license_status);
+  if (item.edition === "pro" && item.status === "published" && licenseEntitled) return { openable: true, reason: null };
+  if (item.edition === "pro" || item.status === "planned") return { openable: false, reason: proThemeLockReason(item) };
   return { openable: false, reason: "Only published free themes can be imported." };
 }
 
@@ -348,6 +366,18 @@ export function validateThemePackage(value: unknown): ThemePackageImportResult {
   const homepage = record.homepage;
   const sections = homepage && typeof homepage === "object" && !Array.isArray(homepage) ? (homepage as Record<string, unknown>).sections : undefined;
   if (!Array.isArray(sections) || sections.length === 0) return { ok: false, error: "Theme package homepage.sections must contain at least one section." };
+  const license = record.license;
+  if (license !== undefined && license !== null) {
+    if (typeof license !== "object" || Array.isArray(license)) return { ok: false, error: "Theme package license must be an object." };
+    const block = license as Record<string, unknown>;
+    if (block.required !== undefined && typeof block.required !== "boolean") return { ok: false, error: "Theme package license.required must be a boolean." };
+    if (block.sku !== undefined && block.sku !== null && typeof block.sku !== "string") return { ok: false, error: "Theme package license.sku must be a string." };
+    if (block.required === true) {
+      if (typeof block.sku !== "string" || !/^[a-z0-9][a-z0-9._-]{2,63}$/.test(block.sku)) return { ok: false, error: "Theme package license.sku is required for licensed themes." };
+    } else if (typeof block.sku === "string" && block.sku.trim() !== "") {
+      return { ok: false, error: "Theme package license.sku must be null when the license is not required." };
+    }
+  }
   return { ok: true, package: record };
 }
 

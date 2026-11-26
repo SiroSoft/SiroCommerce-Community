@@ -230,7 +230,7 @@ final class EcosystemProFeedTest extends TestCase
         $encoded = (string) json_encode($response['json']);
         self::assertStringNotContainsString('lic_top_secret', $encoded);
         self::assertStringNotContainsString('secret-feature', $encoded);
-        self::assertStringNotContainsString('signature', $encoded);
+        self::assertArrayNotHasKey('signature', $data);
         self::assertStringNotContainsString('BEGIN PUBLIC KEY', $encoded);
         self::assertStringNotContainsString($this->publicKeyPem, $encoded);
         self::assertStringNotContainsString($this->tempDir, $encoded);

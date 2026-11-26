@@ -1,0 +1,79 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/license-portal",
+  "type": "module",
+  "name": "License Portal",
+  "description": "Store/channel scoped Pro license delivery with signed license validation, one-time download links and order.paid billing hooks.",
+  "version": "1.0.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.2"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\LicensePortal\\Extension",
+  "capabilities": [
+    "license-portal:read",
+    "license-portal:manage"
+  ],
+  "permissions": [
+    "license-portal:manage"
+  ],
+  "migrations": [
+    "migrations/20261126000001_create_ext_license_portal_tables.php"
+  ],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "License portal",
+      "section": "Commerce"
+    },
+    "storefront": []
+  },
+  "admin": {
+    "label": "License portal",
+    "section": "Commerce",
+    "panels": [
+      {
+        "key": "overview",
+        "title": "Delivery overview",
+        "type": "stats",
+        "endpoint": "admin/overview",
+        "permission": "license-portal:manage"
+      },
+      {
+        "key": "deliveries",
+        "title": "License deliveries",
+        "type": "table",
+        "endpoint": "admin/overview",
+        "permission": "license-portal:manage"
+      }
+    ]
+  },
+  "config": {
+    "token_ttl_hours": 168,
+    "max_token_ttl_hours": 720,
+    "sku_map": {
+      "siro-pro-license": "siro-pro"
+    },
+    "license_sku_prefixes": [
+      "siro-pro-",
+      "siro-license-"
+    ]
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-license-portal",
+    "features": [
+      "license-portal"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

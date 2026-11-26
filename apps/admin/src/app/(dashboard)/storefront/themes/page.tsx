@@ -83,12 +83,18 @@ function ThemeCard({ item }: { item: EcosystemCatalogItem }) {
           <div className="flex flex-wrap justify-end gap-1">
             <Badge variant={item.edition === "pro" ? "default" : "secondary"}>{item.edition === "pro" ? "Pro" : "Free"}</Badge>
             <Badge variant="outline">{STATUS_LABELS[item.status] ?? item.status}</Badge>
+            {item.license_required && <Badge variant="warning">License required</Badge>}
             {item.update_available && <Badge variant="warning">Update available</Badge>}
           </div>
         </div>
       </CardHeader>
       <CardContent className="space-y-3">
         {item.description && <p className="text-sm text-muted-foreground">{item.description}</p>}
+        {item.license_required && (
+          <p className="text-xs text-muted-foreground">
+            License SKU: {item.license_sku ?? "Pro"} - import and publish stay locked until a valid license is activated.
+          </p>
+        )}
         <div className="flex flex-wrap gap-2">
           <Badge variant="outline">Latest v{item.latest_version}</Badge>
           {item.installed_version && <Badge variant="outline">Installed v{item.installed_version}</Badge>}

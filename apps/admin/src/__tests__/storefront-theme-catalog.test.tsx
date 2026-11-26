@@ -128,6 +128,18 @@ describe("storefront theme catalog service", () => {
     expect(themeCatalogAvailability({ edition: "free", status: "planned" })).toEqual({ openable: false, reason: PRO_THEME_LOCK_REASON });
     expect(themeCatalogAvailability({ edition: "free", status: "deprecated" }).openable).toBe(false);
   });
+
+  it("opens published Pro themes only with a valid or in-grace license", () => {
+    const base = { edition: "pro" as const, status: "published", license_required: true, license_sku: "siro-theme-atelier-noir" };
+    expect(themeCatalogAvailability({ ...base, license_status: "valid" })).toEqual({ openable: true, reason: null });
+    expect(themeCatalogAvailability({ ...base, license_status: "grace" })).toEqual({ openable: true, reason: null });
+    expect(themeCatalogAvailability({ ...base, license_status: "missing" })).toEqual({
+      openable: false,
+      reason: "Pro license required. Activate a valid siro-theme-atelier-noir license to import or publish this theme.",
+    });
+    expect(themeCatalogAvailability({ ...base, license_status: "expired" }).openable).toBe(false);
+    expect(themeCatalogAvailability({ ...base, status: "planned", license_status: "valid" }).openable).toBe(false);
+  });
 });
 
 describe("theme catalog page", () => {
@@ -242,6 +254,40 @@ describe("theme catalog page", () => {
     const links = Array.from(container.querySelectorAll("a"));
     expect(links.some((link) => link.getAttribute("href")?.startsWith("javascript:"))).toBe(false);
     expect(container.querySelector("script")).toBeNull();
+  });
+
+  it("enables Pro import only when the license is valid and shows the SKU when locked", async () => {
+    const valid = item({
+      id: "siro/atelier-noir",
+      name: "Atelier Noir",
+      edition: "pro",
+      status: "published",
+      license_required: true,
+      license_sku: "siro-theme-atelier-noir",
+      license_status: "valid",
+    });
+    const locked = item({
+      id: "siro/apothecary-calm",
+      name: "Apothecary Calm",
+      edition: "pro",
+      status: "published",
+      license_required: true,
+      license_sku: "siro-theme-apothecary-calm",
+      license_status: "expired",
+    });
+    api.get.mockResolvedValue(catalogResponse([valid, locked]));
+    renderPage();
+
+    expect(await screen.findByText("Atelier Noir")).toBeInTheDocument();
+    expect(screen.getByText("Apothecary Calm")).toBeInTheDocument();
+    expect(screen.getAllByText("License required")).toHaveLength(2);
+    expect(screen.getByText(/License SKU: siro-theme-atelier-noir/)).toBeInTheDocument();
+    expect(screen.getByText(/License SKU: siro-theme-apothecary-calm/)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /open theme builder/i })).toHaveAttribute("href", "/storefront/theme");
+    const importButtons = screen.getAllByRole("button", { name: /^import$/i });
+    expect(importButtons).toHaveLength(1);
+    expect(importButtons[0]).toBeDisabled();
+    expect(screen.getByText(/Pro license required. Activate a valid siro-theme-apothecary-calm license/i)).toBeInTheDocument();
   });
 
   it("keeps published free themes openable without a Pro lock reason", async () => {

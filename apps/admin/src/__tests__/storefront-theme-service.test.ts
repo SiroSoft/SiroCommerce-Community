@@ -42,4 +42,14 @@ describe("storefrontThemeService", () => {
     await storefrontThemeService.exportThemePackage();
     expect(api.get).toHaveBeenCalledWith("/api/admin/storefront/config/export-theme");
   });
+
+  it("validates the optional theme license block", () => {
+    const theme = { schema: "siro.theme/1", id: "acme/editorial", name: "Editorial", version: "1.0.0", homepage: { sections: [{ id: "hero", type: "campaign_hero", order: 10 }] } };
+    expect(validateThemePackage({ ...theme, license: { required: false, sku: null } }).ok).toBe(true);
+    expect(validateThemePackage({ ...theme, license: { required: true, sku: "siro-theme-atelier-noir" } }).ok).toBe(true);
+    expect(validateThemePackage({ ...theme, license: { required: true } }).ok).toBe(false);
+    expect(validateThemePackage({ ...theme, license: { required: true, sku: "Bad SKU" } }).ok).toBe(false);
+    expect(validateThemePackage({ ...theme, license: { required: false, sku: "siro-theme-atelier-noir" } }).ok).toBe(false);
+    expect(validateThemePackage({ ...theme, license: "required" }).ok).toBe(false);
+  });
 });

@@ -395,6 +395,9 @@ $app->router->get('/api/admin/extensions/license', [ExtensionAdminController::cl
 $app->router->post('/api/admin/extensions/license/import', [ExtensionAdminController::class, 'importLicense'])->middleware($extensionStaff);
 $app->router->delete('/api/admin/extensions/license', [ExtensionAdminController::class, 'removeLicense'])->middleware($extensionStaff);
 $app->router->get('/api/admin/ecosystem/pro-feed', [EcosystemCatalogController::class, 'proFeed'])->middleware($extensionStaff);
+$app->router->post('/api/admin/ecosystem/pro-artifacts/download', [EcosystemCatalogController::class, 'proArtifactDownload'])->middleware($extensionStaff);
+$app->router->post('/api/admin/ecosystem/pro/install', [EcosystemCatalogController::class, 'proInstall'])->middleware($extensionStaff);
+$app->router->post('/api/admin/ecosystem/pro/update', [EcosystemCatalogController::class, 'proUpdate'])->middleware($extensionStaff);
 $app->router->get('/api/admin/ecosystem/catalog', [EcosystemCatalogController::class, 'catalog'])->middleware($extensionRead);
 $app->router->get('/api/admin/ecosystem/updates', [EcosystemCatalogController::class, 'updates'])->middleware($extensionRead);
 $app->router->post('/api/admin/ecosystem/install', [EcosystemCatalogController::class, 'install'])->middleware($extensionStaff);

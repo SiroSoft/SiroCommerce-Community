@@ -55,6 +55,72 @@ final class ThemePackageTest extends TestCase
         }
     }
 
+    public function testFreePackageDefaultsToNoLicense(): void
+    {
+        self::assertSame(['required' => false, 'sku' => null], ThemePackage::license($this->package()));
+        self::assertSame(
+            ['required' => false, 'sku' => null],
+            ThemePackage::license($this->package(['license' => ['required' => false, 'sku' => null]])),
+        );
+    }
+
+    public function testLicensedPackageRequiresAValidSku(): void
+    {
+        self::assertSame(
+            ['required' => true, 'sku' => 'siro-theme-atelier-noir'],
+            ThemePackage::license($this->package(['license' => ['required' => true, 'sku' => 'siro-theme-atelier-noir']])),
+        );
+
+        foreach ([
+            $this->package(['license' => ['required' => true]]),
+            $this->package(['license' => ['required' => true, 'sku' => '']]),
+            $this->package(['license' => ['required' => true, 'sku' => 'Bad SKU']]),
+            $this->package(['license' => ['required' => 'yes', 'sku' => 'siro-theme-atelier-noir']]),
+            $this->package(['license' => ['required' => false, 'sku' => 'siro-theme-atelier-noir']]),
+            $this->package(['license' => 'required']),
+        ] as $package) {
+            try {
+                ThemePackage::license($package);
+                self::fail('Invalid license block should have been rejected');
+            } catch (\InvalidArgumentException) {
+                self::assertTrue(true);
+            }
+        }
+    }
+
+    public function testLicenseBlockIsMetadataAndNotConfigInput(): void
+    {
+        $input = ThemePackage::input($this->package([
+            'license' => ['required' => true, 'sku' => 'siro-theme-atelier-noir'],
+        ]));
+
+        self::assertArrayNotHasKey('license', $input);
+        self::assertSame('editorial-pharmacy', $input['theme_key']);
+    }
+
+    public function testBuiltInCommercialThemesResolveLicenseRequirements(): void
+    {
+        self::assertSame(
+            ['required' => true, 'sku' => 'siro-theme-atelier-noir'],
+            ThemePackage::licenseForThemeKey('atelier-noir'),
+        );
+        self::assertSame(
+            ['required' => true, 'sku' => 'siro-theme-apothecary-calm'],
+            ThemePackage::licenseForThemeKey('apothecary-calm'),
+        );
+        self::assertSame(['required' => false, 'sku' => null], ThemePackage::licenseForThemeKey('fashion'));
+    }
+
+    public function testExportingACommercialThemeRetainsItsLicense(): void
+    {
+        $config = StorefrontConfigDefaults::config('store-a', 'web', 'en', 'USD');
+        $config['theme']['key'] = 'atelier-noir';
+        $package = ThemePackage::export($config);
+
+        self::assertSame(['required' => true, 'sku' => 'siro-theme-atelier-noir'], $package['license']);
+        self::assertSame('atelier-noir', ThemePackage::input($package)['theme_key']);
+    }
+
     public function testExportCanBeImportedAgainWithoutScope(): void
     {
         $config = StorefrontConfigDefaults::config('store-a', 'web', 'en', 'USD');

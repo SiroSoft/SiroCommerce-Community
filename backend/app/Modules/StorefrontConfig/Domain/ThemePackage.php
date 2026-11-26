@@ -14,12 +14,25 @@ final class ThemePackage
     private const CONFIG_FIELDS = ['tokens', 'brand', 'navigation', 'header', 'footer', 'homepage', 'presentation', 'purchase', 'policies', 'experiments'];
 
     /**
+     * Built-in commercial theme keys mapped to their license SKU. The draft
+     * storefront config does not persist the package license block, so publish
+     * gating resolves built-in Pro themes through this server-side registry.
+     *
+     * @var array<string, string>
+     */
+    private const COMMERCIAL_LICENSES = [
+        'atelier-noir' => 'siro-theme-atelier-noir',
+        'apothecary-calm' => 'siro-theme-apothecary-calm',
+    ];
+
+    /**
      * @param array<string, mixed> $package
      * @return array<string, mixed> storefront config input for StorefrontConfigService::update
      */
     public static function input(array $package): array
     {
         if (($package['schema'] ?? null) !== 'siro.theme/1') throw new \InvalidArgumentException('Theme package schema must be siro.theme/1');
+        self::license($package);
         $id = $package['id'] ?? null;
         if (!is_string($id) || preg_match('#^[a-z0-9][a-z0-9._-]*/[a-z0-9][a-z0-9._-]*$#', $id) !== 1) {
             throw new \InvalidArgumentException('Theme package id must be a lowercase vendor/key identifier');
@@ -56,6 +69,58 @@ final class ThemePackage
     }
 
     /**
+     * Validate and normalize the optional `license` block.
+     *
+     * Free themes omit the block (or set `required` false) and must not carry a
+     * SKU. Licensed themes require `required: true` plus a non-empty SKU that is
+     * checked against the active extension license at import/publish time.
+     *
+     * @param array<string, mixed> $package
+     * @return array{required: bool, sku: string|null}
+     */
+    public static function license(array $package): array
+    {
+        $value = $package['license'] ?? null;
+        if ($value === null) {
+            return ['required' => false, 'sku' => null];
+        }
+        if (!is_array($value)) {
+            throw new \InvalidArgumentException('Theme package license must be an object');
+        }
+        $required = $value['required'] ?? false;
+        if (!is_bool($required)) {
+            throw new \InvalidArgumentException('Theme package license.required must be a boolean');
+        }
+        $sku = $value['sku'] ?? null;
+        if ($sku !== null && !is_string($sku)) {
+            throw new \InvalidArgumentException('Theme package license.sku must be a string');
+        }
+        if (!$required) {
+            if (is_string($sku) && trim($sku) !== '') {
+                throw new \InvalidArgumentException('Theme package license.sku must be null when the license is not required');
+            }
+            return ['required' => false, 'sku' => null];
+        }
+        if (!is_string($sku) || preg_match('/^[a-z0-9][a-z0-9._-]{2,63}$/', $sku) !== 1) {
+            throw new \InvalidArgumentException('Theme package license.sku is required for licensed themes');
+        }
+        return ['required' => true, 'sku' => $sku];
+    }
+
+    /**
+     * Resolve the license requirement for a built-in theme key. Used when
+     * publishing an existing draft that no longer carries the package block.
+     *
+     * @return array{required: bool, sku: string|null}
+     */
+    public static function licenseForThemeKey(string $key): array
+    {
+        $sku = self::COMMERCIAL_LICENSES[$key] ?? null;
+
+        return $sku === null ? ['required' => false, 'sku' => null] : ['required' => true, 'sku' => $sku];
+    }
+
+    /**
      * @param array<string, mixed> $config storefront config
      * @param array{name?: string, version?: string} $meta
      * @return array<string, mixed> siro.theme/1 package
@@ -80,6 +145,8 @@ final class ThemePackage
             $value = $field === 'tokens' ? ($theme['tokens'] ?? null) : ($config[$field] ?? null);
             if (is_array($value)) $package[$field] = $value;
         }
+        $license = self::licenseForThemeKey($key);
+        if ($license['required']) $package['license'] = $license;
         return $package;
     }
 }

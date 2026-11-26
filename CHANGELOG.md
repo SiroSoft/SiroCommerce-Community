@@ -2,6 +2,31 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-26] v0.2.0 Pro theme, artifact, license portal and catalog gates
+
+### Added
+- Pro theme licensing: `license.required/sku` in `siro.theme/1`, server-side
+  import/publish gate, checksums and Ed25519 signed theme archives.
+- Pro artifact pipeline: signed package build, private feed download tokens,
+  checksum/signature verification, install/update with backup and no auto-enable.
+- License delivery portal extension (`siro/license-portal`): scoped deliveries,
+  one-time customer download links, revoke/rotate and `order.paid` foundation.
+- Catalog Pro publish gate: `signature`/`signature_url`, `publish-pro.php`,
+  public-feed stripping and planned→published validation.
+- Affiliate store/channel scope migration, scoped service queries and QIT
+  `store-scope` pass.
+
+### Changed
+- Commerce version 0.2.0.
+- Catalog now has 15 items: 10 plugins (including License Portal), 5 themes;
+  Pro items remain planned until real signed artifacts exist.
+
+### Verification
+- Backend 1,784 PHPUnit tests with sodium, 1 skipped; PHPStan 0.
+- Admin 611 tests, typecheck/build pass.
+- Catalog 15 items, draft/check and selftest pass.
+- Affiliate and License Portal QIT pass store-scope/route-auth/secret/php-lint.
+
 ## [2026-11-26] v0.1.1 Community docs and private Pro documentation
 
 ### Changed

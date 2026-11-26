@@ -229,7 +229,6 @@ jobs:
           retention-days: 7
 
   e2e-visual-linux:
-    if: github.event_name != 'push'
     name: Storefront visual regression (Linux)
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest

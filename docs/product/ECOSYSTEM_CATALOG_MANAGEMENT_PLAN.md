@@ -6,11 +6,9 @@ free/Pro boundaries, admin surfaces, and a release/update model.
 
 Implementation update 2026-11-24: P0 catalog, P1 static feed + bundled
 install/update + notifications, and P2 admin license portal + Affiliate enable
-gate + private Pro feed + premium theme packages are implemented. Premium/Pro
-source lives in the private `SiroSoft/SiroCommerce-Pro` repository; this public
-tree keeps only free source, catalog metadata and previews. Marketplace, billing,
-customer license delivery, remote Pro artifacts and auto-update remain out of
-scope.
+gate + private Pro feed + premium theme packages are implemented. Marketplace,
+billing, customer license delivery, remote Pro artifacts and auto-update remain
+out of scope.
 
 Related docs:
 - [`contracts/EXTENSION_ECOSYSTEM_SPEC.md`](../contracts/EXTENSION_ECOSYSTEM_SPEC.md)

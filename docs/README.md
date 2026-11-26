@@ -149,6 +149,9 @@ engineering/ops docs win; file a docs correction.
 |---|---|---|
 | [`engineering/INCIDENT_RUNBOOK.md`](engineering/INCIDENT_RUNBOOK.md) | SEV1-SEV4, on-call roles, detection, and failure playbooks. | CURRENT |
 | [`engineering/OWNER_CONSOLE.md`](engineering/OWNER_CONSOLE.md) | Owner console domain, DNS/TLS, CORS, access control and rollback. | CURRENT |
+| [`engineering/TEAM_ONBOARDING.md`](engineering/TEAM_ONBOARDING.md) | Team model, PR rules, local gate and Free/Pro release workflow. | CURRENT |
+| [`engineering/RELEASE_MODEL.md`](engineering/RELEASE_MODEL.md) | Internal source of truth, Community/Pro mirrors, versioning and compatibility. | CURRENT |
+| [`engineering/SELF_HOSTED_CI.md`](engineering/SELF_HOSTED_CI.md) | Self-hosted runner policy, setup and branch protection plan. | CURRENT |
 | [`engineering/RUNBOOK.md`](engineering/RUNBOOK.md) | Release, backup/restore, rollback, prune, provider outage. | CURRENT |
 | [`engineering/SLO.md`](engineering/SLO.md) | Proposed SLOs, observability signals, thresholds. | CURRENT |
 | [`engineering/CI_QUALITY.md`](engineering/CI_QUALITY.md) | CI jobs, coverage gate, visual baseline flow. | CURRENT |

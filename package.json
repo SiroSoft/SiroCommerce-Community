@@ -15,6 +15,8 @@
     "ecosystem:catalog": "php scripts/ecosystem-catalog/build.php --out=apps/storefront/public/ecosystem/catalog.json",
     "ecosystem:catalog:check": "php scripts/ecosystem-catalog/build.php --check-public=apps/storefront/public/ecosystem/catalog.json",
     "ecosystem:catalog:selftest": "php scripts/ecosystem-catalog/selftest.php",
+    "release:mirrors": "node scripts/release/export-mirrors.mjs",
+    "release:mirrors:dry": "node scripts/release/export-mirrors.mjs --dry-run",
     "verify": "node scripts/verify.mjs",
     "verify:strict": "node scripts/verify.mjs --strict",
     "verify:release": "node scripts/verify.mjs --strict",

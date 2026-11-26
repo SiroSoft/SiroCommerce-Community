@@ -1,7 +1,7 @@
 # SiroCommerce Community ownership.
 # Replace the user handles with org teams once teams exist:
-# @SiroSoft/platform, @SiroSoft/storefront, @SiroSoft/admin,
-# @SiroSoft/ecosystem, @SiroSoft/qa, @SiroSoft/security, @SiroSoft/infra.
+# @SiroSoft/platform, @SiroSoft/experience, @SiroSoft/ecosystem,
+# @SiroSoft/quality-release. Split Experience when the team grows.
 # GitHub only accepts teams that have access to this repository.
 
 *                                   @thiennhant95 @nhanttvv

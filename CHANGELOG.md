@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-27] v0.3.2 Next.js security upgrade
+
+### Security
+- Upgraded Next.js **16.3.5 → 16.4.6** in admin, storefront and marketing,
+  removing the critical/high advisories fixed in 16.4.6 (image optimization
+  RCE, `use cache` RCE, SSRF and DoS issues).
+- `npm audit --omit=dev` no longer reports a critical vulnerability. Remaining
+  high/moderate findings in zod/source-map/postcss are pre-existing and tracked
+  separately; they are not introduced by this patch.
+
+### Verification
+- Admin 614 tests; storefront 653 tests; typecheck and production builds pass for
+  admin, storefront and marketing.
+- Backend suite and PHPStan re-run after the version bump.
+- No API/catalog behavior change; catalog remains 21 items.
+
 ## [2026-11-27] v0.3.1 plugin batch 1 and 21-item catalog
 
 ### Added

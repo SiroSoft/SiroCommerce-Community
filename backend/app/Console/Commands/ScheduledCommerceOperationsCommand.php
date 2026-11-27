@@ -6,7 +6,10 @@ namespace App\Console\Commands;
 
 use App\Jobs\ReturnLabelJob;
 use App\Models\Cart;
+use App\Models\CartLine;
 use App\Models\Order;
+use App\Models\Product;
+use App\Models\ProductVariant;
 use App\Models\Payment;
 use App\Models\PaymentWebhookEvent;
 use App\Models\Refund;
@@ -14,6 +17,8 @@ use App\Models\Reservation;
 use App\Models\ReturnRequest;
 use App\Models\Shipment;
 use App\Modules\Checkout\Contracts\OrderStatePort;
+use App\Modules\Cart\Application\CartService;
+use App\Modules\MarketingAutomation\Application\MarketingAutomationService;
 use App\Modules\Payment\Application\PaymentReconciliationService;
 use App\Modules\Payment\Contracts\PaymentReconciliationProvider;
 use App\Modules\Payment\Contracts\PaymentReconciliationStore;
@@ -29,6 +34,7 @@ use Siro\Core\Commands\CommandInterface;
 use Siro\Core\Commands\CommandSupport;
 use Siro\Core\Container;
 use Siro\Core\Database;
+use Siro\Core\Event;
 use Siro\Core\Metrics;
 use Siro\Core\Queue;
 use App\Modules\Subscriptions\Application\SubscriptionService;
@@ -76,6 +82,10 @@ final class ScheduledCommerceOperationsCommand implements CommandInterface
                 'dry_run' => $dryRun,
                 'locked' => false,
                 'orders' => $this->expireOrders($before, $limit, $dryRun),
+                // Abandoned-cart scan MUST run before expireCarts: the same
+                // --minutes threshold marks carts stale, and eligibility
+                // requires state=open, so scanning after expiry would find none.
+                'abandoned_carts' => $this->scanAbandonedCarts($before, $limit, $dryRun),
                 'carts' => $this->expireCarts($before, $limit, $dryRun),
                 'reservations' => $this->expireReservations($now, $limit, $dryRun),
                 'promotion_expired' => $this->expirePromotionReservations($limit, $dryRun),
@@ -138,6 +148,73 @@ final class ScheduledCommerceOperationsCommand implements CommandInterface
             catch (\Throwable) { $failed++; }
         }
         return ['candidate_ids' => $ids, 'processed' => $cancelled, 'skipped' => $dryRun ? count($ids) : 0, 'failed' => $failed, 'cancelled' => $cancelled];
+    }
+
+    /** @return array<string, mixed> */
+    private function scanAbandonedCarts(string $before, int $limit, bool $dryRun): array
+    {
+        $ids = [];
+        $scheduled = 0;
+        $emitted = 0;
+        $failed = 0;
+        foreach (Cart::query()->where('state', 'open')->whereNotNull('customer_id')->where('updated_at', '<', $before)->limit($limit)->get() as $model) {
+            $cart = Arr::row($model);
+            $id = Arr::str($cart, 'id');
+            if ($id === '') {
+                $failed++;
+                continue;
+            }
+            $ids[] = $id;
+            if ($dryRun) continue;
+            try {
+                $result = (new MarketingAutomationService())->abandonedCart($id);
+                if (($result['scheduled'] ?? false) !== true) continue;
+                $scheduled++;
+                try {
+                    Event::emit('cart.abandoned', ['cart_id' => $id, 'customer_id' => Arr::nullableStr($cart, 'customer_id'), 'totals_minor' => $this->abandonedCartSnapshot($id, $cart), 'at' => date('Y-m-d H:i:s')]);
+                    $emitted++;
+                } catch (\Throwable) {
+                    $failed++;
+                }
+            } catch (\Throwable) {
+                $failed++;
+            }
+        }
+        return ['candidate_ids' => $ids, 'processed' => $scheduled, 'skipped' => $dryRun ? count($ids) : 0, 'failed' => $failed, 'scheduled' => $scheduled, 'emitted' => $emitted];
+    }
+
+    /**
+     * Totals snapshot for the `cart.abandoned` payload. Prefers the priced
+     * quote; falls back to raw lines when the cart cannot be quoted (e.g.
+     * empty). The Abandoned Cart plugin persists its own snapshot table;
+     * the platform only carries the snapshot in the event payload.
+     * @param array<string, mixed> $cart
+     * @return array<string, mixed>
+     */
+    private function abandonedCartSnapshot(string $cartId, array $cart): array
+    {
+        $currency = Arr::str($cart, 'currency', 'VND');
+        try {
+            $service = Container::getInstance()->make(CartService::class);
+            if ($service instanceof CartService) {
+                $quote = $service->quote($cartId);
+                return ['currency' => $currency, 'subtotal_minor' => Arr::int($quote, 'subtotal_minor'), 'discount_minor' => Arr::int($quote, 'discount_minor'), 'shipping_minor' => Arr::int($quote, 'shipping_minor'), 'tax_minor' => Arr::int($quote, 'tax_minor'), 'total_minor' => Arr::int($quote, 'total_minor'), 'lines' => $quote['lines']];
+            }
+        } catch (\Throwable) {
+            // Fall through to the raw-lines snapshot below.
+        }
+        $lines = [];
+        $subtotal = 0;
+        foreach (CartLine::query()->where('cart_id', $cartId)->get() as $line) {
+            $row = Arr::row($line);
+            $qty = Arr::int($row, 'qty');
+            $unit = Arr::int($row, 'unit_price_minor');
+            $subtotal += $qty * $unit;
+            $variant = ProductVariant::find(Arr::str($row, 'variant_id'));
+            $product = $variant === null ? null : Product::find(Arr::str(Arr::row($variant), 'product_id'));
+            $lines[] = ['variant_id' => Arr::str($row, 'variant_id'), 'name' => $product === null ? '' : Arr::str(Arr::row($product), 'name'), 'qty' => $qty, 'unit_price_minor' => $unit];
+        }
+        return ['currency' => $currency, 'subtotal_minor' => $subtotal, 'discount_minor' => 0, 'shipping_minor' => 0, 'tax_minor' => 0, 'total_minor' => $subtotal, 'lines' => $lines];
     }
 
     /** @return array<string, mixed> */

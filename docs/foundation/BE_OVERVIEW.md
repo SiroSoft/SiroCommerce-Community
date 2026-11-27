@@ -70,8 +70,8 @@ Controllers do not contain business transactions, direct SQL or provider logic.
 
 Current generated contract:
 
-- `468` route declarations in `backend/routes/api.php` and `468` OpenAPI operations across `405` paths (verified 2026-11-27).
-- Last checked-in handoff snapshot: `468` route records, `910/2340` layer records PASS, readiness `NOT_READY_BLOCKED`; rerun `composer handoff:matrix` before quoting evidence.
+- `469` route declarations in `backend/routes/api.php` and `469` OpenAPI operations across `406` paths (verified 2026-11-27).
+- Last checked-in handoff snapshot: `469` route records, `910/2345` layer records PASS, readiness `NOT_READY_BLOCKED`; rerun `composer handoff:matrix` before quoting evidence.
 
 Source of truth:
 

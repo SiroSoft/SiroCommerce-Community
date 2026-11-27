@@ -5,6 +5,7 @@ import { formatMinor } from "@/lib/money";
 import { fill } from "@/lib/i18n";
 import { useCopy, useLocale } from "@/lib/i18n-client";
 import { StockAlertSignup } from "@/components/StockAlertSignup";
+import { Slot } from "@/slots";
 import { ProductInfoAccordion } from "@/components/merchandising/ProductInfoAccordion";
 import { customer, getCustomerAccessToken, type CustomerAdapter } from "@/services/customer";
 
@@ -156,6 +157,7 @@ export function ProductDecisionPanel({ product, variant = "editorial", subscript
   return <div className="detail-info">
     <p className="eyebrow">{product.categoryName}</p>
     <h1>{product.name}</h1>
+    <Slot name="pdp.title" locale={locale} data={{ productId: product.id, productSlug: product.slug, category: product.category }} />
 
     <ul className="detail-meta">
       <li><span>{copy.range}</span>{product.categoryName}</li>
@@ -278,6 +280,7 @@ export function ProductDecisionPanel({ product, variant = "editorial", subscript
         </li>)}
       </ul>
     </section>}
+    <Slot name="pdp.below-atc" locale={locale} data={{ productId: product.id, productSlug: product.slug, category: product.category }} />
     {unavailable && <><button className="button" disabled aria-disabled="true">{copy.unavailableBtn}</button><p className="catalog-capability" role="note">{copy.displayOnly}</p></>}
     {soldOut && !unavailable && <><button className="button" disabled aria-disabled="true">{full.commerce.outOfStock}</button><StockAlertSignup productId={product.id} variantId={resolved?.variantId} isPreorder={product.is_preorder === true} priceMinor={product.price} currency={lineCurrency} /></>}
     {variant === "split-buybox" && <ProductInfoAccordion product={product} locale={locale} />}

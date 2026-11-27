@@ -725,6 +725,11 @@ export interface Request_post_api_consent {
   policy_version: string;
   session_id?: string;
 }
+export interface Request_post_api_consent_marketing {
+  marketing?: boolean;
+  session_id?: string;
+  email?: string;
+}
 export interface Request_post_api_admin_customers_id_privacy_legal_hold {
   held: boolean;
 }
@@ -2209,6 +2214,7 @@ export class SiroCommerceClient {
   post_api_categories(options: ApiRequestOptions<Request_post_api_categories> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/categories', options); }
   post_api_checkout_place(options: ApiRequestOptions<Request_post_api_checkout_place> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/checkout/place', options); }
   post_api_consent(options: ApiRequestOptions<Request_post_api_consent> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/consent', options); }
+  post_api_consent_marketing(options: ApiRequestOptions<Request_post_api_consent_marketing> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/consent/marketing', options); }
   post_api_gift_preview(options: ApiRequestOptions<Request_post_api_gift_preview> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/gift/preview', options); }
   post_api_headless_graphql(options: ApiRequestOptions<Request_post_api_headless_graphql> = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('POST', '/api/headless/graphql', options); }
   post_api_orders_recover(options: ApiRequestOptions<Request_post_api_orders_recover> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/orders/recover', options); }

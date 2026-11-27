@@ -7,6 +7,14 @@ namespace App\Modules\Extension\Domain;
 final readonly class ExtensionManifest
 {
     /**
+     * Storefront slot names an extension may declare in `manifest.slots.storefront`.
+     * Mirror of `SLOT_NAMES` in `apps/storefront/src/slots/types.ts` — keep both
+     * lists in sync; the storefront registry test enforces the mapping.
+     * @var list<string>
+     */
+    public const SLOT_NAMES = ['header', 'footer', 'pdp', 'product-card', 'pdp.title', 'pdp.below-atc', 'pdp.below-gallery', 'cart', 'checkout', 'my-account', 'email', 'order-status'];
+
+    /**
      * @param array<string, string> $requires
      * @param list<string> $capabilities
      * @param list<string> $permissions
@@ -14,6 +22,8 @@ final readonly class ExtensionManifest
      * @param list<string> $routes
      * @param array{label: string, section: string, panels: list<array{key: string, title: string, type: string, endpoint: string, permission: string}>} $admin
      * @param array<string, mixed> $license Supported keys: required (bool), sku (string).
+     * @param array<string, mixed> $slots Supported keys: admin (array), storefront (list of SLOT_NAMES).
+     * @param list<string> $requiresExtensions Extension ids that must be enabled before this one can be enabled (Batch 1 §2.2 dependency guard).
      */
     public function __construct(
         public string $id,
@@ -25,6 +35,8 @@ final readonly class ExtensionManifest
         public array $routes = [],
         public array $admin = [],
         public array $license = [],
+        public array $slots = [],
+        public array $requiresExtensions = [],
     ) {
         if ($this->id === '' || $this->version === '') throw new \InvalidArgumentException('Extension id and version are required');
         foreach ([$this->capabilities, $this->permissions, $this->migrations, $this->routes] as $items) {
@@ -32,6 +44,31 @@ final readonly class ExtensionManifest
         }
         if ($this->admin !== []) self::validateAdmin($this->admin, $this->permissions);
         if ($this->license !== []) self::validateLicense($this->license);
+        if ($this->slots !== []) self::validateSlots($this->slots);
+        if ($this->requiresExtensions !== []) self::validateRequiresExtensions($this->requiresExtensions, $this->id);
+    }
+
+    /** @param list<mixed> $items */
+    private static function validateRequiresExtensions(array $items, string $ownId): void
+    {
+        $seen = [];
+        foreach ($items as $item) {
+            if (!is_string($item) || preg_match('/^[a-z0-9][a-z0-9._-]*(\/[a-z0-9][a-z0-9._-]*)?$/', $item) !== 1) throw new \InvalidArgumentException('Extension manifest requires_extensions contains an invalid extension id "' . (is_string($item) ? $item : '') . '"');
+            if ($item === $ownId) throw new \InvalidArgumentException('Extension manifest requires_extensions must not list itself');
+            if (in_array($item, $seen, true)) throw new \InvalidArgumentException('Extension manifest requires_extensions contains a duplicate "' . $item . '"');
+            $seen[] = $item;
+        }
+    }
+
+    /** @param array<string, mixed> $slots */
+    private static function validateSlots(array $slots): void
+    {
+        if (array_key_exists('admin', $slots) && !is_array($slots['admin'])) throw new \InvalidArgumentException('Extension manifest slots.admin must be an object');
+        $storefront = $slots['storefront'] ?? [];
+        if (!is_array($storefront)) throw new \InvalidArgumentException('Extension manifest slots.storefront must be an array');
+        foreach ($storefront as $slot) {
+            if (!is_string($slot) || !in_array($slot, self::SLOT_NAMES, true)) throw new \InvalidArgumentException('Extension manifest slots.storefront contains an unknown slot "' . (is_string($slot) ? $slot : '') . '"');
+        }
     }
 
     /** @param array<string, mixed> $license */
@@ -90,13 +127,25 @@ final readonly class ExtensionManifest
         if (!is_array($license)) throw new \InvalidArgumentException('Extension manifest field is invalid: license');
         $licenseRow = [];
         foreach ($license as $key => $value) if (is_string($key)) $licenseRow[$key] = $value;
-        return new self($required('id'), $required('version'), $requires, $list('capabilities'), $list('permissions'), $list('migrations'), $list('routes'), $adminRow, $licenseRow);
+        $slots = $data['slots'] ?? [];
+        if (!is_array($slots)) throw new \InvalidArgumentException('Extension manifest field is invalid: slots');
+        $slotsRow = [];
+        foreach ($slots as $key => $value) if (is_string($key)) $slotsRow[$key] = $value;
+        return new self($required('id'), $required('version'), $requires, $list('capabilities'), $list('permissions'), $list('migrations'), $list('routes'), $adminRow, $licenseRow, $slotsRow, $list('requires_extensions'));
     }
 
     /** @return array<string, mixed> */
     public function toArray(): array
     {
-        return ['id' => $this->id, 'version' => $this->version, 'requires' => $this->requires, 'capabilities' => $this->capabilities, 'permissions' => $this->permissions, 'migrations' => $this->migrations, 'routes' => $this->routes, 'admin' => $this->admin, 'license' => $this->license];
+        return ['id' => $this->id, 'version' => $this->version, 'requires' => $this->requires, 'capabilities' => $this->capabilities, 'permissions' => $this->permissions, 'migrations' => $this->migrations, 'routes' => $this->routes, 'admin' => $this->admin, 'license' => $this->license, 'slots' => $this->slots, 'requires_extensions' => $this->requiresExtensions];
+    }
+
+    /** @return list<string> storefront slot names declared by this extension */
+    public function storefrontSlots(): array
+    {
+        $slots = $this->slots['storefront'] ?? [];
+        if (!is_array($slots)) return [];
+        return array_values(array_filter($slots, 'is_string'));
     }
 
     /** @return array<string, mixed>|null UI descriptor for enabled extensions, null when the manifest declares no admin block */

@@ -2,7 +2,7 @@
     "openapi": "3.0.3",
     "info": {
         "title": "SiroCommerce API",
-        "version": "0.3.0",
+        "version": "0.3.1",
         "description": "Version-safe SiroCommerce API contract generated from routes/api.php. REST envelopes use contract version 1; /api/v2 routes are marked explicitly.",
         "x-be2-contract": {
             "scope": {
@@ -28331,6 +28331,92 @@
                 "x-request-body": "application/json"
             }
         },
+        "/api/consent/marketing": {
+            "post": {
+                "operationId": "post_api_consent_marketing",
+                "summary": "Post /api/consent/marketing",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    },
+                    "201": {
+                        "$ref": "#/components/responses/Created"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_post_api_consent_marketing",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "x-authentication": "public",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request_post_api_consent_marketing"
+                            }
+                        }
+                    }
+                },
+                "x-request-body": "application/json"
+            }
+        },
         "/api/consent/policy": {
             "get": {
                 "operationId": "get_api_consent_policy",
@@ -48612,6 +48698,26 @@
                     "session_id": {
                         "type": "string",
                         "maxLength": 128
+                    }
+                },
+                "description": "Fields accepted by the route request validator."
+            },
+            "Request_post_api_consent_marketing": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [],
+                "properties": {
+                    "marketing": {
+                        "type": "boolean"
+                    },
+                    "session_id": {
+                        "type": "string",
+                        "maxLength": 128
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "maxLength": 254
                     }
                 },
                 "description": "Fields accepted by the route request validator."

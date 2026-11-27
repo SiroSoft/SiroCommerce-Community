@@ -20,10 +20,11 @@ final class ReviewController extends Controller
     public function store(Request $request): Response
     {
         /** @var array<string, mixed> $data */
-        $data = $request->validate(['order_id' => 'required|string', 'order_line_id' => 'required|string', 'rating' => 'required|integer', 'title' => 'nullable|string', 'body' => 'required|string']);
+        $data = $request->validate(['order_id' => 'required|string', 'order_line_id' => 'required|string', 'rating' => 'required|integer', 'title' => 'nullable|string', 'body' => 'required|string', 'images' => 'nullable|array']);
         if (!is_int($data['rating'] ?? null) || $data['rating'] < 1 || $data['rating'] > 5) return $this->error('Rating must be between 1 and 5', 422);
         try { $review = $this->reviews->submit($this->customerId($request), Arr::requiredParam($request, 'id'), $data); }
         catch (\RuntimeException $e) { return $this->error($e->getMessage(), 422); }
+        catch (\InvalidArgumentException $e) { return $this->error($e->getMessage(), 422); }
         return $this->created($review, 'Review submitted for moderation');
     }
 

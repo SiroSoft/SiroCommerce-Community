@@ -37,7 +37,7 @@ final class ApiSurfaceTest extends TestCase
         $versionBody = json_decode((string) ob_get_clean(), true);
         // Pinned to the vendored core's own version string: upgrades move this.
         self::assertSame(\Siro\Core\Console::VERSION, $versionBody['data']['core']);
-        self::assertSame('0.3.0', $versionBody['data']['commerce']);
+        self::assertSame('0.3.1', $versionBody['data']['commerce']);
         self::assertSame(['v1', 'v2'], $versionBody['data']['supported_apis']);
         self::assertSame(1, $versionBody['data']['contract']);
     }

@@ -1,0 +1,77 @@
+{
+  "admin": {
+    "label": "Product labels",
+    "panels": [
+      {
+        "endpoint": "admin/stats",
+        "key": "stats",
+        "permission": "product-labels:manage",
+        "title": "Label stats",
+        "type": "stats"
+      },
+      {
+        "endpoint": "admin/rules",
+        "key": "rules",
+        "permission": "product-labels:manage",
+        "title": "Label rules",
+        "type": "table"
+      }
+    ],
+    "section": "Commerce"
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "kind": "extension",
+    "source": null
+  },
+  "capabilities": [
+    "product-labels:read",
+    "product-labels:manage"
+  ],
+  "config": {
+    "default_new_days": 30,
+    "default_priority": 100,
+    "max_labels_per_product": 3
+  },
+  "description": "Store/channel scoped product label and badge rules (New, Sale, Best seller, custom) rendered on product cards and PDP titles.",
+  "id": "siro/product-labels",
+  "license": {
+    "features": [
+      "product-labels"
+    ],
+    "required": false,
+    "sku": "siro-product-labels"
+  },
+  "migrations": [
+    "migrations/20261126000011_create_ext_product_label_rules.php",
+    "migrations/20261126000012_create_ext_product_label_audit.php"
+  ],
+  "name": "Product Labels",
+  "permissions": [
+    "product-labels:manage"
+  ],
+  "provider": "App\\Extensions\\Siro\\ProductLabels\\Extension",
+  "requires": {
+    "commerce": "^0.3",
+    "core": "^1.0"
+  },
+  "routes": [
+    "routes.php"
+  ],
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "schema": "siro.extension/2",
+  "slots": {
+    "admin": {
+      "label": "Product labels",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "product-card",
+      "pdp.title"
+    ]
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

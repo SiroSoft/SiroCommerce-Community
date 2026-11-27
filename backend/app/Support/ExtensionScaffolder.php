@@ -224,10 +224,12 @@ PHP, [
     private static function manifestTemplate(string $id, string $label, string $permission, string $adminLabel): string
     {
         $manifest = [
+            'schema' => 'siro.extension/2',
             'id' => $id,
             'name' => $label,
             'version' => self::VERSION,
             'requires' => ['core' => '^1.0', 'commerce' => '^0.3'],
+            'requires_extensions' => [],
             'capabilities' => [],
             'permissions' => [$permission],
             'migrations' => [],

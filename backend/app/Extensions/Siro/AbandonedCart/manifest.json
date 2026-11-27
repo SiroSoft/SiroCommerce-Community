@@ -1,0 +1,76 @@
+{
+  "admin": {
+    "label": "Abandoned cart",
+    "panels": [
+      {
+        "endpoint": "admin/overview",
+        "key": "overview",
+        "permission": "abandoned-cart:manage",
+        "title": "Overview",
+        "type": "stats"
+      },
+      {
+        "endpoint": "admin/snapshots",
+        "key": "snapshots",
+        "permission": "abandoned-cart:manage",
+        "title": "Abandoned carts",
+        "type": "table"
+      }
+    ],
+    "section": "Growth"
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "kind": "extension",
+    "source": null
+  },
+  "capabilities": [
+    "abandoned-cart:read",
+    "abandoned-cart:manage",
+    "coupon:create"
+  ],
+  "config": {
+    "coupon_percent_off": 10,
+    "coupon_usage_limit": 1,
+    "coupon_valid_days": 7
+  },
+  "description": "Captures abandoned carts, stores a totals snapshot, and sends one consent-gated reminder email with a recovery coupon.",
+  "id": "siro/abandoned-cart",
+  "license": {
+    "features": [
+      "abandoned-cart"
+    ],
+    "required": false,
+    "sku": "siro-abandoned-cart"
+  },
+  "migrations": [
+    "migrations/20261126000041_create_ext_abandoned_cart_snapshots.php",
+    "migrations/20261126000042_create_ext_abandoned_cart_deliveries.php"
+  ],
+  "name": "Abandoned Cart",
+  "permissions": [
+    "abandoned-cart:manage",
+    "coupon:create"
+  ],
+  "provider": "App\\Extensions\\Siro\\AbandonedCart\\Extension",
+  "requires": {
+    "commerce": "^0.3",
+    "core": "^1.0"
+  },
+  "routes": [
+    "routes.php"
+  ],
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "schema": "siro.extension/2",
+  "slots": {
+    "admin": {
+      "label": "Abandoned cart",
+      "section": "Growth"
+    },
+    "storefront": []
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

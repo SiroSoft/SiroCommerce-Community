@@ -6,7 +6,8 @@ renders them without being modified.
 
 ## Slot names
 
-`header`, `footer`, `pdp`, `cart`, `checkout`, `my-account`, `email`,
+`header`, `footer`, `pdp`, `product-card`, `pdp.title`, `pdp.below-atc`,
+`pdp.below-gallery`, `cart`, `checkout`, `my-account`, `email`,
 `order-status`.
 
 `SlotName` is derived from the `SLOT_NAMES` tuple, so unknown names fail at

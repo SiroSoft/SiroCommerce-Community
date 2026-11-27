@@ -2,7 +2,7 @@
 
 MIT-licensed SiroCommerce source for the free/core edition.
 
-**Status: v0.3.0 Community source release.** Generated from the private internal
+**Status: v0.3.1 Community source release.** Generated from the private internal
 monorepo with Pro source removed. Free-only backend, storefront and admin tests
 pass; see `SECURITY.md` and `CONTRIBUTING.md` before reporting or contributing.
 
@@ -14,7 +14,9 @@ pass; see `SECURITY.md` and `CONTRIBUTING.md` before reporting or contributing.
 - `apps/marketing/` static marketing site.
 - `packages/` shared API-client, auth, scope, config and UI packages.
 - Free first-party plugins: shipping fee rules, free-shipping banner, product
-  Q&A, contact widget, social share, size guide, store locator.
+  Q&A, contact widget, social share, size guide, store locator, Sticky Add to
+  Cart, Product Labels, Email Capture Popup, Product Photo Reviews, and
+  Abandoned Cart Recovery.
 - Free themes: Fashion, Pharmacy, F&B; 18 built-in vertical presets.
 - Ecosystem catalog, theme package pipeline, extension packaging/QIT, scope and
   license verification foundation.
@@ -23,6 +25,7 @@ pass; see `SECURITY.md` and `CONTRIBUTING.md` before reporting or contributing.
 ## Not in this repository
 
 - Affiliate Pro source (private `SiroSoft/SiroCommerce-Pro`).
+- Abandoned Cart Pro source and its Pro-only tests (private Pro repo).
 - Premium themes `Atelier Noir` and `Apothecary Calm` source (private Pro repo).
 - Future Pro/Enterprise modules.
 - Private signing keys, license private keys, production `.env`, signed license

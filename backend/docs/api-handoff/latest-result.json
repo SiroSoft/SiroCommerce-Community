@@ -1,9 +1,9 @@
 {
-    "routes": 468,
-    "layer_records": 2340,
+    "routes": 469,
+    "layer_records": 2345,
     "counts": {
         "PASS": 910,
-        "BLOCKED": 1340,
+        "BLOCKED": 1345,
         "BLOCKED_EXTERNAL": 90,
         "SKIP": 0
     },

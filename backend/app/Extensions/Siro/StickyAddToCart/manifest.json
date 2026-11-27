@@ -1,0 +1,75 @@
+{
+  "admin": {
+    "label": "Sticky Add to Cart",
+    "panels": [
+      {
+        "endpoint": "admin/stats",
+        "key": "overview",
+        "permission": "sticky-atc:manage",
+        "title": "Overview",
+        "type": "stats"
+      },
+      {
+        "endpoint": "admin/settings",
+        "key": "settings",
+        "permission": "sticky-atc:manage",
+        "title": "Bar settings",
+        "type": "table"
+      }
+    ],
+    "section": "Commerce"
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "kind": "extension",
+    "source": null
+  },
+  "capabilities": [
+    "sticky-atc:read",
+    "sticky-atc:manage"
+  ],
+  "config": {
+    "default_active": false,
+    "default_button_label": "Add to Cart",
+    "default_show_price": true
+  },
+  "description": "Store/channel scoped sticky Add to Cart bar below the PDP Add to Cart button.",
+  "id": "siro/sticky-add-to-cart",
+  "license": {
+    "features": [
+      "sticky-atc"
+    ],
+    "required": false,
+    "sku": "siro-sticky-add-to-cart"
+  },
+  "migrations": [
+    "migrations/20261126000001_create_ext_sticky_atc_settings.php"
+  ],
+  "name": "Sticky Add to Cart",
+  "permissions": [
+    "sticky-atc:manage"
+  ],
+  "provider": "App\\Extensions\\Siro\\StickyAddToCart\\Extension",
+  "requires": {
+    "commerce": "^0.3",
+    "core": "^1.0"
+  },
+  "routes": [
+    "routes.php"
+  ],
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "schema": "siro.extension/2",
+  "slots": {
+    "admin": {
+      "label": "Sticky Add to Cart",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "pdp.below-atc"
+    ]
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

@@ -83,6 +83,7 @@ $requestDefinitions = [
     'post:/api/admin/returns/{id}/inspect' => ['required' => ['disposition'], 'properties' => ['disposition' => ['type' => 'string', 'enum' => ['restock', 'damaged']], 'note' => ['type' => 'string']]],
     'post:/api/account/consents' => ['required' => ['purpose', 'version', 'source', 'granted'], 'properties' => ['purpose' => ['type' => 'string'], 'version' => ['type' => 'string'], 'source' => ['type' => 'string'], 'granted' => ['type' => 'boolean']]],
     'post:/api/consent' => ['required' => ['necessary', 'analytics', 'marketing', 'policy_version'], 'properties' => ['necessary' => ['type' => 'boolean'], 'analytics' => ['type' => 'boolean'], 'marketing' => ['type' => 'boolean'], 'policy_version' => ['type' => 'string', 'maxLength' => 32], 'session_id' => ['type' => 'string', 'maxLength' => 128]]],
+    'post:/api/consent/marketing' => ['required' => [], 'properties' => ['marketing' => ['type' => 'boolean'], 'session_id' => ['type' => 'string', 'maxLength' => 128], 'email' => ['type' => 'string', 'format' => 'email', 'maxLength' => 254]]],
     'post:/api/account/loyalty/expire' => ['required' => ['before'], 'properties' => ['before' => ['type' => 'string', 'format' => 'date']]],
     'post:/api/account/loyalty/redeem' => ['required' => ['points'], 'properties' => ['points' => ['type' => 'integer', 'minimum' => 1]]],
     'post:/api/account/loyalty/{order}/earn' => ['required' => [], 'properties' => []],

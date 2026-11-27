@@ -2,7 +2,7 @@
     "schema": "sirocommerce.api-handoff.coverage.v1",
     "generated_from": "routes/api.php",
     "generated_at": "deterministic",
-    "route_count": 468,
+    "route_count": 469,
     "coverage_policy": "PASS requires semantic evidence; BLOCKED/SKIP requires reason, owner, and issue; route references alone never qualify.",
     "routes": {
         "DELETE /api/admin/extensions/license": {
@@ -18164,6 +18164,57 @@
         "POST /api/consent": {
             "method": "POST",
             "path": "/api/consent",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/consent/marketing": {
+            "method": "POST",
+            "path": "/api/consent/marketing",
             "layers": {
                 "unit": {
                     "status": "BLOCKED",

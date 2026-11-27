@@ -15,6 +15,10 @@ final class ReviewResource extends Resource
         foreach ($fields as $field) {
             if (array_key_exists($field, $this->data)) $result[$field] = $this->data[$field];
         }
+        if (array_key_exists('images_json', $this->data) && is_string($this->data['images_json'])) {
+            $decoded = json_decode($this->data['images_json'], true);
+            $result['images'] = is_array($decoded) ? array_values(array_filter($decoded, 'is_string')) : [];
+        }
         return $result;
     }
 }

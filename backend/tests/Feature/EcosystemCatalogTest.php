@@ -55,7 +55,8 @@ final class EcosystemCatalogTest extends TestCase
 
         self::assertSame(EcosystemCatalogService::SCHEMA, $catalog['schema']);
         self::assertNotSame('', $catalog['generated_at']);
-        self::assertCount(15, $catalog['items']);
+        // 21 = 21 catalog.json items, 0 discovered fallback (all 6 batch-1 packages have catalog entries).
+        self::assertCount(21, $catalog['items']);
 
         $ids = array_column($catalog['items'], 'id');
         foreach ([
@@ -64,16 +65,22 @@ final class EcosystemCatalogTest extends TestCase
             'siro/license-portal',
             'siro/contact-widget',
             'siro/free-shipping-banner',
+            'siro/product-labels',
+            'siro/email-capture-popup',
             'siro/product-qa',
+            'siro/product-photo-reviews',
             'siro/shipping-fee-rules',
             'siro/size-guide',
             'siro/social-share',
+            'siro/sticky-add-to-cart',
             'siro/store-locator',
             'siro/fashion',
             'siro/pharmacy',
             'siro/fnb',
             'siro/atelier-noir',
             'siro/apothecary-calm',
+            'siro/abandoned-cart',
+            'siro/abandoned-cart-pro',
         ] as $id) {
             self::assertContains($id, $ids);
         }
@@ -91,6 +98,23 @@ final class EcosystemCatalogTest extends TestCase
         self::assertFalse($affiliate['installable']);
         self::assertFalse($affiliate['can_update']);
         self::assertSame('Pro license and signed artifact required', $affiliate['action_reason']);
+
+        $abandoned = $this->item($catalog['items'], 'siro/abandoned-cart');
+        self::assertNotNull($abandoned);
+        self::assertSame('plugin', $abandoned['type']);
+        self::assertSame('free', $abandoned['edition']);
+        self::assertFalse($abandoned['license_required']);
+        self::assertSame('published', $abandoned['status']);
+        self::assertSame('1.0.0', $abandoned['latest_version']);
+
+        $abandonedPro = $this->item($catalog['items'], 'siro/abandoned-cart-pro');
+        self::assertNotNull($abandonedPro);
+        self::assertSame('plugin', $abandonedPro['type']);
+        self::assertSame('pro', $abandonedPro['edition']);
+        self::assertTrue($abandonedPro['license_required']);
+        self::assertSame('siro-abandoned-cart-pro', $abandonedPro['license_sku']);
+        self::assertSame('planned', $abandonedPro['status']);
+        self::assertSame('1.0.0', $abandonedPro['latest_version']);
 
         $qa = $this->item($catalog['items'], 'siro/product-qa');
         self::assertNotNull($qa);
@@ -201,17 +225,17 @@ final class EcosystemCatalogTest extends TestCase
     {
         $service = new EcosystemCatalogService($this->base());
 
-        self::assertCount(10, $service->catalog('plugin')['items']);
+        self::assertCount(16, $service->catalog('plugin')['items']);
         self::assertCount(5, $service->catalog('theme')['items']);
 
         $pro = $service->catalog('all', 'pro');
-        self::assertCount(3, $pro['items']);
+        self::assertCount(4, $pro['items']);
         $proIds = array_column($pro['items'], 'id');
-        foreach (['siro/affiliate', 'siro/atelier-noir', 'siro/apothecary-calm'] as $id) {
+        foreach (['siro/affiliate', 'siro/atelier-noir', 'siro/apothecary-calm', 'siro/abandoned-cart-pro'] as $id) {
             self::assertContains($id, $proIds);
         }
 
-        self::assertCount(12, $service->catalog('all', 'free')['items']);
+        self::assertCount(17, $service->catalog('all', 'free')['items']);
 
         $search = $service->catalog('all', 'all', '  AFFILIATE  ');
         self::assertCount(1, $search['items']);
@@ -360,7 +384,7 @@ final class EcosystemCatalogTest extends TestCase
         $catalog = $this->call('GET', '/api/admin/ecosystem/catalog', [], $admin);
         self::assertSame(200, $catalog['status']);
         self::assertSame(EcosystemCatalogService::SCHEMA, $catalog['json']['data']['schema']);
-        self::assertCount(15, $catalog['json']['data']['items']);
+        self::assertCount(21, $catalog['json']['data']['items']);
         self::assertStringNotContainsString('resources', (string) json_encode($catalog['json']));
 
         $theme = $this->call('GET', '/api/admin/ecosystem/catalog?type=theme', [], $admin);
@@ -372,9 +396,9 @@ final class EcosystemCatalogTest extends TestCase
 
         $pro = $this->call('GET', '/api/admin/ecosystem/catalog?edition=pro', [], $admin);
         self::assertSame(200, $pro['status']);
-        self::assertCount(3, $pro['json']['data']['items']);
+        self::assertCount(4, $pro['json']['data']['items']);
         $proIds = array_column($pro['json']['data']['items'], 'id');
-        foreach (['siro/affiliate', 'siro/atelier-noir', 'siro/apothecary-calm'] as $id) {
+        foreach (['siro/affiliate', 'siro/atelier-noir', 'siro/apothecary-calm', 'siro/abandoned-cart-pro'] as $id) {
             self::assertContains($id, $proIds);
         }
 

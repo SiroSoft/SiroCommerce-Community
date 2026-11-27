@@ -303,6 +303,7 @@ $app->router->post('/api/account/privacy/anonymize', [PrivacyController::class, 
 $app->router->post('/api/account/consents', [PrivacyController::class, 'consent'])->middleware(array_merge($fe, ['auth']));
 $app->router->get('/api/consent/policy', [ConsentController::class, 'policy'])->middleware($fe);
 $app->router->post('/api/consent', [ConsentController::class, 'store'])->middleware($writeThrottle);
+$app->router->post('/api/consent/marketing', [ConsentController::class, 'marketing'])->middleware(array_merge($writeThrottle, [OptionalAuthMiddleware::class]));
 $app->router->post('/api/admin/customers/{id}/privacy/legal-hold', [PrivacyController::class, 'legalHold'])->middleware(array_merge($fe, ['auth:admin,owner,finance', 'cap:finance', DemoGuardMiddleware::class]));
 
 // Merchant admin (Phase 2; role gates + DemoGuard readonly for demo/viewer)

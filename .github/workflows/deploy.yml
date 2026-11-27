@@ -29,12 +29,13 @@ jobs:
       - name: Build source tarball (same excludes as local releases)
         run: |
           tar --exclude=node_modules --exclude='*/node_modules' \
-            --exclude=vendor --exclude='*/vendor' \
+            --exclude=./vendor --exclude=./backend/vendor \
             --exclude=.git --exclude='*/.git' \
             --exclude=.next --exclude='*/.next' \
             --exclude=.env --exclude='*/.env' \
             --exclude=backend/storage --exclude='*/test-results' --exclude='*/coverage' \
             -czf /tmp/sirocommerce-release.tar.gz .
+          tar -tzf /tmp/sirocommerce-release.tar.gz | grep -Fqx './apps/storefront/src/app/vendor/[slug]/page.tsx'
 
       - name: Check deploy credentials
         id: guard

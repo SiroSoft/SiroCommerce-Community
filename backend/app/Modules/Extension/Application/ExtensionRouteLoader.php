@@ -112,6 +112,12 @@ final class ExtensionRouteLoader
             } elseif (str_starts_with($item, 'cap:')) {
                 $stack[] = 'auth';
                 $stack[] = $item;
+            } elseif ($item === 'public') {
+                // Intentionally public route (anonymous guests, e.g. a
+                // subscribe endpoint): no auth middleware is added.
+                // Accepted by ExtensionQualityGate::routeAuth() as the
+                // explicit alternative to auth/cap. Never combine with
+                // 'auth'/'cap:' — auth would win and the marker would lie.
             } elseif (str_starts_with($item, 'throttle:')) {
                 $stack[] = $item;
             }

@@ -75,6 +75,7 @@ export default async function ProductDetail({ params }: { params: Promise<{ slug
         </figure>
         {product.tags.length > 0 && <div className="gallery-tags" aria-label={copy.tagsLabel}>{product.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>}
       </div>
+      <Slot name="pdp.below-gallery" locale={locale} data={{ productId: product.id, productSlug: product.slug, category: product.category }} />
        <div className="detail-purchase-column">
        <ProductDecisionPanel product={product} variant={detailVariant} />
        <WishlistButton product={product} />

@@ -23,18 +23,18 @@ items. A hidden action is a UX optimization, not a security control.
 
 ## Coverage Counts
 
-These counts are checked against the regenerated v0.2.1 contract on 2026-11-27. The historical table below covers the last generated 186-operation slice; current source has more operations and the matrix mapping is incomplete. Rerun `composer handoff:matrix` and regenerate this section before release; do not hand-maintain counts.
+These counts are checked against the regenerated v0.3.1 contract on 2026-11-27. The historical table below covers the last generated 186-operation slice; current source has more operations and the matrix mapping is incomplete. Rerun `composer handoff:matrix` and regenerate this section before release; do not hand-maintain counts.
 
 | Measure | Count | Meaning |
 |---|---:|---|
-| Exact method/path route declarations | 468 | `backend/routes/api.php` (verified 2026-11-27) |
-| OpenAPI paths | 405 | `backend/docs/openapi.json` |
-| OpenAPI operations | 468 | One operation per method/path |
+| Exact method/path route declarations | 469 | `backend/routes/api.php` (verified 2026-11-27) |
+| OpenAPI paths | 406 | `backend/docs/openapi.json` |
+| OpenAPI operations | 469 | One operation per method/path |
 | Bearer-authenticated operations | 376 | OpenAPI `bearerAuth` security requirement |
 | FE-guarded operations | 410 | OpenAPI `feSharedSecret` requirement |
 | Explicit CommerceScope operations | 63 | OpenAPI `x-scope` marker |
 | Webhook-signature operations | 7 | Server-to-server; excluded from browser FE |
-| Operation IDs explicitly listed in this matrix | 186/468 | Historical slice; full mapping not yet regenerated |
+| Operation IDs explicitly listed in this matrix | 186/469 | Historical slice; full mapping not yet regenerated |
 
 Counts are contract evidence, not a claim that the browser UI is implemented.
 Regenerate this section when OpenAPI or `routes/api.php` changes.
@@ -120,7 +120,7 @@ operation metadata from the generated client before enabling each action.
 
 ## Remaining Exact Classifications
 
-These operation IDs complete the historical 186-operation slice and are not role rows above. The full current inventory is 468 operations; rerun the handoff gate to regenerate the mapping:
+These operation IDs complete the historical 186-operation slice and are not role rows above. The full current inventory is 469 operations; rerun the handoff gate to regenerate the mapping:
 
 | Classification | Exact operation IDs | UI rule |
 |---|---|---|
@@ -181,4 +181,4 @@ safe state handling.
 - `422` field errors are mapped from `meta.errors`; no test asserts on `message`.
 - A cross-scope resource identifier renders the stable scope/forbidden/not-found contract without leaking whether another scope contains it.
 - Provider-dependent screens pass pending, failed, unavailable, timeout, and retry fixtures without requiring a live provider.
-- Automated contract coverage must assert the full current route/operation inventory (468 declarations/operations as of 2026-11-27). The historical 186/186 figure is stale and is not release evidence until the handoff gate is rerun.
+- Automated contract coverage must assert the full current route/operation inventory (469 declarations/operations as of 2026-11-27). The historical 186/186 figure is stale and is not release evidence until the handoff gate is rerun.

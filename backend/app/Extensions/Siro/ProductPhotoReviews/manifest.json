@@ -1,0 +1,74 @@
+{
+    "admin": {
+        "label": "Product Photo Reviews",
+        "panels": [
+            {
+                "endpoint": "admin/overview",
+                "key": "overview",
+                "permission": "photo-reviews:moderate",
+                "title": "Photo overview",
+                "type": "stats"
+            },
+            {
+                "endpoint": "admin",
+                "key": "moderation",
+                "permission": "photo-reviews:moderate",
+                "title": "Photo moderation queue",
+                "type": "table"
+            }
+        ],
+        "section": "Commerce"
+    },
+    "bagisto": {
+        "compatible": "not-applicable",
+        "kind": "extension",
+        "source": null
+    },
+    "capabilities": [
+        "photo-reviews:read",
+        "photo-reviews:moderate"
+    ],
+    "config": {
+        "max_gallery_items": 24,
+        "max_images_per_review": 5
+    },
+    "description": "Review photo gallery on the product page with per-photo admin moderation. Photos are uploaded through the media library and attached to reviews; only photos of approved reviews render, and admins can reject individual photos.",
+    "id": "siro/product-photo-reviews",
+    "license": {
+        "features": [
+            "photo-reviews"
+        ],
+        "required": false,
+        "sku": "siro-product-photo-reviews"
+    },
+    "migrations": [
+        "migrations/20261126000031_create_ext_product_review_media.php"
+    ],
+    "name": "Product Photo Reviews",
+    "permissions": [
+        "photo-reviews:moderate"
+    ],
+    "provider": "App\\Extensions\\Siro\\ProductPhotoReviews\\Extension",
+    "requires": {
+        "commerce": "^0.3",
+        "core": "^1.0"
+    },
+    "routes": [
+        "routes.php"
+    ],
+    "runtime": {
+        "php": ">=8.2"
+    },
+    "schema": "siro.extension/2",
+    "slots": {
+        "admin": {
+            "label": "Product Photo Reviews",
+            "section": "Commerce"
+        },
+        "storefront": [
+            "pdp.below-gallery"
+        ]
+    },
+    "type": "module",
+    "version": "1.0.0"
+}

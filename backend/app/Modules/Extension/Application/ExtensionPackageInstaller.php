@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Extension\Application;
 
+use App\Modules\Extension\Domain\ExtensionManifest;
 use ZipArchive;
 
 /**
@@ -285,6 +286,29 @@ final class ExtensionPackageInstaller
             $items = $data[$field] ?? [];
             if (!is_array($items)) { $errors[] = 'manifest.' . $field . ' must be an array'; continue; }
             foreach ($items as $item) if (!is_string($item) || preg_match('/^[a-z0-9][a-z0-9._:-]*$/', $item) !== 1) $errors[] = 'manifest.' . $field . ' contains an invalid value';
+        }
+        $slots = $data['slots'] ?? [];
+        if (!is_array($slots)) {
+            $errors[] = 'manifest.slots must be an object';
+        } else {
+            $storefront = $slots['storefront'] ?? [];
+            if (!is_array($storefront)) {
+                $errors[] = 'manifest.slots.storefront must be an array';
+            } else {
+                foreach ($storefront as $slot) {
+                    if (!is_string($slot) || !in_array($slot, ExtensionManifest::SLOT_NAMES, true)) $errors[] = 'manifest.slots.storefront contains an unknown slot "' . (is_string($slot) ? $slot : '') . '"';
+                }
+            }
+            if (array_key_exists('admin', $slots) && !is_array($slots['admin'])) $errors[] = 'manifest.slots.admin must be an object';
+        }
+        $requiresExtensions = $data['requires_extensions'] ?? [];
+        if (!is_array($requiresExtensions)) {
+            $errors[] = 'manifest.requires_extensions must be an array';
+        } else {
+            foreach ($requiresExtensions as $dependency) {
+                if (!is_string($dependency) || preg_match('/^[a-z0-9][a-z0-9._-]*(\/[a-z0-9][a-z0-9._-]*)?$/', $dependency) !== 1) $errors[] = 'manifest.requires_extensions contains an invalid extension id';
+                if ($dependency === $id) $errors[] = 'manifest.requires_extensions must not list itself';
+            }
         }
         if ($errors !== []) return null;
         /** @var array<string, mixed> $data */

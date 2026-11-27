@@ -98,6 +98,14 @@ final class ExtensionQualityGate
     }
 
     /**
+     * Mutating routes must carry auth/cap middleware — or an explicit
+     * 'public' marker. 'public' is a deliberate opt-in for routes that must
+     * serve anonymous guests (e.g. a guest subscribe endpoint): the loader
+     * mounts them without auth middleware, and QIT accepts the marker
+     * instead of auth/cap. It must never be combined with 'auth'/'cap:'
+     * (auth wins at runtime, so the combination would be a lie).
+     * Tokens are matched exactly in the middleware list, not as
+     * substrings of the row line (see lineHasRouteAuth).
      * @param list<string> $entries
      * @return array{name: string, ok: bool, details: list<string>}
      */
@@ -111,14 +119,37 @@ final class ExtensionQualityGate
             if (!is_string($raw)) continue;
             foreach (preg_split('/\R/', $raw) ?: [] as $line) {
                 if (preg_match("/\\['(POST|PUT|PATCH|DELETE)'/", $line) !== 1) continue;
-                if (!str_contains($line, 'auth') && !str_contains($line, 'cap:')) {
+                if (!self::lineHasRouteAuth($line)) {
                     $ok = false;
-                    $details[] = 'Mutating route in ' . $entry . ' is missing auth/cap middleware';
+                    $details[] = 'Mutating route in ' . $entry . ' is missing auth/cap middleware (or an explicit \'public\' marker)';
                 }
             }
         }
         if ($details === []) $details[] = 'Route middleware checks passed';
         return ['name' => 'route-auth', 'ok' => $ok, 'details' => $details];
+    }
+
+    /**
+     * Tokens are matched EXACTLY in the middleware list (the last bracket
+     * group without nested brackets on the row line, e.g.
+     * ['auth', 'throttle:20,1']), not as substrings of the whole line —
+     * so a handler named e.g. 'publicData' cannot satisfy the check.
+     */
+    private static function lineHasRouteAuth(string $line): bool
+    {
+        if (preg_match_all('/\[([^\[\]]*)\]/', $line, $matches) === 0) {
+            return false;
+        }
+        /** @var list<string> $groups */
+        $groups = $matches[1];
+        $last = (string) end($groups);
+        foreach (explode(',', $last) as $token) {
+            $token = trim($token, " \t\n\r\0\x0B'\"");
+            if ($token === 'auth' || $token === 'public' || str_starts_with($token, 'cap:')) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

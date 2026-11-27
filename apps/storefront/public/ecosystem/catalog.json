@@ -22,6 +22,48 @@
             ]
         },
         {
+            "id": "siro/abandoned-cart",
+            "type": "plugin",
+            "name": "Abandoned Cart",
+            "description": "Captures abandoned carts and sends one consent-gated reminder email with a recovery coupon.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release: cart capture, totals snapshot, one consent-gated reminder email with a recovery coupon, admin overview.",
+            "published_at": "2026-11-26",
+            "tags": [
+                "growth",
+                "email",
+                "cart"
+            ]
+        },
+        {
+            "id": "siro/abandoned-cart-pro",
+            "type": "plugin",
+            "name": "Abandoned Cart Pro",
+            "description": "Multi-step abandoned-cart reminders (email + SMS), AI copy drafts, reporting and segmentation. Requires siro/abandoned-cart.",
+            "vendor": "Siro",
+            "edition": "pro",
+            "status": "planned",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial Pro release: multi-step reminders, SMS outbox, AI copy drafts with approval, reporting and segmentation.",
+            "published_at": "2026-11-26",
+            "tags": [
+                "growth",
+                "email",
+                "cart"
+            ]
+        },
+        {
             "id": "siro/affiliate",
             "type": "plugin",
             "name": "Affiliate",
@@ -100,6 +142,27 @@
             "published_at": "2026-11-24",
             "tags": [
                 "support"
+            ]
+        },
+        {
+            "id": "siro/email-capture-popup",
+            "type": "plugin",
+            "name": "Email Capture Popup",
+            "description": "Exit-intent/time-delayed email capture popup with a welcome coupon. Stores subscribers in its own scoped table and sends the welcome mail only with verified marketing consent.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release: email capture popup in the storefront footer slot (time-delay, exit-intent and 50%-scroll triggers, once per session), welcome coupon on consented opt-in, admin subscriber stats + table.",
+            "published_at": "2026-11-26",
+            "tags": [
+                "email",
+                "growth",
+                "popup"
             ]
         },
         {
@@ -202,6 +265,47 @@
             ]
         },
         {
+            "id": "siro/product-labels",
+            "type": "plugin",
+            "name": "Product Labels",
+            "description": "Rule-based product badges (New, Sale, Best seller, custom) on product cards and PDP titles.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release: rules engine with conditions JSON and priority ordering, admin CRUD, product-card and PDP title slots.",
+            "published_at": "2026-11-26",
+            "tags": [
+                "badges",
+                "merchandising"
+            ]
+        },
+        {
+            "id": "siro/product-photo-reviews",
+            "type": "plugin",
+            "name": "Product Photo Reviews",
+            "description": "Review photo gallery on the product page with per-photo admin moderation.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release: PDP photo gallery below the product gallery, per-photo approve/reject moderation, review moderation via core ReviewService.",
+            "published_at": "2026-11-26",
+            "tags": [
+                "reviews",
+                "photos",
+                "pdp"
+            ]
+        },
+        {
             "id": "siro/product-qa",
             "type": "plugin",
             "name": "Product Q&A",
@@ -277,6 +381,26 @@
             "published_at": "2026-11-24",
             "tags": [
                 "marketing"
+            ]
+        },
+        {
+            "id": "siro/sticky-add-to-cart",
+            "type": "plugin",
+            "name": "Sticky Add to Cart",
+            "description": "Store/channel scoped sticky Add to Cart bar below the PDP Add to Cart button.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "1.0.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial release: sticky Add to Cart bar in the pdp.below-atc slot (desktop only), scoped settings table, admin settings + stats.",
+            "published_at": "2026-11-26",
+            "tags": [
+                "pdp",
+                "cart"
             ]
         },
         {

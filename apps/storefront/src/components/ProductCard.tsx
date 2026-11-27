@@ -8,6 +8,7 @@ import { fill } from "@/lib/i18n";
 import { useCopy, useLocale } from "@/lib/i18n-client";
 import { CARD_IMAGE_SIZES, CARD_IMAGE_WIDTHS, srcSetFor, type ImageSources } from "@/lib/product-image";
 import { WishlistButton } from "./WishlistButton";
+import { Slot } from "@/slots";
 import { useThemeProductImage } from "@/theme/ThemeMediaContext";
 import { trackStorefrontEvent } from "@/services/storefront-events";
 
@@ -89,6 +90,7 @@ export function ProductCard({ product, priority = false, recommendationId, recom
         {secondaryImage && secondaryMarkup && pictureMarkup(secondarySrc!, secondaryMarkup)}
         <span className="sf-media-card-veil" aria-hidden="true" />
         {badge && <span className="product-badge">{badge}</span>}
+        <Slot name="product-card" data={{ productId: product.id, productSlug: product.slug }} />
       </div>
       <div className="product-meta">
         <div className="product-meta-main">

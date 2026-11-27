@@ -17,7 +17,7 @@ require_once __DIR__ . '/src/ProductQaController.php';
 
 return [
     ['GET', 'public', [ProductQaController::class, 'publicList'], ['throttle:120,1']],
-    ['POST', 'public', [ProductQaController::class, 'submit'], ['throttle:20,1']], // public anonymous submit: no auth by design
+    ['POST', 'public', [ProductQaController::class, 'submit'], ['throttle:20,1', 'public']], // public anonymous submit: no auth by design
     ['GET', 'admin', [ProductQaController::class, 'adminList'], ['cap:product-qa:manage', 'throttle:60,1']],
     ['PUT', 'admin/{id}', [ProductQaController::class, 'adminUpdate'], ['cap:product-qa:manage', 'throttle:20,1']],
 ];

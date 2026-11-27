@@ -2,6 +2,37 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-27] v0.3.1 plugin batch 1 and 21-item catalog
+
+### Added
+- Plugin batch 1: Sticky Add to Cart, Product Labels, Email Capture Popup,
+  Product Photo Reviews, and Abandoned Cart Recovery (free + Pro), six packages
+  across five plugins.
+- Extension manifest dependency guard (`requires_extensions`), storefront slot
+  declarations, explicit `public` route opt-in, product review media, consent
+  and coupon integration, and the mail template registry.
+- Catalog now has 21 items: 16 plugins and 5 themes; 4 Pro (Affiliate, both
+  premium themes, and planned/private Abandoned Cart Pro).
+- Abandoned Cart Pro is private to the Pro mirror, requires
+  `siro/abandoned-cart`, and uses SKU `siro-abandoned-cart-pro`; it is not
+  published until a signed artifact exists.
+
+### Fixed
+- Community mirror excludes Abandoned Cart Pro source and its Pro-only test;
+  Pro mirror carries the ten source files.
+- OpenAPI generator maps the `/api/consent/marketing` request body, restoring
+  API contract checks.
+
+### Verification
+- Backend 1,928 PHPUnit tests / 17,435 assertions, 1 skipped; PHPStan 0.
+- Admin 614 tests; storefront 653 tests; Community backend 1,895 / 16,742,
+  2 skipped; Community admin 612.
+- Catalog 21 items; build/public drift and selftest pass; mirrors dry-run
+  Community 2,883 / Pro 32 with no Pro source in Community.
+- Extension check 16/16; pack → verify → QIT 6/6 for six packages.
+- API contract PASS (469 operations / 406 paths); handoff 469 routes / 2,345
+  layer records, readiness `NOT_READY_BLOCKED`.
+
 ## [2026-11-26] v0.3.0 signed Pro themes and theme artifact feed
 
 ### Added

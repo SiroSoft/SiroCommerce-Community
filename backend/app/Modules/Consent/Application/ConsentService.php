@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Modules\Consent\Application;
 
+use App\Models\CustomerNotificationPreference;
 use App\Modules\Consent\Domain\ConsentPolicy;
 use App\Repositories\ConsentRecordRepository;
+use App\Support\Arr;
 use Siro\Core\Env;
 
 /**
@@ -66,6 +68,30 @@ final class ConsentService
             'created_at' => $record['created_at'] ?? null,
             'updated_at' => $record['updated_at'] ?? null,
         ];
+    }
+
+    /**
+     * The single read API plugins use before sending marketing email.
+     * For a known customer the source is CustomerNotificationPreference
+     * (marketing_email) ONLY — consent_records is the cookie/GDPR ledger
+     * and is never consulted for a customer. For an anonymous session
+     * (no customer row exists) the session ledger is the only possible
+     * source, so the session hash is resolved against it.
+     */
+    public function hasMarketingConsent(?string $customerId = null, ?string $sessionHash = null): bool
+    {
+        if ($customerId !== null && trim($customerId) !== '') {
+            $row = CustomerNotificationPreference::query()->where('customer_id', trim($customerId))->first();
+            return $row !== null && Arr::int(Arr::row($row), 'marketing_email') === 1;
+        }
+        if ($sessionHash !== null && trim($sessionHash) !== '') {
+            $record = $this->records->findBySessionHash(hash('sha256', trim($sessionHash)));
+            if ($record === null) return false;
+            $choices = $record['choices_json'] ?? '';
+            $decoded = json_decode(is_string($choices) ? $choices : '', true);
+            return is_array($decoded) && ($decoded['marketing'] ?? false) === true;
+        }
+        return false;
     }
 
     /** @return array{records: int, analytics_opt_in: int, marketing_opt_in: int, policy_version: string} */

@@ -53,6 +53,13 @@ final class Extension implements ExtensionInterface
             'permissions' => ['free-shipping:manage'],
             'migrations' => ['migrations/20261123000001_create_ext_free_shipping_banner.php'],
             'routes' => ['routes.php'],
+            'slots' => [
+                'admin' => [
+                    'label' => 'Free shipping banner',
+                    'section' => 'Commerce',
+                ],
+                'storefront' => ['cart'],
+            ],
             'config' => self::CONFIG,
             'admin' => [
                 'label' => 'Free shipping banner',

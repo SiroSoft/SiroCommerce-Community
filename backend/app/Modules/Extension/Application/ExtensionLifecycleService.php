@@ -96,6 +96,10 @@ final class ExtensionLifecycleService implements ExtensionLifecycle
         foreach (['migrations' => $manifest->migrations, 'routes' => $manifest->routes] as $field => $items) {
             foreach ($items as $item) if (preg_match('#^(?!/)(?!.*\.\.)[A-Za-z0-9_./:-]+$#', $item) !== 1) $errors[] = "Extension {$field} contain invalid path {$item}";
         }
+        foreach ($manifest->requiresExtensions as $dependency) {
+            if (preg_match('/^[a-z0-9][a-z0-9._-]*(\/[a-z0-9][a-z0-9._-]*)?$/', $dependency) !== 1) $errors[] = "Extension requires_extensions contains an invalid extension id {$dependency}";
+            if ($dependency === $manifest->id) $errors[] = 'Extension requires_extensions must not list itself';
+        }
         return $errors;
     }
 
@@ -110,6 +114,7 @@ final class ExtensionLifecycleService implements ExtensionLifecycle
         $row = $this->row($extensionId);
         $manifest = $this->manifestFromRow($row);
         $this->assertValid($manifest);
+        $this->assertDependencies($manifest);
         $this->assertLicense($manifest);
         $class = $this->classes[$extensionId] ?? ($this->classFromRow($row));
         try {
@@ -132,6 +137,7 @@ final class ExtensionLifecycleService implements ExtensionLifecycle
     public function disable(string $extensionId): void
     {
         $row = $this->row($extensionId);
+        $this->assertNoEnabledDependents($extensionId);
         try {
             $instance = ExtensionRegistry::extension($extensionId);
             if ($instance !== null) $instance->shutdown();
@@ -200,6 +206,7 @@ final class ExtensionLifecycleService implements ExtensionLifecycle
     public function uninstall(string $extensionId, bool $removeData): void
     {
         $row = $this->row($extensionId);
+        $this->assertNoEnabledDependents($extensionId);
         try {
             $instance = ExtensionRegistry::extension($extensionId);
             if ($instance !== null) $instance->shutdown();
@@ -243,6 +250,69 @@ final class ExtensionLifecycleService implements ExtensionLifecycle
         if ($errors !== []) {
             throw new \InvalidArgumentException(implode('; ', $errors));
         }
+    }
+
+    /**
+     * Batch 1 §2.2 dependency guard (generic — not hardcoded to Cart): every
+     * id in `requires_extensions` must already be enabled. A missing row
+     * means the dependency is not installed at all. Throws
+     * InvalidArgumentException so the admin API answers 422 with a clear
+     * message naming the missing dependency.
+     */
+    private function assertDependencies(ExtensionManifest $manifest): void
+    {
+        foreach ($manifest->requiresExtensions as $dependency) {
+            $row = Extension::query()->where('id', $dependency)->first();
+            if (!$row instanceof Extension) {
+                throw new \InvalidArgumentException('Extension ' . $manifest->id . ' requires ' . $dependency . ' to be installed and enabled');
+            }
+            $state = $row->toArray()['state'] ?? null;
+            if ($state !== 'enabled') {
+                throw new \InvalidArgumentException('Extension ' . $manifest->id . ' requires ' . $dependency . ' to be enabled');
+            }
+        }
+    }
+
+    /**
+     * Batch 1 §2.2 dependency guard: an extension cannot be disabled or
+     * uninstalled while another ENABLED extension requires it. Disabling
+     * never deletes data, so a disabled dependent keeps its tables/rows
+     * (e.g. Pro tables survive a Pro disable) and can resume on re-enable.
+     */
+    private function assertNoEnabledDependents(string $extensionId): void
+    {
+        $dependents = $this->enabledDependents($extensionId);
+        if ($dependents !== []) {
+            throw new \InvalidArgumentException('Cannot disable or uninstall ' . $extensionId . ': enabled extension(s) ' . implode(', ', $dependents) . ' require it');
+        }
+    }
+
+    /** @return list<string> ids of ENABLED extensions requiring $extensionId */
+    private function enabledDependents(string $extensionId): array
+    {
+        $dependents = [];
+        /** @var list<mixed> $rows */
+        $rows = Extension::query()->where('state', 'enabled')->get();
+        foreach ($rows as $row) {
+            $data = $row instanceof Extension ? $row->toArray() : (is_array($row) ? $row : []);
+            $json = $data['manifest_json'] ?? null;
+            if (!is_string($json)) continue;
+            try {
+                $decoded = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+            } catch (\Throwable) {
+                continue;
+            }
+            if (!is_array($decoded)) continue;
+            $payload = [];
+            foreach ($decoded as $key => $value) if (is_string($key)) $payload[$key] = $value;
+            try {
+                $manifest = ExtensionManifest::fromArray($payload);
+            } catch (\Throwable) {
+                continue;
+            }
+            if (in_array($extensionId, $manifest->requiresExtensions, true)) $dependents[] = $manifest->id;
+        }
+        return $dependents;
     }
 
     /**

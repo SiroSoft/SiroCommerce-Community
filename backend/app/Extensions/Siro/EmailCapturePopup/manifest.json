@@ -1,0 +1,78 @@
+{
+  "admin": {
+    "label": "Email capture popup",
+    "panels": [
+      {
+        "endpoint": "admin/stats",
+        "key": "stats",
+        "permission": "email-capture:manage",
+        "title": "Subscriber stats",
+        "type": "stats"
+      },
+      {
+        "endpoint": "admin/subscribers",
+        "key": "subscribers",
+        "permission": "email-capture:manage",
+        "title": "Subscribers",
+        "type": "table"
+      }
+    ],
+    "section": "Commerce"
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "kind": "extension",
+    "source": null
+  },
+  "capabilities": [
+    "email-capture:read",
+    "email-capture:manage",
+    "coupon:create"
+  ],
+  "config": {
+    "default_active": true,
+    "default_coupon_enabled": true,
+    "default_coupon_percent": 10,
+    "default_delay_ms": 8000
+  },
+  "description": "Exit-intent/time-delayed email capture popup with a welcome coupon. Stores subscribers in its own scoped table and sends the welcome mail only with verified marketing consent.",
+  "id": "siro/email-capture-popup",
+  "license": {
+    "features": [
+      "email-capture"
+    ],
+    "required": false,
+    "sku": "siro-email-capture-popup"
+  },
+  "migrations": [
+    "migrations/20261126000021_create_ext_email_capture_subscribers.php"
+  ],
+  "name": "Email Capture Popup",
+  "permissions": [
+    "email-capture:manage",
+    "coupon:create"
+  ],
+  "provider": "App\\Extensions\\Siro\\EmailCapturePopup\\Extension",
+  "requires": {
+    "commerce": "^0.3",
+    "core": "^1.0"
+  },
+  "routes": [
+    "routes.php"
+  ],
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "schema": "siro.extension/2",
+  "slots": {
+    "admin": {
+      "label": "Email capture popup",
+      "section": "Commerce"
+    },
+    "storefront": [
+      "footer"
+    ]
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

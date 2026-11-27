@@ -79,6 +79,13 @@ final class ConsentRecordRepository
         }
     }
 
+    /** @return array<string, mixed>|null Latest record for a session hash, if any. */
+    public function findBySessionHash(string $sessionHash): ?array
+    {
+        $row = ConsentRecord::query()->where('session_hash', $sessionHash)->orderBy('updated_at', 'desc')->first();
+        return $row === null ? null : Arr::row($row);
+    }
+
     /** @return array<int, array<string, mixed>> */
     public function all(): array
     {

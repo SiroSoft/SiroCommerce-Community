@@ -1,6 +1,6 @@
 # Admin UI Parallel Workstreams
 
-> LEGACY (planning snapshot; gate/evidence rows may predate current code). Current route inventory: 468 declarations; checked-in handoff snapshot 468 routes. See [docs/README.md](../README.md).
+> LEGACY (planning snapshot; gate/evidence rows may predate current code). Current route inventory: 469 declarations; checked-in handoff snapshot 469 routes. See [docs/README.md](../README.md).
 
 Status: `4-DEV IMPLEMENTATION HANDOFF`
 
@@ -216,7 +216,7 @@ analytics.
 
 | Gate | Merge requirement | Release requirement | Evidence now |
 |---|---|---|---|
-| BE contract/handoff | Backend parity remains green | Same release artifact hashes | Source inventory: 468 route declarations; checked-in handoff snapshot 468 records, readiness `NOT_READY_BLOCKED` |
+| BE contract/handoff | Backend parity remains green | Same release artifact hashes | Source inventory: 469 route declarations; checked-in handoff snapshot 469 records, readiness `NOT_READY_BLOCKED` |
 | FE contract | Operation IDs, envelopes, headers, scope and cache tests | Complete screen-operation matrix | NOT RUN |
 | Unit/component | Changed slice plus shared primitive tests | Full suite, no unexplained flakes | Package has Vitest only; NOT RUN for Admin UI |
 | E2E | Slice smoke may be added with controlled runner | Role, scope, mutation recovery and critical journeys | NOT RUN; package has no Playwright script |

@@ -77,6 +77,20 @@ return [
 Loader adds scope/throttle/idempotency/audit automatically; collisions with
 core fail the enable with a message.
 
+**Public routes:** a mutating route that must serve anonymous guests (e.g.
+a guest subscribe endpoint) carries the explicit `'public'` token instead
+of `'auth'`/`'cap:…'`:
+
+```php
+['POST', 'subscribe', [SubscribeController::class, 'subscribe'], ['throttle:20,1', 'public']],
+```
+
+The loader mounts it without auth middleware, and QIT `route-auth`
+accepts the marker. Never combine `'public'` with `'auth'`/`'cap:…'`
+(auth would win at runtime, so the combination would be a lie).
+Core precedent: `POST /api/carts`, `POST /api/checkout/place` are
+guest-capable mutations.
+
 ## 4. Enable / operate / remove
 
 Private Composer install is supported without editing core. The vendor package

@@ -10,13 +10,13 @@ and the package/license contracts:
 [`contracts/EXTENSION_ECOSYSTEM_SPEC.md`](../contracts/EXTENSION_ECOSYSTEM_SPEC.md)
 and [`contracts/THEME_PACKAGE_SPEC.md`](../contracts/THEME_PACKAGE_SPEC.md).
 
-## 0. Current state (baseline 2026-11-24)
+## 0. Current state (baseline 2026-11-27)
 
 Do not describe planned capability as shipped.
 
 | Capability | Status today | Notes |
 |---|---|---|
-| Checked-in catalog overlay | CURRENT (P0/P2) | Source path is `backend/resources/ecosystem/catalog.json`; 15 items (10 plugins, 5 themes; 3 Pro). Affiliate is published with a signed artifact; the two premium themes remain planned until signed theme artifacts exist. The build tool exits `3` with a clear message when absent. |
+| Checked-in catalog overlay | CURRENT (P0/P2) | Source path is `backend/resources/ecosystem/catalog.json`; 15 items (10 plugins, 5 themes; 3 Pro). Affiliate and both premium themes are published with signed artifacts; public feeds still strip artifact/signature metadata. The build tool exits `3` with a clear message when absent. |
 | Catalog feed build/validate tool | CURRENT | `scripts/ecosystem-catalog/build.php`; offline, deterministic, no network. |
 | Catalog read model / admin tabs | CURRENT (P0/P1) | `GET /api/admin/ecosystem/catalog` and `/updates`; Extensions tabs Installed/Catalog/Updates/Licenses; `/storefront/themes` catalog. Bundled free install/update actions exist; read-only metadata otherwise. |
 | Static public feed | CURRENT (P1) | Public-safe feed generated at `apps/storefront/public/ecosystem/catalog.json` and served at `/ecosystem/catalog.json`. Regenerate with `npm run ecosystem:catalog`, drift-check with `npm run ecosystem:catalog:check`. No remote feed server or artifact download endpoint exists. |
@@ -25,7 +25,7 @@ Do not describe planned capability as shipped.
 | Billing | NOT IMPLEMENTED | Pro must not be sold. |
 | Vendor / license portal | PARTIAL (P2) | Admin can import/remove a signed license (`/api/admin/extensions/license/import`); customer self-service purchase/delivery portal does not exist. |
 | Offline license verify/enforce/issue CLI | CURRENT foundation | See [`operations/EXTENSION_LICENSE_ISSUANCE.md`](../operations/EXTENSION_LICENSE_ISSUANCE.md). |
-| Pro entitlement gating of enable/update | PARTIAL (P2) | Affiliate enable is license-gated. Remote update/download entitlement is not implemented. |
+| Pro entitlement gating of enable/update | CURRENT (P2) | Affiliate enable is license-gated; Pro artifact feed/download/install/update and theme download are license-gated. |
 | Update channel / auto-update | PARTIAL (P1) | Bundled free plugins can be updated from catalog; remote artifacts and auto-update stay manual/planned. |
 | GitHub Actions CI | DISABLED | Minutes are exhausted. The workflows are the intended gate but do not run on push/PR. Run the same commands locally and record the output. Do not claim a CI-gated result. |
 

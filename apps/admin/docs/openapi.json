@@ -2,7 +2,7 @@
     "openapi": "3.0.3",
     "info": {
         "title": "SiroCommerce API",
-        "version": "0.1.0",
+        "version": "0.3.0",
         "description": "Version-safe SiroCommerce API contract generated from routes/api.php. REST envelopes use contract version 1; /api/v2 routes are marked explicitly.",
         "x-be2-contract": {
             "scope": {
@@ -7277,6 +7277,679 @@
                 "x-request-body": "application/json"
             }
         },
+        "/api/admin/ecosystem/catalog": {
+            "get": {
+                "operationId": "get_api_admin_ecosystem_catalog",
+                "summary": "Get /api/admin/ecosystem/catalog",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_get_api_admin_ecosystem_catalog",
+                "x-response-envelope": "#/components/schemas/SuccessEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "required": false,
+                    "replay": "safe read"
+                },
+                "x-request-body": "not_applicable"
+            }
+        },
+        "/api/admin/ecosystem/install": {
+            "post": {
+                "operationId": "post_api_admin_ecosystem_install",
+                "summary": "Post /api/admin/ecosystem/install",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    },
+                    "201": {
+                        "$ref": "#/components/responses/Created"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_post_api_admin_ecosystem_install",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request_post_api_admin_ecosystem_install"
+                            }
+                        }
+                    }
+                },
+                "x-request-body": "application/json"
+            }
+        },
+        "/api/admin/ecosystem/pro-artifacts/download": {
+            "post": {
+                "operationId": "post_api_admin_ecosystem_pro_artifacts_download",
+                "summary": "Post /api/admin/ecosystem/pro-artifacts/download",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    },
+                    "201": {
+                        "$ref": "#/components/responses/Created"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_post_api_admin_ecosystem_pro_artifacts_download",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request_post_api_admin_ecosystem_pro_artifacts_download"
+                            }
+                        }
+                    }
+                },
+                "x-request-body": "application/json"
+            }
+        },
+        "/api/admin/ecosystem/pro-feed": {
+            "get": {
+                "operationId": "get_api_admin_ecosystem_pro_feed",
+                "summary": "Get /api/admin/ecosystem/pro-feed",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_get_api_admin_ecosystem_pro_feed",
+                "x-response-envelope": "#/components/schemas/SuccessEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "required": false,
+                    "replay": "safe read"
+                },
+                "x-request-body": "not_applicable"
+            }
+        },
+        "/api/admin/ecosystem/pro/install": {
+            "post": {
+                "operationId": "post_api_admin_ecosystem_pro_install",
+                "summary": "Post /api/admin/ecosystem/pro/install",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    },
+                    "201": {
+                        "$ref": "#/components/responses/Created"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_post_api_admin_ecosystem_pro_install",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request_post_api_admin_ecosystem_pro_install"
+                            }
+                        }
+                    }
+                },
+                "x-request-body": "application/json"
+            }
+        },
+        "/api/admin/ecosystem/pro/update": {
+            "post": {
+                "operationId": "post_api_admin_ecosystem_pro_update",
+                "summary": "Post /api/admin/ecosystem/pro/update",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    },
+                    "201": {
+                        "$ref": "#/components/responses/Created"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_post_api_admin_ecosystem_pro_update",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request_post_api_admin_ecosystem_pro_update"
+                            }
+                        }
+                    }
+                },
+                "x-request-body": "application/json"
+            }
+        },
+        "/api/admin/ecosystem/update": {
+            "post": {
+                "operationId": "post_api_admin_ecosystem_update",
+                "summary": "Post /api/admin/ecosystem/update",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    },
+                    "201": {
+                        "$ref": "#/components/responses/Created"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_post_api_admin_ecosystem_update",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request_post_api_admin_ecosystem_update"
+                            }
+                        }
+                    }
+                },
+                "x-request-body": "application/json"
+            }
+        },
+        "/api/admin/ecosystem/updates": {
+            "get": {
+                "operationId": "get_api_admin_ecosystem_updates",
+                "summary": "Get /api/admin/ecosystem/updates",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/Success"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_get_api_admin_ecosystem_updates",
+                "x-response-envelope": "#/components/schemas/SuccessEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "required": false,
+                    "replay": "safe read"
+                },
+                "x-request-body": "not_applicable"
+            }
+        },
         "/api/admin/extensions": {
             "get": {
                 "operationId": "get_api_admin_extensions",
@@ -7717,6 +8390,83 @@
             }
         },
         "/api/admin/extensions/license": {
+            "delete": {
+                "operationId": "delete_api_admin_extensions_license",
+                "summary": "Delete /api/admin/extensions/license",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_delete_api_admin_extensions_license",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "x-request-body": "not_applicable"
+            },
             "get": {
                 "operationId": "get_api_admin_extensions_license",
                 "summary": "Get /api/admin/extensions/license",
@@ -7785,6 +8535,98 @@
                     "replay": "safe read"
                 },
                 "x-request-body": "not_applicable"
+            }
+        },
+        "/api/admin/extensions/license/import": {
+            "post": {
+                "operationId": "post_api_admin_extensions_license_import",
+                "summary": "Post /api/admin/extensions/license/import",
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/WriteResultEnvelope"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/BadRequest"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFound"
+                    },
+                    "409": {
+                        "$ref": "#/components/responses/Conflict"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/RateLimited"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    },
+                    "201": {
+                        "$ref": "#/components/responses/Created"
+                    }
+                },
+                "x-route-evidence": "routes/api.php",
+                "x-api-version": "v1",
+                "x-client-contract": 1,
+                "deprecated": false,
+                "x-deprecation": {
+                    "status": "not_deprecated",
+                    "replacement": null
+                },
+                "x-request-schema": "Request_post_api_admin_extensions_license_import",
+                "x-response-envelope": "#/components/schemas/WriteResultEnvelope",
+                "x-stable-error-codes": [
+                    "SCOPE_ERROR",
+                    "VALIDATION_ERROR",
+                    "INVALID_ARGUMENT",
+                    "INVALID_REQUEST",
+                    "REQUEST_ERROR",
+                    "UNAUTHORIZED",
+                    "FORBIDDEN",
+                    "NOT_FOUND",
+                    "CONFLICT",
+                    "RATE_LIMITED",
+                    "INTERNAL_ERROR"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "feSharedSecret": []
+                    }
+                ],
+                "x-authentication": "bearer",
+                "x-capability-gates": [],
+                "x-idempotency": {
+                    "header": "Idempotency-Key",
+                    "required": false,
+                    "replay": "same key and equivalent request returns the original result"
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Request_post_api_admin_extensions_license_import"
+                            }
+                        }
+                    }
+                },
+                "x-request-body": "application/json"
             }
         },
         "/api/admin/extensions/package/install": {
@@ -48689,6 +49531,121 @@
                 "required": [],
                 "properties": [],
                 "description": "Request fields are validated by the route controller; this generator does not introspect that validator."
+            },
+            "Request_post_api_admin_extensions_license_import": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "license"
+                ],
+                "properties": {
+                    "license": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                },
+                "description": "Fields accepted by the route request validator."
+            },
+            "Request_delete_api_admin_extensions_license": {
+                "type": "object",
+                "additionalProperties": true,
+                "required": [],
+                "properties": [],
+                "description": "Request fields are validated by the route controller; this generator does not introspect that validator."
+            },
+            "Request_get_api_admin_ecosystem_pro_feed": {
+                "type": "object",
+                "additionalProperties": true,
+                "required": [],
+                "properties": [],
+                "description": "Request fields are validated by the route controller; this generator does not introspect that validator."
+            },
+            "Request_post_api_admin_ecosystem_pro_artifacts_download": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "token"
+                ],
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                },
+                "description": "Fields accepted by the route request validator."
+            },
+            "Request_post_api_admin_ecosystem_pro_install": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "description": "Fields accepted by the route request validator."
+            },
+            "Request_post_api_admin_ecosystem_pro_update": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "description": "Fields accepted by the route request validator."
+            },
+            "Request_get_api_admin_ecosystem_catalog": {
+                "type": "object",
+                "additionalProperties": true,
+                "required": [],
+                "properties": [],
+                "description": "Request fields are validated by the route controller; this generator does not introspect that validator."
+            },
+            "Request_get_api_admin_ecosystem_updates": {
+                "type": "object",
+                "additionalProperties": true,
+                "required": [],
+                "properties": [],
+                "description": "Request fields are validated by the route controller; this generator does not introspect that validator."
+            },
+            "Request_post_api_admin_ecosystem_install": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "description": "Fields accepted by the route request validator."
+            },
+            "Request_post_api_admin_ecosystem_update": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "id"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    }
+                },
+                "description": "Fields accepted by the route request validator."
             },
             "Request_post_api_admin_extensions_install": {
                 "type": "object",

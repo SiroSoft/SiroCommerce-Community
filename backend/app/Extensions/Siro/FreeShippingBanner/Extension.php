@@ -39,7 +39,7 @@ final class Extension implements ExtensionInterface
 
     public static function compatibleCommerce(): string
     {
-        return '^0.2';
+        return '^0.3';
     }
 
     /** @return array<string, mixed> */

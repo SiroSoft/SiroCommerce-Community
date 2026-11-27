@@ -73,7 +73,7 @@ final class CustomerAccountCoverageTest extends TestCase
         $expire = $this->call('POST', '/api/account/loyalty/expire', ['before' => 'not-a-date'], $headers);
         self::assertSame(422, $expire['status']);
 
-        $expireNothing = $this->call('POST', '/api/account/loyalty/expire', ['before' => date('Y-m-d')], $headers + ['Idempotency-Key' => 'expire-1']);
+        $expireNothing = $this->call('POST', '/api/account/loyalty/expire', ['before' => date('Y-m-d')], $headers + ['Idempotency-Key' => 'expire-account-1']);
         self::assertSame(422, $expireNothing['status']);
         self::assertStringContainsString('eligible', (string) ($expireNothing['json']['message'] ?? ''));
 

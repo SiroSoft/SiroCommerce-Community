@@ -16,6 +16,26 @@ function messageOf(error: unknown): string {
   return error instanceof Error ? error.message : "The request was not accepted.";
 }
 
+function saveBlob(blob: Blob, filename: string): void {
+  if (typeof URL === "undefined" || typeof URL.createObjectURL !== "function") return;
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.rel = "noopener";
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function proArtifactFilename(item: ProFeedItem): string {
+  const candidate = item.artifact?.filename;
+  if (candidate && /^[A-Za-z0-9._-]+\.zip$/.test(candidate)) return candidate;
+  const key = (item.id.split("/").pop() ?? "theme").replace(/[^A-Za-z0-9._-]+/g, "-");
+  return `siro-${key}-${item.latest_version ?? "latest"}.zip`;
+}
+
 function licenseImportError(error: unknown): string {
   const normalized = toAdminApiError(error);
   if (normalized.kind === "validation") {
@@ -79,10 +99,13 @@ function licenseAllowsItem(item: Pick<CatalogItem, "license_required" | "license
   return item.license_status === "valid" || item.license_status === "grace";
 }
 
-function ProFeedRow({ item, busy, onInstall, onUpdate }: { item: ProFeedItem; busy: boolean; onInstall: (id: string, version?: string) => void; onUpdate: (id: string, version?: string) => void }) {
+function ProFeedRow({ item, busy, onInstall, onUpdate, onDownload }: { item: ProFeedItem; busy: boolean; onInstall: (id: string, version?: string) => void; onUpdate: (id: string, version?: string) => void; onDownload: (id: string, token: string, filename: string) => void }) {
   const artifact = item.artifact;
   const canInstall = item.installable === true;
   const canUpdate = item.can_update === true;
+  const isTheme = item.type === "theme";
+  const downloadToken = typeof artifact?.download_token === "string" && artifact.download_token !== "" ? artifact.download_token : null;
+  const canDownload = isTheme && artifact?.available === true && downloadToken !== null;
   const reason = item.action_reason ?? (artifact?.available === false ? artifact.reason ?? "Signed Pro artifact is not available" : null);
   return <div className="space-y-2 rounded-md border p-3 text-sm">
     <div className="flex flex-wrap items-start justify-between gap-2">
@@ -94,10 +117,14 @@ function ProFeedRow({ item, busy, onInstall, onUpdate }: { item: ProFeedItem; bu
     </div>
     {artifact?.available ? <p className="text-xs text-muted-foreground">{artifact.filename} · {artifact.signed ? "signed" : "unsigned"} · {artifact.size != null ? `${artifact.size} bytes` : "size unknown"}</p> : null}
     {reason && <p role="alert" className="rounded-md border border-amber-500/30 bg-amber-500/5 p-2 text-xs text-amber-900 dark:text-amber-200">{reason}</p>}
-    {(canInstall || canUpdate) && <div className="flex flex-wrap gap-2">
-      {canInstall && <Button size="sm" disabled={busy} onClick={() => onInstall(item.id, item.latest_version)}>Install Pro artifact</Button>}
-      {canUpdate && <Button size="sm" variant="outline" disabled={busy} onClick={() => onUpdate(item.id, item.latest_version)}>Update Pro artifact</Button>}
-    </div>}
+    {isTheme
+      ? canDownload && downloadToken !== null && <div className="flex flex-wrap gap-2">
+        <Button size="sm" disabled={busy} onClick={() => onDownload(item.id, downloadToken, proArtifactFilename(item))}>Download theme</Button>
+      </div>
+      : (canInstall || canUpdate) && <div className="flex flex-wrap gap-2">
+        {canInstall && <Button size="sm" disabled={busy} onClick={() => onInstall(item.id, item.latest_version)}>Install Pro artifact</Button>}
+        {canUpdate && <Button size="sm" variant="outline" disabled={busy} onClick={() => onUpdate(item.id, item.latest_version)}>Update Pro artifact</Button>}
+      </div>}
   </div>;
 }
 
@@ -384,6 +411,16 @@ function LicensesTab({ license, refreshKey, onMutated, onError }: { license: Ext
     } catch (cause) { onError(cause); } finally { setProBusy(""); }
   };
 
+  const downloadTheme = async (id: string, token: string, filename: string) => {
+    if (proBusy) return;
+    setProBusy(`download:${id}`); onError(undefined);
+    try {
+      const blob = await extensionsService.proArtifactDownload(token);
+      saveBlob(blob, filename);
+      onMutated(`${id} theme package downloaded.`);
+    } catch (cause) { onError(cause); } finally { setProBusy(""); }
+  };
+
   return <div className="space-y-4">
     <Card><CardHeader><CardTitle>License</CardTitle></CardHeader><CardContent className="space-y-2 text-sm">
       {license ? <>
@@ -424,7 +461,7 @@ function LicensesTab({ license, refreshKey, onMutated, onError }: { license: Ext
           <p>Pro feed: {feedCount} item{feedCount === 1 ? "" : "s"}{feed?.generated_at ? ` · generated ${feed.generated_at}` : ""}</p>
           {feed?.schema && <p className="text-xs text-muted-foreground">Schema: {feed.schema}</p>}
           {(feed?.items ?? []).length === 0 ? <p className="text-muted-foreground">No Pro items are listed in the feed.</p>
-            : <div className="space-y-2">{(feed?.items ?? []).map((item) => <ProFeedRow key={item.id} item={item} busy={!!proBusy} onInstall={(id, version) => void runProAction("install", id, version)} onUpdate={(id, version) => void runProAction("update", id, version)} />)}</div>}
+            : <div className="space-y-2">{(feed?.items ?? []).map((item) => <ProFeedRow key={item.id} item={item} busy={!!proBusy} onInstall={(id, version) => void runProAction("install", id, version)} onUpdate={(id, version) => void runProAction("update", id, version)} onDownload={(id, token, filename) => void downloadTheme(id, token, filename)} />)}</div>}
         </>}
     </CardContent></Card>
     <Card><CardHeader><CardTitle>SKU status</CardTitle></CardHeader><CardContent>

@@ -69,7 +69,7 @@ final class V2KernelTest extends TestCase
 
     public function testExtensionManifestDeclaresCapability(): void
     {
-        $manifest = new ExtensionManifest('vendor/test', '1.0.0', ['commerce' => '^0.2'], ['hook.pricing.before_quote'], []);
+        $manifest = new ExtensionManifest('vendor/test', '1.0.0', ['commerce' => '^0.3'], ['hook.pricing.before_quote'], []);
         self::assertTrue($manifest->can('hook.pricing.before_quote'));
         self::assertFalse($manifest->can('payment.provider'));
     }

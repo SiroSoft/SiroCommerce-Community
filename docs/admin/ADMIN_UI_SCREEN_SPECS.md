@@ -4,7 +4,7 @@ Status: documentation-only parallel delivery map
 
 ## Source And Counting
 
-The current contract (2026-11-22) contains **457 route declarations / 457 OpenAPI operation IDs** across **395 paths**. The 2026-11-17 snapshot reported **327 bearer-authenticated**, **358 FE-guarded**, and **62 `x-scope`** operations; regenerate the handoff before quoting those derived counts. The domain counts below are FE screen ownership counts, not unique API counts: an operation can be reused by more than one screen. Provider/server-to-server operations remain mapped for safe UI states but are excluded from browser certification. The screen map below is a design baseline; it may not list every current operation.
+The current contract (2026-11-27) contains **468 route declarations / 468 OpenAPI operation IDs** across **405 paths** (OpenAPI `info.version` 0.2.1). The regenerated contract reports **376 bearer-authenticated**, **410 FE-guarded**, and **63 `x-scope`** operations; rerun the handoff before quoting those derived counts. The domain counts below are FE screen ownership counts, not unique API counts: an operation can be reused by more than one screen. Provider/server-to-server operations remain mapped for safe UI states but are excluded from browser certification. The screen map below is a design baseline; it may not list every current operation.
 
 Shared route ownership rules:
 
@@ -55,6 +55,6 @@ Shared route ownership rules:
 | B2B | 21 operation IDs listed | Lists, enums, actions, credit semantics |
 | Analytics/reports/exports | 10 operation IDs listed | Export authorization/status/schema drift |
 | Health/recovery | 13 operation IDs listed | Recovery/status/polling semantics |
-| **Mapped domains** | **10 requested domains; operation references overlap** | **457 current backend operation IDs; the domain rows above list the historical 186-operation slice** |
+| **Mapped domains** | **10 requested domains; operation references overlap** | **468 current backend operation IDs; the domain rows above list the historical 186-operation slice** |
 
-Global gaps remain the browser refresh-token/CSRF transport decision, complete generated role/capability metadata, OpenAPI scope parity beyond the 62 markers, shared error-code registry, and live provider certification. These are release blockers where the relevant screen depends on them; they are not reasons to fabricate UI fields or backend behavior.
+Global gaps remain the browser refresh-token/CSRF transport decision, complete generated role/capability metadata, OpenAPI scope parity beyond the 63 markers, shared error-code registry, and live provider certification. These are release blockers where the relevant screen depends on them; they are not reasons to fabricate UI fields or backend behavior.

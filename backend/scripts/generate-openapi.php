@@ -259,6 +259,12 @@ $requestDefinitions = [
      'post:/api/upload/avatar' => ['required' => [], 'properties' => ['file' => ['type' => 'string', 'format' => 'binary']]],
      'post:/api/users' => ['required' => ['name', 'email'], 'properties' => ['name' => ['type' => 'string'], 'email' => ['type' => 'string', 'format' => 'email'], 'role' => ['type' => 'string']]],
      'put:/api/users/{id}' => ['required' => [], 'properties' => ['name' => ['type' => 'string'], 'email' => ['type' => 'string', 'format' => 'email'], 'role' => ['type' => 'string']]],
+     'post:/api/admin/ecosystem/install' => ['required' => ['id'], 'properties' => ['id' => ['type' => 'string']]],
+     'post:/api/admin/ecosystem/update' => ['required' => ['id'], 'properties' => ['id' => ['type' => 'string']]],
+     'post:/api/admin/ecosystem/pro/install' => ['required' => ['id'], 'properties' => ['id' => ['type' => 'string'], 'version' => ['type' => 'string', 'nullable' => true]]],
+     'post:/api/admin/ecosystem/pro/update' => ['required' => ['id'], 'properties' => ['id' => ['type' => 'string'], 'version' => ['type' => 'string', 'nullable' => true]]],
+     'post:/api/admin/ecosystem/pro-artifacts/download' => ['required' => ['token'], 'properties' => ['token' => ['type' => 'string']]],
+     'post:/api/admin/extensions/license/import' => ['required' => ['license'], 'properties' => ['license' => ['type' => 'object', 'additionalProperties' => true]]],
  ];
 $responseDefinitions = [
     'get:/api/admin/inventory/{variant}' => 'InventoryItem',

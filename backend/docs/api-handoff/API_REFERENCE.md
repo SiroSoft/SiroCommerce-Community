@@ -14,7 +14,7 @@ responses are generated in OpenAPI and the TypeScript SDK.
 | `docs/api-handoff/FE_HANDOFF.md` | Runtime usage rules |
 | `docs/api-handoff/coverage-matrix.json` | Per-operation test evidence |
 
-Current contract size: **172 OpenAPI paths / 186 exact method-path route records**.
+Current contract size: **405 OpenAPI paths / 468 exact method-path route records** (OpenAPI `info.version` 0.2.1, regenerated 2026-11-27).
 
 ## Main Domains
 

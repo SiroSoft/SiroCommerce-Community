@@ -83,7 +83,7 @@ final class BagistoCompatibilityAnalyzer
             'name' => $this->packageName($name),
             'description' => 'Ported from ' . $name . '; complete the compatibility report before publishing.',
             'version' => $version,
-            'requires' => ['core' => '^1.0', 'commerce' => '^0.2'],
+            'requires' => ['core' => '^1.0', 'commerce' => '^0.3'],
             'runtime' => ['php' => '>=8.2'],
             'provider' => 'App\\Extensions\\' . $this->namespaceSuffix($id) . '\\Extension',
             'capabilities' => $capabilities,

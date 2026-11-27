@@ -103,12 +103,16 @@ composer check:api-handoff
 
 ## API surface groups
 
-The generated contract currently contains 172 OpenAPI paths and 186 exact
+The generated contract currently contains 405 OpenAPI paths and 468 exact
 method/path route records across
 catalog, cart/checkout, payment/webhook, orders, fulfillment/returns, customer,
 inventory/ATP, B2B, CMS/SEO/headless, reporting/analytics, BI export, privacy,
 health and provider operations. Use OpenAPI tags and operation ids rather than
 hard-coding a manually maintained route list in the FE.
+
+Current checked-in snapshot (2026-11-27): 468 route records, 2,340 layer records
+(910 PASS / 1,340 BLOCKED / 90 BLOCKED_EXTERNAL / 0 SKIP), readiness
+`NOT_READY_BLOCKED`. The changelog entry below is a 2026-09-21 historical record.
 
 Changelog: 2026-09-21 added exact route/layer coverage evidence, deterministic
 fixtures, envelope assertions, cart-token security, OpenAPI/SDK parity gates,

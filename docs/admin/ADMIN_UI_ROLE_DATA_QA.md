@@ -12,7 +12,7 @@ ownership, transitions, idempotency and error codes.
 | Evidence | Source | Current meaning |
 |---|---|---|
 | BE contract | `backend/docs/openapi.json`, `backend/public/openapi.json`, `backend/generated/sirocommerce.ts` | Exact operation IDs, schemas, security and scope metadata. Regenerate; never hand-edit the SDK. |
-| BE route evidence | `backend/docs/api-handoff/coverage-matrix.json` | Last checked-in handoff snapshot: 318 route records with Unit, Integration, API/Component, Contract and Workflow evidence; `910/1590` layer records PASS, readiness `NOT_READY_BLOCKED`. Rerun `npm run api:handoff` before quoting evidence. |
+| BE route evidence | `backend/docs/api-handoff/coverage-matrix.json` | Last checked-in handoff snapshot: 468 route records with Unit, Integration, API/Component, Contract and Workflow evidence; `910/2340` layer records PASS, readiness `NOT_READY_BLOCKED`. Rerun `composer handoff:matrix` before quoting evidence. |
 | FE design rules | `docs/frontend/FE_CAPABILITY_MATRIX.md`, `docs/frontend/FE_SCOPE_SWITCHING.md`, `docs/frontend/FE_SECURITY_PRIVACY.md` | Required browser behavior, not proof that a screen exists. |
 | FE package evidence | `apps/admin/package.json`, `apps/storefront/package.json`, `packages/*` | Admin starter and storefront baseline are present; shared generated-client integration and browser release evidence remain workstream deliverables. |
 | FE release evidence | `docs/frontend/FE_RELEASE_EVIDENCE.md` | Browser, a11y, responsive, performance and release artifacts are `NOT RUN` until controlled jobs exist. |
@@ -44,7 +44,7 @@ enable an action solely from a role label or URL.
 | B2B | Product/catalog staff `admin,owner`; approval actions `admin,owner`; authenticated B2B users for customer flow | `post_api_admin_b2b_companies`, `post_api_admin_b2b_companies_id_members`, `post_api_admin_b2b_companies_id_approval_scopes`, `post_api_admin_b2b_companies_id_credit_account`, `get_api_admin_b2b_companies_id_credit`, `post_api_admin_b2b_companies_id_contracts`, `post_api_admin_b2b_companies_id_catalogs`, `post_api_admin_b2b_companies_id_catalogs_catalog_items`, `post_api_admin_b2b_companies_id_negotiated_prices`, `post_api_v2_b2b_orders_id_approve`, `post_api_v2_b2b_contracts_id_approve` | Company ownership and scope are backend checks |
 | Platform and diagnostics | `admin,owner` for admin operations; public health is not an admin grant | `get_api_admin_dev_doctor`, `post_api_admin_dev_recover`, `get_api_admin_dev_trace_id`, `get_api_admin_ops_observability`, `get_api_admin_ops_readiness`, `get_api_admin_ops_metrics`, `get_api_admin_ops_hooks`, `get_api_admin_smart_action_center`, `get_api_admin_smart_conversion`, `post_api_admin_smart_execute`, `get_api_admin_smart_inventory`, `post_api_admin_smart_rescue_id`, `get_api_admin_smart_search`, `get_api_admin_smart_setup_guide` | Redact provider and infrastructure details; writes require explicit confirmation |
 
-The exact operation-ID classification remains `docs/frontend/FE_CAPABILITY_MATRIX.md`. Current source has 457 route declarations/OpenAPI operations; the matrix's 186-operation mapping is incomplete. If this summary and generated metadata differ, stop and update the handoff rather than inventing a browser rule.
+The exact operation-ID classification remains `docs/frontend/FE_CAPABILITY_MATRIX.md`. Current source has 468 route declarations/OpenAPI operations; the matrix's 186-operation mapping is incomplete. If this summary and generated metadata differ, stop and update the handoff rather than inventing a browser rule.
 
 ## Data and Query Ownership
 
@@ -114,7 +114,7 @@ cache isolation complete.
 
 | Gate | Required assertion | Current status |
 |---|---|---|
-| Contract | 457 operation IDs, envelope/error codes, pagination, headers, idempotency and scope match OpenAPI | BE source inventory 457; handoff snapshot `NOT_READY_BLOCKED`; FE NOT RUN |
+| Contract | 468 operation IDs, envelope/error codes, pagination, headers, idempotency and scope match OpenAPI | BE source inventory 468; handoff snapshot 468 records, `NOT_READY_BLOCKED`; FE NOT RUN |
 | Unit/component | Loading, empty, success, 401, 403, 404, 409, 422, 429, 500/503, focus and redaction fixtures | FE NOT RUN; package only exposes Vitest |
 | E2E/workflow | Role routes, scope switching, catalog/order/inventory, CMS/report/export and recovery journeys | FE NOT RUN; storefront exposes Playwright suites and admin exposes `test:e2e`, but the full role/scope matrix is not evidenced |
 | Accessibility | Axe 0 critical/serious, keyboard order/no traps, 320px/400% zoom, labels, announcements and dialogs | FE NOT RUN; WCAG 2.2 AA gate |

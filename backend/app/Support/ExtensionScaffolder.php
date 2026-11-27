@@ -154,7 +154,7 @@ final class Extension implements ExtensionInterface
 
     public static function compatibleCommerce(): string
     {
-        return '^0.2';
+        return '^0.3';
     }
 
     /** @return array<string, mixed> */
@@ -227,7 +227,7 @@ PHP, [
             'id' => $id,
             'name' => $label,
             'version' => self::VERSION,
-            'requires' => ['core' => '^1.0', 'commerce' => '^0.2'],
+            'requires' => ['core' => '^1.0', 'commerce' => '^0.3'],
             'capabilities' => [],
             'permissions' => [$permission],
             'migrations' => [],

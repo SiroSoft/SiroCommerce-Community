@@ -118,7 +118,7 @@ final class EcosystemCatalogTest extends TestCase
             self::assertNotNull($premium);
             self::assertSame('theme', $premium['type']);
             self::assertSame('pro', $premium['edition']);
-            self::assertSame('planned', $premium['status']);
+            self::assertSame('published', $premium['status']);
             self::assertTrue($premium['license_required']);
             self::assertSame($sku, $premium['license_sku']);
             self::assertSame('1.0.0', $premium['latest_version']);
@@ -126,8 +126,8 @@ final class EcosystemCatalogTest extends TestCase
             self::assertFalse($premium['update_available']);
             self::assertIsString($premium['changelog']);
             self::assertNotSame('', $premium['changelog']);
-            self::assertNull($premium['artifact_url']);
-            self::assertNull($premium['sha256']);
+            self::assertNotNull($premium['artifact_url']);
+            self::assertNotNull($premium['sha256']);
             self::assertSame('missing', $premium['license_status']);
             self::assertFalse($premium['installable']);
             self::assertFalse($premium['can_update']);
@@ -147,7 +147,7 @@ final class EcosystemCatalogTest extends TestCase
             'status' => 'published',
             'latest_version' => '1.0.0',
             'min_core' => '^1.0',
-            'min_commerce' => '^0.2',
+            'min_commerce' => '^0.3',
             'license_required' => false,
             'license_sku' => null,
             'preview_url' => null,
@@ -421,7 +421,7 @@ final class EcosystemCatalogTest extends TestCase
             'status' => 'published',
             'latest_version' => '1.0.0',
             'min_core' => '^1.0',
-            'min_commerce' => '^0.2',
+            'min_commerce' => '^0.3',
             'license_required' => false,
             'license_sku' => null,
             'preview_url' => null,
@@ -548,8 +548,8 @@ final class EcosystemCatalogTest extends TestCase
         $mergedItems = (new EcosystemCatalogService($this->base()))->catalog()['items'];
         foreach ([
             'siro/affiliate' => 'published',
-            'siro/atelier-noir' => 'planned',
-            'siro/apothecary-calm' => 'planned',
+            'siro/atelier-noir' => 'published',
+            'siro/apothecary-calm' => 'published',
         ] as $id => $status) {
             $catalogItem = $this->item($raw['items'], $id);
             self::assertNotNull($catalogItem);

@@ -2,9 +2,60 @@
     "schema": "sirocommerce.api-handoff.coverage.v1",
     "generated_from": "routes/api.php",
     "generated_at": "deterministic",
-    "route_count": 448,
+    "route_count": 468,
     "coverage_policy": "PASS requires semantic evidence; BLOCKED/SKIP requires reason, owner, and issue; route references alone never qualify.",
     "routes": {
+        "DELETE /api/admin/extensions/license": {
+            "method": "DELETE",
+            "path": "/api/admin/extensions/license",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
         "DELETE /api/admin/flash-sales/{id}/items/{item}": {
             "method": "DELETE",
             "path": "/api/admin/flash-sales/{id}/items/{item}",
@@ -2912,9 +2963,213 @@
                 }
             }
         },
+        "GET /api/admin/ecosystem/catalog": {
+            "method": "GET",
+            "path": "/api/admin/ecosystem/catalog",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "GET /api/admin/ecosystem/pro-feed": {
+            "method": "GET",
+            "path": "/api/admin/ecosystem/pro-feed",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "GET /api/admin/ecosystem/updates": {
+            "method": "GET",
+            "path": "/api/admin/ecosystem/updates",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
         "GET /api/admin/extensions": {
             "method": "GET",
             "path": "/api/admin/extensions",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "GET /api/admin/extensions/license": {
+            "method": "GET",
+            "path": "/api/admin/extensions/license",
             "layers": {
                 "unit": {
                     "status": "BLOCKED",
@@ -5666,6 +5921,108 @@
                 }
             }
         },
+        "GET /api/admin/storefront/config/export-theme": {
+            "method": "GET",
+            "path": "/api/admin/storefront/config/export-theme",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "GET /api/admin/storefront/config/export-theme-archive": {
+            "method": "GET",
+            "path": "/api/admin/storefront/config/export-theme-archive",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
         "GET /api/admin/storefront/config/revisions": {
             "method": "GET",
             "path": "/api/admin/storefront/config/revisions",
@@ -7709,6 +8066,57 @@
         "GET /api/storefront/context": {
             "method": "GET",
             "path": "/api/storefront/context",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "GET /api/storefront/theme-presets": {
+            "method": "GET",
+            "path": "/api/storefront/theme-presets",
             "layers": {
                 "unit": {
                     "status": "BLOCKED",
@@ -12500,6 +12908,261 @@
                 }
             }
         },
+        "POST /api/admin/ecosystem/install": {
+            "method": "POST",
+            "path": "/api/admin/ecosystem/install",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/ecosystem/pro-artifacts/download": {
+            "method": "POST",
+            "path": "/api/admin/ecosystem/pro-artifacts/download",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/ecosystem/pro/install": {
+            "method": "POST",
+            "path": "/api/admin/ecosystem/pro/install",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/ecosystem/pro/update": {
+            "method": "POST",
+            "path": "/api/admin/ecosystem/pro/update",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/ecosystem/update": {
+            "method": "POST",
+            "path": "/api/admin/ecosystem/update",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
         "POST /api/admin/extensions/disable": {
             "method": "POST",
             "path": "/api/admin/extensions/disable",
@@ -12656,6 +13319,210 @@
         "POST /api/admin/extensions/install": {
             "method": "POST",
             "path": "/api/admin/extensions/install",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/extensions/license/import": {
+            "method": "POST",
+            "path": "/api/admin/extensions/license/import",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/extensions/package/install": {
+            "method": "POST",
+            "path": "/api/admin/extensions/package/install",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/extensions/package/qit": {
+            "method": "POST",
+            "path": "/api/admin/extensions/package/qit",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/extensions/package/verify": {
+            "method": "POST",
+            "path": "/api/admin/extensions/package/verify",
             "layers": {
                 "unit": {
                     "status": "BLOCKED",
@@ -16019,6 +16886,108 @@
                 }
             }
         },
+        "POST /api/admin/storefront/config/import-theme": {
+            "method": "POST",
+            "path": "/api/admin/storefront/config/import-theme",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/storefront/config/import-theme-archive": {
+            "method": "POST",
+            "path": "/api/admin/storefront/config/import-theme-archive",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
         "POST /api/admin/storefront/config/preview": {
             "method": "POST",
             "path": "/api/admin/storefront/config/preview",
@@ -16226,6 +17195,57 @@
         "POST /api/admin/tax-rules": {
             "method": "POST",
             "path": "/api/admin/tax-rules",
+            "layers": {
+                "unit": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "integration": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "api_component": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "contract": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                },
+                "workflow": {
+                    "status": "BLOCKED",
+                    "evidence": null,
+                    "reason": "No exact semantic evidence registered for this route/layer.",
+                    "owner": "API-1",
+                    "issue": "API-1-coverage-gap",
+                    "prerequisite": null,
+                    "command": null
+                }
+            }
+        },
+        "POST /api/admin/vendor-payouts/reconcile": {
+            "method": "POST",
+            "path": "/api/admin/vendor-payouts/reconcile",
             "layers": {
                 "unit": {
                     "status": "BLOCKED",

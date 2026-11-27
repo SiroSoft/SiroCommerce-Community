@@ -16,7 +16,7 @@
 | 12 | Contract Test | `tests/Contract/*` + `ApiContractTest` `03_API_SPEC` `OpenAPI` | `src/__tests__/envelope.test.ts` `purchase.test.ts` | `src/__tests__/admin-workbench-contract.test.ts` `reporting-contract.test.ts` | PASS | PASS |
 | 13 | Database Test | `tests/Integration/CatalogCompletenessTest` `tests/Database/MigrationTest.php` (new) 105 migrations `erp_webhook_idempotency` `booking_slots` | — | `src/__tests__/product-media-variants.test.tsx` `media` FK | new | PASS |
 
-Total: backend 1225 + storefront 287 + admin 242 = 1754 tests, 13/13 types covered, `docs/qa/TEST_RULES.md` R1-R9 gate.
+Suite totals from local runs (2026-11-27; not a CI claim): internal backend **1,787**, admin **614**; Community backend **1,771**, admin **612**; storefront **599**. The per-layer counts above are a historical snapshot and do not reconcile to these suite totals. 13/13 types covered, `docs/qa/TEST_RULES.md` R1-R9 gate.
 
 ## Media library + product video (2026-10, Bagisto parity)
 - `tests/Feature/MediaLibraryTest.php` (2): library index/filter-422/no-file-422/no-key-422/missing-404, product video URL validation (javascript: 422, youtube-as-image 422, youtube 201, mp4 autodetect video 201).

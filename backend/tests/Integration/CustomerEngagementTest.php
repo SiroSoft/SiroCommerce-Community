@@ -45,9 +45,10 @@ final class CustomerEngagementTest extends TestCase
         $service = new CustomerEngagementService();
         $service->earn($customer, 'expiry-order-1', 'earn-expiry');
 
-        $expired = $service->expire($customer, date('c', time() + 31600000), 'expire-1');
+        $expireKey = 'expire-integration-1';
+        $expired = $service->expire($customer, date('c', time() + 31600000), $expireKey);
         self::assertSame(-50, $expired['points']);
-        self::assertSame($expired['idempotency_key'], $service->expire($customer, date('c', time() + 31600000), 'expire-1')['idempotency_key']);
+        self::assertSame($expired['idempotency_key'], $service->expire($customer, date('c', time() + 31600000), $expireKey)['idempotency_key']);
         self::assertSame(0, $service->loyalty($customer)['balance_points']);
     }
 

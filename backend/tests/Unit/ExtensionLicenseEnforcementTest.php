@@ -27,7 +27,7 @@ final class LicenseGatedExtension implements ExtensionInterface
 
     public static function compatibleCommerce(): string
     {
-        return '^0.2';
+        return '^0.3';
     }
 
     /** @return array<string, mixed> */
@@ -89,7 +89,7 @@ final class LicenseOptionalExtension implements ExtensionInterface
 
     public static function compatibleCommerce(): string
     {
-        return '^0.2';
+        return '^0.3';
     }
 
     /** @return array<string, mixed> */

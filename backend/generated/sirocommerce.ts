@@ -969,6 +969,34 @@ export interface Request_get_api_admin_extensions_ui {
 }
 export interface Request_get_api_admin_extensions_license {
 }
+export interface Request_post_api_admin_extensions_license_import {
+  license: Record<string, unknown>;
+}
+export interface Request_delete_api_admin_extensions_license {
+}
+export interface Request_get_api_admin_ecosystem_pro_feed {
+}
+export interface Request_post_api_admin_ecosystem_pro_artifacts_download {
+  token: string;
+}
+export interface Request_post_api_admin_ecosystem_pro_install {
+  id: string;
+  version?: string;
+}
+export interface Request_post_api_admin_ecosystem_pro_update {
+  id: string;
+  version?: string;
+}
+export interface Request_get_api_admin_ecosystem_catalog {
+}
+export interface Request_get_api_admin_ecosystem_updates {
+}
+export interface Request_post_api_admin_ecosystem_install {
+  id: string;
+}
+export interface Request_post_api_admin_ecosystem_update {
+  id: string;
+}
 export interface Request_post_api_admin_extensions_install {
   id: string;
 }
@@ -1824,6 +1852,7 @@ export class SiroCommerceClient {
     const response = await this.http(url, { method, headers, body: options.body === undefined ? undefined : JSON.stringify(options.body), signal: options.signal });
     const payload = await response.json() as T; if (!response.ok) throw payload; return payload;
   }
+  delete_api_admin_extensions_license(options: ApiRequestOptions = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('DELETE', '/api/admin/extensions/license', options); }
   delete_api_admin_flash_sales_id_items_item(options: ApiRequestOptions = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('DELETE', '/api/admin/flash-sales/{id}/items/{item}', options); }
   delete_api_admin_media_library_id(options: ApiRequestOptions = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('DELETE', '/api/admin/media-library/{id}', options); }
   delete_api_admin_member_prices_id(options: ApiRequestOptions = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('DELETE', '/api/admin/member-prices/{id}', options); }
@@ -1881,6 +1910,9 @@ export class SiroCommerceClient {
   get_api_admin_customers_id_addresses(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/customers/{id}/addresses', options); }
   get_api_admin_dev_doctor(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/dev/doctor', options); }
   get_api_admin_dev_trace_id(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/dev/trace/{id}', options); }
+  get_api_admin_ecosystem_catalog(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/ecosystem/catalog', options); }
+  get_api_admin_ecosystem_pro_feed(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/ecosystem/pro-feed', options); }
+  get_api_admin_ecosystem_updates(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/ecosystem/updates', options); }
   get_api_admin_extensions(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/extensions', options); }
   get_api_admin_extensions_license(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/extensions/license', options); }
   get_api_admin_extensions_ui(options: ApiRequestOptions = {}): Promise<ApiEnvelope<unknown>> { return this.request<ApiEnvelope<unknown>>('GET', '/api/admin/extensions/ui', options); }
@@ -2073,10 +2105,16 @@ export class SiroCommerceClient {
   post_api_admin_customers_id_privacy_legal_hold(options: ApiRequestOptions<Request_post_api_admin_customers_id_privacy_legal_hold> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/customers/{id}/privacy/legal-hold', options); }
   post_api_admin_dev_recover(options: ApiRequestOptions<Request_post_api_admin_dev_recover> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/dev/recover', options); }
   post_api_admin_digital_assets(options: ApiRequestOptions<Request_post_api_admin_digital_assets> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/digital-assets', options); }
+  post_api_admin_ecosystem_install(options: ApiRequestOptions<Request_post_api_admin_ecosystem_install> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/ecosystem/install', options); }
+  post_api_admin_ecosystem_pro_artifacts_download(options: ApiRequestOptions<Request_post_api_admin_ecosystem_pro_artifacts_download> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/ecosystem/pro-artifacts/download', options); }
+  post_api_admin_ecosystem_pro_install(options: ApiRequestOptions<Request_post_api_admin_ecosystem_pro_install> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/ecosystem/pro/install', options); }
+  post_api_admin_ecosystem_pro_update(options: ApiRequestOptions<Request_post_api_admin_ecosystem_pro_update> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/ecosystem/pro/update', options); }
+  post_api_admin_ecosystem_update(options: ApiRequestOptions<Request_post_api_admin_ecosystem_update> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/ecosystem/update', options); }
   post_api_admin_extensions_disable(options: ApiRequestOptions<Request_post_api_admin_extensions_disable> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/disable', options); }
   post_api_admin_extensions_enable(options: ApiRequestOptions<Request_post_api_admin_extensions_enable> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/enable', options); }
   post_api_admin_extensions_health(options: ApiRequestOptions<Request_post_api_admin_extensions_health> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/health', options); }
   post_api_admin_extensions_install(options: ApiRequestOptions<Request_post_api_admin_extensions_install> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/install', options); }
+  post_api_admin_extensions_license_import(options: ApiRequestOptions<Request_post_api_admin_extensions_license_import> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/license/import', options); }
   post_api_admin_extensions_package_install(options: ApiRequestOptions<Request_post_api_admin_extensions_package_install> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/package/install', options); }
   post_api_admin_extensions_package_qit(options: ApiRequestOptions<Request_post_api_admin_extensions_package_qit> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/package/qit', options); }
   post_api_admin_extensions_package_verify(options: ApiRequestOptions<Request_post_api_admin_extensions_package_verify> = {}): Promise<ApiEnvelope<WriteResult>> { return this.request<ApiEnvelope<WriteResult>>('POST', '/api/admin/extensions/package/verify', options); }

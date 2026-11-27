@@ -170,6 +170,13 @@ function catalogSearch(value: string | undefined): string | undefined {
 
 // Adapter seam for forthcoming generated OpenAPI methods. Extension ids
 // contain slashes (vendor/name), so the id travels in the body, never path.
+const PRO_ARTIFACT_DOWNLOAD_ERRORS: Record<number, string> = {
+  403: "A valid Pro license is required to download this artifact.",
+  404: "This Pro artifact is not available.",
+  409: "This Pro artifact could not be verified. Try again later.",
+  410: "This Pro artifact download link has expired.",
+};
+
 export const extensionsService = {
   async list() {
     return unwrap(await api.get<Envelope<ExtensionItem[]> | ExtensionItem[]>("/api/admin/extensions"));
@@ -213,6 +220,17 @@ export const extensionsService = {
       version ? { id, version } : { id },
       { idempotencyKey: idempotencyKey() },
     ));
+  },
+  async proArtifactDownload(token: string): Promise<Blob> {
+    const response = await fetchWithAuth("/api/admin/ecosystem/pro-artifacts/download", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ token }),
+    });
+    if (!response.ok) {
+      throw new Error(PRO_ARTIFACT_DOWNLOAD_ERRORS[response.status] ?? "The Pro artifact download failed.");
+    }
+    return response.blob();
   },
   async catalog(params: CatalogQuery = {}) {
     const query: Record<string, string> = {

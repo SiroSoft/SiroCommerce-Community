@@ -2,6 +2,28 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-26] v0.3.0 signed Pro themes and theme artifact feed
+
+### Added
+- Signed Pro theme artifact builder (`package-themes.php`) for `siro/atelier-noir`
+  and `siro/apothecary-calm`: theme.json, assets, checksums and Ed25519 signature.
+- Both premium themes published in the catalog with artifact URL, SHA-256 and
+  signature; public feed still strips artifact/signature metadata.
+- Admin Pro feed can download theme artifacts through the license-gated private
+  download token; theme rows no longer expose plugin install/update actions.
+- OpenAPI/SDK/handoff regenerated for 468 operations / 405 paths; API contract
+  now passes.
+
+### Fixed
+- Isolated loyalty idempotency keys in tests to remove a cross-test flake.
+- Forced LF for shell/deploy files so Windows archives do not break `release.sh`.
+
+### Verification
+- Backend 1,787 PHPUnit tests with sodium, 1 skipped; PHPStan 0.
+- Admin 614 tests; typecheck/build pass.
+- Catalog 15 items; build/public drift and selftest pass.
+- API contract PASS; handoff 468 routes / 2,340 layer records.
+
 ## [2026-11-26] v0.2.1 signed Affiliate Pro artifact published
 
 ### Changed

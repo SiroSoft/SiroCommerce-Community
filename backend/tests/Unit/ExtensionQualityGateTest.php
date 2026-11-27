@@ -72,7 +72,7 @@ final class ExtensionQualityGateTest extends TestCase
                 'type' => 'module',
                 'name' => 'Demo',
                 'version' => '1.0.0',
-                'requires' => ['core' => '^1.0', 'commerce' => '^0.2'],
+                'requires' => ['core' => '^1.0', 'commerce' => '^0.3'],
                 'provider' => 'App\\Extensions\\Siro\\Demo\\Extension',
                 'capabilities' => [],
                 'permissions' => [],

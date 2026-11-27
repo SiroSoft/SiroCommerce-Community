@@ -4,11 +4,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { I18nProvider } from "@/providers/i18n-provider";
 import { useAuthStore } from "@/store/auth.store";
 import ExtensionsPage from "@/app/(dashboard)/extensions/page";
-import type { CatalogItem, ExtensionItem, ExtensionLicenseStatus } from "@/services/extensions.service";
+import type { CatalogItem, ExtensionItem, ExtensionLicenseStatus, ProFeedItem } from "@/services/extensions.service";
 
 const apiMock = vi.hoisted(() => ({ get: vi.fn(), post: vi.fn(), put: vi.fn(), patch: vi.fn(), delete: vi.fn() }));
+const fetchWithAuthMock = vi.hoisted(() => vi.fn());
 vi.mock("@/services/api", () => ({
   default: apiMock,
+  fetchWithAuth: fetchWithAuthMock,
   session: { accessToken: undefined },
   scopeCoordinator: { value: null },
 }));
@@ -114,6 +116,42 @@ const updatableItem: CatalogItem = {
   action_reason: null,
 };
 
+const proThemeFeedItem: ProFeedItem = {
+  id: "siro/atelier-noir",
+  type: "theme",
+  name: "Atelier Noir",
+  latest_version: "1.0.0",
+  entitlement: "valid",
+  installable: false,
+  can_update: false,
+  artifact: {
+    available: true,
+    filename: "siro-atelier-noir-1.0.0.zip",
+    sha256: "a".repeat(64),
+    size: 2048,
+    signed: true,
+    download_token: "theme-token-1",
+  },
+};
+
+const proPluginFeedItem: ProFeedItem = {
+  id: "siro/affiliate",
+  type: "plugin",
+  name: "Affiliate",
+  latest_version: "2.0.0",
+  entitlement: "valid",
+  installable: true,
+  can_update: false,
+  artifact: {
+    available: true,
+    filename: "siro-affiliate-2.0.0.zip",
+    sha256: "b".repeat(64),
+    size: 4096,
+    signed: true,
+    download_token: "plugin-token-1",
+  },
+};
+
 function catalogBody(items: CatalogItem[]) {
   return body({ schema: "siro.ecosystem-catalog/1", generated_at: "2026-11-24T00:00:00Z", items });
 }
@@ -143,6 +181,7 @@ const calledPaths = () => apiMock.get.mock.calls.map((call) => call[0]);
 
 beforeEach(() => {
   vi.clearAllMocks();
+  fetchWithAuthMock.mockReset();
   apiMock.post.mockResolvedValue({ data: { data: {} }, status: 200, headers: new Headers() });
   apiMock.delete.mockResolvedValue({ data: { data: {} }, status: 200, headers: new Headers() });
   useAuthStore.setState({ user: { role: "admin" } as never, isAuthenticated: true });
@@ -506,5 +545,88 @@ describe("license portal", () => {
     expect(screen.getByText("Schema: siro.pro-feed/1")).toBeVisible();
     expect(screen.getByText(/generated 2026-11-24T00:00:00Z/)).toBeVisible();
     expect(screen.queryByText(/affiliate\.zip|analytics\.zip|private\.test/)).toBeNull();
+  });
+});
+
+describe("Pro feed artifact actions", () => {
+  const openLicenses = async () => {
+    await screen.findByText("siro/demo");
+    fireEvent.click(screen.getByRole("tab", { name: "Licenses" }));
+  };
+
+  it("downloads a theme artifact from the signed endpoint instead of installing it", async () => {
+    installApi({ proFeed: () => body({ schema: "siro.pro-feed/1", count: 1, items: [proThemeFeedItem] }) });
+    fetchWithAuthMock.mockResolvedValue({
+      ok: true,
+      status: 200,
+      blob: () => Promise.resolve(new Blob(["zip-bytes"], { type: "application/zip" })),
+    });
+
+    const originalCreate = Object.getOwnPropertyDescriptor(URL, "createObjectURL");
+    const originalRevoke = Object.getOwnPropertyDescriptor(URL, "revokeObjectURL");
+    const createObjectURL = vi.fn(() => "blob:theme");
+    const revokeObjectURL = vi.fn();
+    Object.defineProperty(URL, "createObjectURL", { configurable: true, value: createObjectURL });
+    Object.defineProperty(URL, "revokeObjectURL", { configurable: true, value: revokeObjectURL });
+    const click = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(() => {});
+
+    try {
+      renderPage();
+      await openLicenses();
+
+      expect(await screen.findByRole("button", { name: "Download theme" })).toBeVisible();
+      expect(screen.queryByRole("button", { name: "Install Pro artifact" })).toBeNull();
+      expect(screen.queryByRole("button", { name: "Update Pro artifact" })).toBeNull();
+
+      fireEvent.click(screen.getByRole("button", { name: "Download theme" }));
+
+      await waitFor(() => expect(fetchWithAuthMock).toHaveBeenCalledWith(
+        "/api/admin/ecosystem/pro-artifacts/download",
+        expect.objectContaining({ method: "POST", body: JSON.stringify({ token: "theme-token-1" }) }),
+      ));
+      expect(await screen.findByText(/theme package downloaded/)).toBeVisible();
+      expect(createObjectURL).toHaveBeenCalled();
+      expect(revokeObjectURL).toHaveBeenCalled();
+      expect(click).toHaveBeenCalled();
+      expect(apiMock.post.mock.calls.some(([path]) => path === "/api/admin/ecosystem/pro/install" || path === "/api/admin/ecosystem/pro/update")).toBe(false);
+    } finally {
+      if (originalCreate) Object.defineProperty(URL, "createObjectURL", originalCreate);
+      else Reflect.deleteProperty(URL, "createObjectURL");
+      if (originalRevoke) Object.defineProperty(URL, "revokeObjectURL", originalRevoke);
+      else Reflect.deleteProperty(URL, "revokeObjectURL");
+    }
+  });
+
+  it("keeps Install for plugin artifacts and never offers a theme download", async () => {
+    installApi({ proFeed: () => body({ schema: "siro.pro-feed/1", count: 1, items: [proPluginFeedItem] }) });
+    renderPage();
+    await openLicenses();
+
+    expect(await screen.findByRole("button", { name: "Install Pro artifact" })).toBeVisible();
+    expect(screen.queryByRole("button", { name: "Download theme" })).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: "Install Pro artifact" }));
+    await waitFor(() => expect(apiMock.post).toHaveBeenCalledWith(
+      "/api/admin/ecosystem/pro/install",
+      { id: "siro/affiliate", version: "2.0.0" },
+      expect.objectContaining({ idempotencyKey: expect.any(String) }),
+    ));
+    expect(fetchWithAuthMock).not.toHaveBeenCalled();
+  });
+
+  it("shows a safe message for a forbidden theme download without leaking a path", async () => {
+    installApi({ proFeed: () => body({ schema: "siro.pro-feed/1", count: 1, items: [proThemeFeedItem] }) });
+    fetchWithAuthMock.mockResolvedValue({
+      ok: false,
+      status: 403,
+      blob: () => Promise.resolve(new Blob([], { type: "application/json" })),
+    });
+
+    renderPage();
+    await openLicenses();
+    fireEvent.click(await screen.findByRole("button", { name: "Download theme" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(/Pro license is required/);
+    expect(screen.queryByText(/storage[\\/]ecosystem|\/secret\/path/)).toBeNull();
   });
 });

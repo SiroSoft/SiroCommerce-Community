@@ -87,6 +87,18 @@ final class AiGatewayTest extends TestCase
         self::assertStringNotContainsString('buyer@example.test', $seen[1]);
     }
 
+    public function testZeroCostReservationRequiresFundedBudget(): void
+    {
+        $this->env('AI_BUDGET_MINOR', '1000');
+        $ledger = new PersistentAiCostLedger();
+        self::assertTrue($ledger->reserveMinor('tenant-zero-funded', 0));
+        self::assertSame(1000, $ledger->remainingMinor('tenant-zero-funded'));
+
+        $this->env('AI_BUDGET_MINOR', '0');
+        self::assertFalse($ledger->reserveMinor('tenant-zero-unfunded', 0));
+        self::assertSame(0, $ledger->remainingMinor('tenant-zero-unfunded'));
+    }
+
     public function testOllamaHappyPathWithoutKey(): void
     {
         $this->env('AI_BUDGET_MINOR', '500');

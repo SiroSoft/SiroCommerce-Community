@@ -16,7 +16,7 @@ Do not describe planned capability as shipped.
 
 | Capability | Status today | Notes |
 |---|---|---|
-| Checked-in catalog overlay | CURRENT (P0/P2) | Source path is `backend/resources/ecosystem/catalog.json`; 21 items (16 plugins, 5 themes; 4 Pro). Affiliate and both premium themes are published with signed artifacts; Abandoned Cart Pro is planned/private until signed. Public feeds still strip artifact/signature metadata. The build tool exits `3` with a clear message when absent. |
+| Checked-in catalog overlay | CURRENT (P0/P2) | Source path is `backend/resources/ecosystem/catalog.json`; 23 items (18 plugins, 5 themes; 4 Pro). Affiliate and both premium themes are published with signed artifacts; Abandoned Cart Pro is planned/private until signed. Public feeds still strip artifact/signature metadata. The build tool exits `3` with a clear message when absent. |
 | Catalog feed build/validate tool | CURRENT | `scripts/ecosystem-catalog/build.php`; offline, deterministic, no network. |
 | Catalog read model / admin tabs | CURRENT (P0/P1) | `GET /api/admin/ecosystem/catalog` and `/updates`; Extensions tabs Installed/Catalog/Updates/Licenses; `/storefront/themes` catalog. Bundled free install/update actions exist; read-only metadata otherwise. |
 | Static public feed | CURRENT (P1) | Public-safe feed generated at `apps/storefront/public/ecosystem/catalog.json` and served at `/ecosystem/catalog.json`. Regenerate with `npm run ecosystem:catalog`, drift-check with `npm run ecosystem:catalog:check`. No remote feed server or artifact download endpoint exists. |

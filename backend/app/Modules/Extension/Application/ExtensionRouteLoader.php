@@ -7,6 +7,7 @@ namespace App\Modules\Extension\Application;
 use App\Contracts\ExtensionInterface;
 use App\Extension\ExtensionRegistry;
 use App\Middleware\ExtensionIdempotencyMiddleware;
+use App\Middleware\OptionalAuthMiddleware;
 use App\Models\Extension;
 
 /**
@@ -109,6 +110,11 @@ final class ExtensionRouteLoader
         foreach ($middleware as $item) {
             if ($item === 'auth') {
                 $stack[] = 'auth';
+            } elseif ($item === 'optional-auth') {
+                // Guest-capable route that attaches the user when a valid
+                // Bearer token is present but never rejects anonymous guests.
+                // The controller must still verify ownership/tokens itself.
+                $stack[] = OptionalAuthMiddleware::class;
             } elseif (str_starts_with($item, 'cap:')) {
                 $stack[] = 'auth';
                 $stack[] = $item;

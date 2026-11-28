@@ -1,0 +1,46 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/shopper-assistant",
+  "type": "module",
+  "name": "Shopper Assistant",
+  "description": "Public storefront AI assistant for product questions, grounded on scoped public catalog facts with citations.",
+  "version": "0.1.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.3"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\ShopperAssistant\\Extension",
+  "capabilities": [
+    "shopper-assistant:ask"
+  ],
+  "permissions": [],
+  "migrations": [],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": [],
+    "storefront": [
+      "header"
+    ]
+  },
+  "config": {
+    "max_question_length": 1000,
+    "max_cost_minor": 0
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-shopper-assistant",
+    "features": [
+      "shopper-assistant"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

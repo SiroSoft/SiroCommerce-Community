@@ -2,6 +2,29 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-28] v0.3.3 AI assistants MVP
+
+### Added
+- Read-only `siro/staff-assistant` for admin/staff with scoped order/product
+  facts, provider status, and an embedded admin chat panel.
+- Public `siro/shopper-assistant` with a storefront widget, catalog-grounded
+  answers and server-provided citations.
+- Shared `AssistantService` on the existing AI gateway, budget, audit and
+  redaction rails; both plugins fail closed when no provider is configured.
+- English-pivot multilingual answers controlled by `ASSISTANT_LANGUAGES`;
+  staff context is role/capability-gated, owner-only customer PII, and shopper
+  order context requires customer ownership or a valid guest order token.
+- Catalog 23 items (18 plugins, 5 themes); Staff and Shopper Assistant are free.
+- Reasoning-capable OpenAI-compatible providers now default to 4,096 output
+  tokens and a 120s timeout; real-provider dogfood passed with SenseNova
+  `sensenova-6.8-flash-lite` for English staff and Vietnamese shopper answers.
+
+### Verification
+- Backend 1,959 tests / 17,677 assertions, 1 skipped; PHPStan 0.
+- Admin 616 tests; storefront 657; typecheck and production builds pass.
+- Real-provider core and real-JWT API dogfood passed for staff and shopper;
+  catalog 23 items with build/public drift and selftest pass.
+
 ## [2026-11-27] v0.3.2 Next.js security upgrade
 
 ### Security

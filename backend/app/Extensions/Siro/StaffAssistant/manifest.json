@@ -1,0 +1,71 @@
+{
+  "schema": "siro.extension/2",
+  "id": "siro/staff-assistant",
+  "type": "module",
+  "name": "Staff Assistant",
+  "description": "Read-only AI assistant for admin and staff, grounded on scoped order and product facts. Proposes actions but never executes them.",
+  "version": "0.1.0",
+  "requires": {
+    "core": "^1.0",
+    "commerce": "^0.3"
+  },
+  "runtime": {
+    "php": ">=8.2"
+  },
+  "provider": "App\\Extensions\\Siro\\StaffAssistant\\Extension",
+  "capabilities": [
+    "staff-assistant:read",
+    "staff-assistant:ask"
+  ],
+  "permissions": [
+    "staff-assistant:read",
+    "staff-assistant:ask"
+  ],
+  "migrations": [],
+  "routes": [
+    "routes.php"
+  ],
+  "slots": {
+    "admin": {
+      "label": "Staff assistant",
+      "section": "Growth"
+    },
+    "storefront": []
+  },
+  "admin": {
+    "label": "Staff assistant",
+    "section": "Growth",
+    "panels": [
+      {
+        "key": "chat",
+        "title": "Staff assistant",
+        "type": "assistant",
+        "endpoint": "admin/ask",
+        "permission": "staff-assistant:ask"
+      },
+      {
+        "key": "status",
+        "title": "Assistant status",
+        "type": "stats",
+        "endpoint": "admin/status",
+        "permission": "staff-assistant:read"
+      }
+    ]
+  },
+  "config": {
+    "max_question_length": 1000,
+    "max_cost_minor": 0
+  },
+  "license": {
+    "required": false,
+    "sku": "siro-staff-assistant",
+    "features": [
+      "staff-assistant"
+    ]
+  },
+  "bagisto": {
+    "compatible": "not-applicable",
+    "source": null,
+    "kind": "extension"
+  }
+}

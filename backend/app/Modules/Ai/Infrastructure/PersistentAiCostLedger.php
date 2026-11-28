@@ -35,6 +35,13 @@ final class PersistentAiCostLedger implements AiCostLedger
         if ($tenantId === '' || $amountMinor < 0) return false;
         try {
             $this->seed($tenantId);
+            if ($amountMinor === 0) {
+                // A zero-cost reservation is a no-op in SQL. It is allowed only
+                // when the tenant has a funded budget; default 0 stays closed.
+                $stmt = Database::connection()->prepare('SELECT limit_minor FROM ai_budgets WHERE tenant_id = ? LIMIT 1');
+                $stmt->execute([$tenantId]);
+                return (int) $stmt->fetchColumn() > 0;
+            }
             $stmt = Database::connection()->prepare('UPDATE ai_budgets SET spent_minor = spent_minor + ?, updated_at = ? WHERE tenant_id = ? AND spent_minor + ? <= limit_minor');
             $stmt->execute([$amountMinor, date('Y-m-d H:i:s'), $tenantId, $amountMinor]);
             return $stmt->rowCount() === 1;

@@ -26,6 +26,7 @@ use App\Modules\Dashboard\Contracts\DashboardBiReader;
 use App\Modules\Dashboard\Infrastructure\DashboardBiRepository;
 use App\Modules\Ai\Application\AiCopilotService;
 use App\Modules\Ai\Application\AiSuggestionService;
+use App\Modules\Ai\Application\AssistantService;
 use App\Modules\Ai\Contracts\AiSuggestionGateway;
 use App\Modules\Ai\Contracts\AiAuditWriter;
 use App\Modules\Ai\Contracts\AiCostLedger;
@@ -193,6 +194,7 @@ final class CommerceNativeProvider
          $c->singleton(AiCostLedger::class, PersistentAiCostLedger::class);
          $c->singleton(AiSuggestionService::class);
          $c->singleton(AiCopilotService::class);
+         $c->singleton(AssistantService::class);
          $c->singleton(HeadlessSchemaReader::class, NativeHeadlessSchemaReader::class);
         $c->singleton(PricingSnapshotStoreAdapter::class);
         $c->singleton(PricingSnapshotStore::class, fn (Container $c): object => $c->make(PricingSnapshotStoreAdapter::class));

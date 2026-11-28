@@ -98,11 +98,14 @@ final class ExtensionQualityGate
     }
 
     /**
-     * Mutating routes must carry auth/cap middleware — or an explicit
-     * 'public' marker. 'public' is a deliberate opt-in for routes that must
-     * serve anonymous guests (e.g. a guest subscribe endpoint): the loader
-     * mounts them without auth middleware, and QIT accepts the marker
-     * instead of auth/cap. It must never be combined with 'auth'/'cap:'
+     * Mutating routes must carry auth/cap middleware �?" or an explicit
+     * 'public'/'optional-auth' marker. 'public' is a deliberate opt-in for
+     * routes that must serve anonymous guests (e.g. a guest subscribe
+     * endpoint): the loader mounts them without auth middleware, and QIT
+     * accepts the marker instead of auth/cap. 'optional-auth' is the
+     * guest-capable variant that attaches the user when a valid Bearer
+     * token is present; it must still verify order/customer ownership in
+     * the handler. 'public' must never be combined with 'auth'/'cap:'
      * (auth wins at runtime, so the combination would be a lie).
      * Tokens are matched exactly in the middleware list, not as
      * substrings of the row line (see lineHasRouteAuth).
@@ -145,7 +148,7 @@ final class ExtensionQualityGate
         $last = (string) end($groups);
         foreach (explode(',', $last) as $token) {
             $token = trim($token, " \t\n\r\0\x0B'\"");
-            if ($token === 'auth' || $token === 'public' || str_starts_with($token, 'cap:')) {
+            if ($token === 'auth' || $token === 'public' || $token === 'optional-auth' || str_starts_with($token, 'cap:')) {
                 return true;
             }
         }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Feature;
 
 use App\Middleware\ExtensionIdempotencyMiddleware;
+use App\Middleware\OptionalAuthMiddleware;
 use App\Modules\Extension\Application\ExtensionPackageInstaller;
 use App\Modules\Extension\Application\ExtensionQualityGate;
 use App\Modules\Extension\Application\ExtensionRouteLoader;
@@ -72,6 +73,37 @@ final class ExtensionPublicRouteTest extends TestCase
         /** @var list<mixed> $authedStack */
         $authedStack = $method->invoke(null, [], ['auth', 'throttle:20,1'], 'POST');
         self::assertContains('auth', $authedStack);
+    }
+
+    public function testOptionalAuthMutationRoutePassesRouteAuth(): void
+    {
+        $report = $this->runGateWithRoutes(<<<'PHP'
+            <?php
+
+            declare(strict_types=1);
+
+            use App\Extensions\Siro\ContactWidget\ContactWidgetController;
+
+            require_once __DIR__ . '/src/ContactWidgetService.php';
+            require_once __DIR__ . '/src/ContactWidgetController.php';
+
+            return [
+                ['GET', 'public', [ContactWidgetController::class, 'publicData'], ['throttle:120,1']],
+                ['POST', 'assistant', [ContactWidgetController::class, 'publicData'], ['throttle:20,1', 'optional-auth']],
+            ];
+            PHP);
+        self::assertTrue($this->checkOk($report, 'route-auth'), (string) json_encode($report));
+    }
+
+    public function testLoaderMountsOptionalAuthForGuestsAndMembers(): void
+    {
+        $method = new \ReflectionMethod(ExtensionRouteLoader::class, 'middleware');
+        /** @var list<mixed> $optionalStack */
+        $optionalStack = $method->invoke(null, [], ['throttle:20,1', 'optional-auth'], 'POST');
+        self::assertContains(OptionalAuthMiddleware::class, $optionalStack);
+        self::assertNotContains('auth', $optionalStack);
+        self::assertContains('throttle:20,1', $optionalStack);
+        self::assertContains(ExtensionIdempotencyMiddleware::class, $optionalStack);
     }
 
     /**

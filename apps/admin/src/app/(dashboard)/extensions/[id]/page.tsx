@@ -5,6 +5,7 @@ import { PageHeader } from "@/components/page-header";
 import { ApiState } from "@/modules/merchant/api-state";
 import { Badge } from "@/components/ui/badge";
 import { ExtensionPanelCard } from "@/components/extension-panel";
+import { StaffAssistantPanel } from "@/components/staff-assistant-panel";
 import { extensionsService, type ExtensionView } from "@/services/extensions.service";
 
 export default function ExtensionDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -39,7 +40,9 @@ export default function ExtensionDetailPage({ params }: { params: Promise<{ id: 
       <PageHeader title={view.label} description={`${view.id} · ${view.section}`} />
       <p><Badge>enabled</Badge></p>
       {view.panels.length === 0 && <p className="text-sm text-muted-foreground">No panels declared.</p>}
-      {view.panels.map((panel) => <ExtensionPanelCard key={panel.key} extensionId={view.id} panel={panel} />)}
+      {view.panels.map((panel) => panel.type === "assistant"
+        ? <StaffAssistantPanel key={panel.key} extensionId={view.id} panel={panel} />
+        : <ExtensionPanelCard key={panel.key} extensionId={view.id} panel={panel} />)}
     </div>
   );
 }

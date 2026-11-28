@@ -91,6 +91,19 @@ accepts the marker. Never combine `'public'` with `'auth'`/`'cap:…'`
 Core precedent: `POST /api/carts`, `POST /api/checkout/place` are
 guest-capable mutations.
 
+**Optional-auth routes:** a guest-capable route that also needs the signed-in
+user when a valid Bearer token is present uses `'optional-auth'`:
+
+```php
+['POST', 'assistant', [AssistantController::class, 'ask'], ['throttle:20,1', 'optional-auth']],
+```
+
+The loader mounts `OptionalAuthMiddleware` (a missing/invalid token never
+rejects the request), and QIT `route-auth` accepts the marker. The handler
+must still verify ownership or a guest access token before returning any
+customer/order data, and must not disclose whether the record exists on
+failure.
+
 ## 4. Enable / operate / remove
 
 Private Composer install is supported without editing core. The vendor package

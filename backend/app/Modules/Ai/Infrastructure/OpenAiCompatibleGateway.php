@@ -37,10 +37,10 @@ final class OpenAiCompatibleGateway implements AiSuggestionGateway
                 ['role' => 'user', 'content' => $userContent],
             ],
             'temperature' => 0.2,
-            'max_tokens' => max(1, (int) Env::get('AI_MAX_OUTPUT_TOKENS', '512')),
+            'max_tokens' => max(1, (int) Env::get('AI_MAX_OUTPUT_TOKENS', '4096')),
         ];
         try {
-            Http::timeout(max(1, (int) Env::get('AI_TIMEOUT_SECONDS', '20')));
+            Http::timeout(max(1, (int) Env::get('AI_TIMEOUT_SECONDS', '120')));
             $body = json_encode($payload, JSON_THROW_ON_ERROR);
             $headers = ['Content-Type' => 'application/json', 'Authorization' => 'Bearer ' . $key];
             $response = $this->request === null

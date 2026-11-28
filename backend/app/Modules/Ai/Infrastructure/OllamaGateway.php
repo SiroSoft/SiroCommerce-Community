@@ -36,10 +36,10 @@ final class OllamaGateway implements AiSuggestionGateway
                 ['role' => 'system', 'content' => LlmPrompt::system()],
                 ['role' => 'user', 'content' => $userContent],
             ],
-            'options' => ['temperature' => 0.2, 'num_predict' => max(1, (int) Env::get('AI_MAX_OUTPUT_TOKENS', '512'))],
+            'options' => ['temperature' => 0.2, 'num_predict' => max(1, (int) Env::get('AI_MAX_OUTPUT_TOKENS', '4096'))],
         ];
         try {
-            Http::timeout(max(1, (int) Env::get('AI_TIMEOUT_SECONDS', '20')));
+            Http::timeout(max(1, (int) Env::get('AI_TIMEOUT_SECONDS', '120')));
             $body = json_encode($payload, JSON_THROW_ON_ERROR);
             $headers = ['Content-Type' => 'application/json'];
             $response = $this->request === null

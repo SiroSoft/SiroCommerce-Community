@@ -95,7 +95,7 @@ final readonly class ExtensionManifest
             $keys[] = $key;
             $title = $panel['title'] ?? null;
             if (!is_string($title) || mb_strlen(trim($title)) < 2 || mb_strlen($title) > 64) throw new \InvalidArgumentException('Extension admin panel title is invalid');
-            if (!in_array($panel['type'] ?? null, ['stats', 'table'], true)) throw new \InvalidArgumentException('Extension admin panel type is invalid');
+            if (!in_array($panel['type'] ?? null, ['stats', 'table', 'assistant'], true)) throw new \InvalidArgumentException('Extension admin panel type is invalid');
             $endpoint = $panel['endpoint'] ?? null;
             if (!is_string($endpoint) || $endpoint === '' || str_starts_with($endpoint, '/') || str_contains($endpoint, '..') || (bool) preg_match('#^[a-z][a-z0-9+.-]*://#i', $endpoint)) throw new \InvalidArgumentException('Extension admin panel endpoint is invalid');
             if (!in_array($panel['permission'] ?? null, $permissions, true)) throw new \InvalidArgumentException('Extension admin panel permission is invalid');

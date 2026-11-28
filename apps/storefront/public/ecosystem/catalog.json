@@ -1,6 +1,6 @@
 {
     "schema": "siro.ecosystem-catalog/1",
-    "generated_at": "2026-11-26T00:00:00Z",
+    "generated_at": "2026-11-27T00:00:00Z",
     "items": [
         {
             "id": "flat-rate",
@@ -345,6 +345,27 @@
             ]
         },
         {
+            "id": "siro/shopper-assistant",
+            "type": "plugin",
+            "name": "Shopper Assistant",
+            "description": "Public storefront AI assistant for product questions with scoped citations.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "0.1.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial public shopper assistant grounded on scoped product facts.",
+            "published_at": "2026-11-27",
+            "tags": [
+                "ai",
+                "storefront",
+                "support"
+            ]
+        },
+        {
             "id": "siro/size-guide",
             "type": "plugin",
             "name": "Size Guide",
@@ -381,6 +402,27 @@
             "published_at": "2026-11-24",
             "tags": [
                 "marketing"
+            ]
+        },
+        {
+            "id": "siro/staff-assistant",
+            "type": "plugin",
+            "name": "Staff Assistant",
+            "description": "Read-only AI assistant for admin and staff, grounded on scoped order and product facts.",
+            "vendor": "Siro",
+            "edition": "free",
+            "status": "published",
+            "latest_version": "0.1.0",
+            "min_core": "^1.0",
+            "min_commerce": "^0.3",
+            "preview_url": null,
+            "changelog_url": null,
+            "changelog": "Initial read-only staff assistant with scoped order and product context.",
+            "published_at": "2026-11-27",
+            "tags": [
+                "ai",
+                "admin",
+                "support"
             ]
         },
         {

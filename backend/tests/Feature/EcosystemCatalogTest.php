@@ -55,8 +55,8 @@ final class EcosystemCatalogTest extends TestCase
 
         self::assertSame(EcosystemCatalogService::SCHEMA, $catalog['schema']);
         self::assertNotSame('', $catalog['generated_at']);
-        // 21 = 21 catalog.json items, 0 discovered fallback (all 6 batch-1 packages have catalog entries).
-        self::assertCount(21, $catalog['items']);
+        // 23 = 23 catalog.json items, 0 discovered fallback (all batch-1 and AI packages have catalog entries).
+        self::assertCount(23, $catalog['items']);
 
         $ids = array_column($catalog['items'], 'id');
         foreach ([
@@ -225,7 +225,7 @@ final class EcosystemCatalogTest extends TestCase
     {
         $service = new EcosystemCatalogService($this->base());
 
-        self::assertCount(16, $service->catalog('plugin')['items']);
+        self::assertCount(18, $service->catalog('plugin')['items']);
         self::assertCount(5, $service->catalog('theme')['items']);
 
         $pro = $service->catalog('all', 'pro');
@@ -235,7 +235,7 @@ final class EcosystemCatalogTest extends TestCase
             self::assertContains($id, $proIds);
         }
 
-        self::assertCount(17, $service->catalog('all', 'free')['items']);
+        self::assertCount(19, $service->catalog('all', 'free')['items']);
 
         $search = $service->catalog('all', 'all', '  AFFILIATE  ');
         self::assertCount(1, $search['items']);
@@ -384,7 +384,7 @@ final class EcosystemCatalogTest extends TestCase
         $catalog = $this->call('GET', '/api/admin/ecosystem/catalog', [], $admin);
         self::assertSame(200, $catalog['status']);
         self::assertSame(EcosystemCatalogService::SCHEMA, $catalog['json']['data']['schema']);
-        self::assertCount(21, $catalog['json']['data']['items']);
+        self::assertCount(23, $catalog['json']['data']['items']);
         self::assertStringNotContainsString('resources', (string) json_encode($catalog['json']));
 
         $theme = $this->call('GET', '/api/admin/ecosystem/catalog?type=theme', [], $admin);

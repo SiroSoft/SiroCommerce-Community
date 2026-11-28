@@ -7,6 +7,7 @@ import { registerProductPhotoReviews } from "./product-photo-reviews/register";
 import { registerProductQa } from "./product-qa/register";
 import { registerSizeGuide } from "./size-guide/register";
 import { registerSocialShare } from "./social-share/register";
+import { registerShopperAssistant } from "./shopper-assistant/register";
 import { registerStickyAddToCart } from "./sticky-add-to-cart/register";
 import { registerStoreLocator } from "./store-locator/register";
 
@@ -101,5 +102,11 @@ export const PLUGIN_SLOT_REGISTRY: readonly PluginSlotEntry[] = [
     slot: "footer",
     priority: 80,
     register: registerStoreLocator,
+  },
+  {
+    extensionId: "siro/shopper-assistant",
+    slot: "header",
+    priority: 200,
+    register: registerShopperAssistant,
   },
 ];

@@ -2,7 +2,7 @@
 
 MIT-licensed SiroCommerce source for the free/core edition.
 
-**Status: v0.3.2 Community source release.** Generated from the private internal
+**Status: v0.3.3 Community source release.** Generated from the private internal
 monorepo with Pro source removed. Free-only backend, storefront and admin tests
 pass; see `SECURITY.md` and `CONTRIBUTING.md` before reporting or contributing.
 
@@ -15,8 +15,8 @@ pass; see `SECURITY.md` and `CONTRIBUTING.md` before reporting or contributing.
 - `packages/` shared API-client, auth, scope, config and UI packages.
 - Free first-party plugins: shipping fee rules, free-shipping banner, product
   Q&A, contact widget, social share, size guide, store locator, Sticky Add to
-  Cart, Product Labels, Email Capture Popup, Product Photo Reviews, and
-  Abandoned Cart Recovery.
+  Cart, Product Labels, Email Capture Popup, Product Photo Reviews,
+  Abandoned Cart Recovery, Staff Assistant, and Shopper Assistant.
 - Free themes: Fashion, Pharmacy, F&B; 18 built-in vertical presets.
 - Ecosystem catalog, theme package pipeline, extension packaging/QIT, scope and
   license verification foundation.

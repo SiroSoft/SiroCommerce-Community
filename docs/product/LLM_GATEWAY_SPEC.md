@@ -29,7 +29,7 @@ short reason (no key/URL/body bytes in the reason).
   the process; hard cap 8KB on the encoded input JSON.
 - System prompt pins the contract: read-only merchandising assistant,
   JSON-only output, never invent prices/stock/URLs, no autonomous actions.
-- `AI_TIMEOUT_SECONDS` (default 20), `AI_MAX_OUTPUT_TOKENS` (default 512),
+- `AI_TIMEOUT_SECONDS` (default 120), `AI_MAX_OUTPUT_TOKENS` (default 4096),
   temperature 0.2. Response `Cache-Control: private, no-store` (controller).
 - Cost: usage tokens recorded in audit `usage_json`; spend is the reserved
   `max_cost_minor` (v1 accounting: reserve = spend).

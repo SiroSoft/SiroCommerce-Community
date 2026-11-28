@@ -49,6 +49,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  basePath: "/admin",
   async headers() {
     return [
       {

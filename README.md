@@ -2,7 +2,7 @@
 
 MIT-licensed SiroCommerce source for the free/core edition.
 
-**Status: v0.3.3 Community source release.** Generated from the private internal
+**Status: v0.3.4 Community source release.** Generated from the private internal
 monorepo with Pro source removed. Free-only backend, storefront and admin tests
 pass; see `SECURITY.md` and `CONTRIBUTING.md` before reporting or contributing.
 

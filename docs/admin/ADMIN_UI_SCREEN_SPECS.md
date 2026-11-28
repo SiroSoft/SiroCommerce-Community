@@ -4,7 +4,7 @@ Status: documentation-only parallel delivery map
 
 ## Source And Counting
 
-The current contract (2026-11-27) contains **469 route declarations / 469 OpenAPI operation IDs** across **406 paths** (OpenAPI `info.version` 0.3.3). The regenerated contract reports **376 bearer-authenticated**, **410 FE-guarded**, and **63 `x-scope`** operations; rerun the handoff before quoting those derived counts. The domain counts below are FE screen ownership counts, not unique API counts: an operation can be reused by more than one screen. Provider/server-to-server operations remain mapped for safe UI states but are excluded from browser certification. The screen map below is a design baseline; it may not list every current operation.
+The current contract (2026-11-27) contains **469 route declarations / 469 OpenAPI operation IDs** across **406 paths** (OpenAPI `info.version` 0.3.4). The regenerated contract reports **376 bearer-authenticated**, **410 FE-guarded**, and **63 `x-scope`** operations; rerun the handoff before quoting those derived counts. The domain counts below are FE screen ownership counts, not unique API counts: an operation can be reused by more than one screen. Provider/server-to-server operations remain mapped for safe UI states but are excluded from browser certification. The screen map below is a design baseline; it may not list every current operation.
 
 Shared route ownership rules:
 

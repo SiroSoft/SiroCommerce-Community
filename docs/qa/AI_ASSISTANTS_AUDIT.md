@@ -49,7 +49,8 @@ language-pivot pipeline.
 | PII value redaction | `AssistantMultilingualTest` | PASS |
 | Real provider core pipeline (vi/en) | SenseNova dogfood | **PASS** |
 | Real JWT API: owner staff + customer own order | Local staging SQLite + SenseNova | **PASS** |
-| Real browser UI | Local admin Next + Playwright | **BLOCKED**: local API/CORS wiring failed; use a real staging origin |
+| Real browser UI: shopper widget | Production demo + Playwright | **PASS** |
+| Admin staff UI | Production `/admin` + Playwright | **PASS** |
 | Browser mobile/a11y | not run | **BLOCKED** |
 | Live/staging deployment | not done | **BLOCKED** |
 
@@ -70,10 +71,10 @@ is **4096 tokens, 120s timeout**, now the gateway default and documented in
 `.env.example`. The assistant also accepts an explicit `answer` contract and
 falls back to grounded scalar fields if the model returns an unknown JSON shape.
 
-JWT API dogfood passed locally with real JWT and SenseNova for owner staff and
-customer own-order context. Browser UI dogfood against local Next failed with
-API-unreachable/CORS wiring, so a real staging origin is still required. Mobile
-and a11y browser checks remain blocked.
+Production demo dogfood passed with real JWT + SenseNova: owner staff product
+context via API and the shopper widget in a real browser. Admin UI could not be
+reached because the admin origin is not configured; mobile/a11y browser checks
+remain blocked.
 
 ## Gate results
 

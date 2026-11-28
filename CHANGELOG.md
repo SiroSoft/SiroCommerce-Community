@@ -2,6 +2,19 @@
 
 All notable changes to this project are documented here. Dates are UTC.
 
+## [2026-11-28] v0.3.4 admin console under /admin
+
+### Changed
+- Admin Next app now builds with `basePath=/admin`; nginx proxies
+  `ecommerce.sirophp.com/admin` to the admin container. No extra DNS/host is
+  required.
+- Admin assets and routes stay under `/admin`; API calls continue through
+  `/api/` with the existing frontend-trust header.
+
+### Verification
+- Admin 616 tests; admin typecheck and production build pass.
+- Nginx config updated with `/admin` proxy before deployment.
+
 ## [2026-11-28] v0.3.3 AI assistants MVP
 
 ### Added

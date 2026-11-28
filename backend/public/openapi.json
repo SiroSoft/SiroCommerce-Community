@@ -2,7 +2,7 @@
     "openapi": "3.0.3",
     "info": {
         "title": "SiroCommerce API",
-        "version": "0.3.3",
+        "version": "0.3.4",
         "description": "Version-safe SiroCommerce API contract generated from routes/api.php. REST envelopes use contract version 1; /api/v2 routes are marked explicitly.",
         "x-be2-contract": {
             "scope": {
